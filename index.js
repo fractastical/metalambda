@@ -1,11 +1,11 @@
-const canvas = document.getElementById('canvas')
+const fcanvas = document.getElementById('layer1')
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+fcanvas.width = window.innerWidth
+fcanvas.height = window.innerHeight
 
-const { width, height } = canvas
+const { width, height } = fcanvas
 
-const _ = canvas.getContext('2d')
+const _ = fcanvas.getContext('2d')
 
 function drawSquareAndQuarterCircle(size) {
   _.beginPath()

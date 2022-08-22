@@ -72,6 +72,25 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   right: 0%;
   }
 
+  .profile {
+    right: 30px;
+    position: fixed;
+
+  }
+
+  .leftbottom {
+    left: 0;
+    bottom: 0;
+    position: fixed;
+
+  }
+  .rightbottom {
+    right: 0;
+    bottom: 0;
+    position: fixed;
+
+  }
+
 .codeflask {
   width: 400px
   height: 83%
@@ -90,29 +109,514 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   </head>
   <body>
   <div id="codeArea" class="codeflask">
-//team1 control function
-  raySeedStrength = 10;
-  ship1xDir = .3;
-  ship1yDir = 1;
-  ship1zDir = .9;
+  leftFreq = 1;
+  downFreq = 2
+  backFreq = 2;
+  splitFreq = 100;
+  mutateStrength = 30;
+
  </div>
+ <div class="leftbottom">
+ <input id="xFreq" type="text" value="10" size="5"></input>
+ <input id="yFreq" type="text" value="10" size="5"></input>
+ <input id="zFreq" type="text" value="10" size="5"></input>
+ <input id="color" type="text" value="10" size="5"></input>
+ <input id="splitFreq" type="text" value="10" size="5"></input>
+ <input id="mutation" type="text" value="10" size="5"></input>
+</div>
  <div id="codeArea2" class="codeflask">
- //team2 control function
 
-  ray2SeedStrength = 10;
-  ship2xDir = -1;
-  ship2yDir = -.3;
-  ship2zDir = -.8;
-
+  upFreq = 1;
+  forwardFreq = 2
+  rightFreq = 2;
+  splitFreq = 100;
+  mutateStrength = 30;
   </div>
-  <div class="codeflask">
+  <div class="rightbottom">
+  <input id="xFreq2" type="text" value="10" size="5"></input>
+  <input id="yFreq2" type="text" value="10" size="5"></input>
+  <input id="zFreq2" type="text" value="10" size="5"></input>
+  <input id="color2" type="text" value="10" size="5"></input>
+  <input id="splitFreq2" type="text" value="10" size="5"></input>
+  <input id="mutation2" type="text" value="10" size="5"></input>
+ </div>
+
+  <div class="profile">
 Joel Dietz portfolio
-   </div>
-   <div class="codeflask">
- <a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a>
+<a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a>
+<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>
+
+
     </div>
 
-    <canvas id="canvas"></canvas>
+    <div style="position: relative;">
+     <canvas id="layer1" width="100" height="100"
+       style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+     <canvas id="layer2" width="140" height="140"
+       style="position: absolute; left: 277px; top: 186px; z-index: 1;"></canvas>
+    </div>
+    <script src="./index.js"></script>
+    <script src="./metalambda.js"></script>
+
+    <script>
+        var canvas = document.getElementById("layer2");
+        var startRenderLoop = function (engine, canvas) {
+            engine.runRenderLoop(function () {
+                if (sceneToRender && sceneToRender.activeCamera) {
+                    sceneToRender.render();
+                }
+            });
+        }
+
+        var engine = null;
+        var scene = null;
+        var playingField = null;
+        var skySphere = null;
+        var sceneToRender = null;
+        var logBlob = "";
+
+        var raySeedStrength = 10;
+        var ship1xDir = .3;
+        var ship1yDir = 1;
+        var ship1zDir = .9;
+         var ray2SeedStrength = 10;
+         var ship2xDir = -1;
+         var ship2yDir = -.3;
+         var ship2zDir = -.8;
+
+
+        // var parse = require('codeflask');
+
+        // import CodeFlask from 'codeflask';
+
+        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}); };
+        var createScene = function () {
+
+            // This creates a basic Babylon Scene object (non-mesh)
+            var scene = new BABYLON.Scene(engine);
+        	scene.clearColor = BABYLON.Color3.Black();
+
+            // This creates and positions a free camera (non-mesh)
+            // var camera = new BABYLON.ArcRotateCamera("camera1",  Math.PI / 1, 6 * Math.PI / 12, 150, new BABYLON.Vector3(0, 1, 0), scene);
+            // var rot_state = {x:camera.alpha , y:camera.beta};
+            // // This targets the camera to scene origin
+            // camera.setTarget(BABYLON.Vector3.Zero());
+            var camera = new BABYLON.FlyCamera("FlyCamera", new BABYLON.Vector3(50, 50, -150), scene);
+
+            // camera.angularSensibilityX = 1;
+            // camera.angularSensibilityY = 1;
+
+            // This attaches the camera to the canvas
+            camera.attachControl(canvas, true);
+
+                // chose
+
+
+
+           function setupPlayingField()
+           {
+
+        	var defaultGridMaterial = new BABYLON.GridMaterial("default", scene);
+        	defaultGridMaterial.majorUnitFrequency = 5;
+        	defaultGridMaterial.gridRatio = 0.5;
+
+        	var defaultGridMaterial2 = new BABYLON.GridMaterial("ca2", scene);
+        	defaultGridMaterial2.majorUnitFrequency = 4;
+        	defaultGridMaterial2.gridRatio = 0.4;
+            // defaultGridMaterial2.lineColor = BABYLON.Color3(0.72, 0, 0);
+
+
+            playingField = BABYLON.MeshBuilder.CreateBox("box", {size: startingSize}, scene);
+            playingField.material = defaultGridMaterial;
+            playingField.position.x = 50;
+            playingField.position.y = 50;
+            playingField.position.z = 50;
+
+            defaultGridMaterial.alpha = 0.2;
+            defaultGridMaterial.opacity = 0.6;
+
+        	var skyMaterial = new BABYLON.GridMaterial("skyMaterial", scene);
+        	skyMaterial.majorUnitFrequency = 6;
+        	skyMaterial.minorUnitVisibility = 0.43;
+        	skyMaterial.gridRatio = 0.5;
+        	skyMaterial.mainColor = new BABYLON.Color3(0, 0.05, 0.2);
+        	skyMaterial.lineColor = new BABYLON.Color3(0, 1.0, 1.0);
+        	skyMaterial.backFaceCulling = false;
+
+        	skySphere = BABYLON.Mesh.CreateSphere("skySphere", 300, 450, scene);
+        	skySphere.material = skyMaterial;
+
+
+           }
+
+
+            function createEnergy()
+            {
+                var cube = BABYLON.MeshBuilder.CreateBox("box", {size: 1}, scene);
+                cube.material = new BABYLON.StandardMaterial("matBallon", scene);
+                cube.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
+                cube.material.alpha = 0.33;
+
+              	cube.position.y = Math.floor(Math.random() * startingSize) + 1;
+              	cube.position.x = Math.floor(Math.random() * startingSize) + 1;
+              	cube.position.z = Math.floor(Math.random() * startingSize) + 1;
+                cube.energy = 10;
+                var cubeIndex = cube.position.y + cube.position.x + cube.position.z;
+                cubeList.push(cube);
+                sortedCubeList[cubeIndex] = cube;
+
+            }
+
+
+
+
+
+            for (let i=1;i < numberofCeullarAutonoma;i++)
+            {
+              var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+              newCA.material = new BABYLON.StandardMaterial("matBallon", scene);
+              newCA.material.emissiveColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+              newCA.position = new BABYLON.Vector3((Math.random()*startingSize), (Math.random()*startingSize), (Math.random()*startingSize));
+              newCA.energy = startingEnergyEnergy;
+              newCA.seed = (Math.random()*100);
+              newCA.xFreq = (Math.random()*200);
+              newCA.yFreq = (Math.random()*200);
+              newCA.zFreq = (Math.random()*200);
+
+              allActiveCAs.push(newCA);
+            }
+
+
+
+            function buyCA() {
+              var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+              newCA.material = new BABYLON.StandardMaterial("matBallon", scene);
+              newCA.material.emissiveColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+              newCA.position = new BABYLON.Vector3((Math.random()*startingSize), (Math.random()*startingSize), (Math.random()*startingSize));
+              newCA.energy = startingEnergyEnergy;
+              newCA.seed = (Math.random()*startingSize);
+
+              allActiveCAs.push(newCA);
+}
+
+
+
+            setupPlayingField();
+
+            for(let i=0;i<startingNumberOfCubes;i++)
+              createEnergy();
+            // createCAs();
+            // when button is pressed, run one computational step
+
+
+            // GUI
+            var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+
+
+            var compstepbutton = BABYLON.GUI.Button.CreateSimpleButton("csb1", numberOfComputationalStepsPerGame + " remaining");
+            compstepbutton.width = "150px"
+            compstepbutton.height = "40px";
+            compstepbutton.color = "black";
+            compstepbutton.top = -320;
+            compstepbutton.left = -170;
+            compstepbutton.cornerRadius = 20;
+            compstepbutton.background = "white";
+            compstepbutton.onPointerUpObservable.add(function() {
+
+                BABYLON.GLTF2Export.GLTFAsync(scene, "fileName").then((gltf) => {
+                  gltf.downloadFiles();
+                });
+
+
+            });
+            advancedTexture.addControl(compstepbutton);
+
+            var ship1;
+            var ship2;
+
+            var modei = 0;
+            var modes = ["Default Mode", "Combat Mode"]
+            var activeMode = "";
+            var modeswitchbutton = BABYLON.GUI.Button.CreateSimpleButton("msb1", "Default mode");
+            modeswitchbutton.width = "150px"
+            modeswitchbutton.height = "40px";
+            modeswitchbutton.color = "black";
+            modeswitchbutton.top = -320;
+            modeswitchbutton.left = 170;
+            modeswitchbutton.cornerRadius = 20;
+            modeswitchbutton.background = "white";
+            modeswitchbutton.onPointerUpObservable.add(function() {
+
+                      modei++;
+                      if (modei>=modes.length)
+                          modei=0;
+                      activeMode = modes[modei];
+                      modeswitchbutton.textBlock.text = activeMode;
+                      if (modei == 1)
+                      {
+                        BABYLON.SceneLoader.ImportMesh("", "/", "UFO.glb", scene, function (newMeshes, particleSystems, skeletons) {
+                        ship1 = newMeshes[0];
+
+                        ship1.rotation.y = Math.PI / 2;
+                        ship1.position = new BABYLON.Vector3(1, 1, 1);
+
+                        // scene.beginAnimation(skeletons[0], 0, 100, true, 1.0);
+
+                        // scene.createDefaultCamera(1,1,1);
+
+
+                      });
+
+                      BABYLON.SceneLoader.ImportMesh("", "/", "igspaceship2.glb", scene, function (newMeshes, particleSystems, skeletons) {
+                      ship2 = newMeshes[0];
+
+                      ship2.rotation.y = Math.PI / 2;
+                      ship2.position = new BABYLON.Vector3(startingSize, startingSize, startingSize);
+
+                      // scene.beginAnimation(skeletons[0], 0, 100, true, 1.0);
+
+                      // scene.createDefaultCamera(1,1,1);
+
+
+                    });
+
+                          //
+                          // BABYLON.SceneLoader.Append("", "Intergalactic_Spaceships_Version_2.glb", scene, function (scene) {
+                          //     // Create a default arc rotate camera and light.
+                          //     scene.createDefaultCameraOrLight(true, true, true);
+                          //
+                          //     // The default camera looks at the back of the asset.
+                          //     // Rotate the camera by 180 degrees to the front of the asset.
+                          //     scene.activeCamera.alpha += Math.PI;
+                          // });
+
+                      }
+
+
+            });
+            advancedTexture.addControl(modeswitchbutton);
+
+            var buyCAButton = BABYLON.GUI.Button.CreateSimpleButton("but1", "Create MetaLife");
+            buyCAButton.width = "150px"
+            buyCAButton.height = "40px";
+            buyCAButton.color = "white";
+            buyCAButton.top = -200;
+            buyCAButton.left = 1;
+            buyCAButton.cornerRadius = 20;
+            buyCAButton.background = "green";
+            buyCAButton.onPointerUpObservable.add(function() {
+              if(team1points>9) {
+
+                buyCA();
+                team1points -= 5;
+                ca1lbutton.textBlock.text = team1points + " points";
+
+
+
+              }
+
+
+
+
+            });
+            advancedTexture.addControl(buyCAButton);
+
+
+
+            var team1points = 10;
+            var team2points = 0;
+
+            var ca1lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
+            ca1lbutton.width = "150px"
+            ca1lbutton.height = "40px";
+            ca1lbutton.color = "white";
+            ca1lbutton.top = -240;
+            ca1lbutton.left = -170;
+            ca1lbutton.cornerRadius = 20;
+            ca1lbutton.background = "blue";
+            ca1lbutton.onPointerUpObservable.add(function() {
+
+              buyCA();
+
+            });
+
+
+            advancedTexture.addControl(ca1lbutton);
+            var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
+
+            /* var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t2p", team2points + " points");
+            ca2lbutton.width = "150px"
+            ca2lbutton.height = "40px";
+            ca2lbutton.color = "white";
+            ca2lbutton.top = -240;
+            ca2lbutton.left = 170;
+            ca2lbutton.cornerRadius = 20;
+            ca2lbutton.background = "red";
+
+            advancedTexture.addControl(ca2lbutton);
+ */
+
+
+            function vecToLocal(vector, mesh){
+                var m = mesh.getWorldMatrix();
+                var v = BABYLON.Vector3.TransformCoordinates(vector, m);
+        		return v;
+            }
+
+            var raySeedStrength = 10;
+            var ship1xDir = .3;
+            var ship1yDir = 1;
+            var ship1zDir = .9;
+
+            var ray2SeedStrength = 10;
+            var ship2xDir = -1;
+            var ship2yDir = -.3;
+            var ship2zDir = -.8;
+
+            function castRay(){
+
+              var origin = ship1.position;
+
+              var microseed = Math.random() * raySeedStrength;
+
+        	    var forward = new BABYLON.Vector3(-7+microseed,4+microseed,2+microseed);
+        	    forward = vecToLocal(forward, ship1);
+
+        	    var direction = forward.subtract(origin);
+        	    direction = BABYLON.Vector3.Normalize(direction);
+
+        	    var length = 33;
+
+        	    var ray = new BABYLON.Ray(origin, direction, length);
+              var rayHelper = new BABYLON.RayHelper(ray);
+
+              var localMeshDirection = new BABYLON.Vector3(0, 0, 1);
+              var localMeshOrigin = new BABYLON.Vector3(0, 0, .4);
+              var length = 33;
+
+              // rayHelper.attachToMesh(ship1, origin, direction, length);
+              rayHelper.show(scene);
+
+                var hits = scene.multiPickWithRay(ray);
+
+                if (hits){
+                    console.log("hits:"+hits.length);
+        		   for (var i=0; i<hits.length; i++){
+                        if (hits[i] != playingField && hits[i] != skySphere);
+                        {
+                          hits[i].pickedMesh.dispose();
+
+                            /* hits[i].pickedMesh.scaling.y -= 0.1;
+                            hits[i].pickedMesh.alpha = .05; */
+                            team1points += 1;
+                            ca1lbutton.textBlock.text = team1points + " points";
+
+                        }
+                   }
+        	    }
+            }
+
+            function castRay2(){
+
+              var origin = ship2.position;
+
+              var microseed = Math.random() * ray2SeedStrength;
+
+        	    var forward = new BABYLON.Vector3(7-microseed,-4-microseed,-2-microseed);
+
+              forward = vecToLocal(forward, ship2);
+
+              var direction = forward.subtract(origin);
+              direction = BABYLON.Vector3.Normalize(direction);
+
+              var length = 33;
+
+              var ray = new BABYLON.Ray(origin, direction, length);
+              var rayHelper = new BABYLON.RayHelper(ray);
+
+              var localMeshDirection = new BABYLON.Vector3(0, 0, 1);
+              var localMeshOrigin = new BABYLON.Vector3(0, 0, .4);
+              var length = 33;
+
+              // rayHelper.attachToMesh(ship2, origin, direction, length);
+              rayHelper.show(scene);
+
+                var hits = scene.multiPickWithRay(ray);
+
+                if (hits){
+                    console.log("hits:"+hits.length);
+               for (var i=0; i<hits.length; i++){
+                        if (hits[i] != playingField);
+                        {
+                            hits[i].pickedMesh.dispose();
+                            team2points += 1;
+                            ca2lbutton.textBlock.text = team2points + " points";
+
+                        }
+                   }
+              }
+            }
+
+            var metaEnergyCount = 0;
+            setTimeout(() => {  console.log("World!"); }, 50000);
+
+
+            scene.beforeRender = () => {
+
+               metaEnergyCount++;
+               runOneStep();
+
+            };
+
+
+
+            // scene.registerBeforeRender(function () {
+            //     castRay();
+            // });
+
+
+
+        	engine.runRenderLoop(function () {
+        		camera.alpha += 0.003;
+        	});
+
+            return scene;
+        };
+                window.initFunction = async function() {
+
+
+                    var asyncEngineCreation = async function() {
+                        try {
+                        return createDefaultEngine();
+                        } catch(e) {
+                        console.log("the available createEngine function failed. Creating the default engine instead");
+                        return createDefaultEngine();
+                        }
+                    }
+
+                    window.engine = await asyncEngineCreation();
+        if (!engine) throw 'engine should not be null.';
+        startRenderLoop(engine, canvas);
+        window.scene = createScene();};
+        initFunction().then(() => {sceneToRender = scene
+        });
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+
+        const code1 = new CodeFlask('#codeArea', {
+          language: 'js',
+          lineNumbers: true
+        })
+
+        const code2 = new CodeFlask('#codeArea2', {
+          language: 'js',
+          lineNumbers: true
+        })
+
+
+    </script>
   </body>
-  <script src="./index.js"></script>
 </html>
