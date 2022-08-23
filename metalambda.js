@@ -73,50 +73,45 @@
               var current_x=ca.position.x;
               var current_y=ca.position.y;
               var current_z=ca.position.z;
-
-              console.log(numberofComputationalStepsCompleted );
+              if (numberofComputationalStepsCompleted % 50 == 0)
+                  console.log(numberofComputationalStepsCompleted + ":" + allActiveCAs.length);
 
               // console.log(ca.xFreq);
               // console.log(ca.seed);
 
-              if(ca.xFreq > 100)
+              if(ca.xFreq > 100) {
                 if((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))
                    current_x += 1;
-              else if (ca.xFreq <= 100)
+              } else if (ca.xFreq <= 100)
                 if((numberofComputationalStepsCompleted % 100) < (ca.xFreq))
                   current_x  -= 1;
 
-              if(ca.yFreq > 100)
+              if(ca.yFreq > 100) {
                 if((numberofComputationalStepsCompleted % 100) < (ca.yFreq % 100))
                    current_y += 1;
-              else if (ca.yFreq <= 100)
+              } else if (ca.yFreq <= 100)
                 if((numberofComputationalStepsCompleted % 100) < (ca.yFreq))
                   current_y  -= 1;
 
-              if(ca.zFreq > 100)
+              if(ca.zFreq > 100) {
                 if((numberofComputationalStepsCompleted % 100) < (ca.zFreq % 100))
                    current_z += 1;
-              else if (ca.zFreq <= 100)
+              } else if (ca.zFreq <= 100)
                 if((numberofComputationalStepsCompleted % 100) < (ca.zFreq))
                   current_z  -= 1;
 
-              // if(ca.splitFreq > 1)
-              //   if((numberofComputationalStepsCompleted == ca.splitFreq)
-              //   {
-              //     var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
-              //     newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
-              //     newBall.material.emissiveColor = ca.material.emissiveColor;
-              //     newBall.position = new BABYLON.Vector3(current_x, current_y, current_z);
-              //     newBall.lastx = ca.position.x;
-              //     newBall.lasty = ca.position.y;
-              //     newBall.lastz = ca.position.z;
-              //     newBall.seed = ca.seed;
-              //     newBall.xFreq = ca.xFreq;
-              //     newBall.yFreq = ca.yFreq;
-              //     newBall.zFreq = ca.zFreq;
-              //
-              //
-              //   }
+
+              if(numberofComputationalStepsCompleted != 0 && numberofComputationalStepsCompleted % ca.splitFreq == 0)
+                {
+                  console.log(ca.splitFreq + " " + numberofComputationalStepsCompleted );
+
+                  if(allActiveCAs.length<12) {
+                    var splitCA = mutate(ca, ca.mutation);
+                    allActiveCAs.push(splitCA);
+
+                  }
+
+                }
               // console.log('color:'+ca.color);
 
                var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
@@ -131,6 +126,8 @@
                newBall.yFreq = ca.yFreq;
                newBall.zFreq = ca.zFreq;
                newBall.color = ca.color;
+               newBall.splitFreq = ca.splitFreq;
+               newBall.mutation = ca.mutation;
 
                ca.material.alpha = 0.5;
 
@@ -153,6 +150,64 @@
               console.log(string);
 
             }
+
+            function mutate(ca, mutationStrength) {
+
+              var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+              console.log("mutate:"+mutationStrength)
+             if(mutationStrength > 2000)
+             {
+               splitCA.xFreq = ca.xFreq + (mutationStrength % 50);
+               splitCA.yFreq = ca.yFreq + (mutationStrength % 50);
+               splitCA.zFreq = ca.zFreq + (mutationStrength % 50);
+               splitCA.mutation = mutationStrength + (mutationStrength % 500);
+             } else if (mutationStrength > 1000) {
+               splitCA.xFreq = ca.xFreq + (mutationStrength % 25);
+               splitCA.yFreq = ca.yFreq + (mutationStrength % 25);
+               splitCA.zFreq = ca.zFreq + (mutationStrength % 25);
+               splitCA.mutation = mutationStrength + (mutationStrength % 250);
+
+            } else if (mutationStrength > 500) {
+              splitCA.xFreq = ca.xFreq + (mutationStrength % 10);
+              splitCA.yFreq = ca.yFreq + (mutationStrength % 10);
+              splitCA.zFreq = ca.zFreq + (mutationStrength % 10);
+              splitCA.mutation = mutationStrength + (mutationStrength % 100);
+            } else {
+              splitCA.xFreq = ca.xFreq - (mutationStrength % 10);
+              splitCA.yFreq = ca.yFreq - (mutationStrength % 10);
+              splitCA.zFreq = ca.zFreq - (mutationStrength % 10);
+              splitCA.mutation = mutationStrength + 1;
+            }
+
+             splitCA.material = new BABYLON.StandardMaterial("matBallon", scene);
+             splitCA.material.emissiveColor = ca.material.emissiveColor;
+             splitCA.position = new BABYLON.Vector3(ca.position.x, ca.position.y, ca.position.z);
+             splitCA.lastx = ca.position.x;
+             splitCA.lasty = ca.position.y;
+             splitCA.lastz = ca.position.z;
+             splitCA.seed = ca.seed;
+             splitCA.color = incrementColor(ca.color,mutationStrength);
+             splitCA.splitFreq = ca.splitFreq;
+
+             return splitCA;
+
+           }
+
+           var incrementColor = function(color, step){
+               var colorToInt = parseInt(color.substr(1), 16),                     // Convert HEX color to integer
+                   nstep = parseInt(step);                                         // Convert step to integer
+               if(!isNaN(colorToInt) && !isNaN(nstep)){                            // Make sure that color has been converted to integer
+                   colorToInt += nstep;                                            // Increment integer with step
+                   var ncolor = colorToInt.toString(16);                           // Convert back integer to HEX
+                   ncolor = '#' + (new Array(7-ncolor.length).join(0)) + ncolor;   // Left pad "0" to make HEX look like a color
+                   if(/^#[0-9a-f]{6}$/i.test(ncolor)){                             // Make sure that HEX is a valid color
+                       return ncolor;
+                   }
+               }
+               return color;
+           };
+
+
 
 
                 // var function_descriptions= ["Forwards", "Chaotic Forwards", "Exochaotic Forwards", "Exochaotic Devient", "Chaotic deviant"]
@@ -260,7 +315,7 @@
                                 console.log("match life cube");
                                 currentValue.energy += 1111;
                                 // team1points += 100;
-                                ca1lbutton.textBlock.text = team1points + " points";
+                                // ca1lbutton.textBlock.text = team1points + " points";
 
                               }
 

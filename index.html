@@ -55,9 +55,9 @@
 
 #codeArea {
 width: 400px;
-height: 200px;
+height: 800px;
 border-radius: 3px;
-bottom: 0%;
+top: 0%;
 position: fixed;
 box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px -2px rgba(#000, .2);
 }
@@ -109,11 +109,19 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   </head>
   <body>
   <div id="codeArea" class="codeflask">
-  leftFreq = 1;
-  downFreq = 2
-  backFreq = 2;
-  splitFreq = 100;
-  mutateStrength = 30;
+  if(ca.xFreq > 100)
+       current_x += 1;
+
+  if(ca.yFreq > 100)
+       current_y += 1;
+
+  if(ca.zFreq > 100)
+       current_z += 1;
+
+  if(numberofComputationalStepsCompleted % ca.splitFreq == 0)
+    {
+      var splitCA = mutate(ca);
+    }
 
  </div>
  <div class="leftbottom">
@@ -142,23 +150,40 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
  </div>
 
   <div class="profile">
-Joel Dietz portfolio
-<a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a>
+Joel Dietz portfolio<BR/>
+<a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a><BR/>
+<input type="button" onclick="metaLifeExport()" value="Export" />
 <input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>
 
 
     </div>
 
     <div style="position: relative;">
-     <canvas id="layer1" width="100" height="100"
+     <canvas id="layer1" width="300px" height="300px"
        style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
      <canvas id="layer2" width="140" height="140"
-       style="position: absolute; left: 277px; top: 186px; z-index: 1;"></canvas>
+       style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
+       <canvas id="layer3" width="60" height="60"
+         style="position: absolute; left: 433px; top: 198px;"></canvas>
+
     </div>
     <script src="./index.js"></script>
     <script src="./metalambda.js"></script>
 
     <script>
+
+
+             function metaLifeExport()
+             {
+                    /* alert("yo"); */
+                    engine.stopRenderLoop();
+
+                     BABYLON.GLTF2Export.GLTFAsync(scene, "metalife").then((gltf) => {
+                       gltf.downloadFiles();
+                     });
+
+             }
+
         var canvas = document.getElementById("layer2");
         var startRenderLoop = function (engine, canvas) {
             engine.runRenderLoop(function () {
@@ -209,8 +234,6 @@ Joel Dietz portfolio
             camera.attachControl(canvas, true);
 
                 // chose
-
-
 
            function setupPlayingField()
            {
@@ -278,6 +301,8 @@ Joel Dietz portfolio
             ca1.xFreq = xFreq;
             ca1.yFreq = yFreq;
             ca1.zFreq = zFreq;
+            ca1.splitFreq = splitFreq;
+            ca1.mutation = mutation;
 
             allActiveCAs.push(ca1);
 
@@ -293,7 +318,10 @@ Joel Dietz portfolio
           ca2.xFreq = xFreq2;
           ca2.yFreq = yFreq2;
           ca2.zFreq = zFreq2;
-          console.log(ca2.color);
+          ca2.splitFreq = splitFreq2;
+          ca2.mutation = mutation2;
+
+          /* console.log(ca2.color); */
 
           allActiveCAs.push(ca2);
 /*

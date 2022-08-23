@@ -1,7 +1,7 @@
 const fcanvas = document.getElementById('layer1')
 
-fcanvas.width = window.innerWidth
-fcanvas.height = window.innerHeight
+fcanvas.width = 800;
+fcanvas.height = 600;
 
 const { width, height } = fcanvas
 
@@ -24,12 +24,21 @@ _.strokeStyle = 'black'
 _.translate(width / 2, height / 2)
 // _.rotate(-Math.PI / 2)
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 15; i++) {
   drawSquareAndQuarterCircle(size)
 
   const tempSize = previousSize
   previousSize = size
   size += tempSize
+
+  // if(i==4)
+  //   _.fillText("middle way", _.width,_.height);
+  //
+  //
+  // if(i==10) {
+  //   console.log(size);
+  //   _.fillText("middle way", _.width,_.height);
+  //   }
 
   _.translate(-tempSize, 0)
   _.rotate(-Math.PI / 2)
