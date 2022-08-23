@@ -173,7 +173,6 @@ Joel Dietz portfolio
         var playingField = null;
         var skySphere = null;
         var sceneToRender = null;
-        var logBlob = "";
 
         var raySeedStrength = 10;
         var ship1xDir = .3;
@@ -201,7 +200,7 @@ Joel Dietz portfolio
             // var rot_state = {x:camera.alpha , y:camera.beta};
             // // This targets the camera to scene origin
             // camera.setTarget(BABYLON.Vector3.Zero());
-            var camera = new BABYLON.FlyCamera("FlyCamera", new BABYLON.Vector3(50, 50, -150), scene);
+            var camera = new BABYLON.FlyCamera("FlyCamera", new BABYLON.Vector3(50, 50, -100), scene);
 
             // camera.angularSensibilityX = 1;
             // camera.angularSensibilityY = 1;
@@ -269,9 +268,36 @@ Joel Dietz portfolio
 
 
 
+            var ca1  = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+            ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
+            ca1.material.emissiveColor = new BABYLON.Color3.FromHexString("#"+colora+colorb+colorc);
+            ca1.position = new BABYLON.Vector3((Math.random()*startingSize), (Math.random()*startingSize), (Math.random()*startingSize));
+            ca1.energy = startingEnergyEnergy;
+            ca1.seed = (Math.random()*100);
+            ca1.color = "#"+colora+colorb+colorc;
+            ca1.xFreq = xFreq;
+            ca1.yFreq = yFreq;
+            ca1.zFreq = zFreq;
+
+            allActiveCAs.push(ca1);
 
 
-            for (let i=1;i < numberofCeullarAutonoma;i++)
+
+          var ca2  = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+          ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
+          ca2.material.emissiveColor = new BABYLON.Color3.FromHexString("#"+colora2+colorb2+colorc2);
+          ca2.position = new BABYLON.Vector3((Math.random()*startingSize), (Math.random()*startingSize), (Math.random()*startingSize));
+          ca2.energy = startingEnergyEnergy;
+          ca2.seed = (Math.random()*100);
+          ca2.color = "#"+colora2+colorb2+colorc2;
+          ca2.xFreq = xFreq2;
+          ca2.yFreq = yFreq2;
+          ca2.zFreq = zFreq2;
+          console.log(ca2.color);
+
+          allActiveCAs.push(ca2);
+/*
+            for (let i=1;i < 3;i++)
             {
               var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
               newCA.material = new BABYLON.StandardMaterial("matBallon", scene);
@@ -285,7 +311,7 @@ Joel Dietz portfolio
 
               allActiveCAs.push(newCA);
             }
-
+ */
 
 
             function buyCA() {
@@ -412,15 +438,10 @@ Joel Dietz portfolio
                 ca1lbutton.textBlock.text = team1points + " points";
 
 
-
               }
-
-
-
 
             });
             advancedTexture.addControl(buyCAButton);
-
 
 
             var team1points = 10;
