@@ -334,9 +334,9 @@ All of the code in the right panel can be changed for more specialised effects.
 
     var createDefaultEngine = function() {
         return new BABYLON.Engine(canvas, true, {
-            /* preserveDrawingBuffer: true,
-            stencil: true,
-            disableWebGL2Support: false */
+            // preserveDrawingBuffer: true,
+            // stencil: true,
+            // disableWebGL2Support: false
         });
     };
     var createScene = function() {
@@ -362,37 +362,37 @@ All of the code in the right panel can be changed for more specialised effects.
 
         function setupPlayingField() {
 
-            var defaultGridMaterial = new BABYLON.GridMaterial("default", scene);
-            defaultGridMaterial.majorUnitFrequency = 5;
-            defaultGridMaterial.gridRatio = 0.5;
-
-            var defaultGridMaterial2 = new BABYLON.GridMaterial("ca2", scene);
-            defaultGridMaterial2.majorUnitFrequency = 4;
-            defaultGridMaterial2.gridRatio = 0.4;
+            // var defaultGridMaterial = new BABYLON.GridMaterial("default", scene);
+            // defaultGridMaterial.majorUnitFrequency = 5;
+            // defaultGridMaterial.gridRatio = 0.5;
+            //
+            // var defaultGridMaterial2 = new BABYLON.GridMaterial("ca2", scene);
+            // defaultGridMaterial2.majorUnitFrequency = 4;
+            // defaultGridMaterial2.gridRatio = 0.4;
             // defaultGridMaterial2.lineColor = BABYLON.Color3(0.72, 0, 0);
 
 
-            playingField = BABYLON.MeshBuilder.CreateBox("box", {
-                size: startingSize
-            }, scene);
-            playingField.material = defaultGridMaterial;
-            playingField.position.x = 50;
-            playingField.position.y = 50;
-            playingField.position.z = 50;
+            // playingField = BABYLON.MeshBuilder.CreateBox("box", {
+            //     size: startingSize
+            // }, scene);
+            // playingField.material = defaultGridMaterial;
+            // playingField.position.x = 50;
+            // playingField.position.y = 50;
+            // playingField.position.z = 50;
 
-            defaultGridMaterial.alpha = 0.2;
-            defaultGridMaterial.opacity = 0.6;
+            // defaultGridMaterial.alpha = 0.2;
+            // defaultGridMaterial.opacity = 0.6;
 
-            var skyMaterial = new BABYLON.GridMaterial("skyMaterial", scene);
-            skyMaterial.majorUnitFrequency = 6;
-            skyMaterial.minorUnitVisibility = 0.43;
-            skyMaterial.gridRatio = 0.5;
-            skyMaterial.mainColor = new BABYLON.Color3(0, 0.05, 0.2);
-            skyMaterial.lineColor = new BABYLON.Color3(0, 1.0, 1.0);
-            skyMaterial.backFaceCulling = false;
-
-            skySphere = BABYLON.Mesh.CreateSphere("skySphere", 300, 450, scene);
-            skySphere.material = skyMaterial;
+            // var skyMaterial = new BABYLON.GridMaterial("skyMaterial", scene);
+            // skyMaterial.majorUnitFrequency = 6;
+            // skyMaterial.minorUnitVisibility = 0.43;
+            // skyMaterial.gridRatio = 0.5;
+            // skyMaterial.mainColor = new BABYLON.Color3(0, 0.05, 0.2);
+            // skyMaterial.lineColor = new BABYLON.Color3(0, 1.0, 1.0);
+            // skyMaterial.backFaceCulling = false;
+            //
+            // skySphere = BABYLON.Mesh.CreateSphere("skySphere", 300, 450, scene);
+            // skySphere.material = skyMaterial;
 
 
         }
@@ -484,8 +484,8 @@ All of the code in the right panel can be changed for more specialised effects.
 
         setupPlayingField();
 
-        for (let i = 0; i < startingNumberOfCubes; i++)
-            createEnergy();
+        // for (let i = 0; i < startingNumberOfCubes; i++)
+        //     createEnergy();
         // createCAs();
         // when button is pressed, run one computational step
 

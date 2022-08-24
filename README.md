@@ -13,6 +13,8 @@ https://github.com/fractastical/metametaverse/blob/main/log.md
 
 TODO:
 
+Get codeflask to work properly 
+
 Deploy to metalamba.org
 
 allow you to save lambda / export ?
@@ -28,6 +30,7 @@ Add text insertion
 
 DONE :
 
+Basic formatting
 
 Add 3d version
 
