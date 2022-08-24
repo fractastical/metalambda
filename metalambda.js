@@ -108,8 +108,11 @@ function metaLambda(ca) {
 
     }
     // console.log('color:'+ca.color);
+    // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
-    var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    var newBall = cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
+
     newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
     newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
     newBall.position = new BABYLON.Vector3(current_x, current_y, current_z);
@@ -148,7 +151,9 @@ function metaLog(string) {
 
 function mutate(ca, mutationStrength) {
 
-    var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+
+    var splitCA = cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
     console.log("mutate:" + mutationStrength)
     if (mutationStrength > 2000) {
         splitCA.xFreq = ca.xFreq + (mutationStrength % 50);
