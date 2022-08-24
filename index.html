@@ -417,6 +417,7 @@ All of the code in the right panel can be changed for more specialised effects.
         }
 
 
+        window.cubePattern1.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
 
         var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
@@ -434,6 +435,7 @@ All of the code in the right panel can be changed for more specialised effects.
         allActiveCAs.push(ca1);
 
 
+        window.cubePattern2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
 
         var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
