@@ -111,10 +111,10 @@ function metaLambda(ca) {
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
-    var newBall = cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
+    var newBall = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
 
-    newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
-    newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
+    // newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
+    // newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
     newBall.position = new BABYLON.Vector3(current_x, current_y, current_z);
     newBall.lastx = ca.position.x;
     newBall.lasty = ca.position.y;

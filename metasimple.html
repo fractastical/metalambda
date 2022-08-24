@@ -344,11 +344,18 @@ All of the code in the right panel can be changed for more specialised effects.
       // var cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
       //     size: 1
       // }, scene);
-      var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
+      // var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
 
         // This creates a basic Babylon Scene object (non-mesh)
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = BABYLON.Color3.Black();
+
+        window.cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
+            size: 1
+        }, scene);
+
+        window.cubePattern.material = new BABYLON.StandardMaterial("matBallon", scene);
+        window.cubePattern.material.emissiveColor = new BABYLON.Color3.FromHexString("#ffffff");
 
         // This creates and positions a free camera (non-mesh)
         // var camera = new BABYLON.ArcRotateCamera("camera1",  Math.PI / 1, 6 * Math.PI / 12, 150, new BABYLON.Vector3(0, 1, 0), scene);
