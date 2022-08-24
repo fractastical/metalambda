@@ -153,7 +153,7 @@ function mutate(ca, mutationStrength) {
 
     // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
-    var splitCA = cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
+    var splitCA = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
     console.log("mutate:" + mutationStrength)
     if (mutationStrength > 2000) {
         splitCA.xFreq = ca.xFreq + (mutationStrength % 50);
