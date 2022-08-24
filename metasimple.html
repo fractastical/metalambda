@@ -37,12 +37,12 @@
         padding: 0;
     }
 
-    #renderCanvas {
+    /* #renderCanvas {
         width: 100%;
         height: 100%;
         touch-action: none;
     }
-
+ */
     .header {
       padding: 20px;
       height: 140px;
@@ -67,7 +67,18 @@
     left: 233px;
     top: 428px;
     width: 229px;
-    height:143px;
+    height:113px;
+    color: white;
+    font: 0.6rem Inconsolata, monospace;
+    background-color: black;
+
+ }
+ #buttons {
+    position:absolute;
+    left: 233px;
+    top: 548px;
+    width: 229px;
+    height:30px;
 
  }
 
@@ -134,7 +145,8 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   <h2>Game of MetaLife 0.33</h2>
 
 Address:<BR/>
-  <input id="address" type="text" size="45" ></input><BR/><BR/>
+  <input id="address" type="text" size="45" onChange="reInitialize()"></input><BR/>
+  <input id="address2" type="text" size="45" onChange="reInitialize()" ></input><BR/>
 
   <table style="font-size:60%">
   <tr>
@@ -154,7 +166,7 @@ Address:<BR/>
 </td>
     <td><input id="zFreq" type="text" value="10" size="3"></input>
 </td>
-<td>  <input id="color" type="text" value="10" size="5"></input>
+<td>  <input id="color" type="text" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"> </input>
 </input>
 </td>
 <td>  <input id="splitFreq" type="text" value="10" size="4"></input>
@@ -173,7 +185,7 @@ Address:<BR/>
 </td>
     <td><input id="zFreq2" type="text" value="10" size="3"></input>
 </td>
-<td>  <input id="color2" type="text" value="10" size="5"></input>
+<td>  <input id="color2" type="text" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"></input>
 </input>
 </td>
 <td>  <input id="splitFreq2" type="text" value="10" size="4"></input>
@@ -268,9 +280,9 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
     <div style="position: relative;">
-     <canvas id="layer1" width="300px" height="300px"
+     <!--<<canvas id="layer1" width="300px" height="300px"
        style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
-      <!--<canvas id="layer2" width="140" height="140"
+      canvas id="layer2" width="140" height="140"
        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
        <canvas id="layer2" width="229" height="229"
         style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
@@ -281,17 +293,23 @@ All of the code in the right panel can be changed for more specialised effects.
     </div>
     <div id="controlpanel">
     <div id="stats" style="padding:5px">
-
+    >>&nbsp;
     </div>
-    <input type="button" onclick="metaLifeExport()" value="Save to blockchain" />
-    <input type="button" onclick="reset()" value="Restart" />
-
     </div>
-    <script src="./index.js"></script>
+    <div id="buttons">    <input type="button" onclick="startSimulation()" value="Go" />
+        <input type="button" onclick="metaLifeExport()" value="Export" />
+        <!--<input type="button" onclick="reset()" value="Restart" />-->
+</div>
+    <!-- <script src="./index.js"></script> -->
+    <script src="./jscolor.js"></script>
     <script src="./metalambda.js"></script>
 
     <script>
 
+    function startSimulation() {
+
+      numberofComputationalStepsCompleted++;
+    }
 
     function metaLifeExport() {
         alert("Beginning export");
@@ -434,7 +452,7 @@ All of the code in the right panel can be changed for more specialised effects.
         }
 
 
-        var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+        var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
         ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
         ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
         ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
@@ -453,7 +471,7 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
 
-        var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+        var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
         ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
         ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
@@ -489,6 +507,7 @@ All of the code in the right panel can be changed for more specialised effects.
          */
 
 
+
         function buyCA() {
             var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
             newCA.material = new BABYLON.StandardMaterial("matBallon", scene);
@@ -503,6 +522,7 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
         setupPlayingField();
+        reInitialize();
 
         // for (let i = 0; i < startingNumberOfCubes; i++)
         //     createEnergy();
@@ -639,18 +659,6 @@ All of the code in the right panel can be changed for more specialised effects.
         advancedTexture.addControl(ca1lbutton);
         var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
 
-        /* var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t2p", team2points + " points");
-                ca2lbutton.width = "150px"
-                ca2lbutton.height = "40px";
-                ca2lbutton.color = "white";
-                ca2lbutton.top = -240;
-                ca2lbutton.left = 170;
-                ca2lbutton.cornerRadius = 20;
-                ca2lbutton.background = "red";
-
-                advancedTexture.addControl(ca2lbutton);
-     */
-
 
         function vecToLocal(vector, mesh) {
             var m = mesh.getWorldMatrix();
@@ -759,7 +767,7 @@ All of the code in the right panel can be changed for more specialised effects.
         scene.beforeRender = () => {
 
             metaEnergyCount++;
-            if (numberofComputationalStepsCompleted <= 1000)
+            if (numberofComputationalStepsCompleted > 0 && numberofComputationalStepsCompleted <= 1000)
               runOneStep();
 
         };
@@ -820,6 +828,8 @@ All of the code in the right panel can be changed for more specialised effects.
         /* window.scene = createScene(); */
 
     }
+
+
 
 
     </script>

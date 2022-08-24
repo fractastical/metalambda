@@ -8,59 +8,166 @@ var physicsRules = [];
 var allActiveCAs = [];
 var logBlob = "";
 
+
+var xFreq;
+var yFreq;
+var zFreq;
+var colora;
+var colorb;
+var colorc;
+var splitFreq;
+var mutation;
+var music;
+var positionX;
+var positionY;
+var positionZ;
+
+
+var xFreq2;
+var yFreq2;
+var zFreq2;
+var colora2;
+var colorb2;
+var colorc2;
+var splitFreq2;
+var mutation2;
+var music2;
+var positionX2;
+var positionY2;
+var positionZ2;
+
+
 const hexToDecimal = hex => parseInt(hex, 16);
 const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 var address1 = genRanHex(40);
-
-document.getElementById("address").value = "0x" + address1;
-
-
-var xFreq = hexToDecimal(address1.substring(0, 3)) % 200;
-var yFreq = hexToDecimal(address1.substring(3, 6)) % 200;
-var zFreq = hexToDecimal(address1.substring(6, 9)) % 200;
-var colora = address1.substring(9, 11);
-var colorb = address1.substring(11, 13);
-var colorc = address1.substring(13, 15);
-var splitFreq = hexToDecimal(address1.substring(15, 17));
-var mutation = hexToDecimal(address1.substring(17, 19));
-var music = hexToDecimal(address1.substring(19, 21));
-var positionX = hexToDecimal(address1.substring(21, 23)) % 100;
-var positionY = hexToDecimal(address1.substring(23, 25)) % 100;
-var positionZ = hexToDecimal(address1.substring(25, 27)) % 100;
-
-document.getElementById("xFreq").value = xFreq;
-document.getElementById("yFreq").value = yFreq;
-document.getElementById("zFreq").value = zFreq;
-document.getElementById("color").value = colora +  colorb  + colorc;
-document.getElementById("color").style.backgroundColor = "#" + colora + colorb + colorc;
-
-document.getElementById("splitFreq").value = splitFreq;
-document.getElementById("mutation").value = mutation;
-
-
-
 var address2 = genRanHex(40);
 
-var xFreq2 = hexToDecimal(address2.substring(0, 3)) % 200;
-var yFreq2 = hexToDecimal(address2.substring(3, 6)) % 200;
-var zFreq2 = hexToDecimal(address2.substring(6, 9)) % 200;
-var colora2 = address2.substring(9, 11);
-var colorb2 = address2.substring(11, 13);
-var colorc2 = address2.substring(13, 15);
-var splitFreq2 = hexToDecimal(address2.substring(12, 15));
-var mutation2 = hexToDecimal(address2.substring(15, 18));
-var music2 = hexToDecimal(address2.substring(18, 21));
+
+document.getElementById("address").value = "0x" + address1;
+document.getElementById("address2").value = "0x" + address2;
+
+function updateCAColor()
+{
+
+  // alert("updateCAColor");
+    var color1 = document.getElementById("color").value;
+    var color2 = document.getElementById("color2").value;
+    // alert(color1);
+    // alert(color2);
+    // alert(ca1);
+    try {
+    var ca1 = allActiveCAs[0];
+    var ca2 = allActiveCAs[1];
+  } catch {
+    console.log("allActiveCAs less than 2 elements")
+  }
+    ca1.material.emissiveColor = new BABYLON.Color3.FromHexString(color1);
+    ca1.material.ambientColor = new BABYLON.Color3.FromHexString(color1);
+    ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString(color1);
+    ca1.color = color1;
+    ca2.material.emissiveColor = new BABYLON.Color3.FromHexString(color2);
+    ca2.material.ambientColor = new BABYLON.Color3.FromHexString(color2);
+    ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString(color2);
+    ca2.color = color2;
+
+
+}
+
+
+function reInitialize()
+{
+    address1 = document.getElementById("address").value;
+
+
+   xFreq = hexToDecimal(address1.substring(0, 3)) % 200;
+   yFreq = hexToDecimal(address1.substring(3, 6)) % 200;
+   zFreq = hexToDecimal(address1.substring(6, 9)) % 200;
+   colora = address1.substring(9, 11);
+   colorb = address1.substring(11, 13);
+   colorc = address1.substring(13, 15);
+   splitFreq = hexToDecimal(address1.substring(15, 17));
+   mutation = hexToDecimal(address1.substring(17, 19));
+   music = hexToDecimal(address1.substring(19, 21));
+   positionX = hexToDecimal(address1.substring(21, 23)) % 100;
+   positionY = hexToDecimal(address1.substring(23, 25)) % 100;
+   positionZ = hexToDecimal(address1.substring(25, 27)) % 100;
+
+  document.getElementById("xFreq").value = xFreq;
+  document.getElementById("yFreq").value = yFreq;
+  document.getElementById("zFreq").value = zFreq;
+  document.getElementById("color").value = colora +  colorb  + colorc;
+  // document.getElementById("color").style.backgroundColor = "#" + colora + colorb + colorc;
+
+   document.getElementById("splitFreq").value = splitFreq;
+   document.getElementById("mutation").value = mutation;
+
+
+   address2 = document.getElementById("address2").value;
+
+
+   xFreq2 = hexToDecimal(address2.substring(0, 3)) % 200;
+   yFreq2 = hexToDecimal(address2.substring(3, 6)) % 200;
+   zFreq2 = hexToDecimal(address2.substring(6, 9)) % 200;
+   colora2 = address2.substring(9, 11);
+   colorb2 = address2.substring(11, 13);
+   colorc2 = address2.substring(13, 15);
+   splitFreq2 = hexToDecimal(address2.substring(15, 17));
+   mutation2 = hexToDecimal(address2.substring(17, 19));
+   music2 = hexToDecimal(address2.substring(19, 21));
+   positionX2 = hexToDecimal(address2.substring(21, 23)) % 100;
+   positionY2 = hexToDecimal(address2.substring(23, 25)) % 100;
+   positionZ2 = hexToDecimal(address2.substring(25, 27)) % 100;
 
 
 
-document.getElementById("xFreq2").value = xFreq2;
-document.getElementById("yFreq2").value = yFreq2;
-document.getElementById("zFreq2").value = zFreq2;
-document.getElementById("color2").value = colora2 + colorb2 + colorc2;
-document.getElementById("color2").style.backgroundColor = "#" + colora2 + colorb2 + colorc2;
+  document.getElementById("xFreq2").value = xFreq2;
+  document.getElementById("yFreq2").value = yFreq2;
+  document.getElementById("zFreq2").value = zFreq2;
+  document.getElementById("color2").value = colora2 + colorb2 + colorc2;
+  // document.getElementById("color2").style.backgroundColor = "#" + colora2 + colorb2 + colorc2;
 
-document.getElementById("splitFreq2").value = splitFreq2;
-document.getElementById("mutation2").value = mutation2;
+   document.getElementById("splitFreq2").value = splitFreq2;
+   document.getElementById("mutation2").value = mutation2;
+
+
+
+    allActiveCAs = [];
+    var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+    ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
+    ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+    ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+    ca1.material.emmissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+    ca1.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
+    ca1.energy = startingEnergyEnergy;
+    ca1.seed = (Math.random() * 100);
+    ca1.color = "#" + colora + colorb + colorc;
+    ca1.xFreq = xFreq;
+    ca1.yFreq = yFreq;
+    ca1.zFreq = zFreq;
+    ca1.splitFreq = splitFreq;
+    ca1.mutation = mutation;
+
+    allActiveCAs.push(ca1);
+
+
+    var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+    ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
+    ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
+    ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
+    ca2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
+    ca2.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
+    ca2.energy = startingEnergyEnergy;
+    ca2.seed = (Math.random() * 100);
+    ca2.color = "#" + colora2 + colorb2 + colorc2;
+    ca2.xFreq = xFreq2;
+    ca2.yFreq = yFreq2;
+    ca2.zFreq = zFreq2;
+    ca2.splitFreq = splitFreq2;
+    ca2.mutation = mutation2;
+
+    allActiveCAs.push(ca2);
+
+}
 
 
 
