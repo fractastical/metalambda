@@ -13,6 +13,10 @@ https://github.com/fractastical/metametaverse/blob/main/log.md
 
 TODO:
 
+Deploy to metalamba.org
+
+allow you to save lambda / export ?
+
 Add lambda inserter
 
 Add midi controller

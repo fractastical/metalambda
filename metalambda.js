@@ -12,6 +12,9 @@ const hexToDecimal = hex => parseInt(hex, 16);
 const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 var address1 = genRanHex(40);
 
+document.getElementById("address").value = "0x" + address1;
+
+
 var xFreq = hexToDecimal(address1.substring(0, 3)) % 200;
 var yFreq = hexToDecimal(address1.substring(3, 6)) % 200;
 var zFreq = hexToDecimal(address1.substring(6, 9)) % 200;
@@ -28,7 +31,7 @@ var positionZ = hexToDecimal(address1.substring(25, 27)) % 100;
 document.getElementById("xFreq").value = xFreq;
 document.getElementById("yFreq").value = yFreq;
 document.getElementById("zFreq").value = zFreq;
-document.getElementById("color").value = colora + " " + colorb + " " + colorc;
+document.getElementById("color").value = colora +  colorb  + colorc;
 document.getElementById("color").style.backgroundColor = "#" + colora + colorb + colorc;
 
 document.getElementById("splitFreq").value = splitFreq;
@@ -53,7 +56,7 @@ var music2 = hexToDecimal(address2.substring(18, 21));
 document.getElementById("xFreq2").value = xFreq2;
 document.getElementById("yFreq2").value = yFreq2;
 document.getElementById("zFreq2").value = zFreq2;
-document.getElementById("color2").value = colora2 + " " + colorb2 + " " + colorc2;
+document.getElementById("color2").value = colora2 + colorb2 + colorc2;
 document.getElementById("color2").style.backgroundColor = "#" + colora2 + colorb2 + colorc2;
 
 document.getElementById("splitFreq2").value = splitFreq2;
@@ -69,9 +72,6 @@ function metaLambda(ca) {
     var current_x = ca.position.x;
     var current_y = ca.position.y;
     var current_z = ca.position.z;
-    if (numberofComputationalStepsCompleted % 50 == 0)
-        console.log(numberofComputationalStepsCompleted + ":" + allActiveCAs.length);
-
     // console.log(ca.xFreq);
     // console.log(ca.seed);
 
@@ -273,6 +273,21 @@ function runMetaStep(numberOfSteps) {
 
 
 function runOneStep() {
+
+
+  if (numberofComputationalStepsCompleted > 0 && numberofComputationalStepsCompleted % 100 == 0) {
+
+      console.log(numberofComputationalStepsCompleted + ":" + allActiveCAs.length);
+      var mydiv = document.getElementById("stats");
+      var newcontent = document.createElement('div');
+      newcontent.innerHTML = "step " + numberofComputationalStepsCompleted +". ";
+
+      while (newcontent.firstChild) {
+          mydiv.appendChild(newcontent.firstChild);
+      }
+
+  }
+
 
     allActiveCAs.forEach(function(currentValue, index, arr) {
 
