@@ -327,8 +327,6 @@ All of the code in the right panel can be changed for more specialised effects.
     var ship2yDir = -.3;
     var ship2zDir = -.8;
 
-    var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
-
 
     // var parse = require('codeflask');
 
@@ -342,6 +340,11 @@ All of the code in the right panel can be changed for more specialised effects.
         });
     };
     var createScene = function() {
+
+      // var cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
+      //     size: 1
+      // }, scene);
+      var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
 
         // This creates a basic Babylon Scene object (non-mesh)
         var scene = new BABYLON.Scene(engine);
