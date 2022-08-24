@@ -98,8 +98,9 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   }
 
   .leftbottom {
-    left: 0;
-    bottom: 0;
+    left: 5px;
+    bottom: 5px;
+    width: 444px;
     position: fixed;
 
   }
@@ -130,11 +131,12 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
 
   <div id="inputs">
 
+  <h2>Game of MetaLife 0.33</h2>
 
-  <h3>Address</h3>
+Address:<BR/>
   <input id="address" type="text" size="45" ></input><BR/><BR/>
 
-  <table>
+  <table style="font-size:60%">
   <tr>
     <th>Name</th>
     <th>xFreq</th>
@@ -184,6 +186,14 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   </tr>
 </table>
 
+<div style="width:200px;padding-top:10px;padding-left:10px">
+
+<!--This is an interactive 3d MetaLife simulator. Use "w" "a" "s" "d" and the mouse cursor to navigate.<BR/>-->
+The first three parameters determine the frequency of movement in the x,y,z coordinate space. The last two determine the frequency that it reproduces and the strength of mutation each time it splits.<BR/>
+All of the code in the right panel can be changed for more specialised effects.
+
+<BR/><BR/><img src="./img/nav.png" width="180px"/>
+</div>
 
   </div>
   <!--<div id="codeArea" class="codeflask">
@@ -203,7 +213,7 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
 
  </div>-->
  <div class="leftbottom">
- Joel Dietz <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a href="cryptoapollo.io" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q" target="_blank">Ted Talk</a> |
+  Joel Dietz <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a href="cryptoapollo.io" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q" target="_blank">Ted Talk</a> |
   <a href="http://metametaverse.io" target="_blank">MMV</a><BR/>
  <a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a><BR/>
  <!--<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>-->
@@ -273,7 +283,7 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
     <div id="stats" style="padding:5px">
 
     </div>
-    <input type="button" onclick="metaLifeExport()" value="Export" />
+    <input type="button" onclick="metaLifeExport()" value="Save to blockchain" />
 
     </div>
     <script src="./index.js"></script>
