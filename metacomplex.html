@@ -37,12 +37,12 @@
         padding: 0;
     }
 
-    /* #renderCanvas {
+    #renderCanvas {
         width: 100%;
         height: 100%;
         touch-action: none;
     }
- */
+
     .header {
       padding: 20px;
       height: 140px;
@@ -67,18 +67,7 @@
     left: 233px;
     top: 428px;
     width: 229px;
-    height:113px;
-    color: white;
-    font: 0.6rem Inconsolata, monospace;
-    background-color: black;
-
- }
- #buttons {
-    position:absolute;
-    left: 233px;
-    top: 548px;
-    width: 229px;
-    height:30px;
+    height:143px;
 
  }
 
@@ -145,8 +134,7 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
   <h2>Game of MetaLife 0.33</h2>
 
 Address:<BR/>
-  <input id="address" type="text" size="45" onChange="reInitialize()"></input><BR/>
-  <input id="address2" type="text" size="45" onChange="reInitialize()" ></input><BR/>
+  <input id="address" type="text" size="45" ></input><BR/><BR/>
 
   <table style="font-size:60%">
   <tr>
@@ -166,7 +154,7 @@ Address:<BR/>
 </td>
     <td><input id="zFreq" type="text" value="10" size="3"></input>
 </td>
-<td>  <input id="color" type="text" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"> </input>
+<td>  <input id="color" type="text" value="10" size="5" onChange="updateCAColor()"></input>
 </input>
 </td>
 <td>  <input id="splitFreq" type="text" value="10" size="4"></input>
@@ -185,7 +173,7 @@ Address:<BR/>
 </td>
     <td><input id="zFreq2" type="text" value="10" size="3"></input>
 </td>
-<td>  <input id="color2" type="text" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"></input>
+<td>  <input id="color2" type="text" value="10" size="5" onChange="updateCAColor()"></input>
 </input>
 </td>
 <td>  <input id="splitFreq2" type="text" value="10" size="4"></input>
@@ -280,9 +268,9 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
     <div style="position: relative;">
-     <!--<<canvas id="layer1" width="300px" height="300px"
+     <canvas id="layer1" width="300px" height="300px"
        style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
-      canvas id="layer2" width="140" height="140"
+      <!--<canvas id="layer2" width="140" height="140"
        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
        <canvas id="layer2" width="229" height="229"
         style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
@@ -293,28 +281,20 @@ All of the code in the right panel can be changed for more specialised effects.
     </div>
     <div id="controlpanel">
     <div id="stats" style="padding:5px">
-    >>&nbsp;
+
     </div>
+    <input type="button" onclick="metaLifeExport()" value="Save to blockchain" />
+    <input type="button" onclick="reset()" value="Restart" />
+
     </div>
-    <div id="buttons">    <input type="button" onclick="startSimulation()" value="Go" />
-        <input type="button" onclick="metaLifeExport()" value="Export" />
-        <!--<input type="button" onclick="reset()" value="Restart" />-->
-</div>
-    <!-- <script src="./index.js"></script> -->
-    <script src="./jscolor.js"></script>
+    <script src="./index.js"></script>
     <script src="./metalambda.js"></script>
 
     <script>
 
-    function startSimulation() {
-
-      numberofComputationalStepsCompleted++;
-    }
 
     function metaLifeExport() {
         alert("Beginning export");
-
-        /* scene.boundingInfo().centerOn(new BABYLON.Vector3(startingSize/2, startingSize/2,startingSize/2)) */
         engine.stopRenderLoop();
 
         BABYLON.GLTF2Export.GLTFAsync(scene, "metalife").then((gltf) => {
@@ -347,8 +327,6 @@ All of the code in the right panel can be changed for more specialised effects.
     var ship2yDir = -.3;
     var ship2zDir = -.8;
 
-    /* var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene); */
-
 
     // var parse = require('codeflask');
 
@@ -356,29 +334,16 @@ All of the code in the right panel can be changed for more specialised effects.
 
     var createDefaultEngine = function() {
         return new BABYLON.Engine(canvas, true, {
-            // preserveDrawingBuffer: true,
-            // stencil: true,
-            // disableWebGL2Support: false
+            /* preserveDrawingBuffer: true,
+            stencil: true,
+            disableWebGL2Support: false */
         });
     };
     var createScene = function() {
 
-
-      // var cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
-      //     size: 1
-      // }, scene);
-      // var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
-
         // This creates a basic Babylon Scene object (non-mesh)
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = BABYLON.Color3.Black();
-
-        /* window.cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
-            size: 1
-        }, scene);
-
-        window.cubePattern.material = new BABYLON.StandardMaterial("matBallon", scene);
-        window.cubePattern.material.emissiveColor = new BABYLON.Color3.FromHexString("#ffffff"); */
 
         // This creates and positions a free camera (non-mesh)
         // var camera = new BABYLON.ArcRotateCamera("camera1",  Math.PI / 1, 6 * Math.PI / 12, 150, new BABYLON.Vector3(0, 1, 0), scene);
@@ -397,37 +362,37 @@ All of the code in the right panel can be changed for more specialised effects.
 
         function setupPlayingField() {
 
-            // var defaultGridMaterial = new BABYLON.GridMaterial("default", scene);
-            // defaultGridMaterial.majorUnitFrequency = 5;
-            // defaultGridMaterial.gridRatio = 0.5;
-            //
-            // var defaultGridMaterial2 = new BABYLON.GridMaterial("ca2", scene);
-            // defaultGridMaterial2.majorUnitFrequency = 4;
-            // defaultGridMaterial2.gridRatio = 0.4;
+            var defaultGridMaterial = new BABYLON.GridMaterial("default", scene);
+            defaultGridMaterial.majorUnitFrequency = 5;
+            defaultGridMaterial.gridRatio = 0.5;
+
+            var defaultGridMaterial2 = new BABYLON.GridMaterial("ca2", scene);
+            defaultGridMaterial2.majorUnitFrequency = 4;
+            defaultGridMaterial2.gridRatio = 0.4;
             // defaultGridMaterial2.lineColor = BABYLON.Color3(0.72, 0, 0);
 
 
-            // playingField = BABYLON.MeshBuilder.CreateBox("box", {
-            //     size: startingSize
-            // }, scene);
-            // playingField.material = defaultGridMaterial;
-            // playingField.position.x = 50;
-            // playingField.position.y = 50;
-            // playingField.position.z = 50;
+            playingField = BABYLON.MeshBuilder.CreateBox("box", {
+                size: startingSize
+            }, scene);
+            playingField.material = defaultGridMaterial;
+            playingField.position.x = 50;
+            playingField.position.y = 50;
+            playingField.position.z = 50;
 
-            // defaultGridMaterial.alpha = 0.2;
-            // defaultGridMaterial.opacity = 0.6;
+            defaultGridMaterial.alpha = 0.2;
+            defaultGridMaterial.opacity = 0.6;
 
-            // var skyMaterial = new BABYLON.GridMaterial("skyMaterial", scene);
-            // skyMaterial.majorUnitFrequency = 6;
-            // skyMaterial.minorUnitVisibility = 0.43;
-            // skyMaterial.gridRatio = 0.5;
-            // skyMaterial.mainColor = new BABYLON.Color3(0, 0.05, 0.2);
-            // skyMaterial.lineColor = new BABYLON.Color3(0, 1.0, 1.0);
-            // skyMaterial.backFaceCulling = false;
-            //
-            // skySphere = BABYLON.Mesh.CreateSphere("skySphere", 300, 450, scene);
-            // skySphere.material = skyMaterial;
+            var skyMaterial = new BABYLON.GridMaterial("skyMaterial", scene);
+            skyMaterial.majorUnitFrequency = 6;
+            skyMaterial.minorUnitVisibility = 0.43;
+            skyMaterial.gridRatio = 0.5;
+            skyMaterial.mainColor = new BABYLON.Color3(0, 0.05, 0.2);
+            skyMaterial.lineColor = new BABYLON.Color3(0, 1.0, 1.0);
+            skyMaterial.backFaceCulling = false;
+
+            skySphere = BABYLON.Mesh.CreateSphere("skySphere", 300, 450, scene);
+            skySphere.material = skyMaterial;
 
 
         }
@@ -452,11 +417,17 @@ All of the code in the right panel can be changed for more specialised effects.
         }
 
 
-        var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+        window.cubePattern1.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+
+
+        /* mesh.setPivotPoint(new BABYLON.Vector3(startingSize/2, startingSize/2, startingSize/2)); */
+        node.setPivotPoint(new BABYLON.Vector3(startingSize/2, startingSize/2, startingSize/2), BABYLON.Space.WORLD);
+
+
+
+        var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
-        ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
-        ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
-        ca1.material.emmissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+        ca1.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
         ca1.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
         ca1.energy = startingEnergyEnergy;
         ca1.seed = (Math.random() * 100);
@@ -470,11 +441,10 @@ All of the code in the right panel can be changed for more specialised effects.
         allActiveCAs.push(ca1);
 
 
+        window.cubePattern2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
 
-        var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+        var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
-        ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
-        ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
         ca2.energy = startingEnergyEnergy;
@@ -507,7 +477,6 @@ All of the code in the right panel can be changed for more specialised effects.
          */
 
 
-
         function buyCA() {
             var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
             newCA.material = new BABYLON.StandardMaterial("matBallon", scene);
@@ -522,10 +491,9 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
         setupPlayingField();
-        reInitialize();
 
-        // for (let i = 0; i < startingNumberOfCubes; i++)
-        //     createEnergy();
+        for (let i = 0; i < startingNumberOfCubes; i++)
+            createEnergy();
         // createCAs();
         // when button is pressed, run one computational step
 
@@ -659,6 +627,18 @@ All of the code in the right panel can be changed for more specialised effects.
         advancedTexture.addControl(ca1lbutton);
         var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
 
+        /* var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t2p", team2points + " points");
+                ca2lbutton.width = "150px"
+                ca2lbutton.height = "40px";
+                ca2lbutton.color = "white";
+                ca2lbutton.top = -240;
+                ca2lbutton.left = 170;
+                ca2lbutton.cornerRadius = 20;
+                ca2lbutton.background = "red";
+
+                advancedTexture.addControl(ca2lbutton);
+     */
+
 
         function vecToLocal(vector, mesh) {
             var m = mesh.getWorldMatrix();
@@ -767,7 +747,7 @@ All of the code in the right panel can be changed for more specialised effects.
         scene.beforeRender = () => {
 
             metaEnergyCount++;
-            if (numberofComputationalStepsCompleted > 0 && numberofComputationalStepsCompleted <= 1000)
+            if (numberofComputationalStepsCompleted <= 1000)
               runOneStep();
 
         };
@@ -828,8 +808,6 @@ All of the code in the right panel can be changed for more specialised effects.
         /* window.scene = createScene(); */
 
     }
-
-
 
 
     </script>
