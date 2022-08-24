@@ -295,6 +295,8 @@ All of the code in the right panel can be changed for more specialised effects.
 
     function metaLifeExport() {
         alert("Beginning export");
+
+        /* scene.boundingInfo().centerOn(new BABYLON.Vector3(startingSize/2, startingSize/2,startingSize/2)) */
         engine.stopRenderLoop();
 
         BABYLON.GLTF2Export.GLTFAsync(scene, "metalife").then((gltf) => {
@@ -327,7 +329,7 @@ All of the code in the right panel can be changed for more specialised effects.
     var ship2yDir = -.3;
     var ship2zDir = -.8;
 
-    var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
+    /* var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene); */
 
 
     // var parse = require('codeflask');
@@ -343,30 +345,22 @@ All of the code in the right panel can be changed for more specialised effects.
     };
     var createScene = function() {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
       // var cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
       //     size: 1
       // }, scene);
       // var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene);
 
-=======
->>>>>>> parent of 8748f23... Update metasimple.html
-=======
->>>>>>> parent of 8748f23... Update metasimple.html
-=======
->>>>>>> parent of 8748f23... Update metasimple.html
         // This creates a basic Babylon Scene object (non-mesh)
         var scene = new BABYLON.Scene(engine);
         scene.clearColor = BABYLON.Color3.Black();
 
-        window.cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
+        /* window.cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
             size: 1
         }, scene);
 
         window.cubePattern.material = new BABYLON.StandardMaterial("matBallon", scene);
-        window.cubePattern.material.emissiveColor = new BABYLON.Color3.FromHexString("#ffffff");
+        window.cubePattern.material.emissiveColor = new BABYLON.Color3.FromHexString("#ffffff"); */
 
         // This creates and positions a free camera (non-mesh)
         // var camera = new BABYLON.ArcRotateCamera("camera1",  Math.PI / 1, 6 * Math.PI / 12, 150, new BABYLON.Vector3(0, 1, 0), scene);
@@ -440,10 +434,11 @@ All of the code in the right panel can be changed for more specialised effects.
         }
 
 
-
         var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
-        ca1.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+        ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+        ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
+        ca1.material.emmissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
         ca1.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
         ca1.energy = startingEnergyEnergy;
         ca1.seed = (Math.random() * 100);
@@ -460,6 +455,8 @@ All of the code in the right panel can be changed for more specialised effects.
 
         var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
+        ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
+        ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
         ca2.energy = startingEnergyEnergy;

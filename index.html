@@ -419,6 +419,12 @@ All of the code in the right panel can be changed for more specialised effects.
 
         window.cubePattern1.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
 
+
+        /* mesh.setPivotPoint(new BABYLON.Vector3(startingSize/2, startingSize/2, startingSize/2)); */
+        node.setPivotPoint(new BABYLON.Vector3(startingSize/2, startingSize/2, startingSize/2), BABYLON.Space.WORLD);
+
+
+
         var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
         ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
         ca1.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);

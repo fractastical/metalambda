@@ -108,20 +108,21 @@ function metaLambda(ca) {
 
     }
     // console.log('color:'+ca.color);
-<<<<<<< HEAD
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
-    var newBall = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
+      // var newBall = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
 
     // newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
     // newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
-=======
 
-    var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    var newBall = BABYLON.MeshBuilder.CreateBox("box", { size : 1}, scene); //scene is optional and defaults to the current scene
+
     newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
     newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
->>>>>>> parent of c5069ff... TypeError on box transition
+    newBall.material.ambientColor = new BABYLON.Color3.FromHexString(ca.color);
+    newBall.material.diffusiveColor = new BABYLON.Color3.FromHexString(ca.color);
     newBall.position = new BABYLON.Vector3(current_x, current_y, current_z);
     newBall.lastx = ca.position.x;
     newBall.lasty = ca.position.y;
@@ -134,7 +135,7 @@ function metaLambda(ca) {
     newBall.splitFreq = ca.splitFreq;
     newBall.mutation = ca.mutation;
 
-    ca.material.alpha = 0.5;
+    // ca.material.alpha = 0.5;
 
     var endTime = performance.now()
     // lambdasExecutionCount[1]++;
@@ -158,13 +159,12 @@ function metaLog(string) {
 
 function mutate(ca, mutationStrength) {
 
-<<<<<<< HEAD
     // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
-    var splitCA = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
-=======
-    var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
->>>>>>> parent of c5069ff... TypeError on box transition
+    // var splitCA = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
+    // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    var splitCA = BABYLON.MeshBuilder.CreateBox("box", { size : 1}, scene); //scene is optional and defaults to the current scene
+
     console.log("mutate:" + mutationStrength)
     if (mutationStrength > 2000) {
         splitCA.xFreq = ca.xFreq + (mutationStrength % 50);
@@ -190,7 +190,9 @@ function mutate(ca, mutationStrength) {
     }
 
     splitCA.material = new BABYLON.StandardMaterial("matBallon", scene);
-    splitCA.material.emissiveColor = ca.material.emissiveColor;
+    splitCA.material.ambientColor = new BABYLON.Color3.FromHexString(ca.color);
+    splitCA.material.diffusiveColor = new BABYLON.Color3.FromHexString(ca.color);
+    splitCA.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
     splitCA.position = new BABYLON.Vector3(ca.position.x, ca.position.y, ca.position.z);
     splitCA.lastx = ca.position.x;
     splitCA.lasty = ca.position.y;
