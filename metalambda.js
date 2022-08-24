@@ -108,6 +108,7 @@ function metaLambda(ca) {
 
     }
     // console.log('color:'+ca.color);
+<<<<<<< HEAD
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
@@ -115,6 +116,12 @@ function metaLambda(ca) {
 
     // newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
     // newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
+=======
+
+    var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+    newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
+    newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
+>>>>>>> parent of c5069ff... TypeError on box transition
     newBall.position = new BABYLON.Vector3(current_x, current_y, current_z);
     newBall.lastx = ca.position.x;
     newBall.lasty = ca.position.y;
@@ -151,9 +158,13 @@ function metaLog(string) {
 
 function mutate(ca, mutationStrength) {
 
+<<<<<<< HEAD
     // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
     var splitCA = window.cubePattern.createInstance(ca.seed + "-" + numberofComputationalStepsCompleted);
+=======
+    var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+>>>>>>> parent of c5069ff... TypeError on box transition
     console.log("mutate:" + mutationStrength)
     if (mutationStrength > 2000) {
         splitCA.xFreq = ca.xFreq + (mutationStrength % 50);
