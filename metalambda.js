@@ -132,12 +132,14 @@ function reInitialize()
 
 
     allActiveCAs = [];
-    var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+
+    var ca1 = BABYLON.MeshBuilder.CreateBox("box", { size : 2}, scene);
+
     ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
     ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
     ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
     ca1.material.emmissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
-    ca1.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
+    ca1.position = new BABYLON.Vector3(positionX, positionY, positionZ);
     ca1.energy = startingEnergyEnergy;
     ca1.seed = (Math.random() * 100);
     ca1.color = "#" + colora + colorb + colorc;
@@ -149,13 +151,14 @@ function reInitialize()
 
     allActiveCAs.push(ca1);
 
+    var ca2 = BABYLON.MeshBuilder.CreateBox("box", { size : 2}, scene);
 
-    var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+    // var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
     ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
     ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
     ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
     ca2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
-    ca2.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
+    ca2.position = new BABYLON.Vector3(positionX2, positionY2, positionZ2);
     ca2.energy = startingEnergyEnergy;
     ca2.seed = (Math.random() * 100);
     ca2.color = "#" + colora2 + colorb2 + colorc2;
@@ -208,6 +211,26 @@ const metaLambdaInner = function(ca) {
 
 }
 
+const code2 = new CodeFlask('#codeArea2', {
+    language: 'js',
+    lineNumbers: true
+});
+
+
+code2.updateCode(metaLambdaInner.toString());
+
+code2.onUpdate((code) => {
+
+  var text = "//" + address1 + "\n"+ "//" + address2 + "\n"+ code;
+  var data = new Blob([text], {type: 'text/plain'});
+  var url = window.URL.createObjectURL(data);
+  document.getElementById('lambdadownload').href = url;
+
+
+  // metaLambdaInner=code;
+});
+
+
 function metaLambda(ca) {
 
     var startTime = performance.now();
@@ -217,7 +240,15 @@ function metaLambda(ca) {
     var current_z = ca.position.z;
     // console.log(ca.xFreq);
     // console.log(ca.seed);
+
+    // code2.run('#code2', {
+    //   language: 'js'
+    // });
     // metaLambdaInner(ca);
+
+    // code2.run('#codeArea2', {
+    // 	    language: 'js'
+    // });
 
     if (ca.xFreq > 100) {
         if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))

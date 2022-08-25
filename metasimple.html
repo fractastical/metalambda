@@ -452,12 +452,12 @@ All of the code in the right panel can be changed for more specialised effects.
         }
 
 
-        var ca1 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+        var ca1 = BABYLON.MeshBuilder.CreateBox("box", { size : 4}, scene);
         ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
         ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
         ca1.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
         ca1.material.emmissiveColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
-        ca1.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
+        ca1.position = new BABYLON.Vector3(xPos, yPos, zPos);
         ca1.energy = startingEnergyEnergy;
         ca1.seed = (Math.random() * 100);
         ca1.color = "#" + colora + colorb + colorc;
@@ -470,13 +470,13 @@ All of the code in the right panel can be changed for more specialised effects.
         allActiveCAs.push(ca1);
 
 
-
-        var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
+        var ca2 = BABYLON.MeshBuilder.CreateBox("box", { size : 4}, scene);
+        /* var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene); */
         ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
         ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.material.diffusiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
         ca2.material.emissiveColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
-        ca2.position = new BABYLON.Vector3((Math.random() * startingSize), (Math.random() * startingSize), (Math.random() * startingSize));
+        ca2.position = new BABYLON.Vector3(xPos2,yPos2,zPos2);
         ca2.energy = startingEnergyEnergy;
         ca2.seed = (Math.random() * 100);
         ca2.color = "#" + colora2 + colorb2 + colorc2;
