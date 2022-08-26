@@ -296,7 +296,7 @@ All of the code in the right panel can be changed for more specialised effects.
     >>&nbsp;
     </div>
     </div>
-    <div id="buttons">    <input type="button" onclick="startSimulation()" value="Go" />
+    <div id="buttons">    <input type="button" onclick="startSimulation()" value="Go 1000 steps" />
         <input type="button" onclick="metaLifeExport()" value="Export" />
         <a href="" id="lambdadownload" download="mlambda.txt" >Download Code</a>
         <!--<input type="button" onclick="reset()" value="Restart" />-->
@@ -309,6 +309,7 @@ All of the code in the right panel can be changed for more specialised effects.
 
     function startSimulation() {
 
+      MAXSTEPS += 1000;
       numberofComputationalStepsCompleted++;
     }
 
@@ -475,7 +476,6 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
         var ca2 = BABYLON.MeshBuilder.CreateBox("box", { size : 4}, scene);
-
         /* var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene); */
         ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
         ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
@@ -772,7 +772,7 @@ All of the code in the right panel can be changed for more specialised effects.
         scene.beforeRender = () => {
 
             metaEnergyCount++;
-            if (numberofComputationalStepsCompleted > 0 && numberofComputationalStepsCompleted <= 1000)
+            if (numberofComputationalStepsCompleted > 0 && numberofComputationalStepsCompleted <= MAXSTEPS)
               runOneStep();
 
         };

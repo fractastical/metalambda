@@ -7,7 +7,7 @@ var numberofComputationalStepsCompleted = 0;
 var physicsRules = [];
 var allActiveCAs = [];
 var logBlob = "";
-
+var MAXSTEPS = 0;
 
 var xFreq;
 var yFreq;
