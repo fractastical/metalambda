@@ -13,19 +13,14 @@ https://github.com/fractastical/metametaverse/blob/main/log.md
 
 TODO:
 
-Get codeflask to work properly 
+Get codeflask to work properly
 
-Deploy to metalamba.org
-
-allow you to save lambda / export ?
-
-Add lambda inserter
+Merge Meshes https://doc.babylonjs.com/divingDeeper/mesh/mergeMeshes
 
 Add midi controller
 
 Add midi translator
 
-Add text insertion
 
 
 DONE :
@@ -35,3 +30,11 @@ Basic formatting
 Add 3d version
 
 Add game of metalife 2d
+
+Deploy to metalamba.org
+
+allow you to save lambda / export ?
+
+Add lambda inserter
+
+Add text insertion (skipping)
