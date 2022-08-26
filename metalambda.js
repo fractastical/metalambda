@@ -6,6 +6,8 @@ var numberofCellularAutomata = 3;
 var numberofComputationalStepsCompleted = 0;
 var physicsRules = [];
 var allActiveCAs = [];
+var activeMetaLambda;
+
 var logBlob = "";
 var MAXSTEPS = 0;
 
@@ -172,8 +174,12 @@ function reInitialize()
 
 }
 
+let fibonacciSpiral = function(ca) {
 
-const metaLambdaInner = function(ca) {
+   //fibonacci logic here
+}
+
+let metaLambdaInner = function(ca) {
 
   if (ca.xFreq > 100) {
       if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))
@@ -208,7 +214,6 @@ const metaLambdaInner = function(ca) {
 
   }
 
-
 }
 
 const code2 = new CodeFlask('#codeArea2', {
@@ -216,8 +221,14 @@ const code2 = new CodeFlask('#codeArea2', {
     lineNumbers: true
 });
 
+function loadFibLambda() {
+
+  code2.updateCode(fibonacciSpiral.toString());
+
+}
 
 code2.updateCode(metaLambdaInner.toString());
+
 
 code2.onUpdate((code) => {
 
@@ -244,7 +255,8 @@ function metaLambda(ca) {
     // code2.run('#code2', {
     //   language: 'js'
     // });
-    // metaLambdaInner(ca);
+    // !metaLambdaInner(ca);
+    !fibonacciSpiral();
 
     // code2.run('#codeArea2', {
     // 	    language: 'js'

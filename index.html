@@ -297,9 +297,12 @@ All of the code in the right panel can be changed for more specialised effects.
     </div>
     </div>
     <div id="buttons">    <input type="button" onclick="startSimulation()" value="Go 1000 steps" />
+    <input type="button" onclick="combineMesh()" value="Combine Mesh" />
         <input type="button" onclick="metaLifeExport()" value="Export" />
         <a href="" id="lambdadownload" download="mlambda.txt" >Download Code</a>
         <!--<input type="button" onclick="reset()" value="Restart" />-->
+        <a href="" id="lambdadownload" onClick="loadFibLambda()">Fib Spiral</a>
+
 </div>
     <!-- <script src="./index.js"></script> -->
     <script src="./jscolor.js"></script>
@@ -524,6 +527,10 @@ All of the code in the right panel can be changed for more specialised effects.
             allActiveCAs.push(newCA);
         }
 
+        function combineMesh() {
+
+
+        }
 
 
         setupPlayingField();
