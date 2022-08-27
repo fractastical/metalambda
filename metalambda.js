@@ -7,6 +7,7 @@ var numberofComputationalStepsCompleted = 0;
 var physicsRules = [];
 var allActiveCAs = [];
 var activeMetaLambda;
+var LEAVETRAIL = true;
 
 var logBlob = "";
 var MAXSTEPS = 0;
@@ -304,6 +305,9 @@ function metaLambda(ca) {
     // newBall.material.emissiveColor = new BABYLON.Color3.FromHexString(ca.color);
 
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+
+    if(LEAVETRAIL) {
+      
     var newBall = BABYLON.MeshBuilder.CreateBox("box", { size : 1}, scene); //scene is optional and defaults to the current scene
 
     newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
@@ -322,13 +326,16 @@ function metaLambda(ca) {
     newBall.splitFreq = ca.splitFreq;
     newBall.mutation = ca.mutation;
 
-    // ca.material.alpha = 0.5;
-
     var endTime = performance.now()
     // lambdasExecutionCount[1]++;
     // lambdasExecutionTime[1] += (endTime - startTime)
 
     return newBall;
+
+    }  else {
+      ca.position = new BABYLON.Vector3(current_x, current_y, current_z);
+      return ca;
+    }
 
 }
 
