@@ -13,7 +13,13 @@ https://github.com/fractastical/metametaverse/blob/main/log.md
 
 TODO:
 
-Get codeflask to work properly
+Add planets
+
+Add descriptor "I want a metaverse with three planets "
+
+Add lambda spec home page
+
+Add personal profile 
 
 Merge Meshes https://doc.babylonjs.com/divingDeeper/mesh/mergeMeshes
 
@@ -24,6 +30,9 @@ Add midi translator
 
 
 DONE :
+
+Get codeflask to work properly
+
 
 Basic formatting
 
