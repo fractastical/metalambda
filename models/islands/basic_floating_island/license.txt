@@ -1,0 +1,11 @@
+Model Information:
+* title:	Basic Floating Island
+* source:	https://sketchfab.com/3d-models/basic-floating-island-63972710e4214e729648dc608e659d04
+* author:	hg3194 (https://sketchfab.com/hg3194)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Basic Floating Island" (https://sketchfab.com/3d-models/basic-floating-island-63972710e4214e729648dc608e659d04) by hg3194 (https://sketchfab.com/hg3194) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
