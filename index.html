@@ -497,7 +497,27 @@ All of the code in the right panel can be changed for more specialised effects.
         /* console.log(ca2.color); */
 
         allActiveCAs.push(ca2);
+
+
+        function initiateZuseMode() {
+
+          BABYLON.SceneLoader.ImportMesh("", "/models/islands/", "basic_floating_island.glb", scene, function (newMeshes, particleSystems, skeletons) {
+          var island = newMeshes[0];
+
+          ship2.rotation.y = Math.PI / 2;
+          ship2.position = new BABYLON.Vector3(50, 50, 50);
+
+          // scene.beginAnimation(skeletons[0], 0, 100, true, 1.0);
+
+          // scene.createDefaultCamera(1,1,1);
+
+
+        });
+
+
+        }
         /*
+
                     for (let i=1;i < 3;i++)
                     {
                       var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
@@ -627,6 +647,7 @@ All of the code in the right panel can be changed for more specialised effects.
 
         });
         advancedTexture.addControl(modeswitchbutton);
+
 
         var buyCAButton = BABYLON.GUI.Button.CreateSimpleButton("but1", "Create MetaLife");
         buyCAButton.width = "150px"

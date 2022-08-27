@@ -257,44 +257,54 @@ function metaLambda(ca) {
     //   language: 'js'
     // });
     // !metaLambdaInner(ca);
-    !fibonacciSpiral();
+    // !fibonacciSpiral();
+
+      const c2 = code2.getCode();
+
+      try{
+        eval(c2);
+      } catch
+      {
+        console.log(c2);
+      }
+
 
     // code2.run('#codeArea2', {
     // 	    language: 'js'
     // });
 
-    if (ca.xFreq > 100) {
-        if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))
-            current_x += 1;
-    } else if (ca.xFreq <= 100)
-        if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq))
-            current_x -= 1;
-
-    if (ca.yFreq > 100) {
-        if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq % 100))
-            current_y += 1;
-    } else if (ca.yFreq <= 100)
-        if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq))
-            current_y -= 1;
-
-    if (ca.zFreq > 100) {
-        if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq % 100))
-            current_z += 1;
-    } else if (ca.zFreq <= 100)
-        if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq))
-            current_z -= 1;
-
-
-    if (numberofComputationalStepsCompleted != 0 && numberofComputationalStepsCompleted % ca.splitFreq == 0) {
-        console.log(ca.splitFreq + " " + numberofComputationalStepsCompleted);
-
-        if (allActiveCAs.length < 12) {
-            var splitCA = mutate(ca, ca.mutation);
-            allActiveCAs.push(splitCA);
-
-        }
-
-    }
+    // if (ca.xFreq > 100) {
+    //     if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))
+    //         current_x += 1;
+    // } else if (ca.xFreq <= 100)
+    //     if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq))
+    //         current_x -= 1;
+    //
+    // if (ca.yFreq > 100) {
+    //     if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq % 100))
+    //         current_y += 1;
+    // } else if (ca.yFreq <= 100)
+    //     if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq))
+    //         current_y -= 1;
+    //
+    // if (ca.zFreq > 100) {
+    //     if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq % 100))
+    //         current_z += 1;
+    // } else if (ca.zFreq <= 100)
+    //     if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq))
+    //         current_z -= 1;
+    //
+    //
+    // if (numberofComputationalStepsCompleted != 0 && numberofComputationalStepsCompleted % ca.splitFreq == 0) {
+    //     console.log(ca.splitFreq + " " + numberofComputationalStepsCompleted);
+    //
+    //     if (allActiveCAs.length < 12) {
+    //         var splitCA = mutate(ca, ca.mutation);
+    //         allActiveCAs.push(splitCA);
+    //
+    //     }
+    //
+    // }
     // console.log('color:'+ca.color);
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
@@ -307,7 +317,7 @@ function metaLambda(ca) {
     // var newBall = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
     if(LEAVETRAIL) {
-      
+
     var newBall = BABYLON.MeshBuilder.CreateBox("box", { size : 1}, scene); //scene is optional and defaults to the current scene
 
     newBall.material = new BABYLON.StandardMaterial("matBallon", scene);
