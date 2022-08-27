@@ -16,6 +16,7 @@ var MAXSTEPS = 0;
 
 var island;
 var planet;
+var planet2;
 var sun;
 
 var xFreq;
@@ -377,8 +378,12 @@ function mutate(ca, mutationStrength) {
 
     if (ZUSEMODE)
     {
-      var instancePlanet = planet.createInstance("instancePlanet")
-      instancePlanet.position = new BABYLON.Vector3(ca.position.x, ca.position.y, ca.position.z);
+      // var instancePlanet = planet.createInstance("instancePlanet")
+      // instancePlanet.position = new BABYLON.Vector3(ca.position.x, ca.position.y, ca.position.z);
+      var instancePlanet2 = planet2.createInstance("instancePlanet2");
+      instancePlanet2.position = new BABYLON.Vector3(ca.position.x, ca.position.y, ca.position.z);
+
+
     }
 
     // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
@@ -610,7 +615,7 @@ BABYLON.SceneLoader.ImportMesh("", "../models/planets/AlienPlanet2/", "AlienPlan
     // do something with the meshes and skeletons
     // particleSystems are always null for glTF assets
     planet = meshes[0];
-    // console.log(planet);
+    console.log(planet);
     // planet.position = new BABYLON.Vector3(30, 30, 30);
 
 });
@@ -621,9 +626,18 @@ BABYLON.SceneLoader.ImportMesh("", "../models/sol/", "sol.obj", scene, function 
     // do something with the meshes and skeletons
     // particleSystems are always null for glTF assets
     sun = meshes[0];
-    // console.log(sun);
-    // sun.position = new BABYLON.Vector3(80, 80, 80);
+    console.log(sun);
+    sun.position = new BABYLON.Vector3(80, 80, 80);
 });
+
+BABYLON.SceneLoader.ImportMesh("", "../models/planets/65-mercury_1k/", "Mercury_1k.obj", scene, function (meshes, particleSystems, skeletons) {
+    // do something with the meshes and skeletons
+    // particleSystems are always null for glTF assets
+    planet2 = meshes[0];
+    console.log(planet2);
+    planet2.position = new BABYLON.Vector3(70, 70, 70);
+});
+
  //
  // });
 
