@@ -8,9 +8,15 @@ var physicsRules = [];
 var allActiveCAs = [];
 var activeMetaLambda;
 var LEAVETRAIL = true;
+var ZUSEMODE = false;
+
 
 var logBlob = "";
 var MAXSTEPS = 0;
+
+var island;
+var planet;
+var sun;
 
 var xFreq;
 var yFreq;
@@ -75,6 +81,11 @@ function updateCAColor()
 
 
 }
+const code2 = new CodeFlask('#codeArea2', {
+    language: 'js',
+    lineNumbers: true
+});
+
 
 
 function reInitialize()
@@ -133,8 +144,13 @@ function reInitialize()
    document.getElementById("mutation2").value = mutation2;
 
 
-
     allActiveCAs = [];
+
+
+    // code2.updateCode(fibonacciSpiral.toString());
+
+    code2.updateCode(metaLambdaInner.toString());
+
 
     var ca1 = BABYLON.MeshBuilder.CreateBox("box", { size : 2}, scene);
 
@@ -177,7 +193,7 @@ function reInitialize()
 
 let fibonacciSpiral = function(ca) {
 
-   //fibonacci logic here
+   //fibonacci logic coming soon  here
 }
 
 let metaLambdaInner = function(ca) {
@@ -217,10 +233,6 @@ let metaLambdaInner = function(ca) {
 
 }
 
-const code2 = new CodeFlask('#codeArea2', {
-    language: 'js',
-    lineNumbers: true
-});
 
 function loadFibLambda() {
 
@@ -228,15 +240,14 @@ function loadFibLambda() {
 
 }
 
-code2.updateCode(metaLambdaInner.toString());
 
 
 code2.onUpdate((code) => {
 
-  var text = "//" + address1 + "\n"+ "//" + address2 + "\n"+ code;
-  var data = new Blob([text], {type: 'text/plain'});
-  var url = window.URL.createObjectURL(data);
-  document.getElementById('lambdadownload').href = url;
+  // var text = "//" + address1 + "\n"+ "//" + address2 + "\n"+ code;
+  // var data = new Blob([text], {type: 'text/plain'});
+  // var url = window.URL.createObjectURL(data);
+  // document.getElementById('lambdadownload').href = url;
 
 
   // metaLambdaInner=code;
@@ -362,6 +373,13 @@ function metaLog(string) {
 }
 
 function mutate(ca, mutationStrength) {
+
+
+    if (ZUSEMODE)
+    {
+      var instancePlanet = planet.createInstance("instancePlanet")
+      instancePlanet.position = new BABYLON.Vector3(ca.position.x, ca.position.y, ca.position.z);
+    }
 
     // var splitCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
 
@@ -561,5 +579,56 @@ function runOneStep() {
     //   compstepbutton.textBlock.text = stepsToDisplay+ " remaining";
     // else
     //  compstepbutton.textBlock.text = "Export game";
+
+}
+
+function initiateZuseMode() {
+
+  scene.clearColor = BABYLON.Color3.White();
+  LEAVETRAIL = false;
+  ZUSEMODE= true;
+
+  const light = new BABYLON.HemisphericLight('hemiLight', new BABYLON.Vector3(-1, 1, 0), scene);
+  light.diffuse = new BABYLON.Color3(1,0.5,0.5);
+  light.groundColor = new BABYLON.Color3(0, 0, 0);
+   //
+   // const stdMat = new BABYLON.StandardMaterial('stdMat', scene);
+   // stdMat.emissiveColor = new BABYLON.Color3(1,0.5,0.5);
+
+  BABYLON.SceneLoader.ImportMesh("", "../models/islands/", "basic_floating_island.glb", scene, function (newMeshes, particleSystems, skeletons) {
+  island = newMeshes[0];
+
+  // island.rotation.y = Math.PI / 2;
+  // island.position = new BABYLON.Vector3(50, 50, 50);
+  // console.log(island);
+  // scene.beginAnimation(skeletons[0], 0, 100, true, 1.0);
+
+  // scene.createDefaultCamera(1,1,1);
+});
+
+BABYLON.SceneLoader.ImportMesh("", "../models/planets/AlienPlanet2/", "AlienPlanet2.obj", scene, function (meshes, particleSystems, skeletons) {
+    // do something with the meshes and skeletons
+    // particleSystems are always null for glTF assets
+    planet = meshes[0];
+    // console.log(planet);
+    // planet.position = new BABYLON.Vector3(30, 30, 30);
+
+});
+
+// TODO: figure out why this doesn't work. Nothing appears. Callback successfully runs
+
+BABYLON.SceneLoader.ImportMesh("", "../models/sol/", "sol.obj", scene, function (meshes, particleSystems, skeletons) {
+    // do something with the meshes and skeletons
+    // particleSystems are always null for glTF assets
+    sun = meshes[0];
+    // console.log(sun);
+    // sun.position = new BABYLON.Vector3(80, 80, 80);
+});
+ //
+ // });
+
+
+
+
 
 }
