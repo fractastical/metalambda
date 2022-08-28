@@ -1,3 +1,5 @@
+// source: https://github.com/dherault/fibonacci_spiral
+
 const fcanvas = document.getElementById('layer1')
 
 fcanvas.width = 800;
