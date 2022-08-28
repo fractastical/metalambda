@@ -1,7 +1,7 @@
 # metalambda
 
 
-Lambda injection into various rendering engines for the purpose of creating MetaLife (https://youtu.be/HhNnnKV-h_Q).
+Lambda injection into various rendering engines for the purpose of creating MetaLife (https://youtu.be/HhNnnKV-h_Q). Deployed at metalambda.org
 
 
 
@@ -11,15 +11,12 @@ https://github.com/fractastical/metametaverse/blob/main/log.md
 
 
 
+
 TODO:
 
-Add planets
 
 Add descriptor "I want a metaverse with three planets "
 
-Add lambda spec home page
-
-Add personal profile 
 
 Merge Meshes https://doc.babylonjs.com/divingDeeper/mesh/mergeMeshes
 
@@ -30,6 +27,16 @@ Add midi translator
 
 
 DONE :
+
+
+
+Add lambda spec home page
+
+Add personal profile [partially completed ]
+
+
+Add planets
+
 
 Get codeflask to work properly
 
