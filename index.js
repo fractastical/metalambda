@@ -18,8 +18,8 @@ function drawSquareAndQuarterCircle(size) {
 let size = 1
 let previousSize = size
 
-_.lineWidth = 0.1
-_.strokeStyle = 'white'
+_.lineWidth = 1
+_.strokeStyle = 'black'
 
 _.translate(width / 2, height / 2)
 // _.rotate(-Math.PI / 2)
