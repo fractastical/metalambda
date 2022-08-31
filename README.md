@@ -9,11 +9,24 @@ see also this log: https://github.com/fractastical/metametaverse/blob/main/log.m
 
 
 
+
 TODO:
 
 Fix codeflask (somehow move function def so it always loads)
 
 Add descriptor "I want a metaverse with three planets "
+
+Mess with other fibonacci code
+
+	- break out into separate repo	
+
+	- figure out "on click" issue
+
+	- auto tile
+
+	- insert divs
+
+	- caputure array data 
 
 Merge Meshes https://doc.babylonjs.com/divingDeeper/mesh/mergeMeshes
 
@@ -26,7 +39,6 @@ Add midi translator
 
 
 DONE :
-
 
 
 Add lambda spec home page
