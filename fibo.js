@@ -2,6 +2,8 @@
 
 const fcanvas = document.getElementById('layer1')
 
+var coords = [];
+
 fcanvas.width = 800;
 fcanvas.height = 600;
 
@@ -28,7 +30,8 @@ _.translate(width / 2, height / 2)
 
 for (let i = 0; i < 15; i++) {
   drawSquareAndQuarterCircle(size)
-
+  coords.push(size);
+  console.log(coords);
   const tempSize = previousSize
   previousSize = size
   size += tempSize
