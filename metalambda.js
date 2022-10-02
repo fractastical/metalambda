@@ -271,7 +271,13 @@ function metaLambda(ca) {
     // !metaLambdaInner(ca);
     // !fibonacciSpiral();
 
-      const c2 = code2.getCode();
+      var c2 = code2.getCode();
+      if (c2.includes("function(ca)")) {
+        c2 = c2.substring(14,c2.length-1);
+        console.log(c2)
+      }
+
+      // let result = text.substring(1, 4);
 
       try{
         eval(c2);
