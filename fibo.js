@@ -32,6 +32,8 @@ for (let i = 0; i < 15; i++) {
   drawSquareAndQuarterCircle(size)
   coords.push(size);
   console.log(coords);
+  // _.fillText(size, 10, 10);
+
   const tempSize = previousSize
   previousSize = size
   size += tempSize
