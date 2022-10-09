@@ -35,6 +35,13 @@ for (let i = 0; i < 15; i++) {
   console.log(coords);
   try {
   _.fillText(texts[i], 10, 10);
+  _.save();
+ _.rotate(Math.PI/2);
+// context.textAlign = "center";
+if(texts[i]) 
+  _.fillText("I love pizza", 15, -75);
+_.restore();
+
 } catch {
 
 }
