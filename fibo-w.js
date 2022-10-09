@@ -1,6 +1,8 @@
 // source: https://github.com/dherault/fibonacci_spiral
 //
-var texts = ["","","","","","","i","i am","i breathe", "i am joel", "i knew my own name", "I wrote a book about aliens", "I learned to code in Pascal", "I designed games", "I wrote poems" ]
+var texts = ["","","","","","","i","i am","i breathe", "i am joel", "i learned my own name", "I wrote a book about aliens", "I learned to code in QBasic", "I built worlds", "I wrote poems" ]
+var subtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
+
 const fcanvas = document.getElementById('layer1')
 
 var coords = [];
@@ -38,8 +40,10 @@ for (let i = 0; i < 15; i++) {
   _.save();
  _.rotate(Math.PI/2);
 // context.textAlign = "center";
-if(texts[i]) 
-  _.fillText("I love pizza", 15, -75);
+var offset = texts[i].length * 5;
+if(texts[i])
+   _.fillText(subtexts[i], 15, -offset);
+
 _.restore();
 
 } catch {
