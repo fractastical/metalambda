@@ -2,6 +2,10 @@
 //
 var texts = ["","","","","","","i","i am","i breathe", "i am joel", "i learned my own name", "I wrote a book about aliens", "I learned to code in QBasic", "I built worlds", "I wrote poems" ]
 var subtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
+var otexts = ["","","","","","","i","i was","i breathed", "i am joel", "i learned my own name", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
+var osubtexts = ["","","","","","","","","a lot", "dietz", "", "and web3", "called metalambda", "and games", "and built a metachurch" ]
+
+var time=0;
 
 const fcanvas = document.getElementById('layer1')
 
