@@ -197,6 +197,7 @@ This is an interactive 2d MetaLife simulator.
    <option value="ca">Cellular Automata</option>
    <option value="metaverseb">Procedural Metaverse Generator</option>
  </select>
+  <input type="button" onclick="startSimulation()" value="Go 10 steps" />
  <!-- <label for="mode">Lambda:</label>
 
  <select name="mode" id="mode" onchange="initiateZuseMode()">
@@ -260,7 +261,7 @@ This is an interactive 2d MetaLife simulator.
        style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
       canvas id="layer2" width="140" height="140"
        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
-       <canvas id="layer2" width="450" height="450"
+       <canvas id="layer2" width="500" height="500"
         style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
 
        <canvas id="layer3" width="60" height="60"
@@ -272,7 +273,7 @@ This is an interactive 2d MetaLife simulator.
     >>&nbsp;
     </div>
     </div>
-    <div id="buttons">    <input type="button" onclick="startSimulation()" value="Go 10 steps" />
+    <div id="buttons">
     <!--<input type="button" onclick="combineMesh()" value="Combine Mesh" />-->
         <input type="button" onclick="metaLifeExport()" value="Export" />
         <a href="" id="lambdadownload" download="mlambda.txt" >Download Code</a>
@@ -516,7 +517,11 @@ This is an interactive 2d MetaLife simulator.
 
 
         function buyCA() {
-            var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene);
+
+            var newCA = BABYLON.Mesh.CreateBox("box", 1.0, scene);
+            /* var cubePattern = BABYLON.Mesh.CreateBox("box", 1.0, scene); */
+
+            /* var newCA = BABYLON.Mesh.CreateSphere("balloon1", 10, 2.0, scene); */
             newCA.material = new BABYLON.StandardMaterial("matBallon", scene);
             newCA.material.emissiveColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
             newCA.position = new BABYLON.Vector3((Math.random() * startingSizeX), (Math.random() * startingSizeY), (Math.random() * startingSizeZ));
