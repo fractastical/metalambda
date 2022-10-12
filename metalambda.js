@@ -1,5 +1,8 @@
 var startingEnergyEnergy = 10000;
-var startingSize = 100;
+var startingSizeX = 100;
+var startingSizeY = 100;
+var startingSizeZ = 100;
+
 var startingNumberOfCubes = 50;
 var numberOfComputationalStepsPerGame = 10000;
 var numberofCellularAutomata = 3;
@@ -549,18 +552,18 @@ function runOneStep() {
         if (currentValue.energy < 2)
             arr.splice(index, 1);
 
-        if (currentValue.position.x > startingSize)
+        if (currentValue.position.x > startingSizeX)
             currentValue.position.x = 0;
-        if (currentValue.position.y > startingSize)
+        if (currentValue.position.y > startingSizeY)
             currentValue.position.y = 0;
-        if (currentValue.position.z > startingSize)
+        if (currentValue.position.z > startingSizeZ)
             currentValue.position.z = 0;
         if (currentValue.position.x < 0)
-            currentValue.position.x = startingSize;
+            currentValue.position.x = startingSizeX;
         if (currentValue.position.y < 0)
-            currentValue.position.y = startingSize;
+            currentValue.position.y = startingSizeY;
         if (currentValue.position.z < 0)
-            currentValue.position.z = startingSize;
+            currentValue.position.z = startingSizeZ;
 
         var caindex = currentValue.position.x + currentValue.position.y + currentValue.position.z;
 
