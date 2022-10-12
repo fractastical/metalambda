@@ -144,66 +144,28 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
 
   <h2>Game of MetaLife 0.33b</h2>
 
-Address:<BR/>
-  <input id="address" type="text" size="45" onChange="reInitialize()"></input><BR/>
-  <input id="address2" type="text" size="45" onChange="reInitialize()" ></input><BR/>
 
-  <table style="font-size:60%">
-  <tr>
-    <th>Name</th>
-    <th>xFreq</th>
-    <th>yFreq</th>
-    /* <th>zFreq</th> */
-    <th>color</th>
-    <th>split</th>
-    <th>mutate</th>
-  </tr>
-  <tr>
-    <td>Lifeform 1</td>
-    <td><input id="xFreq" type="text" value="10" size="3"></input>
-</td>
-    <td>  <input id="yFreq" type="text" value="10" size="3"></input>
-</td>
-    /* <td><input id="zFreq" type="text" value="10" size="3"></input>
-</td> */
-<td>  <input id="color" type="text" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"> </input>
-</input>
-</td>
-<td>  <input id="splitFreq" type="text" value="10" size="4"></input>
-</input>
-</td>
-<td>  <input id="mutation" type="text" value="10" size="4"></input><BR/>
-</input>
-</td>
 
-  </tr>
-  <tr>
-    <td>Lifeform 2</td>
-    <td><input id="xFreq2" type="text" value="10" size="3"></input>
-</td>
-    <td>  <input id="yFreq2" type="text" value="10" size="3"></input>
-</td>
-    <td><input id="zFreq2" type="text" value="10" size="3"></input>
-</td>
-<td>  <input id="color2" type="text" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"></input>
-</input>
-</td>
-<td>  <input id="splitFreq2" type="text" value="10" size="4"></input>
-</input>
-</td>
-<td>  <input id="mutation2" type="text" value="10" size="4"></input><BR/>
-</input>
-</td>
+  <input id="address" type="hidden" size="45" onChange="reInitialize()"></input>
+  <input id="address2" type="hidden" size="45" onChange="reInitialize()" ></input>
+  <input id="xFreq" type="hidden" value="10" size="3"></input>
+ <input id="yFreq" type="hidden" value="10" size="3"></input>
+ <input id="zFreq" type="hidden" value="10" size="3"></input>
+<input id="color" type="hidden"value="10" size="5" type="hidden" data-jscolor=""  onchange="updateCAColor()"> </input>
+<input id="splitFreq" type="hidden"value="10" size="4"></input>
+<input id="mutation" type="hidden" value="10" size="4"></input>
 
-  </tr>
-</table>
+  <input id="xFreq2" type="hidden" value="10" size="3"></input>
+  <input id="yFreq2" type="hidden" value="10" size="3"></input>
+  <input id="zFreq2" type="hidden" value="10" size="3"></input>
+   <input id="color2" type="hidden" value="10" size="5" data-jscolor=""  onchange="updateCAColor()"></input>
+ <input id="splitFreq2" type="hidden" value="10" size="4"></input>
+  <input id="mutation2" type="hidden" value="10" size="4"></input>
+
 
 <div style="width:200px;padding-top:10px;padding-left:10px">
 
-<!--This is an interactive 2d MetaLife simulator. Use "w" "a" "s" "d" and the mouse cursor to navigate.<BR/>-->
-The first three parameters determine the frequency of movement in the x,y,z coordinate space. The last two determine the frequency that it reproduces and the strength of mutation each time it splits.<BR/>
-All of the code in the right panel can be changed for more specialised effects.
-
+This is an interactive 2d MetaLife simulator.
 <BR/><BR/><img src="./img/nav.png" width="180px"/>
 </div>
 
@@ -298,7 +260,7 @@ All of the code in the right panel can be changed for more specialised effects.
        style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
       canvas id="layer2" width="140" height="140"
        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
-       <canvas id="layer2" width="229" height="229"
+       <canvas id="layer2" width="450" height="450"
         style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
 
        <canvas id="layer3" width="60" height="60"

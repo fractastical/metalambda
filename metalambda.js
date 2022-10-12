@@ -55,10 +55,15 @@ const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 
 var address1 = genRanHex(40);
 var address2 = genRanHex(40);
 
+//Can be hidden 
+try {
 
-document.getElementById("address").value = "0x" + address1;
-document.getElementById("address2").value = "0x" + address2;
+  document.getElementById("address").value = "0x" + address1;
+  document.getElementById("address2").value = "0x" + address2;
 
+} catch {
+
+}
 function updateCAColor()
 {
 
