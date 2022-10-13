@@ -263,6 +263,8 @@ let metaLambdaInner = function(myLifeform1) {
 
   }
 
+  return myLifeform1;
+
 }
 
 let metaLambdaInner2 = function(myLifeform2) {
@@ -318,7 +320,7 @@ function metaLambda(ca) {
       // let result = text.substring(1, 4);
 
       try{
-        eval(c2);
+        ca = eval(c2(ca));
       } catch
       {
         console.log(c2);

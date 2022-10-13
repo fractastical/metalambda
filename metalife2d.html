@@ -529,7 +529,7 @@ if(numberofComputationalStepsCompleted % ca.splitFreq == 0)
             newCA.material.emissiveColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
             newCA.position = new BABYLON.Vector3((Math.random() * startingSizeX), (Math.random() * startingSizeY), (Math.random() * startingSizeZ));
             newCA.energy = startingEnergyEnergy;
-            newCA.seed = (Math.random() * startingSize);
+            newCA.seed = (Math.random() * startingSizeX);
 
             allActiveCAs.push(newCA);
         }
