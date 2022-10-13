@@ -91,11 +91,23 @@ function updateCAColor()
 
 
 }
+
+  var code1;
+
 // This is getting slightly iffy because of maintaining the 2d and 3d version with same backend
-  const code1 = new CodeFlask('#codeArea1', {
+try {
+
+  code1 = new CodeFlask('#codeArea1', {
       language: 'js',
       lineNumbers: true
   });
+
+  } catch {
+
+  }
+
+
+
 
 // try {
 
