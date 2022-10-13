@@ -55,7 +55,7 @@ const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 
 var address1 = genRanHex(40);
 var address2 = genRanHex(40);
 
-//Can be hidden 
+//Can be hidden
 try {
 
   document.getElementById("address").value = "0x" + address1;
@@ -90,10 +90,17 @@ function updateCAColor()
 
 
 }
+
+const code1 = new CodeFlask('#codeArea', {
+    language: 'js',
+    lineNumbers: true
+});
+
 const code2 = new CodeFlask('#codeArea2', {
     language: 'js',
     lineNumbers: true
 });
+
 
 
 
@@ -222,6 +229,43 @@ let metaLambdaInner = function(ca) {
           current_y -= 1;
 
   if (ca.zFreq > 100) {
+      if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq % 100))
+          current_z += 1;
+  } else if (ca.zFreq <= 100)
+      if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq))
+          current_z -= 1;
+
+
+  if (numberofComputationalStepsCompleted != 0 && numberofComputationalStepsCompleted % ca.splitFreq == 0) {
+      console.log(ca.splitFreq + " " + numberofComputationalStepsCompleted);
+
+      if (allActiveCAs.length < 12) {
+          var splitCA = mutate(ca, ca.mutation);
+          allActiveCAs.push(splitCA);
+
+      }
+
+  }
+
+}
+
+let metaLambdaInner2 = function(ca) {
+
+  if (ca.xFreq > 50) {
+      if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))
+          current_x += 1;
+  } else if (ca.xFreq <= 100)
+      if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq))
+          current_x -= 1;
+
+  if (ca.yFreq > 50) {
+      if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq % 100))
+          current_y += 1;
+  } else if (ca.yFreq <= 100)
+      if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq))
+          current_y -= 1;
+
+  if (ca.zFreq > 50) {
       if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq % 100))
           current_z += 1;
   } else if (ca.zFreq <= 100)
