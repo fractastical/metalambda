@@ -91,16 +91,11 @@ function updateCAColor()
 
 
 }
-
 // This is getting slightly iffy because of maintaining the 2d and 3d version with same backend
-try {
-  const code1 = new CodeFlask('#codeArea', {
+  const code1 = new CodeFlask('#codeArea1', {
       language: 'js',
       lineNumbers: true
   });
-} catch {
-
-}
 
 // try {
 
@@ -175,8 +170,9 @@ function reInitialize()
 
 
     // code2.updateCode(fibonacciSpiral.toString());
-try{      code1.updateCode(metaLambdaInner.toString());
-          code2.updateCode(metaLambdaInner2.toString());
+try{
+          code1.updateCode(metaLambdaInner.toString());
+          code2.updateCode(metaLambdaInner.toString());
 
 } catch {
   code2.updateCode(metaLambdaInner.toString());
@@ -185,6 +181,7 @@ try{      code1.updateCode(metaLambdaInner.toString());
 
 
     var ca1 = BABYLON.MeshBuilder.CreateBox("box", { size : 2}, scene);
+    var ca = ca1;
 
     ca1.material = new BABYLON.StandardMaterial("matBallon", scene);
     ca1.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora + colorb + colorc);
@@ -203,7 +200,7 @@ try{      code1.updateCode(metaLambdaInner.toString());
     allActiveCAs.push(ca1);
 
     var ca2 = BABYLON.MeshBuilder.CreateBox("box", { size : 2}, scene);
-
+    var myLifeform2 = ca2
     // var ca2 = BABYLON.Mesh.CreateSphere("balloon1", 10, 4.0, scene);
     ca2.material = new BABYLON.StandardMaterial("matBallon", scene);
     ca2.material.ambientColor = new BABYLON.Color3.FromHexString("#" + colora2 + colorb2 + colorc2);
@@ -228,42 +225,42 @@ let fibonacciSpiral = function(ca) {
    //fibonacci logic coming soon  here
 }
 
-let metaLambdaInner = function(myLifeform1) {
+let metaLambdaInner = function(ca) {
 
-  if (myLifeform1.xFreq > 100) {
-      if ((numberofComputationalStepsCompleted % 100) < (myLifeform1.xFreq % 100))
+  if (ca.xFreq > 100) {
+      if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq % 100))
           current_x += 1;
-  } else if (myLifeform1.xFreq <= 100)
-      if ((numberofComputationalStepsCompleted % 100) < (myLifeform1.xFreq))
+  } else if (ca.xFreq <= 100)
+      if ((numberofComputationalStepsCompleted % 100) < (ca.xFreq))
           current_x -= 1;
 
-  if (myLifeform1.yFreq > 100) {
-      if ((numberofComputationalStepsCompleted % 100) < (myLifeform1.yFreq % 100))
+  if (ca.yFreq > 100) {
+      if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq % 100))
           current_y += 1;
-  } else if (myLifeform1.yFreq <= 100)
-      if ((numberofComputationalStepsCompleted % 100) < (myLifeform1.yFreq))
+  } else if (ca.yFreq <= 100)
+      if ((numberofComputationalStepsCompleted % 100) < (ca.yFreq))
           current_y -= 1;
 
-  if (myLifeform1.zFreq > 100) {
-      if ((numberofComputationalStepsCompleted % 100) < (myLifeform1.zFreq % 100))
+  if (ca.zFreq > 100) {
+      if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq % 100))
           current_z += 1;
-  } else if (myLifeform1.zFreq <= 100)
-      if ((numberofComputationalStepsCompleted % 100) < (myLifeform1.zFreq))
+  } else if (ca.zFreq <= 100)
+      if ((numberofComputationalStepsCompleted % 100) < (ca.zFreq))
           current_z -= 1;
 
 
-  if (numberofComputationalStepsCompleted != 0 && numberofComputationalStepsCompleted % myLifeform1.splitFreq == 0) {
-      console.log(myLifeform1.splitFreq + " " + numberofComputationalStepsCompleted);
+  if (numberofComputationalStepsCompleted != 0 && numberofComputationalStepsCompleted % ca.splitFreq == 0) {
+      console.log(ca.splitFreq + " " + numberofComputationalStepsCompleted);
 
       if (allActiveCAs.length < 12) {
-          var splitCA = mutate(myLifeform1, myLifeform1.mutation);
+          var splitCA = mutate(ca, ca.mutation);
           allActiveCAs.push(splitCA);
 
       }
 
   }
 
-  return myLifeform1;
+  return ca;
 
 }
 
@@ -320,7 +317,7 @@ function metaLambda(ca) {
       // let result = text.substring(1, 4);
 
       try{
-        ca = eval(c2(ca));
+        eval(c2);
       } catch
       {
         console.log(c2);

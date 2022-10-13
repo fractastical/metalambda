@@ -83,7 +83,7 @@
  }
 
 
-#codeArea {
+#codeArea1 {
 width: 400px;
 height: 400px;
 border-radius: 3px;
@@ -193,7 +193,7 @@ This is an interactive 2d MetaLife simulator.
 
  <!--<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>-->
 </div>
-<div id="codeArea" class="codeflask">
+<div id="codeArea1" class="codeflask">
 if(ca.xFreq > 100)
      current_x += 1;
 
@@ -649,7 +649,7 @@ if(numberofComputationalStepsCompleted % ca.splitFreq == 0)
 
                 buyCA();
                 team1points -= 5;
-                ca1lbutton.textBlock.text = team1points + " points";
+                /* ca1lbutton.textBlock.text = team1points + " points"; */
 
 
             }
@@ -658,10 +658,10 @@ if(numberofComputationalStepsCompleted % ca.splitFreq == 0)
         advancedTexture.addControl(buyCAButton);
 
 
-        var team1points = 10;
+        var team1points = 0;
         var team2points = 0;
 
-        var ca1lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
+        /* var ca1lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
         ca1lbutton.width = "150px"
         ca1lbutton.height = "40px";
         ca1lbutton.color = "white";
@@ -676,7 +676,7 @@ if(numberofComputationalStepsCompleted % ca.splitFreq == 0)
         });
 
 
-        advancedTexture.addControl(ca1lbutton);
+        advancedTexture.addControl(ca1lbutton); */
         var ca2lbutton = BABYLON.GUI.Button.CreateSimpleButton("t1p", team1points + " energy");
 
 
@@ -731,7 +731,7 @@ if(numberofComputationalStepsCompleted % ca.splitFreq == 0)
                         /* hits[i].pickedMesh.scaling.y -= 0.1;
                         hits[i].pickedMesh.alpha = .05; */
                         team1points += 1;
-                        ca1lbutton.textBlock.text = team1points + " points";
+                        /* ca1lbutton.textBlock.text = team1points + " points"; */
 
                     }
                 }
