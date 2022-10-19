@@ -4,6 +4,8 @@ var texts = ["","","","","","","i","i am","i breathe", "i am joel", "i learned m
 var subtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
 var otexts = ["","","","","","","i","i was","i breathed", "i am joel", "i learned my own name", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
 var osubtexts = ["","","","","","","","","a lot", "dietz", "", "and web3", "called metalambda", "and games", "and built a metachurch" ]
+var imgs = ["","","","","","","","","i breathe", "", "i learned my own name", "img/jd/joel-kozmos.jpeg", "", "", "" ]
+
 
 var time=0;
 
@@ -47,6 +49,15 @@ for (let i = 0; i < 15; i++) {
 var offset = texts[i].length * 5;
 if(texts[i])
    _.fillText(subtexts[i], 15, -offset);
+if(imgs[i])
+{
+   const img = new Image();
+   img.onload = () => {
+     _.drawImage(img, 0, 0);
+   };
+   img.src = imgs[i];
+}
+
 
 _.restore();
 

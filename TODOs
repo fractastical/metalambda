@@ -2,13 +2,15 @@ TODOs
 
 TODO:
 
+Debug (adding the argumnet to the Eval function did not work and the inner lambda is now broken )
+
 Implement 2d mode
 
 	- hide extra text
 	- bring back "battling" and life
 	- implement sending or other basic functions
   - simplify code input
-	- put on a blockchain 	
+	- put on a blockchain
 
 
 Long term:
