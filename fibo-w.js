@@ -2,12 +2,12 @@
 //
 var texts = ["","","","","","","i","i am","i breathe", "i am joel", "i learned my own name", "I wrote a book about aliens", "I learned to code in QBasic", "I built worlds", "I wrote poems" ]
 var subtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
-var otexts = ["","","","","","","i","i was","i breathed", "i am joel", "i learned my own name", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
-var osubtexts = ["","","","","","","","","a lot", "dietz", "", "and web3", "called metalambda", "and games", "and built a metachurch" ]
-var imgs = ["","","","","","","","","i breathe", "", "i learned my own name", "img/jd/joel-kozmos.jpeg", "", "", "" ]
+var otexts = ["","","","","","","i","i was","breathed", "i am still joel", "i learned my own name", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
+var osubtexts = ["","","","","","","","","a lot", "dietz", "", "and cryptoeconomics", "called metalambda", "and games", "and built a metamonastary" ]
+var imgs = ["","","","","","","","","i breathe", "", "img/jd/joel-kozmos.jpeg", "", "", "", "" ]
 
 
-var time=0;
+// var time=0;
 
 const fcanvas = document.getElementById('layer1')
 
@@ -42,13 +42,23 @@ for (let i = 0; i < 15; i++) {
   coords.push(size);
   console.log(coords);
   try {
-  _.fillText(texts[i], 10, 10);
+    if(time == "old")
+         _.fillText(otexts[i], 10, 10);
+    else
+      _.fillText(texts[i], 10, 10);
+
   _.save();
  _.rotate(Math.PI/2);
 // context.textAlign = "center";
 var offset = texts[i].length * 5;
-if(texts[i])
+var ooffset = otexts[i].length * 5;
+  // if(otexts[i])
+  //     _.fillText(subtexts[i], 15, -offset);
+if(time == "old" && otexts[i])
+      _.fillText(osubtexts[i], 15, -ooffset);
+else if(texts[i])
    _.fillText(subtexts[i], 15, -offset);
+
 if(imgs[i])
 {
    const img = new Image();
