@@ -272,8 +272,6 @@ let metaLambdaInner = function(ca) {
 
   }
 
-  return ca;
-
 }
 
 let metaLambdaInner2 = function(myLifeform2) {
