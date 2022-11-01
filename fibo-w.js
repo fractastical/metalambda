@@ -41,11 +41,16 @@ for (let i = 0; i < 15; i++) {
   drawSquareAndQuarterCircle(size)
   coords.push(size);
   console.log(coords);
+
   try {
-    if(time == "old")
+    if(time == "old") {
          _.fillText(otexts[i], 10, 10);
-    else
+         }
+    else {
       _.fillText(texts[i], 10, 10);
+      console.log("ciao");
+
+    }
 
   _.save();
  _.rotate(Math.PI/2);
@@ -54,7 +59,7 @@ var offset = texts[i].length * 5;
 var ooffset = otexts[i].length * 5;
   // if(otexts[i])
   //     _.fillText(subtexts[i], 15, -offset);
-if(time == "old" && otexts[i])
+if(time == 1 && otexts[i])
       _.fillText(osubtexts[i], 15, -ooffset);
 else if(texts[i])
    _.fillText(subtexts[i], 15, -offset);
