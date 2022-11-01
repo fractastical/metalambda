@@ -332,6 +332,7 @@ function metaLambda(ca) {
         eval(c2);
       } catch
       {
+        console.log("eval failed");
         console.log(c2);
       }
 
