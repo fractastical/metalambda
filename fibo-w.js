@@ -43,7 +43,7 @@ for (let i = 0; i < 15; i++) {
   console.log(coords);
 
   try {
-    if(time == "old") {
+    if(time == 1) {
          _.fillText(otexts[i], 10, 10);
          }
     else {
