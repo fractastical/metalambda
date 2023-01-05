@@ -4,9 +4,11 @@ Produced for Wolfram Winter School '23
 
 
 todo 
+- write psuedocode
 - import music samples into mathematica
 - spatialize audio
-- allow variablity of audio capture
+- create light/sound wave mutablity and variablity
+
 
 completed 
 - sound sampling of hang drum
