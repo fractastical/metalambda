@@ -1,0 +1,17 @@
+#Multiway Music
+
+Produced for Wolfram Winter School '23
+
+
+todo 
+- import music samples into mathematica
+- spatialize audio
+- allow variablity of audio capture
+
+completed 
+- sound sampling of hang drum
+- initial project write up
+- 
+- review of multiway gaming
+- review of multiway turing machines
+- code samples
