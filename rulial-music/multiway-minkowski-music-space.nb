@@ -1,0 +1,50 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      1229,         42]
+NotebookOptionsPosition[       843,         28]
+NotebookOutlinePosition[      1279,         44]
+CellTagsIndexPosition[      1236,         41]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Multiway", " ", "Minkowski", " ", "Music", " ", "Space", 
+  " "}]], "Input",
+ CellChangeTimes->{{3.8820621509722276`*^9, 3.8820621595516148`*^9}, {
+  3.882062608361868*^9, 
+  3.8820626317542973`*^9}},ExpressionUUID->"61e71e1d-5737-4013-9a95-\
+8937401ff12e"]
+},
+WindowSize->{832.1999999999999, 494.4},
+WindowMargins->{{Automatic, 109.20000000000005`}, {-30, Automatic}},
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"4a3292ae-53dd-4a02-9f5e-48eb48349c00"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 281, 6, 28, "Input",ExpressionUUID->"61e71e1d-5737-4013-9a95-8937401ff12e"]
+}
+]
+*)
+
