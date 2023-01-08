@@ -26,10 +26,7 @@ Other MMV work
 1.7
 
 Got access to student portal
-review articles and implementations of minkowski spacetime including
--https://writings.stephenwolfram.com/2020/10/faster-than-light-in-our-model-of-physics-some-preliminary-thoughts/
-- https://www.wolframinstitute.org/bulletins/2020/05/event-horizons-singularities-and-other-exotic-spacetime-phenomena/
-- https://demonstrations.wolfram.com/MinkowskiSpacetime/
+review articles and implementations of minkowski spacetime
 current TODOs   
     - merge hangpan files with music parser
     - increase complexity of multiway graph
