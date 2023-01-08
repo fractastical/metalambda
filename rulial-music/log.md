@@ -31,3 +31,13 @@ current TODOs
     - merge hangpan files with music parser
     - increase complexity of multiway graph
     - figure out way to import musical signatures of greater complexity
+
+
+1.8
+
+Meeting with James/Nik
+Trim handpan sound files
+Merge turing machine outputs
+Change pitch of turning machines
+Test output of different turing machine rules for aescetic qualities
+Create framework for inputing 'mixing' of sound output
