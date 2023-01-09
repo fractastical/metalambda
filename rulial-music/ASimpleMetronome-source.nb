@@ -1,0 +1,565 @@
+(* Content-type: application/vnd.wolfram.player *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       153,          7]
+NotebookDataLength[     23254,        555]
+NotebookOptionsPosition[     21292,        508]
+NotebookOutlinePosition[     22015,        534]
+CellTagsIndexPosition[     21972,        531]
+WindowTitle->A Simple Metronome - Source
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["A Simple Metronome", "Section",
+ CellFrame->{{0, 0}, {0, 0}},
+ ShowCellBracket->False,
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"9a0ec117-8042-4471-b56c-e520b220992f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1: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
+FP/69esnAAAAAAAAAAAAwM74B4thROM=
+   "], {{0, 0}, {1800, 25}}, {0, 255},
+   ColorFunction->RGBColor],
+  ImageSize->{1800, 25},
+  PlotRange->{{0, 1800}, {0, 25}}]], "Section",
+ CellFrame->{{0, 0}, {0, 0}},
+ ShowCellBracket->
+  False,ExpressionUUID->"9b5a2d4a-9511-4d19-af62-6481d8042e50"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"instruments", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<MetronomeBell\>\"", ",", "\"\<MetronomeClick\>\"", ",", 
+       "\"\<Metronome\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Clap\>\"", ",", "\"\<Slap\>\"", ",", "\"\<Claps and Slaps\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Snare\>\"", ",", "\"\<HiHatOpen\>\"", ",", "\"\<Drums\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<CrashCymbal\>\"", ",", "\"\<BassDrum2\>\"", ",", 
+       "\"\<Alternative Drums\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<WhistleLong\>\"", ",", "\"\<WhistleShort\>\"", ",", 
+       "\"\<Whistle\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<ScratchPush\>\"", ",", "\"\<ScratchPull\>\"", ",", 
+       "\"\<Scratching\>\""}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.39207370194032*^9, 3.3920737075784273`*^9}, {
+  3.39530689546875*^9, 3.39530694459375*^9}, {3.3954086397305503`*^9, 
+  3.3954086442370305`*^9}},
+ CellID->156922335,ExpressionUUID->"c7044276-87e5-427c-9633-54751406dd0a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"beatDuration", "=", 
+     RowBox[{
+      RowBox[{"1", "/", "beatsPerMinute"}], "*", "60"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Pane", "[", 
+     RowBox[{
+      RowBox[{"Sound", "[", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Join", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"SoundNote", "[", 
+              RowBox[{
+               RowBox[{"instruments", "[", 
+                RowBox[{"[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Position", "[", 
+                    RowBox[{"instruments", ",", "instrument"}], "]"}], "[", 
+                   RowBox[{"[", 
+                    RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", "1"}], "]"}], 
+                "]"}], ",", "beatDuration", ",", 
+               RowBox[{"SoundVolume", "\[Rule]", "volume"}]}], "]"}], "}"}], 
+            ",", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"SoundNote", "[", 
+               RowBox[{
+                RowBox[{"instruments", "[", 
+                 RowBox[{"[", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"Position", "[", 
+                    RowBox[{"instruments", ",", "instrument"}], "]"}], "[", 
+                    RowBox[{"[", 
+                    RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", "2"}], "]"}], 
+                 "]"}], ",", "beatDuration", ",", 
+                RowBox[{"SoundVolume", "\[Rule]", "volume"}]}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"beatsPerMeasure", "-", "1"}], "}"}]}], "]"}]}], "]"}],
+           ",", 
+          RowBox[{"{", "timesToRepeat", "}"}]}], "]"}], "]"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"350", ",", "150"}], "}"}], ",", 
+      RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}]}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"beatsPerMinute", ",", "60", ",", "\"\<beats per minute\>\""}], 
+      "}"}], ",", "1", ",", "250", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"beatsPerMeasure", ",", "4", ",", "\"\<beats per measure\>\""}],
+       "}"}], ",", "1", ",", "8", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"volume", ",", "1", ",", "\"\<volume\>\""}], "}"}], ",", "0", 
+     ",", "1", ",", "0.01"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"timesToRepeat", ",", "5", ",", "\"\<times to repeat\>\""}], 
+      "}"}], ",", "1", ",", "100", ",", "1", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "instrument", ",", "\"\<Metronome\>\"", ",", 
+       "\"\<instrument type\>\""}], "}"}], ",", 
+     RowBox[{"instruments", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "3"}], "]"}], "]"}]}], "}"}], ",", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}], ",", 
+   RowBox[{"TrackedSymbols", "\[RuleDelayed]", "Manipulate"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "4", ",", "5"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.395298518984375*^9, 3.39529854796875*^9}, {
+   3.39529857915625*^9, 3.395298601203125*^9}, {3.395298689484375*^9, 
+   3.39529869253125*^9}, {3.395298967625*^9, 3.39529900353125*^9}, 
+   3.39529906728125*^9, {3.395299207625*^9, 3.395299257484375*^9}, {
+   3.39529932965625*^9, 3.395299333140625*^9}, {3.3952994183125*^9, 
+   3.395299425421875*^9}, {3.39529945659375*^9, 3.395299468203125*^9}, {
+   3.39529967465625*^9, 3.395299770109375*^9}, {3.39529980653125*^9, 
+   3.395299806703125*^9}, {3.395299919171875*^9, 3.39529991925*^9}, {
+   3.39530003815625*^9, 3.395300068578125*^9}, {3.3953001003125*^9, 
+   3.395300115171875*^9}, {3.395300959140625*^9, 3.395300968859375*^9}, {
+   3.39530134809375*^9, 3.395301371328125*^9}, {3.395302154921875*^9, 
+   3.39530229371875*^9}, {3.3953023250625*^9, 3.3953023439375*^9}, {
+   3.395302392703125*^9, 3.395302408359375*^9}, {3.39530246228125*^9, 
+   3.395302462609375*^9}, {3.39530249946875*^9, 3.395302500296875*^9}, {
+   3.395302534046875*^9, 3.395302549015625*^9}, {3.39530329190625*^9, 
+   3.3953032991875*^9}, {3.3953035379375*^9, 3.395303540890625*^9}, {
+   3.39530373384375*^9, 3.395303785703125*^9}, {3.39530381696875*^9, 
+   3.395303824609375*^9}, {3.39530386896875*^9, 3.395303934796875*^9}, {
+   3.3953042079375*^9, 3.39530422003125*^9}, {3.39530446603125*^9, 
+   3.395304467*^9}, {3.395305470421875*^9, 3.39530547415625*^9}, {
+   3.395306959140625*^9, 3.395307061015625*^9}, {3.39530712490625*^9, 
+   3.395307133609375*^9}, {3.3954081090159693`*^9, 3.3954081554534693`*^9}, {
+   3.3954081865472193`*^9, 3.3954082183440943`*^9}, {3.395572572953009*^9, 
+   3.395572581515509*^9}},
+ CellID->47231059,ExpressionUUID->"a9d3bbd7-f060-4131-94de-23f9c829b191"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`beatsPerMeasure$$ = 
+    4, $CellContext`beatsPerMinute$$ = 174, $CellContext`instrument$$ = 
+    "Metronome", $CellContext`timesToRepeat$$ = 18, $CellContext`volume$$ = 1,
+     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`beatsPerMinute$$], 60, "beats per minute"}, 1, 250, 
+      1}, {{
+       Hold[$CellContext`beatsPerMeasure$$], 4, "beats per measure"}, 1, 8, 
+      1}, {{
+       Hold[$CellContext`volume$$], 1, "volume"}, 0, 1, 0.01}, {{
+       Hold[$CellContext`timesToRepeat$$], 5, "times to repeat"}, 1, 100, 
+      1}, {{
+       Hold[$CellContext`instrument$$], "Metronome", "instrument type"}, {
+      "Metronome", "Claps and Slaps", "Drums", "Alternative Drums", "Whistle",
+        "Scratching"}}}, Typeset`size$$ = {
+    350., {72.13403328722343, 77.86596671277657}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`beatsPerMinute$15272$$ = 
+    0, $CellContext`beatsPerMeasure$15273$$ = 0, $CellContext`volume$15274$$ =
+     0, $CellContext`timesToRepeat$15275$$ = 
+    0, $CellContext`instrument$15276$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`beatsPerMeasure$$ = 
+        4, $CellContext`beatsPerMinute$$ = 60, $CellContext`instrument$$ = 
+        "Metronome", $CellContext`timesToRepeat$$ = 5, $CellContext`volume$$ = 
+        1}, "ControllerVariables" :> {
+        Hold[$CellContext`beatsPerMinute$$, \
+$CellContext`beatsPerMinute$15272$$, 0], 
+        Hold[$CellContext`beatsPerMeasure$$, \
+$CellContext`beatsPerMeasure$15273$$, 0], 
+        Hold[$CellContext`volume$$, $CellContext`volume$15274$$, 0], 
+        Hold[$CellContext`timesToRepeat$$, $CellContext`timesToRepeat$15275$$,
+          0], 
+        Hold[$CellContext`instrument$$, $CellContext`instrument$15276$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`beatDuration = (1/$CellContext`beatsPerMinute$$)
+           60; Pane[
+         Sound[
+          Flatten[
+           Table[
+            Join[{
+              SoundNote[
+               Part[$CellContext`instruments, 
+                Part[
+                 
+                 Position[$CellContext`instruments, \
+$CellContext`instrument$$], 1, 1], 1], $CellContext`beatDuration, 
+               SoundVolume -> $CellContext`volume$$]}, 
+             Table[
+              SoundNote[
+               Part[$CellContext`instruments, 
+                Part[
+                 
+                 Position[$CellContext`instruments, \
+$CellContext`instrument$$], 1, 1], 2], $CellContext`beatDuration, 
+               SoundVolume -> $CellContext`volume$$], \
+{$CellContext`beatsPerMeasure$$ - 1}]], {$CellContext`timesToRepeat$$}]]], {
+         350, 150}, Alignment -> Center]), 
+      "Specifications" :> {{{$CellContext`beatsPerMinute$$, 60, 
+          "beats per minute"}, 1, 250, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`beatsPerMeasure$$, 4, 
+          "beats per measure"}, 1, 8, 1, Appearance -> 
+         "Labeled"}, {{$CellContext`volume$$, 1, "volume"}, 0, 1, 
+         0.01}, {{$CellContext`timesToRepeat$$, 5, "times to repeat"}, 1, 100,
+          1, Appearance -> 
+         "Labeled"}, {{$CellContext`instrument$$, "Metronome", 
+          "instrument type"}, {
+         "Metronome", "Claps and Slaps", "Drums", "Alternative Drums", 
+          "Whistle", "Scratching"}}}, 
+      "Options" :> {
+       TrackedSymbols :> Manipulate, AutorunSequencing -> {1, 2, 4, 5}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{734., {103.13403328722343`, 108.86596671277657`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(({$CellContext`beatDuration = 
+        1, $CellContext`instruments = {{
+          "MetronomeBell", "MetronomeClick", "Metronome"}, {
+          "Clap", "Slap", "Claps and Slaps"}, {
+          "Snare", "HiHatOpen", "Drums"}, {
+          "CrashCymbal", "BassDrum2", "Alternative Drums"}, {
+          "WhistleLong", "WhistleShort", "Whistle"}, {
+          "ScratchPush", "ScratchPull", "Scratching"}}}; 
+      Typeset`initDone$$ = True); ReleaseHold[
+       HoldComplete[{$CellContext`instruments = {{
+            "MetronomeBell", "MetronomeClick", "Metronome"}, {
+            "Clap", "Slap", "Claps and Slaps"}, {
+            "Snare", "HiHatOpen", "Drums"}, {
+            "CrashCymbal", "BassDrum2", "Alternative Drums"}, {
+            "WhistleLong", "WhistleShort", "Whistle"}, {
+            "ScratchPush", "ScratchPull", "Scratching"}}; Null}]]; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->369206379,ExpressionUUID->"704169fc-0ee0-4b59-89c5-cbbc16916c21"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["CAPTION", "Section",
+ CellFrame->{{0, 0}, {1, 0}},
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ FontFamily->"Helvetica",
+ FontSize->12,
+ FontWeight->"Bold",
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"52b15b70-68ae-4240-96eb-272f21a92a8b"],
+
+Cell["\<\
+This Demonstration is an example of a metronome. The tempo and time signature \
+are controlled by the \"beats per minute\" and \"beats per measure\" sliders \
+respectively. Depending on the chosen instrument type, one instrument will \
+mark the down beats and another instrument will mark the offbeats. You can \
+also vary the total number of measures to play with the \"times to repeat\" \
+slider.\
+\>", "Text",ExpressionUUID->"4015f277-78a3-4ed2-9e17-7bf262ba2b29"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["THIS NOTEBOOK IS THE SOURCE CODE FROM", "Text",
+ CellFrame->{{0, 0}, {0, 0}},
+ CellMargins->{{48, 10}, {4, 28}},
+ CellGroupingRules->{"SectionGrouping", 25},
+ CellFrameMargins->{{48, 48}, {6, 5}},
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ FontFamily->"Helvetica",
+ FontSize->10,
+ FontWeight->"Bold",
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"89009c65-b309-4ef3-bc20-f4e20d4c985f"],
+
+Cell[TextData[{
+ "\"",
+ ButtonBox["A Simple Metronome",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/ASimpleMetronome/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/ASimpleMetronome/"],
+ "\"",
+ " from ",
+ ButtonBox["the Wolfram Demonstrations Project",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/"],
+ "\[ParagraphSeparator]\[NonBreakingSpace]",
+ ButtonBox["http://demonstrations.wolfram.com/ASimpleMetronome/",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/ASimpleMetronome/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/ASimpleMetronome/"]
+}], "Text",
+ CellMargins->{{48, Inherited}, {0, Inherited}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"d85cbd12-aeba-4d74-836f-7cb8ca9d0d83"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Anthony I. Joseph",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Anthony+I.+\
+Joseph"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Anthony+I.+Joseph"]
+}], "Text",
+ CellDingbat->"\[FilledSmallSquare]",
+ CellMargins->{{66, 48}, {2, 4}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[
+  0.6],ExpressionUUID->"789c7de1-8eec-45e7-bbfa-fcd8437bcffc"],
+
+Cell[TextData[{
+ "A full-function Wolfram ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " system (Version 6 or higher) is required to edit this notebook.\n",
+ StyleBox[ButtonBox["GET WOLFRAM MATHEMATICA \[RightGuillemet]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www.wolfram.com/products/mathematica/"], None},
+  ButtonNote->"http://www.wolfram.com/products/mathematica/"],
+  FontFamily->"Helvetica",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1, 0.42, 0]]
+}], "Text",
+ CellFrame->True,
+ CellMargins->{{48, 68}, {8, 28}},
+ CellFrameMargins->12,
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ CellChangeTimes->{3.3750111182355957`*^9},
+ ParagraphSpacing->{1., 1.},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[0.411765],
+ Background->RGBColor[
+  1, 1, 1],ExpressionUUID->"2034c512-f9d3-404a-8647-13b003571cd0"],
+
+Cell[TextData[{
+ "\[Copyright] ",
+ StyleBox[ButtonBox["Wolfram Demonstrations Project & Contributors",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/"],
+  FontColor->GrayLevel[0.6]],
+ "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+ StyleBox[ButtonBox["Terms of Use",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/termsofuse.html"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/termsofuse.html"],
+  FontColor->GrayLevel[0.6]],
+ "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+ StyleBox[ButtonBox["Make a new version of this Demonstration \
+\[RightGuillemet]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/participate/upload.jsp?id=\
+ASimpleMetronome"], None},
+  ButtonNote->None],
+  FontColor->GrayLevel[0.6]]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellMargins->{{48, 10}, {20, 50}},
+ CellFrameMargins->{{6, 0}, {6, 6}},
+ CellFrameColor->GrayLevel[0.6],
+ FontFamily->"Verdana",
+ FontSize->9,
+ FontColor->GrayLevel[
+  0.6],ExpressionUUID->"46e25439-1c05-427f-866c-bb86f6b402f7"]
+}, Open  ]]
+},
+Editable->True,
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+CellInsertionPointCell->None,
+WindowSize->{858.5999999999999, 574.8},
+WindowMargins->{{Automatic, 134.4000000000001}, {Automatic, 36}},
+WindowElements->{
+ "StatusArea", "MemoryMonitor", "MagnificationPopUp", "VerticalScrollBar", 
+  "MenuBar"},
+WindowTitle->"A Simple Metronome - Source",
+DockedCells->{},
+CellContext->Notebook,
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ec5feb59-2cf9-400a-b7f4-1919da6af80a"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[594, 21, 200, 5, 62, "Section",ExpressionUUID->"9a0ec117-8042-4471-b56c-e520b220992f"],
+Cell[CellGroupData[{
+Cell[819, 30, 3758, 65, 44, "Section",ExpressionUUID->"9b5a2d4a-9511-4d19-af62-6481d8042e50"],
+Cell[4580, 97, 1177, 32, 67, "Input",ExpressionUUID->"c7044276-87e5-427c-9633-54751406dd0a",
+ CellID->156922335],
+Cell[CellGroupData[{
+Cell[5782, 133, 5311, 116, 314, "Input",ExpressionUUID->"a9d3bbd7-f060-4131-94de-23f9c829b191",
+ CellID->47231059],
+Cell[11096, 251, 5359, 108, 231, "Output",ExpressionUUID->"704169fc-0ee0-4b59-89c5-cbbc16916c21",
+ CellID->369206379]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16504, 365, 271, 8, 45, "Section",ExpressionUUID->"52b15b70-68ae-4240-96eb-272f21a92a8b"],
+Cell[16778, 375, 477, 7, 70, "Text",ExpressionUUID->"4015f277-78a3-4ed2-9e17-7bf262ba2b29"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[17292, 387, 417, 11, 21, "Text",ExpressionUUID->"89009c65-b309-4ef3-bc20-f4e20d4c985f",
+ CellGroupingRules->{"SectionGrouping", 25}],
+Cell[17712, 400, 933, 25, 39, "Text",ExpressionUUID->"d85cbd12-aeba-4d74-836f-7cb8ca9d0d83"],
+Cell[18648, 427, 503, 15, 20, "Text",ExpressionUUID->"789c7de1-8eec-45e7-bbfa-fcd8437bcffc"],
+Cell[19154, 444, 873, 25, 102, "Text",ExpressionUUID->"2034c512-f9d3-404a-8647-13b003571cd0"],
+Cell[20030, 471, 1246, 34, 88, "Text",ExpressionUUID->"46e25439-1c05-427f-866c-bb86f6b402f7"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

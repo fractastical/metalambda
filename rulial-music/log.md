@@ -41,3 +41,7 @@ Merge turing machine outputs
 Change pitch of turning machines
 Test output of different turing machine rules for aescetic qualities
 Create framework for inputing 'mixing' of sound output
+
+1.9
+
+experiments with tempo (metronome) and harmonics

@@ -1,0 +1,3868 @@
+(* Content-type: application/vnd.wolfram.player *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       153,          7]
+NotebookDataLength[    139843,       3858]
+NotebookOptionsPosition[    137340,       3802]
+NotebookOutlinePosition[    138079,       3828]
+CellTagsIndexPosition[    138036,       3825]
+WindowTitle->Simple Manipulation of Pachelbel's Canon in D - Source
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "Simple Manipulation of Pachelbel's ",
+ StyleBox["Canon in D",
+  FontSlant->"Italic"]
+}], "Section",
+ CellFrame->{{0, 0}, {0, 0}},
+ ShowCellBracket->False,
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"ab8417cf-b1d6-40ad-a8c0-e020a67987d1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ GraphicsBox[RasterBox[CompressedData["
+1:eJztnVuSozgWQDNiPqa3MJ+zpVlCbaB3WlGVNV9dvYH6TQRUph/ZGIHQmwvG
+xoZzQu3Aku7VfUj4Nk53//fLn//78q+Xl5f/NP/88e+Xl8v154Xj5+fp89y0
+4+X63L7VnQu02XqOt9FzjRK5qtRMoYZFpk11/Ji+WDye92+r7+fFfbnGkuu9
+eIQ4LBVJ+YRo5DPnRdITDp0TLRg6m/62nY/n08f5+H461G37fWqum57z4Xy2
+jby0prMZOh4/jodLOx2bt6fzRSEA3B/KMKGSBy/DSKVcyYOn8krHqajvqed6
+G6iol4qkfAIVNQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsizPA/lj72AEA
+AMCmWLu0AXh01j6jAAAAcdb+hNwUJ5e1zZnPDEeey/e1jx0AAABsirVLm03x
+XFVlhs1X1JNY+4wCAAB02B9PJ4BdsvYpBAAAgOeGihpADo9GAUDIr+Lnr7ef
+a9vw16/i73VtMPx6+2v1gGwMijeAE89FAQA2DRW1BxX14lBRA0wi+lx0baMA
+AAAAAAAAAAAAbkj0uegR4L4cDoe1TYA1YQMAbIaDy9rm3JU9+w4AjwB3np3D
+BgDYDHuuKu/su3k0ynNRACGLHMy93dm2ijCPpHvD7LliAQAAmA0VNRioqIGK
+GlYk9Vz0AAAAAAAAAAAAALBR9KPR8Kf0a9sFAAAAAAAAAAAAcCt4LgoAAAAA
+AAAAAAB7I/Vc9ONheH9/X9uEzUJsZ0PoAGBZ3gNuLQgggR21GUjl7SC2syF0
+ALAsVNQgxMv14XAI/xOja9sIAAAAT0lYWM5jbT/msGffAQAAAGAp9lxV3sF3
+b1r0uehSZgAAAAAAAAAAAAA8Ar9b6rpuXpu3+tf0PBcFWJcFvxYBAAAAANgh
+VNQAADCK5LnobwAAAAAAAAAAAIANUbcPRav+wehH7LmoUqpsqKqmNTSXRVE0
+by593mtRXlrfo7mImTlVN6ebUOhR07q3jmxVWXqquqxVOUjZq1eDVNe662ro
+Nxe1Xr5o2lt5cUc7VWr3BpGindNL6TkDl5nVIGWtbuaXWbwJo/OVKjSX68oL
+shMTO4ylHf+yy5GbhU5EubJJPeWgx5ayBfvOIR2qD5QJXWmFtJs2pLsLvu40
+4oOesh/tJ3TKW/3DomZONgVdVPtNXvVXYWydyBRl/NWNWNW62L06G344TcNW
+L/SVpaTqcmeOWGWOm3W+TFPWsbL8dE1yklUal73ghDtBH+Hu1dE/HBM7/t7h
+sjNoN29Calrl2GadWfsMeoc0elcR584clrm5qzO5a+5mQe4imy2Tu1qcu+g2
+7od7mkvVtqJtajgInQuqzUrRtWFCzIAkzQdK0/RR1U33JEhtgOhosnmLKtX0
+DArVhaJHtZOlmgPbVN+mWZhRGzNvEc13MD61kIRcEPS2WciRp/C97a0ow569
+DCOVRurZU0lFnUoBFbWkKiv7I0xFLc4dFXUAFfVUtVTUYRD2V1EnfTd7u920
+v+va/NXoSXM86qXVwFtzgNvS7vJG3730Ga76Wkq/6lFz3dlWOa+69XpUOSix
+ixQtrrVV1pxBleO+uesMsv6QjenXF+bViFjGO5rtObaUp7bVoENe21Kqy1Un
+1M8xOaxNftysOh61q5joKStQpbkIQ2p54HRWXcqsOsbVU7oZNBr8Fbv+yotk
+GBkvbuFbu9/LkY6DF3ZvTvqtOVXdBi0dlN6WZekEsHfQ2flmjpnQ+25vfn//
+2yH1eswnokp/tNkpsJNrTqJruX4tzAkKBJXJVdUbbJmtrwtrUfuoGm2Ru5S3
+AcrEGQyPld3jzbFTH+oP+is3d+XVuev2wI1zN9w8rZM1I3dFf203xxKvuUyT
+TevJkd8JSzF7iVHBzJa+D0vFZJLapawNh6xiQ91ixaf03R+lDHvaMqwPCKl8
++lRGgkZF3W3Q0oGKmoq685yKmoo6L5jZ0vdhqZhMUruUteEQFfUk37VU98C8
+qRvq+uPjQz8UPZ/P+snoZYIqVAwtaFY0r+E0+8l8VIM3Gs70JkelUoLR0XBm
+2X5dldcmWS5lQ2r1jDue+DBaRvrzvidVpc2WOKJicRvVZu+HaFqjgpngC/MS
+Fek2rRvSjKCy9rnxfepWFFKokVMzWaEsU9GDbEYnbfuoYOpGkdcwql/Sv+fc
+CVdJcY1a+Yo3WuUaZsfE+9S+j3mTRuFZoAxL9eTtFK6ecccTH0bnlmGkMtXz
+dKnMLCTpifZTUUfnyNOR4QGrstQuHTXGFqSiXiV3wlVSXKNWvuKNVrmG2TGh
+ooZb0+T0rUWf/br9e1HvuWjR/z1/+JOUIujKPxYu+l9YCEX0kGVARDxjjHxa
+ygZv6ejF6KiE0cfp0eUk6JMrmVamQx1qkPTIRzNSo4LC0OnbV7S/tD7WRw32
+ElFYP1/y7EkZn09lPhHedej7vDiHSkbzq79YsWcWfUUUzYgXf7mdqa04eiK0
+ebYxe86d9yE+T3n+OzuVqHbMx01Up/kkCud7Q0ZJ5uvCRQhNGvVCoueayK9O
+mKP8qDDd9szol7b5AM5LSup0P7LvxXBX8dWGvlCGTTJm1IBwianK3QySyo2k
+clR/KtShBkmPfDQjNSpIRS0xexJRy8NjS0UtMfVBcmegoh6FijrkEarKPVfU
+Gd89w+rwd/Tt34uq/kuT6C2xsG5WhXvLsu+KUb+8/kxsvQMryUIxdp8PLc/c
+FiblXaJEcgvKuODFf54N8yYXwYejZ2fUbO8i5b7kXwRSPfJtFu1JWZ7BtlZu
+eRg9XXJEbcuriorIU2xkjYjQi2hJFjXeFvFmhjeNUWu9HhO3/LQoe8tdSKqC
+ys+f+tE5aZVoBSU0T87U+sr2emq4Ur7k9eQrhydiaqiF3LqSX4QFfacMk684
+yaT7l2GkUr7iJJOoqKMrUlGPritxZ9RyT9aIUFHn133e3IVQUQvVUlHPhor6
+1r6r/k9G9X1A/47+dDrZ/9+lb9++vbr8+PHDe7X7w077rafHU+JNTo1GF/Wu
+U52hhtCjqGEZJVGdoZsp5ZmZoRe2kc3Fd0tnKGKvJQ9UKr8pRh15dY0MZTOO
+e/pTa43OSUmFpn5Pbzzv7agveTNCJRnZ70FCX4OU5ZWn9KfiELrpLZ3aIZn0
+RYmGN+NRPsIpd7y19pa7qIhQZ15coicVmamMLjpb1SLmLUgmzlOtzau6RRAm
+bYxFTJoh9Vy+U4aNKonqDN1MKc/MDL2wjXydWIaRylElz5LKVExSS2Scigqm
+HHl1jQxlM457+lNrjc5JSYWmUlF7jqQ2RmqHZNIXJRrejEf5CKfc8dbaW+6i
+IkKdeXGJnlRkpjK66GxVi5i3IJk4T7U2r+oWQZi0MRYxaYbUZnyPLvH/lte2
+FP/69esnAAAAAAAAAAAAwM74B4thROM=
+   "], {{0, 0}, {1800, 25}}, {0, 255},
+   ColorFunction->RGBColor],
+  ImageSize->{1800, 25},
+  PlotRange->{{0, 1800}, {0, 25}}]], "Section",
+ CellFrame->{{0, 0}, {0, 0}},
+ ShowCellBracket->
+  False,ExpressionUUID->"48af62d5-ebbc-4082-ad49-c6c51bebe9ab"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"f", "[", "x_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "8"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "9"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "9"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "10"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "10"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "11"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "11"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "12"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "12"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "13"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "13"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "14"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "14"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "15"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "15"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "16"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<D5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "16"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "17"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<E5\>\"", ",", "\"\<C#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "17"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "18"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<B4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "18"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "19"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<C#5\>\"", ",", "\"\<A4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "19"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "20"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<B4\>\"", ",", "\"\<G4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "20"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "21"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<A4\>\"", ",", "\"\<F#4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "21"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "22"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<B4\>\"", ",", "\"\<G4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "22"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "23"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<C#5\>\"", ",", "\"\<A4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "23"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<F#5\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<E5\>\"", ",", "\"\<C#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<B4\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<C#5\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<B4\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<A4\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<G4\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<E4\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.125"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.125"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.625"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.625"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.125"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.125"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.625"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.625"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.125"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.125"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.625"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.625"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.125"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.125"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.375"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.375"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.625"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.625"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.875"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.875"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<A5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<A5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<A5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<G5\>\"", ",", "\"\<B5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<A5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<G5\>\"", ",", "\"\<E5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<F#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<F#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<F#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<E5\>\"", ",", "\"\<G5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<F#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<C#5\>\"", ",", "\"\<E5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<B4\>\"", ",", "\"\<D5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<B4\>\"", ",", "\"\<D5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<A4\>\"", ",", "\"\<D5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#4\>\"", ",", "\"\<A4\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.25"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.75"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.75"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.0"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47.0"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<A4\>\"", ",", "\"\<C#5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "48"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "48"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "48.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<D6\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "48.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "49.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<E5\>\"", ",", "\"\<C#6\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "49.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "50.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<B5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "50.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "51.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<C#5\>\"", ",", "\"\<A5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "51.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "52.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "52.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "53"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<F#5\>\"", ",", "\"\<D6\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "53"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "53.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A5\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "53.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "54"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<D5\>\"", ",", "\"\<B5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "54"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "55"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\"\<C#5\>\"", ",", "\"\<A5\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "55"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "56"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "56."}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "58"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{
+      RowBox[{"{", "\"\<F#5\>\"", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "56."}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "58"}]}], "}"}]}], "]"}]}], 
+   "}"}]}]], "Input",
+ InitializationCell->True,
+ CellID->208032281,ExpressionUUID->"7a6bbc5b-8644-4469-9f7b-8f735f551542"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"h", "[", "x_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "0"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "1"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "1"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "2"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "2"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "3"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "3"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "4"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "4"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "5"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "6"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "6"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "7"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "7"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "8"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "8"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "8.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "8.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "9"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "9"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "10"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "10"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "10.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "10.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "11"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "11"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "12"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "12"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "12.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "12.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "13"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "13"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "14"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "14"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "14.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "14.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "15"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "15"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "15.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "15.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "16"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "16"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "16.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "16.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "17"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "17"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "18"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "18"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "18.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "18.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "19"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "19"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "20"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "20"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "20.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "20.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "21"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "21"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "22"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "22"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "22.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "22.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "23"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "23"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "23.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "23.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "24.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "25.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "26.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "27.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "28.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "29.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "30.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "31.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "32.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "33.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "34.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "35.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "36.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "37.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "38.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "39.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "40.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "41.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "42.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<C#3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "43.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "44.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "45.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "46.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<E3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47.5"}]}], "}"}]}], "]"}], 
+    ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "47.5"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "48"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D3\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "48"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "49"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "49"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "50"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<B2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "50"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "51"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<F#2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "51"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "52"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "52"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "53"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "53"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "54"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<G2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "54"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "55"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<A2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "55"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "56"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D2\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "56"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "58"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"SoundNote", "[", 
+     RowBox[{"\"\<D4\>\"", ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "56"}], ",", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"60", "/", "x"}], ")"}], "*", "58"}]}], "}"}]}], "]"}]}], 
+   "}"}]}]], "Input",
+ InitializationCell->True,
+ CellID->552844521,ExpressionUUID->"2c9fc2c6-74aa-4796-a870-531bb73682e2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Sound", "[", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Append", "[", 
+           RowBox[{"#", ",", "y"}], "]"}], "&"}], "/@", 
+         RowBox[{"f", "[", "x", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Append", "[", 
+           RowBox[{"#", ",", "z"}], "]"}], "&"}], "/@", 
+         RowBox[{"h", "[", "x", "]"}]}], "}"}]}], "}"}], "]"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "56", ",", "\"\<beats per minute (half notes)\>\""}], 
+      "}"}], ",", 
+     RowBox[{"Flatten", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Range", "[", 
+         RowBox[{"32", ",", "60", ",", "2"}], "]"}], ",", 
+        RowBox[{"Range", "[", 
+         RowBox[{"63", ",", "72", ",", "3"}], "]"}], ",", 
+        RowBox[{"Range", "[", 
+         RowBox[{"72", ",", "120", ",", "4"}], "]"}], ",", 
+        RowBox[{"Range", "[", 
+         RowBox[{"126", ",", "144", ",", "6"}], "]"}]}], "}"}], "]"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "y", ",", "\"\<Piano\>\"", ",", "\"\<treble clef instrument\>\""}], 
+      "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<Piano\>\"", "\[Rule]", "\"\<piano\>\""}], ",", 
+       RowBox[{"\"\<MusicBox\>\"", "\[Rule]", "\"\<music box\>\""}], ",", 
+       RowBox[{"\"\<RockOrgan\>\"", "\[Rule]", "\"\<rock organ\>\""}], ",", 
+       RowBox[{"\"\<Violin\>\"", "\[Rule]", "\"\<violin\>\""}], ",", 
+       RowBox[{"\"\<Trumpet\>\"", "\[Rule]", "\"\<trumpet\>\""}]}], "}"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "z", ",", "\"\<Piano\>\"", ",", "\"\<bass clef instrument\>\""}], "}"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<Piano\>\"", "\[Rule]", "\"\<piano\>\""}], ",", 
+       RowBox[{"\"\<MusicBox\>\"", "\[Rule]", "\"\<music box\>\""}], ",", 
+       RowBox[{"\"\<RockOrgan\>\"", "\[Rule]", "\"\<rock organ\>\""}], ",", 
+       RowBox[{"\"\<Cello\>\"", "\[Rule]", "\"\<cello\>\""}], ",", 
+       RowBox[{"\"\<Trombone\>\"", "\[Rule]", "\"\<trombone\>\""}]}], "}"}]}],
+     "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", "2", "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.501550092470376*^9, {3.5019500917576103`*^9, 
+   3.5019501821456485`*^9}, {3.5019502888483176`*^9, 
+   3.5019503018246155`*^9}},ExpressionUUID->"4034f987-9392-4439-b5ae-\
+d309bdc552b3"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`x$$ = 56, $CellContext`y$$ = 
+    "Piano", $CellContext`z$$ = "Piano", Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`x$$], 56, "beats per minute (half notes)"}, {32, 34, 
+      36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 72, 
+      76, 80, 84, 88, 92, 96, 100, 104, 108, 112, 116, 120, 126, 132, 138, 
+      144}}, {{
+       Hold[$CellContext`y$$], "Piano", "treble clef instrument"}, {
+      "Piano" -> "piano", "MusicBox" -> "music box", "RockOrgan" -> 
+       "rock organ", "Violin" -> "violin", "Trumpet" -> "trumpet"}}, {{
+       Hold[$CellContext`z$$], "Piano", "bass clef instrument"}, {
+      "Piano" -> "piano", "MusicBox" -> "music box", "RockOrgan" -> 
+       "rock organ", "Cello" -> "cello", "Trombone" -> "trombone"}}}, 
+    Typeset`size$$ = {250., {55., 59.64088397790056}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`x$1505330$$ = 0, $CellContext`y$1505331$$ = 
+    False, $CellContext`z$1505332$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`x$$ = 56, $CellContext`y$$ = 
+        "Piano", $CellContext`z$$ = "Piano"}, "ControllerVariables" :> {
+        Hold[$CellContext`x$$, $CellContext`x$1505330$$, 0], 
+        Hold[$CellContext`y$$, $CellContext`y$1505331$$, False], 
+        Hold[$CellContext`z$$, $CellContext`z$1505332$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Sound[
+        Flatten[{{
+           Map[Append[#, $CellContext`y$$]& , 
+            $CellContext`f[$CellContext`x$$]]}, {
+           Map[Append[#, $CellContext`z$$]& , 
+            $CellContext`h[$CellContext`x$$]]}}]], 
+      "Specifications" :> {{{$CellContext`x$$, 56, 
+          "beats per minute (half notes)"}, {32, 34, 36, 38, 40, 42, 44, 46, 
+         48, 50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 72, 76, 80, 84, 88, 92, 
+         96, 100, 104, 108, 112, 116, 120, 126, 132, 138, 
+         144}}, {{$CellContext`y$$, "Piano", "treble clef instrument"}, {
+         "Piano" -> "piano", "MusicBox" -> "music box", "RockOrgan" -> 
+          "rock organ", "Violin" -> "violin", "Trumpet" -> 
+          "trumpet"}}, {{$CellContext`z$$, "Piano", "bass clef instrument"}, {
+         "Piano" -> "piano", "MusicBox" -> "music box", "RockOrgan" -> 
+          "rock organ", "Cello" -> "cello", "Trombone" -> "trombone"}}}, 
+      "Options" :> {AutorunSequencing -> {2}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{587., {85.13403328722343, 90.86596671277657}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(({$CellContext`f[
+          Pattern[$CellContext`x, 
+           Blank[]]] := {
+          SoundNote["F#5", {(60/$CellContext`x) 8, (60/$CellContext`x) 9}], 
+          SoundNote["E5", {(60/$CellContext`x) 9, (60/$CellContext`x) 10}], 
+          SoundNote["D5", {(60/$CellContext`x) 10, (60/$CellContext`x) 11}], 
+          SoundNote["C#5", {(60/$CellContext`x) 11, (60/$CellContext`x) 12}], 
+          SoundNote["B4", {(60/$CellContext`x) 12, (60/$CellContext`x) 13}], 
+          SoundNote["A4", {(60/$CellContext`x) 13, (60/$CellContext`x) 14}], 
+          SoundNote["B4", {(60/$CellContext`x) 14, (60/$CellContext`x) 15}], 
+          SoundNote["C#5", {(60/$CellContext`x) 15, (60/$CellContext`x) 16}], 
+          
+          SoundNote[{
+           "F#5", "D5"}, {(60/$CellContext`x) 16, (60/$CellContext`x) 17}], 
+          
+          SoundNote[{
+           "E5", "C#5"}, {(60/$CellContext`x) 17, (60/$CellContext`x) 18}], 
+          
+          SoundNote[{
+           "D5", "B4"}, {(60/$CellContext`x) 18, (60/$CellContext`x) 19}], 
+          SoundNote[{
+           "C#5", "A4"}, {(60/$CellContext`x) 19, (60/$CellContext`x) 20}], 
+          
+          SoundNote[{
+           "B4", "G4"}, {(60/$CellContext`x) 20, (60/$CellContext`x) 21}], 
+          
+          SoundNote[{
+           "A4", "F#4"}, {(60/$CellContext`x) 21, (60/$CellContext`x) 22}], 
+          
+          SoundNote[{
+           "B4", "G4"}, {(60/$CellContext`x) 22, (60/$CellContext`x) 23}], 
+          
+          SoundNote[{
+           "C#5", "A4"}, {(60/$CellContext`x) 23, (60/$CellContext`x) 24}], 
+          
+          SoundNote[{
+           "F#5"}, {(60/$CellContext`x) 24, (60/$CellContext`x) 25}], 
+          
+          SoundNote[{
+           "E5", "C#5"}, {(60/$CellContext`x) 25, (60/$CellContext`x) 26}], 
+          SoundNote[{"B4"}, {(60/$CellContext`x) 26, (60/$CellContext`x) 27}], 
+          
+          SoundNote[{
+           "C#5"}, {(60/$CellContext`x) 27, (60/$CellContext`x) 28}], 
+          SoundNote[{"B4"}, {(60/$CellContext`x) 28, (60/$CellContext`x) 29}], 
+          SoundNote[{"A4"}, {(60/$CellContext`x) 29, (60/$CellContext`x) 30}], 
+          SoundNote[{"G4"}, {(60/$CellContext`x) 30, (60/$CellContext`x) 31}], 
+          SoundNote[{"E4"}, {(60/$CellContext`x) 31, (60/$CellContext`x) 32}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 24, (60/$CellContext`x) 24.25}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 24.25, (60/$CellContext`x) 24.5}], 
+          SoundNote["D5", {(60/$CellContext`x) 24.5, (60/$CellContext`x) 25}], 
+          SoundNote["D5", {(60/$CellContext`x) 26, (60/$CellContext`x) 26.5}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 26.5, (60/$CellContext`x) 27}], 
+          SoundNote[
+          "A5", {(60/$CellContext`x) 27, (60/$CellContext`x) 27.75}], 
+          SoundNote[
+          "B5", {(60/$CellContext`x) 27.75, (60/$CellContext`x) 28}], 
+          SoundNote[
+          "G5", {(60/$CellContext`x) 28, (60/$CellContext`x) 28.25}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 28.25, (60/$CellContext`x) 28.5}], 
+          SoundNote[
+          "E5", {(60/$CellContext`x) 28.5, (60/$CellContext`x) 28.75}], 
+          SoundNote[
+          "G5", {(60/$CellContext`x) 28.75, (60/$CellContext`x) 29}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 29, (60/$CellContext`x) 29.25}], 
+          SoundNote[
+          "E5", {(60/$CellContext`x) 29.25, (60/$CellContext`x) 29.5}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 29.5, (60/$CellContext`x) 29.75}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 29.75, (60/$CellContext`x) 30}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 30, (60/$CellContext`x) 30.25}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 30.25, (60/$CellContext`x) 30.5}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 30.5, (60/$CellContext`x) 30.75}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 30.75, (60/$CellContext`x) 31}], 
+          SoundNote["D5", {(60/$CellContext`x) 31, (60/$CellContext`x) 31.5}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 31.5, (60/$CellContext`x) 32}], 
+          SoundNote[
+          "A5", {(60/$CellContext`x) 32, (60/$CellContext`x) 32.25}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 32.25, (60/$CellContext`x) 32.375}], 
+          SoundNote[
+          "G5", {(60/$CellContext`x) 32.375, (60/$CellContext`x) 32.5}], 
+          SoundNote[
+          "A5", {(60/$CellContext`x) 32.5, (60/$CellContext`x) 32.75}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 32.75, (60/$CellContext`x) 32.875}], 
+          SoundNote[
+          "G5", {(60/$CellContext`x) 32.875, (60/$CellContext`x) 33}], 
+          SoundNote[
+          "A5", {(60/$CellContext`x) 33, (60/$CellContext`x) 33.125}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 33.125, (60/$CellContext`x) 33.25}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 33.25, (60/$CellContext`x) 33.375}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 33.375, (60/$CellContext`x) 33.5}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 33.5, (60/$CellContext`x) 33.625}], 
+          SoundNote[
+          "E5", {(60/$CellContext`x) 33.625, (60/$CellContext`x) 33.75}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 33.75, (60/$CellContext`x) 33.875}], 
+          SoundNote[
+          "G5", {(60/$CellContext`x) 33.875, (60/$CellContext`x) 34}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 34, (60/$CellContext`x) 34.25}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 34.25, (60/$CellContext`x) 34.375}], 
+          SoundNote[
+          "E5", {(60/$CellContext`x) 34.375, (60/$CellContext`x) 34.5}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 34.5, (60/$CellContext`x) 34.75}], 
+          SoundNote[
+          "F#4", {(60/$CellContext`x) 34.75, (60/$CellContext`x) 34.875}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 34.875, (60/$CellContext`x) 35}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 35, (60/$CellContext`x) 35.125}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 35.125, (60/$CellContext`x) 35.25}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 35.25, (60/$CellContext`x) 35.375}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 35.375, (60/$CellContext`x) 35.5}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 35.5, (60/$CellContext`x) 35.625}], 
+          SoundNote[
+          "F#4", {(60/$CellContext`x) 35.625, (60/$CellContext`x) 35.75}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 35.75, (60/$CellContext`x) 35.875}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 35.875, (60/$CellContext`x) 36}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 36, (60/$CellContext`x) 36.25}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 36.25, (60/$CellContext`x) 36.375}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 36.375, (60/$CellContext`x) 36.5}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 36.5, (60/$CellContext`x) 36.75}], 
+          SoundNote[
+          "F#4", {(60/$CellContext`x) 36.75, (60/$CellContext`x) 36.875}], 
+          SoundNote[
+          "E4", {(60/$CellContext`x) 36.875, (60/$CellContext`x) 37}], 
+          SoundNote[
+          "F#4", {(60/$CellContext`x) 37, (60/$CellContext`x) 37.125}], 
+          SoundNote[
+          "E4", {(60/$CellContext`x) 37.125, (60/$CellContext`x) 37.25}], 
+          SoundNote[
+          "D4", {(60/$CellContext`x) 37.25, (60/$CellContext`x) 37.375}], 
+          SoundNote[
+          "E4", {(60/$CellContext`x) 37.375, (60/$CellContext`x) 37.5}], 
+          SoundNote[
+          "F#4", {(60/$CellContext`x) 37.5, (60/$CellContext`x) 37.625}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 37.625, (60/$CellContext`x) 37.75}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 37.75, (60/$CellContext`x) 37.875}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 37.875, (60/$CellContext`x) 38}], 
+          SoundNote[
+          "G4", {(60/$CellContext`x) 38, (60/$CellContext`x) 38.25}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 38.25, (60/$CellContext`x) 38.375}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 38.375, (60/$CellContext`x) 38.5}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 38.5, (60/$CellContext`x) 38.75}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 38.75, (60/$CellContext`x) 38.875}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 38.875, (60/$CellContext`x) 39}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 39, (60/$CellContext`x) 39.125}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 39.125, (60/$CellContext`x) 39.25}], 
+          SoundNote[
+          "A4", {(60/$CellContext`x) 39.25, (60/$CellContext`x) 39.375}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 39.375, (60/$CellContext`x) 39.5}], 
+          SoundNote[
+          "C#5", {(60/$CellContext`x) 39.5, (60/$CellContext`x) 39.625}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 39.625, (60/$CellContext`x) 39.75}], 
+          SoundNote[
+          "E5", {(60/$CellContext`x) 39.75, (60/$CellContext`x) 39.875}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 39.875, (60/$CellContext`x) 40}], 
+          
+          SoundNote[{
+           "F#5", "A5"}, {(60/$CellContext`x) 40, (60/$CellContext`x) 40.75}], 
+          
+          SoundNote[{
+           "F#5", "A5"}, {(60/$CellContext`x) 40.75, (60/$CellContext`x) 41}], 
+          
+          SoundNote[{
+           "F#5", "A5"}, {(60/$CellContext`x) 41, (60/$CellContext`x) 41.25}], 
+          
+          SoundNote[{
+           "G5", "B5"}, {(60/$CellContext`x) 41.25, (60/$CellContext`x) 
+            41.5}], 
+          
+          SoundNote[{
+           "F#5", "A5"}, {(60/$CellContext`x) 41.5, (60/$CellContext`x) 
+            41.75}], 
+          
+          SoundNote[{
+           "G5", "E5"}, {(60/$CellContext`x) 41.75, (60/$CellContext`x) 42}], 
+          
+          SoundNote[{
+           "D5", "F#5"}, {(60/$CellContext`x) 42, (60/$CellContext`x) 42.75}], 
+          
+          SoundNote[{
+           "D5", "F#5"}, {(60/$CellContext`x) 42.75, (60/$CellContext`x) 43}], 
+          
+          SoundNote[{
+           "D5", "F#5"}, {(60/$CellContext`x) 43, (60/$CellContext`x) 43.25}], 
+          
+          SoundNote[{
+           "E5", "G5"}, {(60/$CellContext`x) 43.25, (60/$CellContext`x) 
+            43.5}], 
+          
+          SoundNote[{
+           "D5", "F#5"}, {(60/$CellContext`x) 43.5, (60/$CellContext`x) 
+            43.75}], 
+          
+          SoundNote[{
+           "C#5", "E5"}, {(60/$CellContext`x) 43.75, (60/$CellContext`x) 44}], 
+          
+          SoundNote[{
+           "B4", "D5"}, {(60/$CellContext`x) 44, (60/$CellContext`x) 44.75}], 
+          
+          SoundNote[{
+           "B4", "D5"}, {(60/$CellContext`x) 44.75, (60/$CellContext`x) 45}], 
+          
+          SoundNote[{
+           "A4", "D5"}, {(60/$CellContext`x) 45, (60/$CellContext`x) 45.5}], 
+          
+          SoundNote[{
+           "F#4", "A4"}, {(60/$CellContext`x) 45.5, (60/$CellContext`x) 46}], 
+          SoundNote[
+          "D5", {(60/$CellContext`x) 46, (60/$CellContext`x) 46.25}], 
+          SoundNote[
+          "C5", {(60/$CellContext`x) 46.25, (60/$CellContext`x) 46.5}], 
+          SoundNote[
+          "B4", {(60/$CellContext`x) 46.5, (60/$CellContext`x) 46.75}], 
+          SoundNote[
+          "C5", {(60/$CellContext`x) 46.75, (60/$CellContext`x) 47}], 
+          SoundNote["G4", {(60/$CellContext`x) 46., (60/$CellContext`x) 47.}], 
+          
+          SoundNote[{
+           "A4", "C#5"}, {(60/$CellContext`x) 47, (60/$CellContext`x) 48}], 
+          SoundNote[
+          "F#5", {(60/$CellContext`x) 48, (60/$CellContext`x) 48.5}], 
+          
+          SoundNote[{
+           "F#5", "D6"}, {(60/$CellContext`x) 48.5, (60/$CellContext`x) 
+            49.5}], 
+          
+          SoundNote[{
+           "E5", "C#6"}, {(60/$CellContext`x) 49.5, (60/$CellContext`x) 
+            50.5}], 
+          
+          SoundNote[{
+           "D5", "B5"}, {(60/$CellContext`x) 50.5, (60/$CellContext`x) 51.5}], 
+          
+          SoundNote[{
+           "C#5", "A5"}, {(60/$CellContext`x) 51.5, (60/$CellContext`x) 
+            52.5}], 
+          SoundNote["G5", {(60/$CellContext`x) 52.5, (60/$CellContext`x) 53}], 
+          
+          SoundNote[{
+           "F#5", "D6"}, {(60/$CellContext`x) 53, (60/$CellContext`x) 53.5}], 
+          SoundNote["A5", {(60/$CellContext`x) 53.5, (60/$CellContext`x) 54}], 
+          
+          SoundNote[{
+           "D5", "B5"}, {(60/$CellContext`x) 54, (60/$CellContext`x) 55}], 
+          
+          SoundNote[{
+           "C#5", "A5"}, {(60/$CellContext`x) 55, (60/$CellContext`x) 56}], 
+          SoundNote["A4", {(60/$CellContext`x) 56., (60/$CellContext`x) 58}], 
+          
+          SoundNote[{
+           "F#5"}, {(60/$CellContext`x) 56., (60/$CellContext`x) 
+            58}]}, $CellContext`h[
+          Pattern[$CellContext`x, 
+           Blank[]]] := {
+          SoundNote["D3", {(60/$CellContext`x) 0, (60/$CellContext`x) 1}], 
+          SoundNote["A2", {(60/$CellContext`x) 1, (60/$CellContext`x) 2}], 
+          SoundNote["B2", {(60/$CellContext`x) 2, (60/$CellContext`x) 3}], 
+          SoundNote["F#2", {(60/$CellContext`x) 3, (60/$CellContext`x) 4}], 
+          SoundNote["G2", {(60/$CellContext`x) 4, (60/$CellContext`x) 5}], 
+          SoundNote["D2", {(60/$CellContext`x) 5, (60/$CellContext`x) 6}], 
+          SoundNote["G2", {(60/$CellContext`x) 6, (60/$CellContext`x) 7}], 
+          SoundNote["A2", {(60/$CellContext`x) 7, (60/$CellContext`x) 8}], 
+          SoundNote["D3", {(60/$CellContext`x) 8, (60/$CellContext`x) 8.5}], 
+          SoundNote["A3", {(60/$CellContext`x) 8.5, (60/$CellContext`x) 9}], 
+          SoundNote["A2", {(60/$CellContext`x) 9, (60/$CellContext`x) 10}], 
+          SoundNote["B2", {(60/$CellContext`x) 10, (60/$CellContext`x) 10.5}], 
+          SoundNote[
+          "F#3", {(60/$CellContext`x) 10.5, (60/$CellContext`x) 11}], 
+          SoundNote["F#2", {(60/$CellContext`x) 11, (60/$CellContext`x) 12}], 
+          SoundNote["G2", {(60/$CellContext`x) 12, (60/$CellContext`x) 12.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 12.5, (60/$CellContext`x) 13}], 
+          SoundNote["D2", {(60/$CellContext`x) 13, (60/$CellContext`x) 14}], 
+          SoundNote["G2", {(60/$CellContext`x) 14, (60/$CellContext`x) 14.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 14.5, (60/$CellContext`x) 15}], 
+          SoundNote["E3", {(60/$CellContext`x) 15, (60/$CellContext`x) 15.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 15.5, (60/$CellContext`x) 16}], 
+          SoundNote["D3", {(60/$CellContext`x) 16, (60/$CellContext`x) 16.5}], 
+          SoundNote["A3", {(60/$CellContext`x) 16.5, (60/$CellContext`x) 17}], 
+          SoundNote["A2", {(60/$CellContext`x) 17, (60/$CellContext`x) 18}], 
+          SoundNote["B2", {(60/$CellContext`x) 18, (60/$CellContext`x) 18.5}], 
+          SoundNote[
+          "F#3", {(60/$CellContext`x) 18.5, (60/$CellContext`x) 19}], 
+          SoundNote["F#2", {(60/$CellContext`x) 19, (60/$CellContext`x) 20}], 
+          SoundNote["G2", {(60/$CellContext`x) 20, (60/$CellContext`x) 20.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 20.5, (60/$CellContext`x) 21}], 
+          SoundNote["D2", {(60/$CellContext`x) 21, (60/$CellContext`x) 22}], 
+          SoundNote["G2", {(60/$CellContext`x) 22, (60/$CellContext`x) 22.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 22.5, (60/$CellContext`x) 23}], 
+          SoundNote["E3", {(60/$CellContext`x) 23, (60/$CellContext`x) 23.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 23.5, (60/$CellContext`x) 24}], 
+          SoundNote["D3", {(60/$CellContext`x) 24, (60/$CellContext`x) 24.5}], 
+          SoundNote["A3", {(60/$CellContext`x) 24.5, (60/$CellContext`x) 25}], 
+          SoundNote["A2", {(60/$CellContext`x) 25, (60/$CellContext`x) 25.5}], 
+          SoundNote["E3", {(60/$CellContext`x) 25.5, (60/$CellContext`x) 26}], 
+          SoundNote["B2", {(60/$CellContext`x) 26, (60/$CellContext`x) 26.5}], 
+          SoundNote[
+          "F#3", {(60/$CellContext`x) 26.5, (60/$CellContext`x) 27}], 
+          SoundNote[
+          "F#2", {(60/$CellContext`x) 27, (60/$CellContext`x) 27.5}], 
+          SoundNote[
+          "C#3", {(60/$CellContext`x) 27.5, (60/$CellContext`x) 28}], 
+          SoundNote["G2", {(60/$CellContext`x) 28, (60/$CellContext`x) 28.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 28.5, (60/$CellContext`x) 29}], 
+          SoundNote["D2", {(60/$CellContext`x) 29, (60/$CellContext`x) 29.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 29.5, (60/$CellContext`x) 30}], 
+          SoundNote["G2", {(60/$CellContext`x) 30, (60/$CellContext`x) 30.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 30.5, (60/$CellContext`x) 31}], 
+          SoundNote["E3", {(60/$CellContext`x) 31, (60/$CellContext`x) 31.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 31.5, (60/$CellContext`x) 32}], 
+          SoundNote["D3", {(60/$CellContext`x) 32, (60/$CellContext`x) 32.5}], 
+          SoundNote["A3", {(60/$CellContext`x) 32.5, (60/$CellContext`x) 33}], 
+          SoundNote["A2", {(60/$CellContext`x) 33, (60/$CellContext`x) 33.5}], 
+          SoundNote["E3", {(60/$CellContext`x) 33.5, (60/$CellContext`x) 34}], 
+          SoundNote["B2", {(60/$CellContext`x) 34, (60/$CellContext`x) 34.5}], 
+          SoundNote[
+          "F#3", {(60/$CellContext`x) 34.5, (60/$CellContext`x) 35}], 
+          SoundNote[
+          "F#2", {(60/$CellContext`x) 35, (60/$CellContext`x) 35.5}], 
+          SoundNote[
+          "C#3", {(60/$CellContext`x) 35.5, (60/$CellContext`x) 36}], 
+          SoundNote["G2", {(60/$CellContext`x) 36, (60/$CellContext`x) 36.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 36.5, (60/$CellContext`x) 37}], 
+          SoundNote["D2", {(60/$CellContext`x) 37, (60/$CellContext`x) 37.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 37.5, (60/$CellContext`x) 38}], 
+          SoundNote["G2", {(60/$CellContext`x) 38, (60/$CellContext`x) 38.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 38.5, (60/$CellContext`x) 39}], 
+          SoundNote["E3", {(60/$CellContext`x) 39, (60/$CellContext`x) 39.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 39.5, (60/$CellContext`x) 40}], 
+          SoundNote["D3", {(60/$CellContext`x) 40, (60/$CellContext`x) 40.5}], 
+          SoundNote["A3", {(60/$CellContext`x) 40.5, (60/$CellContext`x) 41}], 
+          SoundNote["A2", {(60/$CellContext`x) 41, (60/$CellContext`x) 41.5}], 
+          SoundNote["E3", {(60/$CellContext`x) 41.5, (60/$CellContext`x) 42}], 
+          SoundNote["B2", {(60/$CellContext`x) 42, (60/$CellContext`x) 42.5}], 
+          SoundNote[
+          "F#3", {(60/$CellContext`x) 42.5, (60/$CellContext`x) 43}], 
+          SoundNote[
+          "F#2", {(60/$CellContext`x) 43, (60/$CellContext`x) 43.5}], 
+          SoundNote[
+          "C#3", {(60/$CellContext`x) 43.5, (60/$CellContext`x) 44}], 
+          SoundNote["G2", {(60/$CellContext`x) 44, (60/$CellContext`x) 44.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 44.5, (60/$CellContext`x) 45}], 
+          SoundNote["D2", {(60/$CellContext`x) 45, (60/$CellContext`x) 45.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 45.5, (60/$CellContext`x) 46}], 
+          SoundNote["G2", {(60/$CellContext`x) 46, (60/$CellContext`x) 46.5}], 
+          SoundNote["D3", {(60/$CellContext`x) 46.5, (60/$CellContext`x) 47}], 
+          SoundNote["E3", {(60/$CellContext`x) 47, (60/$CellContext`x) 47.5}], 
+          SoundNote["A2", {(60/$CellContext`x) 47.5, (60/$CellContext`x) 48}], 
+          SoundNote["D3", {(60/$CellContext`x) 48, (60/$CellContext`x) 49}], 
+          SoundNote["A2", {(60/$CellContext`x) 49, (60/$CellContext`x) 50}], 
+          SoundNote["B2", {(60/$CellContext`x) 50, (60/$CellContext`x) 51}], 
+          SoundNote["F#2", {(60/$CellContext`x) 51, (60/$CellContext`x) 52}], 
+          SoundNote["G2", {(60/$CellContext`x) 52, (60/$CellContext`x) 53}], 
+          SoundNote["D2", {(60/$CellContext`x) 53, (60/$CellContext`x) 54}], 
+          SoundNote["G2", {(60/$CellContext`x) 54, (60/$CellContext`x) 55}], 
+          SoundNote["A2", {(60/$CellContext`x) 55, (60/$CellContext`x) 56}], 
+          SoundNote["D2", {(60/$CellContext`x) 56, (60/$CellContext`x) 58}], 
+          SoundNote["D4", {(60/$CellContext`x) 56, (60/$CellContext`x) 58}]}}; 
+      Typeset`initDone$$ = True); ReleaseHold[
+       HoldComplete[{$CellContext`f[
+           Pattern[$CellContext`x, 
+            Blank[]]] := {
+           SoundNote["F#5", {(60/$CellContext`x) 8, (60/$CellContext`x) 9}], 
+           SoundNote["E5", {(60/$CellContext`x) 9, (60/$CellContext`x) 10}], 
+           SoundNote["D5", {(60/$CellContext`x) 10, (60/$CellContext`x) 11}], 
+           SoundNote["C#5", {(60/$CellContext`x) 11, (60/$CellContext`x) 12}], 
+           SoundNote["B4", {(60/$CellContext`x) 12, (60/$CellContext`x) 13}], 
+           SoundNote["A4", {(60/$CellContext`x) 13, (60/$CellContext`x) 14}], 
+           SoundNote["B4", {(60/$CellContext`x) 14, (60/$CellContext`x) 15}], 
+           SoundNote["C#5", {(60/$CellContext`x) 15, (60/$CellContext`x) 16}], 
+           
+           SoundNote[{
+            "F#5", "D5"}, {(60/$CellContext`x) 16, (60/$CellContext`x) 17}], 
+           
+           SoundNote[{
+            "E5", "C#5"}, {(60/$CellContext`x) 17, (60/$CellContext`x) 18}], 
+           
+           SoundNote[{
+            "D5", "B4"}, {(60/$CellContext`x) 18, (60/$CellContext`x) 19}], 
+           
+           SoundNote[{
+            "C#5", "A4"}, {(60/$CellContext`x) 19, (60/$CellContext`x) 20}], 
+           
+           SoundNote[{
+            "B4", "G4"}, {(60/$CellContext`x) 20, (60/$CellContext`x) 21}], 
+           
+           SoundNote[{
+            "A4", "F#4"}, {(60/$CellContext`x) 21, (60/$CellContext`x) 22}], 
+           SoundNote[{
+            "B4", "G4"}, {(60/$CellContext`x) 22, (60/$CellContext`x) 23}], 
+           
+           SoundNote[{
+            "C#5", "A4"}, {(60/$CellContext`x) 23, (60/$CellContext`x) 24}], 
+           
+           SoundNote[{
+            "F#5"}, {(60/$CellContext`x) 24, (60/$CellContext`x) 25}], 
+           
+           SoundNote[{
+            "E5", "C#5"}, {(60/$CellContext`x) 25, (60/$CellContext`x) 26}], 
+           
+           SoundNote[{
+            "B4"}, {(60/$CellContext`x) 26, (60/$CellContext`x) 27}], 
+           
+           SoundNote[{
+            "C#5"}, {(60/$CellContext`x) 27, (60/$CellContext`x) 28}], 
+           
+           SoundNote[{
+            "B4"}, {(60/$CellContext`x) 28, (60/$CellContext`x) 29}], 
+           
+           SoundNote[{
+            "A4"}, {(60/$CellContext`x) 29, (60/$CellContext`x) 30}], 
+           
+           SoundNote[{
+            "G4"}, {(60/$CellContext`x) 30, (60/$CellContext`x) 31}], 
+           
+           SoundNote[{
+            "E4"}, {(60/$CellContext`x) 31, (60/$CellContext`x) 32}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 24, (60/$CellContext`x) 24.25}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 24.25, (60/$CellContext`x) 24.5}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 24.5, (60/$CellContext`x) 25}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 26, (60/$CellContext`x) 26.5}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 26.5, (60/$CellContext`x) 27}], 
+           SoundNote[
+           "A5", {(60/$CellContext`x) 27, (60/$CellContext`x) 27.75}], 
+           SoundNote[
+           "B5", {(60/$CellContext`x) 27.75, (60/$CellContext`x) 28}], 
+           SoundNote[
+           "G5", {(60/$CellContext`x) 28, (60/$CellContext`x) 28.25}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 28.25, (60/$CellContext`x) 28.5}], 
+           SoundNote[
+           "E5", {(60/$CellContext`x) 28.5, (60/$CellContext`x) 28.75}], 
+           SoundNote[
+           "G5", {(60/$CellContext`x) 28.75, (60/$CellContext`x) 29}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 29, (60/$CellContext`x) 29.25}], 
+           SoundNote[
+           "E5", {(60/$CellContext`x) 29.25, (60/$CellContext`x) 29.5}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 29.5, (60/$CellContext`x) 29.75}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 29.75, (60/$CellContext`x) 30}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 30, (60/$CellContext`x) 30.25}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 30.25, (60/$CellContext`x) 30.5}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 30.5, (60/$CellContext`x) 30.75}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 30.75, (60/$CellContext`x) 31}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 31, (60/$CellContext`x) 31.5}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 31.5, (60/$CellContext`x) 32}], 
+           SoundNote[
+           "A5", {(60/$CellContext`x) 32, (60/$CellContext`x) 32.25}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 32.25, (60/$CellContext`x) 32.375}], 
+           SoundNote[
+           "G5", {(60/$CellContext`x) 32.375, (60/$CellContext`x) 32.5}], 
+           SoundNote[
+           "A5", {(60/$CellContext`x) 32.5, (60/$CellContext`x) 32.75}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 32.75, (60/$CellContext`x) 32.875}], 
+           SoundNote[
+           "G5", {(60/$CellContext`x) 32.875, (60/$CellContext`x) 33}], 
+           SoundNote[
+           "A5", {(60/$CellContext`x) 33, (60/$CellContext`x) 33.125}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 33.125, (60/$CellContext`x) 33.25}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 33.25, (60/$CellContext`x) 33.375}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 33.375, (60/$CellContext`x) 33.5}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 33.5, (60/$CellContext`x) 33.625}], 
+           SoundNote[
+           "E5", {(60/$CellContext`x) 33.625, (60/$CellContext`x) 33.75}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 33.75, (60/$CellContext`x) 33.875}], 
+           SoundNote[
+           "G5", {(60/$CellContext`x) 33.875, (60/$CellContext`x) 34}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 34, (60/$CellContext`x) 34.25}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 34.25, (60/$CellContext`x) 34.375}], 
+           SoundNote[
+           "E5", {(60/$CellContext`x) 34.375, (60/$CellContext`x) 34.5}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 34.5, (60/$CellContext`x) 34.75}], 
+           SoundNote[
+           "F#4", {(60/$CellContext`x) 34.75, (60/$CellContext`x) 34.875}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 34.875, (60/$CellContext`x) 35}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 35, (60/$CellContext`x) 35.125}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 35.125, (60/$CellContext`x) 35.25}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 35.25, (60/$CellContext`x) 35.375}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 35.375, (60/$CellContext`x) 35.5}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 35.5, (60/$CellContext`x) 35.625}], 
+           SoundNote[
+           "F#4", {(60/$CellContext`x) 35.625, (60/$CellContext`x) 35.75}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 35.75, (60/$CellContext`x) 35.875}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 35.875, (60/$CellContext`x) 36}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 36, (60/$CellContext`x) 36.25}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 36.25, (60/$CellContext`x) 36.375}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 36.375, (60/$CellContext`x) 36.5}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 36.5, (60/$CellContext`x) 36.75}], 
+           SoundNote[
+           "F#4", {(60/$CellContext`x) 36.75, (60/$CellContext`x) 36.875}], 
+           SoundNote[
+           "E4", {(60/$CellContext`x) 36.875, (60/$CellContext`x) 37}], 
+           SoundNote[
+           "F#4", {(60/$CellContext`x) 37, (60/$CellContext`x) 37.125}], 
+           SoundNote[
+           "E4", {(60/$CellContext`x) 37.125, (60/$CellContext`x) 37.25}], 
+           SoundNote[
+           "D4", {(60/$CellContext`x) 37.25, (60/$CellContext`x) 37.375}], 
+           SoundNote[
+           "E4", {(60/$CellContext`x) 37.375, (60/$CellContext`x) 37.5}], 
+           SoundNote[
+           "F#4", {(60/$CellContext`x) 37.5, (60/$CellContext`x) 37.625}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 37.625, (60/$CellContext`x) 37.75}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 37.75, (60/$CellContext`x) 37.875}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 37.875, (60/$CellContext`x) 38}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 38, (60/$CellContext`x) 38.25}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 38.25, (60/$CellContext`x) 38.375}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 38.375, (60/$CellContext`x) 38.5}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 38.5, (60/$CellContext`x) 38.75}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 38.75, (60/$CellContext`x) 38.875}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 38.875, (60/$CellContext`x) 39}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 39, (60/$CellContext`x) 39.125}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 39.125, (60/$CellContext`x) 39.25}], 
+           SoundNote[
+           "A4", {(60/$CellContext`x) 39.25, (60/$CellContext`x) 39.375}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 39.375, (60/$CellContext`x) 39.5}], 
+           SoundNote[
+           "C#5", {(60/$CellContext`x) 39.5, (60/$CellContext`x) 39.625}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 39.625, (60/$CellContext`x) 39.75}], 
+           SoundNote[
+           "E5", {(60/$CellContext`x) 39.75, (60/$CellContext`x) 39.875}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 39.875, (60/$CellContext`x) 40}], 
+           
+           SoundNote[{
+            "F#5", "A5"}, {(60/$CellContext`x) 40, (60/$CellContext`x) 
+             40.75}], 
+           
+           SoundNote[{
+            "F#5", "A5"}, {(60/$CellContext`x) 40.75, (60/$CellContext`x) 
+             41}], 
+           
+           SoundNote[{
+            "F#5", "A5"}, {(60/$CellContext`x) 41, (60/$CellContext`x) 
+             41.25}], 
+           
+           SoundNote[{
+            "G5", "B5"}, {(60/$CellContext`x) 41.25, (60/$CellContext`x) 
+             41.5}], 
+           
+           SoundNote[{
+            "F#5", "A5"}, {(60/$CellContext`x) 41.5, (60/$CellContext`x) 
+             41.75}], 
+           
+           SoundNote[{
+            "G5", "E5"}, {(60/$CellContext`x) 41.75, (60/$CellContext`x) 42}], 
+           
+           SoundNote[{
+            "D5", "F#5"}, {(60/$CellContext`x) 42, (60/$CellContext`x) 
+             42.75}], 
+           
+           SoundNote[{
+            "D5", "F#5"}, {(60/$CellContext`x) 42.75, (60/$CellContext`x) 
+             43}], 
+           
+           SoundNote[{
+            "D5", "F#5"}, {(60/$CellContext`x) 43, (60/$CellContext`x) 
+             43.25}], 
+           
+           SoundNote[{
+            "E5", "G5"}, {(60/$CellContext`x) 43.25, (60/$CellContext`x) 
+             43.5}], 
+           
+           SoundNote[{
+            "D5", "F#5"}, {(60/$CellContext`x) 43.5, (60/$CellContext`x) 
+             43.75}], 
+           
+           SoundNote[{
+            "C#5", "E5"}, {(60/$CellContext`x) 43.75, (60/$CellContext`x) 
+             44}], 
+           
+           SoundNote[{
+            "B4", "D5"}, {(60/$CellContext`x) 44, (60/$CellContext`x) 44.75}], 
+           
+           SoundNote[{
+            "B4", "D5"}, {(60/$CellContext`x) 44.75, (60/$CellContext`x) 45}], 
+           
+           SoundNote[{
+            "A4", "D5"}, {(60/$CellContext`x) 45, (60/$CellContext`x) 45.5}], 
+           
+           SoundNote[{
+            "F#4", "A4"}, {(60/$CellContext`x) 45.5, (60/$CellContext`x) 46}], 
+           SoundNote[
+           "D5", {(60/$CellContext`x) 46, (60/$CellContext`x) 46.25}], 
+           SoundNote[
+           "C5", {(60/$CellContext`x) 46.25, (60/$CellContext`x) 46.5}], 
+           SoundNote[
+           "B4", {(60/$CellContext`x) 46.5, (60/$CellContext`x) 46.75}], 
+           SoundNote[
+           "C5", {(60/$CellContext`x) 46.75, (60/$CellContext`x) 47}], 
+           SoundNote[
+           "G4", {(60/$CellContext`x) 46., (60/$CellContext`x) 47.}], 
+           
+           SoundNote[{
+            "A4", "C#5"}, {(60/$CellContext`x) 47, (60/$CellContext`x) 48}], 
+           SoundNote[
+           "F#5", {(60/$CellContext`x) 48, (60/$CellContext`x) 48.5}], 
+           
+           SoundNote[{
+            "F#5", "D6"}, {(60/$CellContext`x) 48.5, (60/$CellContext`x) 
+             49.5}], 
+           
+           SoundNote[{
+            "E5", "C#6"}, {(60/$CellContext`x) 49.5, (60/$CellContext`x) 
+             50.5}], 
+           
+           SoundNote[{
+            "D5", "B5"}, {(60/$CellContext`x) 50.5, (60/$CellContext`x) 
+             51.5}], 
+           
+           SoundNote[{
+            "C#5", "A5"}, {(60/$CellContext`x) 51.5, (60/$CellContext`x) 
+             52.5}], 
+           SoundNote[
+           "G5", {(60/$CellContext`x) 52.5, (60/$CellContext`x) 53}], 
+           
+           SoundNote[{
+            "F#5", "D6"}, {(60/$CellContext`x) 53, (60/$CellContext`x) 53.5}], 
+           SoundNote[
+           "A5", {(60/$CellContext`x) 53.5, (60/$CellContext`x) 54}], 
+           
+           SoundNote[{
+            "D5", "B5"}, {(60/$CellContext`x) 54, (60/$CellContext`x) 55}], 
+           
+           SoundNote[{
+            "C#5", "A5"}, {(60/$CellContext`x) 55, (60/$CellContext`x) 56}], 
+           SoundNote["A4", {(60/$CellContext`x) 56., (60/$CellContext`x) 58}], 
+           
+           SoundNote[{
+            "F#5"}, {(60/$CellContext`x) 56., (60/$CellContext`x) 
+             58}]}, $CellContext`h[
+           Pattern[$CellContext`x, 
+            Blank[]]] := {
+           SoundNote["D3", {(60/$CellContext`x) 0, (60/$CellContext`x) 1}], 
+           SoundNote["A2", {(60/$CellContext`x) 1, (60/$CellContext`x) 2}], 
+           SoundNote["B2", {(60/$CellContext`x) 2, (60/$CellContext`x) 3}], 
+           SoundNote["F#2", {(60/$CellContext`x) 3, (60/$CellContext`x) 4}], 
+           SoundNote["G2", {(60/$CellContext`x) 4, (60/$CellContext`x) 5}], 
+           SoundNote["D2", {(60/$CellContext`x) 5, (60/$CellContext`x) 6}], 
+           SoundNote["G2", {(60/$CellContext`x) 6, (60/$CellContext`x) 7}], 
+           SoundNote["A2", {(60/$CellContext`x) 7, (60/$CellContext`x) 8}], 
+           SoundNote["D3", {(60/$CellContext`x) 8, (60/$CellContext`x) 8.5}], 
+           SoundNote["A3", {(60/$CellContext`x) 8.5, (60/$CellContext`x) 9}], 
+           SoundNote["A2", {(60/$CellContext`x) 9, (60/$CellContext`x) 10}], 
+           SoundNote[
+           "B2", {(60/$CellContext`x) 10, (60/$CellContext`x) 10.5}], 
+           SoundNote[
+           "F#3", {(60/$CellContext`x) 10.5, (60/$CellContext`x) 11}], 
+           SoundNote["F#2", {(60/$CellContext`x) 11, (60/$CellContext`x) 12}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 12, (60/$CellContext`x) 12.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 12.5, (60/$CellContext`x) 13}], 
+           SoundNote["D2", {(60/$CellContext`x) 13, (60/$CellContext`x) 14}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 14, (60/$CellContext`x) 14.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 14.5, (60/$CellContext`x) 15}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 15, (60/$CellContext`x) 15.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 15.5, (60/$CellContext`x) 16}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 16, (60/$CellContext`x) 16.5}], 
+           SoundNote[
+           "A3", {(60/$CellContext`x) 16.5, (60/$CellContext`x) 17}], 
+           SoundNote["A2", {(60/$CellContext`x) 17, (60/$CellContext`x) 18}], 
+           SoundNote[
+           "B2", {(60/$CellContext`x) 18, (60/$CellContext`x) 18.5}], 
+           SoundNote[
+           "F#3", {(60/$CellContext`x) 18.5, (60/$CellContext`x) 19}], 
+           SoundNote["F#2", {(60/$CellContext`x) 19, (60/$CellContext`x) 20}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 20, (60/$CellContext`x) 20.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 20.5, (60/$CellContext`x) 21}], 
+           SoundNote["D2", {(60/$CellContext`x) 21, (60/$CellContext`x) 22}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 22, (60/$CellContext`x) 22.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 22.5, (60/$CellContext`x) 23}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 23, (60/$CellContext`x) 23.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 23.5, (60/$CellContext`x) 24}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 24, (60/$CellContext`x) 24.5}], 
+           SoundNote[
+           "A3", {(60/$CellContext`x) 24.5, (60/$CellContext`x) 25}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 25, (60/$CellContext`x) 25.5}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 25.5, (60/$CellContext`x) 26}], 
+           SoundNote[
+           "B2", {(60/$CellContext`x) 26, (60/$CellContext`x) 26.5}], 
+           SoundNote[
+           "F#3", {(60/$CellContext`x) 26.5, (60/$CellContext`x) 27}], 
+           SoundNote[
+           "F#2", {(60/$CellContext`x) 27, (60/$CellContext`x) 27.5}], 
+           SoundNote[
+           "C#3", {(60/$CellContext`x) 27.5, (60/$CellContext`x) 28}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 28, (60/$CellContext`x) 28.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 28.5, (60/$CellContext`x) 29}], 
+           SoundNote[
+           "D2", {(60/$CellContext`x) 29, (60/$CellContext`x) 29.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 29.5, (60/$CellContext`x) 30}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 30, (60/$CellContext`x) 30.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 30.5, (60/$CellContext`x) 31}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 31, (60/$CellContext`x) 31.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 31.5, (60/$CellContext`x) 32}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 32, (60/$CellContext`x) 32.5}], 
+           SoundNote[
+           "A3", {(60/$CellContext`x) 32.5, (60/$CellContext`x) 33}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 33, (60/$CellContext`x) 33.5}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 33.5, (60/$CellContext`x) 34}], 
+           SoundNote[
+           "B2", {(60/$CellContext`x) 34, (60/$CellContext`x) 34.5}], 
+           SoundNote[
+           "F#3", {(60/$CellContext`x) 34.5, (60/$CellContext`x) 35}], 
+           SoundNote[
+           "F#2", {(60/$CellContext`x) 35, (60/$CellContext`x) 35.5}], 
+           SoundNote[
+           "C#3", {(60/$CellContext`x) 35.5, (60/$CellContext`x) 36}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 36, (60/$CellContext`x) 36.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 36.5, (60/$CellContext`x) 37}], 
+           SoundNote[
+           "D2", {(60/$CellContext`x) 37, (60/$CellContext`x) 37.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 37.5, (60/$CellContext`x) 38}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 38, (60/$CellContext`x) 38.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 38.5, (60/$CellContext`x) 39}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 39, (60/$CellContext`x) 39.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 39.5, (60/$CellContext`x) 40}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 40, (60/$CellContext`x) 40.5}], 
+           SoundNote[
+           "A3", {(60/$CellContext`x) 40.5, (60/$CellContext`x) 41}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 41, (60/$CellContext`x) 41.5}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 41.5, (60/$CellContext`x) 42}], 
+           SoundNote[
+           "B2", {(60/$CellContext`x) 42, (60/$CellContext`x) 42.5}], 
+           SoundNote[
+           "F#3", {(60/$CellContext`x) 42.5, (60/$CellContext`x) 43}], 
+           SoundNote[
+           "F#2", {(60/$CellContext`x) 43, (60/$CellContext`x) 43.5}], 
+           SoundNote[
+           "C#3", {(60/$CellContext`x) 43.5, (60/$CellContext`x) 44}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 44, (60/$CellContext`x) 44.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 44.5, (60/$CellContext`x) 45}], 
+           SoundNote[
+           "D2", {(60/$CellContext`x) 45, (60/$CellContext`x) 45.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 45.5, (60/$CellContext`x) 46}], 
+           SoundNote[
+           "G2", {(60/$CellContext`x) 46, (60/$CellContext`x) 46.5}], 
+           SoundNote[
+           "D3", {(60/$CellContext`x) 46.5, (60/$CellContext`x) 47}], 
+           SoundNote[
+           "E3", {(60/$CellContext`x) 47, (60/$CellContext`x) 47.5}], 
+           SoundNote[
+           "A2", {(60/$CellContext`x) 47.5, (60/$CellContext`x) 48}], 
+           SoundNote["D3", {(60/$CellContext`x) 48, (60/$CellContext`x) 49}], 
+           SoundNote["A2", {(60/$CellContext`x) 49, (60/$CellContext`x) 50}], 
+           SoundNote["B2", {(60/$CellContext`x) 50, (60/$CellContext`x) 51}], 
+           SoundNote["F#2", {(60/$CellContext`x) 51, (60/$CellContext`x) 52}], 
+           SoundNote["G2", {(60/$CellContext`x) 52, (60/$CellContext`x) 53}], 
+           SoundNote["D2", {(60/$CellContext`x) 53, (60/$CellContext`x) 54}], 
+           SoundNote["G2", {(60/$CellContext`x) 54, (60/$CellContext`x) 55}], 
+           SoundNote["A2", {(60/$CellContext`x) 55, (60/$CellContext`x) 56}], 
+           SoundNote["D2", {(60/$CellContext`x) 56, (60/$CellContext`x) 58}], 
+           SoundNote[
+           "D4", {(60/$CellContext`x) 56, (60/$CellContext`x) 58}]}}]]; 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->35114600,ExpressionUUID->"e481106d-b240-4c14-af06-6408f6bf63a5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["CAPTION", "Section",
+ CellFrame->{{0, 0}, {1, 0}},
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ FontFamily->"Helvetica",
+ FontSize->12,
+ FontWeight->"Bold",
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"1ec1d7cf-f3dc-4eee-a75c-c733ee381676"],
+
+Cell[TextData[{
+ "Change the tempo and instrumentation for this transcription of Johann \
+Pachelbel's ",
+ StyleBox["Canon in D",
+  FontSlant->"Italic"],
+ " (as arranged by MakingMusicFun.net) to find its most pleasing settings."
+}], "Text",ExpressionUUID->"6db1aab3-8bb9-465a-949a-625f6384142f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["DETAILS", "Section",
+ CellFrame->{{0, 0}, {1, 0}},
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ FontFamily->"Helvetica",
+ FontSize->12,
+ FontWeight->"Bold",
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"d5da206d-a023-4afe-b64a-2ade7f179fce"],
+
+Cell[TextData[{
+ "For more information, see \"Canon in D by Johann Pachelbel for \
+Intermediate/Level 5 Piano Solo\", ",
+ ButtonBox["http://www.makingmusicfun.net/htm/f_printit_free _printable \
+_sheet _music/canon-in-d.htm",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www.makingmusicfun.net/htm/f_printit_free_printable_sheet_\
+music/canon-in-d.htm"], None},
+  ButtonNote->
+   "http://www.makingmusicfun.net/htm/f_printit_free_printable_sheet_music/\
+canon-in-d.htm"],
+ ". "
+}], "Text",ExpressionUUID->"5bdf0fe0-4999-49e0-ba61-5ed2174b88a2"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["THIS NOTEBOOK IS THE SOURCE CODE FROM", "Text",
+ CellFrame->{{0, 0}, {0, 0}},
+ CellMargins->{{48, 10}, {4, 28}},
+ CellGroupingRules->{"SectionGrouping", 25},
+ CellFrameMargins->{{48, 48}, {6, 5}},
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ FontFamily->"Helvetica",
+ FontSize->10,
+ FontWeight->"Bold",
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"15174d34-3fb0-4ff8-af9c-8332d9c77f62"],
+
+Cell[TextData[{
+ "\"",
+ ButtonBox["Simple Manipulation of Pachelbel's ",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/\
+SimpleManipulationOfPachelbelsCanonInD/"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/SimpleManipulationOfPachelbelsCanonInD/\
+"],
+ StyleBox[ButtonBox["Canon in D",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/\
+SimpleManipulationOfPachelbelsCanonInD/"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/SimpleManipulationOfPachelbelsCanonInD/\
+"],
+  FontSlant->"Italic"],
+ "\"",
+ " from ",
+ ButtonBox["the Wolfram Demonstrations Project",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/"],
+ "\[ParagraphSeparator]\[NonBreakingSpace]",
+ ButtonBox["http://demonstrations.wolfram.com/\
+SimpleManipulationOfPachelbelsCanonInD/",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/\
+SimpleManipulationOfPachelbelsCanonInD/"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/SimpleManipulationOfPachelbelsCanonInD/"]
+}], "Text",
+ CellMargins->{{48, Inherited}, {0, Inherited}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[
+  0.5],ExpressionUUID->"1d713e5d-33f9-4b91-8fc2-099d21648ae8"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Kaetlin Taylor",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Kaetlin+Taylor"]\
+, None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Kaetlin+Taylor"],
+ " and ",
+ ButtonBox["Michael Todd",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Michael+Todd"], 
+    None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Michael+Todd"]
+}], "Text",
+ CellDingbat->"\[FilledSmallSquare]",
+ CellMargins->{{66, 48}, {2, 4}},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[
+  0.6],ExpressionUUID->"f01f40ed-f731-40be-9d9b-056b77aef592"],
+
+Cell["After work by: Johann Pachelbel", "DemoNotes",
+ FontColor->GrayLevel[0.6],
+ CellID->87832127,ExpressionUUID->"98e51bfb-c442-4300-ba71-c4f7540059f2"],
+
+Cell[TextData[{
+ "A full-function Wolfram ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " system (Version 6 or higher) is required to edit this notebook.\n",
+ StyleBox[ButtonBox["GET WOLFRAM MATHEMATICA \[RightGuillemet]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://www.wolfram.com/products/mathematica/"], None},
+  ButtonNote->"http://www.wolfram.com/products/mathematica/"],
+  FontFamily->"Helvetica",
+  FontWeight->"Bold",
+  FontSlant->"Italic",
+  FontColor->RGBColor[1, 0.42, 0]]
+}], "Text",
+ CellFrame->True,
+ CellMargins->{{48, 68}, {8, 28}},
+ CellFrameMargins->12,
+ CellFrameColor->RGBColor[0.87, 0.87, 0.87],
+ CellChangeTimes->{3.3750111182355957`*^9},
+ ParagraphSpacing->{1., 1.},
+ FontFamily->"Verdana",
+ FontSize->10,
+ FontColor->GrayLevel[0.411765],
+ Background->RGBColor[
+  1, 1, 1],ExpressionUUID->"ce20a72b-3b3f-41d3-9115-1910e32e5757"],
+
+Cell[TextData[{
+ "\[Copyright] ",
+ StyleBox[ButtonBox["Wolfram Demonstrations Project & Contributors",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/"],
+  FontColor->GrayLevel[0.6]],
+ "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+ StyleBox[ButtonBox["Terms of Use",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/termsofuse.html"], None},
+  ButtonNote->"http://demonstrations.wolfram.com/termsofuse.html"],
+  FontColor->GrayLevel[0.6]],
+ "\[ThickSpace]\[ThickSpace]\[ThickSpace]|\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+ StyleBox[ButtonBox["Make a new version of this Demonstration \
+\[RightGuillemet]",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/participate/upload.jsp?id=\
+SimpleManipulationOfPachelbelsCanonInD"], None},
+  ButtonNote->None],
+  FontColor->GrayLevel[0.6]]
+}], "Text",
+ CellFrame->{{0, 0}, {0, 0.5}},
+ CellMargins->{{48, 10}, {20, 50}},
+ CellFrameMargins->{{6, 0}, {6, 6}},
+ CellFrameColor->GrayLevel[0.6],
+ FontFamily->"Verdana",
+ FontSize->9,
+ FontColor->GrayLevel[
+  0.6],ExpressionUUID->"c31fe05f-908b-430e-8a72-9e306502d5f9"]
+}, Open  ]]
+},
+Editable->True,
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+CellInsertionPointCell->None,
+WindowSize->{710.4, 574.8},
+WindowMargins->{{215.39999999999998`, Automatic}, {Automatic, 0}},
+WindowElements->{
+ "StatusArea", "MemoryMonitor", "MagnificationPopUp", "VerticalScrollBar", 
+  "MenuBar"},
+WindowTitle->"Simple Manipulation of Pachelbel's Canon in D - Source",
+DockedCells->{},
+CellContext->Notebook,
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9c3be3f7-37d2-4c9a-9378-5bd42e3b2416"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[621, 21, 280, 9, 62, "Section",ExpressionUUID->"ab8417cf-b1d6-40ad-a8c0-e020a67987d1"],
+Cell[CellGroupData[{
+Cell[926, 34, 3758, 65, 44, "Section",ExpressionUUID->"48af62d5-ebbc-4082-ad49-c6c51bebe9ab"],
+Cell[4687, 101, 46959, 1513, 2594, "Input",ExpressionUUID->"7a6bbc5b-8644-4469-9f7b-8f735f551542",
+ InitializationCell->True,
+ CellID->208032281],
+Cell[51649, 1616, 30136, 961, 1776, "Input",ExpressionUUID->"2c9fc2c6-74aa-4796-a870-531bb73682e2",
+ InitializationCell->True,
+ CellID->552844521],
+Cell[CellGroupData[{
+Cell[81810, 2581, 2775, 71, 257, "Input",ExpressionUUID->"4034f987-9392-4439-b5ae-d309bdc552b3"],
+Cell[84588, 2654, 46366, 945, 195, "Output",ExpressionUUID->"e481106d-b240-4c14-af06-6408f6bf63a5",
+ CellID->35114600]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[131003, 3605, 271, 8, 45, "Section",ExpressionUUID->"1ec1d7cf-f3dc-4eee-a75c-c733ee381676"],
+Cell[131277, 3615, 295, 6, 70, "Text",ExpressionUUID->"6db1aab3-8bb9-465a-949a-625f6384142f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[131609, 3626, 271, 8, 31, "Section",ExpressionUUID->"d5da206d-a023-4afe-b64a-2ade7f179fce"],
+Cell[131883, 3636, 557, 13, 70, "Text",ExpressionUUID->"5bdf0fe0-4999-49e0-ba61-5ed2174b88a2"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[132477, 3654, 417, 11, 21, "Text",ExpressionUUID->"15174d34-3fb0-4ff8-af9c-8332d9c77f62",
+ CellGroupingRules->{"SectionGrouping", 25}],
+Cell[132897, 3667, 1369, 40, 39, "Text",ExpressionUUID->"1d713e5d-33f9-4b91-8fc2-099d21648ae8"],
+Cell[134269, 3709, 751, 23, 20, "Text",ExpressionUUID->"f01f40ed-f731-40be-9d9b-056b77aef592"],
+Cell[135023, 3734, 154, 2, 22, "DemoNotes",ExpressionUUID->"98e51bfb-c442-4300-ba71-c4f7540059f2",
+ CellID->87832127],
+Cell[135180, 3738, 873, 25, 102, "Text",ExpressionUUID->"ce20a72b-3b3f-41d3-9115-1910e32e5757"],
+Cell[136056, 3765, 1268, 34, 88, "Text",ExpressionUUID->"c31fe05f-908b-430e-8a72-9e306502d5f9"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
