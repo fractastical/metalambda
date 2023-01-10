@@ -1,0 +1,3398 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[    147880,       3390]
+NotebookOptionsPosition[    139338,       3227]
+NotebookOutlinePosition[    141532,       3280]
+CellTagsIndexPosition[    141196,       3268]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Pythagorean, Meantone, and Equal Temperament Musical Scales ", \
+"DemoTitle",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417725498043019*^9, 3.417725498683652*^9}, {
+   3.4177255298715515`*^9, 3.417725577512786*^9}, 
+   3.4180649969265347`*^9},ExpressionUUID->"773a0bb6-336b-4d18-a4fc-\
+0e95f6fef1fb"],
+
+Cell[CellGroupData[{
+
+Cell["", "InitializationSection",ExpressionUUID->"6cbec315-9c24-41b2-9aaf-62105a34f340"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"angle", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"Log", "[", 
+     RowBox[{
+      RowBox[{"3", "/", "2"}], ",", "2"}], "]"}], " ", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mat", "[", "\[Theta]_", "]"}], ":=", 
+  RowBox[{"N", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Cos", "[", "\[Theta]", "]"}], ",", 
+       RowBox[{"Sin", "[", "\[Theta]", "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"Sin", "[", "\[Theta]", "]"}]}], ",", 
+       RowBox[{"Cos", "[", "\[Theta]", "]"}]}], "}"}]}], "}"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"rot", "[", 
+    RowBox[{"pt_", ",", "interval_", ",", 
+     RowBox[{"\[Theta]_", ":", "angle"}]}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"MatrixPower", "[", 
+     RowBox[{
+      RowBox[{"mat", "[", 
+       RowBox[{"2", "\[Pi]", " ", "\[Theta]"}], "]"}], ",", "interval"}], 
+     "]"}], ".", "pt"}]}], " "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"noteNames", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<C\>\"", ",", "\"\<G\>\"", ",", "\"\<D\>\"", ",", "\"\<A\>\"", ",", 
+     "\"\<E\>\"", ",", "\"\<B\>\"", ",", "\"\<F#\>\"", ",", "\"\<C#\>\"", 
+     ",", "\"\<G#\>\"", ",", "\"\<Eb\>\"", ",", "\"\<Bb\>\"", ",", 
+     "\"\<F\>\"", ",", "\"\<\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"decor", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Lighter", "[", "Red", "]"}], ",", " ", 
+     RowBox[{"Disk", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0"}], "}"}], ",", " ", "1.02"}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"0.928557", ",", " ", "0.986419", ",", " ", "0.705272"}], "]"}],
+      ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Opacity", "[", "0.8", "]"}], ",", 
+       RowBox[{"Disk", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], "}"}]}], 
+    "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"scale", "[", 
+   RowBox[{"\[Theta]_", ",", " ", "numNotes_"}], "]"}], ":=", 
+  RowBox[{"Graphics", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"decor", ",", 
+      RowBox[{"Darker", "@", "Blue"}], ",", 
+      RowBox[{"Thickness", "[", "0.005", "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"PointSize", "[", "0.025", "]"}], ",", 
+      RowBox[{"Point", "[", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"numNotes", "==", "12"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Text", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<C\>\"", ",", "Black", ",", "Bold", ",", "12"}], 
+             "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", ".8"}], "}"}]}], "]"}], ",", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Text", "[", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{
+                RowBox[{"noteNames", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"k", "+", "1"}], "]"}], "]"}], ",", "Black", ",", 
+                "Bold", ",", "12"}], "]"}], ",", 
+              RowBox[{"rot", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"0", ",", ".8"}], "}"}], ",", "k", ",", "\[Theta]"}],
+                "]"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", "numNotes"}], "}"}]}], "]"}]}], "}"}], ",", 
+        RowBox[{"Text", "[", 
+         RowBox[{"\"\<\>\"", ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0"}], "}"}]}], "]"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Line", "[", 
+       RowBox[{"NestList", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"rot", "[", 
+           RowBox[{"#1", ",", "1", ",", " ", "\[Theta]"}], "]"}], "&"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1"}], "}"}], ",", 
+         RowBox[{"numNotes", "-", "1"}]}], "]"}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Circle", "[", 
+       RowBox[{
+        RowBox[{"Nest", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"rot", "[", 
+            RowBox[{"#1", ",", "1", ",", " ", "\[Theta]"}], "]"}], "&"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "1"}], "}"}], ",", 
+          RowBox[{"numNotes", "-", "1"}]}], "]"}], ",", " ", "0.025"}], "]"}],
+       ",", "\[IndentingNewLine]", "Dotted", ",", " ", 
+      RowBox[{"Arrow", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Nest", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"rot", "[", 
+             RowBox[{"#1", ",", "1", ",", " ", "\[Theta]"}], "]"}], "&"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1"}], "}"}], ",", 
+           RowBox[{"numNotes", "-", "1"}]}], "]"}], ",", " ", 
+         RowBox[{"Nest", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"rot", "[", 
+             RowBox[{"#1", ",", "1", ",", " ", "\[Theta]"}], "]"}], "&"}], 
+           ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1"}], "}"}], ",", "numNotes"}], "]"}]}], "}"}],
+        "]"}]}], "}"}], ",", 
+    RowBox[{"ImageSize", "\[Rule]", 
+     RowBox[{"{", "350", "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417801766640625*^9, 3.41780176875*^9}, {
+   3.417801829875*^9, 3.417801832015625*^9}, 3.417817807140625*^9, {
+   3.41781787996875*^9, 3.417817881453125*^9}, {3.417823340203125*^9, 
+   3.417823403265625*^9}, {3.417950511551264*^9, 3.4179505128793716`*^9}, {
+   3.4179908085625*^9, 3.41799086240625*^9}, {3.417990952546875*^9, 
+   3.41799095428125*^9}, {3.417990991609375*^9, 3.417991000546875*^9}, {
+   3.417991057515625*^9, 3.4179910845*^9}, {3.4179912180625*^9, 
+   3.41799129721875*^9}, {3.417991328484375*^9, 3.417991330359375*^9}, {
+   3.417991382484375*^9, 3.417991385765625*^9}, {3.417991421546875*^9, 
+   3.41799145665625*^9}, {3.417991551984375*^9, 3.4179915803125*^9}, {
+   3.417991621890625*^9, 3.41799171453125*^9}, {3.417991804890625*^9, 
+   3.41799181084375*^9}, {3.417991858859375*^9, 3.41799186478125*^9}, {
+   3.417991925578125*^9, 3.417991946921875*^9}, 3.417992030140625*^9, 
+   3.4179920830625*^9, {3.4179921326875*^9, 3.417992142640625*^9}, {
+   3.41799230075*^9, 3.417992310890625*^9}, {3.4179924636875*^9, 
+   3.41799252103125*^9}, {3.417992579484375*^9, 3.417992587234375*^9}, {
+   3.417992623515625*^9, 3.417992657953125*^9}, {3.41799543371875*^9, 
+   3.4179954418125*^9}, {3.417995640578125*^9, 3.417995643453125*^9}, {
+   3.4180478311160145`*^9, 3.4180478316768208`*^9}, {3.4180517667051134`*^9, 
+   3.4180517746365185`*^9}, {3.4180518208529744`*^9, 3.418051824948864*^9}, {
+   3.418052183534485*^9, 3.4180521882612815`*^9}, {3.4180522290899906`*^9, 
+   3.4180522645509806`*^9}, {3.418064699194065*^9, 3.4180647168970766`*^9}},
+ CellID->287080246,ExpressionUUID->"d9bdba21-797d-4494-8e8d-feeaf292c656"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateSection",ExpressionUUID->"91cd593b-4135-413c-8af5-e273f9c361f0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"scale", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Log", "[", "x", "]"}], "/", 
+      RowBox[{"Log", "[", "2", "]"}]}], ",", "n"}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<choose 12-tone scales (default = Pythagorean)\>\"", ",", " ", 
+     "Bold"}], "]"}], ",", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<Pythag.\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", "1.5"}], ";", 
+           RowBox[{"n", "=", "12"}]}], "}"}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<equal temp.\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{"2", "^", 
+              RowBox[{"(", 
+               RowBox[{"7", "/", "12"}], ")"}]}], "]"}]}], ";", 
+           RowBox[{"n", "=", "12"}]}], "}"}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<1/4-comma meantone\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{"N", "[", 
+             RowBox[{"(", 
+              RowBox[{"5", "^", 
+               RowBox[{"(", 
+                RowBox[{"1", "/", "4"}], ")"}]}], ")"}], "]"}]}], ";", 
+           RowBox[{"n", "=", "12"}]}], "}"}], "}"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<play tones and compare scales\>\"", ",", " ", "Bold"}], 
+    "]"}], ",", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<play tonic\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"EmitSound", "[", 
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\[Omega]", "=", "1644"}], "}"}], ",", 
+           RowBox[{"Play", "[", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Omega]", " ", "t"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "1.5"}], "}"}]}], "]"}]}], "]"}], 
+         "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<play 5th\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"EmitSound", "[", 
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\[Omega]", "=", "1644"}], "}"}], ",", 
+           RowBox[{"Play", "[", 
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"x", " ", "\[Omega]", " ", "t"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "1.5"}], "}"}]}], "]"}]}], "]"}], 
+         "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<play scale\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"EmitSound", " ", "[", 
+           RowBox[{"Play", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"Log", "[", 
+                   RowBox[{"t", "+", "0.001"}], "]"}], "-", 
+                  RowBox[{"Log", "[", "0.001", "]"}]}], ")"}], " ", 
+                SuperscriptBox["\[ExponentialE]", 
+                 RowBox[{
+                  RowBox[{"-", "1.5"}], " ", "t"}]]}], ")"}], "*", "  ", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"1644", " ", 
+                SuperscriptBox["E", "#"], "t"}], "]"}]}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}], "]"}], "&"}],
+          " ", "/@", "\[IndentingNewLine]", 
+         RowBox[{"Append", "[", 
+          RowBox[{
+           RowBox[{"Sort", "[", 
+            RowBox[{"N", "@", 
+             RowBox[{"Mod", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"Range", "[", "n", "]"}], "-", "1"}], ")"}], 
+                "\[Times]", " ", 
+                RowBox[{"Log", "[", "x", "]"}]}], ",", " ", 
+               RowBox[{"Log", "[", "2", "]"}]}], "]"}]}], "]"}], ",", 
+           RowBox[{"Log", "[", "2", "]"}]}], "]"}]}]}], "]"}]}], "}"}], "]"}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<play tonic & overtones\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"EmitSound", "[", 
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\[Omega]", "=", "1644"}], "}"}], ",", 
+           RowBox[{"Play", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Sin", "[", 
+               RowBox[{"\[Omega]", " ", "t"}], "]"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"1", "/", "1.2"}], ")"}], "*", 
+               RowBox[{"Sin", "[", 
+                RowBox[{"2", " ", "\[Omega]", " ", "t"}], "]"}]}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"1", "/", 
+                 RowBox[{"1.2", "^", "2"}]}], ")"}], "*", 
+               RowBox[{"Sin", "[", 
+                RowBox[{"3", " ", "\[Omega]", " ", "t"}], "]"}]}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "1.5"}], "}"}]}], "]"}]}], "]"}], 
+         "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<play 5th & overtones\>\"", ",", "\[IndentingNewLine]", 
+        RowBox[{"EmitSound", "[", 
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"\[Omega]", "=", "1644"}], "}"}], ",", 
+           RowBox[{"Play", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Sin", "[", 
+               RowBox[{"x", " ", "\[Omega]", " ", "t"}], "]"}], "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"1", "/", "1.2"}], ")"}], "*", 
+               RowBox[{"Sin", "[", 
+                RowBox[{"2", " ", "x", " ", "\[Omega]", " ", "t"}], "]"}]}], 
+              "+", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"1", "/", 
+                 RowBox[{"1.2", "^", "2"}]}], ")"}], "*", 
+               RowBox[{"Sin", "[", 
+                RowBox[{"3", " ", "x", " ", "\[Omega]", " ", "t"}], "]"}]}]}],
+              ",", 
+             RowBox[{"{", 
+              RowBox[{"t", ",", "0", ",", "1.5"}], "}"}]}], "]"}]}], "]"}], 
+         "]"}]}], "]"}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Button", "[", 
+    RowBox[{"\"\<play tonic-5th & overtones\>\"", ",", "\[IndentingNewLine]", 
+     RowBox[{"EmitSound", "[", 
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"\[Omega]", "=", "1644"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Play", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Omega]", " ", "t"}], "]"}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"1", "/", "1.2"}], ")"}], "*", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"2", " ", "\[Omega]", " ", "t"}], "]"}]}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"1", "/", 
+                RowBox[{
+                 RowBox[{"(", "1.2", ")"}], "^", "2"}]}], ")"}], "*", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"3", " ", "\[Omega]", " ", "t"}], "]"}]}]}], ",", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", ".8"}], "}"}]}], "]"}], ",", 
+          RowBox[{"Play", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", " ", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"\[Omega]", " ", "t"}], "]"}], ")"}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"1", "/", "1.22"}], ")"}], "*", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"2", " ", "\[Omega]", " ", "t"}], "]"}]}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"1", "/", 
+                RowBox[{"1.2", "^", "2"}]}], ")"}], "*", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"3", " ", "\[Omega]", " ", "t"}], "]"}]}], "+", " ", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"\[Omega]", " ", "x", " ", "t"}], "]"}], "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"1", "/", "1.2"}], ")"}], "*", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"2", " ", "\[Omega]", " ", "x", " ", "t"}], "]"}]}], 
+             "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"1", "/", 
+                RowBox[{"1.2", "^", "2"}]}], ")"}], "*", 
+              RowBox[{"Sin", "[", 
+               RowBox[{"3", " ", "\[Omega]", " ", "x", " ", "t"}], "]"}]}]}], 
+            ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "6"}], "}"}]}], "]"}]}], "}"}]}], 
+       "]"}], "]"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Medium"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", " ", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<controls\>\"", ",", " ", "Bold"}], "]"}], ",", "Delimiter", 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "12", ",", " ", "\"\<number of notes\>\""}], "}"}], 
+     ",", "3", ",", "50", ",", "1", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", " ", "1.5", ",", " ", "\"\<generating ratio\>\""}], 
+      "}"}], ",", " ", "1.0", ",", " ", "2.5", ",", "0.0005", ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   "\[IndentingNewLine]", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<Pythagorean Wolf Tone\>\"", ",", " ", "Bold"}], "]"}], ",", 
+   "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Button", "[", 
+    RowBox[{
+    "\"\<play Pythagorean F & C chord--\\\"wolf fifth\\\"\>\"", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"EmitSound", " ", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Play", "[", 
+         RowBox[{
+          RowBox[{"(", " ", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"1644", " ", 
+             SuperscriptBox["E", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"11", " ", 
+                 RowBox[{"Log", "[", 
+                  FractionBox["3", "2"], "]"}]}], "-", 
+                RowBox[{"6", " ", 
+                 RowBox[{"Log", "[", "2", "]"}]}]}], ")"}]], "t"}], "]"}], 
+           ")"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}], ",", " ", 
+        RowBox[{"Play", "[", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sin", "[", 
+            RowBox[{"1644", " ", 
+             SuperscriptBox["E", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"11", " ", 
+                 RowBox[{"Log", "[", 
+                  FractionBox["3", "2"], "]"}]}], "-", 
+                RowBox[{"6", " ", 
+                 RowBox[{"Log", "[", "2", "]"}]}]}], ")"}]], "t"}], "]"}], 
+           "+", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "1.2"}], ")"}], "*", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"1644", " ", "2", "  ", 
+              SuperscriptBox["E", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"11", " ", 
+                  RowBox[{"Log", "[", 
+                   FractionBox["3", "2"], "]"}]}], "-", 
+                 RowBox[{"6", " ", 
+                  RowBox[{"Log", "[", "2", "]"}]}]}], ")"}]], "t"}], "]"}]}], 
+           "+", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", 
+              RowBox[{"1.2", "^", "2"}]}], ")"}], "*", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"1644", " ", "3", "  ", 
+              SuperscriptBox["E", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"11", " ", 
+                  RowBox[{"Log", "[", 
+                   FractionBox["3", "2"], "]"}]}], "-", 
+                 RowBox[{"6", " ", 
+                  RowBox[{"Log", "[", "2", "]"}]}]}], ")"}]], "t"}], "]"}]}], 
+           " ", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"+", " ", 
+              RowBox[{"(", 
+               RowBox[{"1", "/", "4"}], ")"}]}], "*", 
+             RowBox[{"Sin", "[", 
+              RowBox[{"1644", " ", "4", "  ", 
+               SuperscriptBox["E", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"11", " ", 
+                   RowBox[{"Log", "[", 
+                    FractionBox["3", "2"], "]"}]}], "-", 
+                  RowBox[{"6", " ", 
+                   RowBox[{"Log", "[", "2", "]"}]}]}], ")"}]], "t"}], "]"}]}],
+             "*)"}], "+", " ", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"1644", " ", "2", " ", "t"}], "]"}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "1.2"}], ")"}], "*", " ", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"1644", " ", "2", " ", "2", " ", "t"}], "]"}]}], "+", 
+           " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", 
+              RowBox[{"1.2", "^", "2"}]}], ")"}], "*", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"1644", " ", "3", " ", "2", " ", "t"}], "]"}]}]}], 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"+", " ", 
+             RowBox[{"(", 
+              RowBox[{"1", "/", "4"}], ")"}]}], "*", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"1644", " ", "4", " ", "2", " ", "t"}], "]"}]}], "*)"}], 
+          ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", "3"}], "}"}]}], "]"}]}], "}"}], 
+      "\[IndentingNewLine]", "]"}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+   "\[IndentingNewLine]", "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<choose exotic scales\>\"", ",", " ", "Bold"}], "]"}], ",", 
+   "Delimiter", ",", "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", " ", 
+     RowBox[{
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<7-tone Pythag.\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{"3", "/", "2"}]}], ";", 
+           RowBox[{"n", "=", "7"}]}], "}"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<9 tone\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{"Exp", "[", ".308", "]"}]}], ";", 
+           RowBox[{"n", "=", "9"}]}], "}"}], "}"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<11-tone golden mean\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{"Exp", "[", "0.618213", "]"}]}], ";", 
+           RowBox[{"n", "=", "11"}]}], "}"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<41-tone Pythag.\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", "1.5"}], ";", 
+           RowBox[{"n", "=", "41"}]}], "}"}], "}"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Row", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<8 tone\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{"Exp", "[", ".433", "]"}]}], ";", 
+           RowBox[{"n", "=", "8"}]}], "}"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<10 tone\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{
+             RowBox[{"Exp", "[", "0.485", "]"}], "//", "N"}]}], ";", 
+           RowBox[{"n", "=", "10"}]}], "}"}], "}"}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Button", "[", 
+       RowBox[{"\"\<5 tone\>\"", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"x", "=", 
+            RowBox[{
+             RowBox[{"Exp", "[", 
+              RowBox[{
+               SqrtBox["2"], "-", "1"}], "]"}], "//", "N"}]}], ";", 
+           RowBox[{"n", "=", "5"}]}], "}"}], "}"}]}], "]"}]}], 
+     "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", " ", 
+   RowBox[{"ControlPlacement", " ", "\[Rule]", " ", 
+    RowBox[{"{", "Left", "}"}]}], ",", " ", 
+   RowBox[{"SaveDefinitions", "\[Rule]", "True"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.417725672982758*^9, {3.4177929354375*^9, 
+   3.417792948640625*^9}, {3.4177929856875*^9, 3.417792990375*^9}, {
+   3.417801714765625*^9, 3.4178017356875*^9}, {3.417801778625*^9, 
+   3.41780177996875*^9}, {3.4178073972671556`*^9, 3.4178074051582985`*^9}, {
+   3.4178074923670044`*^9, 3.4178074971016827`*^9}, {3.4178075418389206`*^9, 
+   3.4178075541053305`*^9}, {3.417820832765625*^9, 3.41782084428125*^9}, {
+   3.417822834421875*^9, 3.417822835984375*^9}, {3.41782287565625*^9, 
+   3.41782287653125*^9}, {3.417823018390625*^9, 3.417823063734375*^9}, {
+   3.417824340328125*^9, 3.41782435015625*^9}, {3.417992735359375*^9, 
+   3.417992759828125*^9}, {3.417992796515625*^9, 3.417992852078125*^9}, {
+   3.417992894796875*^9, 3.417992914390625*^9}, {3.417993345921875*^9, 
+   3.417993352796875*^9}, {3.417993581390625*^9, 3.417993586390625*^9}, {
+   3.417993648609375*^9, 3.417993653203125*^9}, {3.417993683296875*^9, 
+   3.417993718796875*^9}, {3.417993762890625*^9, 3.417993765515625*^9}, {
+   3.417993837171875*^9, 3.417993840546875*^9}, {3.41799393734375*^9, 
+   3.4179939533125*^9}, {3.417994019828125*^9, 3.41799403209375*^9}, {
+   3.41799409365625*^9, 3.417994139859375*^9}, {3.4179941721875*^9, 
+   3.417994292484375*^9}, {3.417994355359375*^9, 3.41799435615625*^9}, {
+   3.417994415515625*^9, 3.4179944374375*^9}, {3.4179944688125*^9, 
+   3.417994700875*^9}, {3.41799475890625*^9, 3.417994837875*^9}, {
+   3.417994960609375*^9, 3.417994997703125*^9}, {3.417995035171875*^9, 
+   3.4179950553125*^9}, {3.4179951350625*^9, 3.417995177234375*^9}, {
+   3.4180479088578014`*^9, 3.418048047567256*^9}, 3.41804810133457*^9, {
+   3.418048177874629*^9, 3.418048201088008*^9}, {3.418048277628067*^9, 
+   3.418048337414035*^9}, 3.4180484383491726`*^9, {3.4180484777458224`*^9, 
+   3.418048516441464*^9}, {3.418048548868091*^9, 3.4180485707295265`*^9}, {
+   3.4180486425928607`*^9, 3.418048685774954*^9}, {3.4180488218406067`*^9, 
+   3.418048876429101*^9}, 3.4180489104179745`*^9, {3.4180489616115875`*^9, 
+   3.4180490330142593`*^9}, {3.418049091648571*^9, 3.4180491200694385`*^9}, {
+   3.418049173686536*^9, 3.4180491887481937`*^9}, {3.4180492910753326`*^9, 
+   3.4180493099725056`*^9}, {3.418049362337803*^9, 3.4180493984797726`*^9}, {
+   3.418049458325827*^9, 3.4180495027997775`*^9}, {3.4180495707675104`*^9, 
+   3.418049584527296*^9}, {3.418049622952549*^9, 3.4180496604264336`*^9}, {
+   3.4180497162767425`*^9, 3.4180497228361745`*^9}, {3.418049822189037*^9, 
+   3.418049822419368*^9}, {3.418050349557355*^9, 3.4180503866006207`*^9}, {
+   3.418051001865328*^9, 3.418051002426134*^9}, {3.418051034902834*^9, 
+   3.418051163838234*^9}, {3.418051208953106*^9, 3.418051215622696*^9}, {
+   3.4180512492210083`*^9, 3.4180513031385374`*^9}, {3.418051896211334*^9, 
+   3.4180519427782946`*^9}, {3.418052016414178*^9, 3.4180520338893056`*^9}, {
+   3.4180520771515136`*^9, 3.418052078433357*^9}, {3.4180521178099775`*^9, 
+   3.4180521333823695`*^9}, {3.4180523555818768`*^9, 
+   3.4180523645047073`*^9}, {3.418064730756363*^9, 3.418064820943286*^9}, {
+   3.41814923499092*^9, 3.418149261458979*^9}, 3.418149335515467*^9, 
+   3.418149459623926*^9, {3.4181495016643777`*^9, 3.418149551926651*^9}, 
+   3.418149687221195*^9, {3.41814971918716*^9, 3.4181497723435955`*^9}, {
+   3.4181498446175203`*^9, 3.4181500505336127`*^9}, {3.4181500979918547`*^9, 
+   3.4181501272339025`*^9}, {3.41865977363776*^9, 3.41865981738776*^9}, {
+   3.4187378354689283`*^9, 3.418737840255928*^9}, {3.4189988320273714`*^9, 
+   3.4189988325194206`*^9}},ExpressionUUID->"a8b4f9b8-2fd4-4050-97db-\
+034919e96a11"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 12, $CellContext`x$$ = 1.5, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["choose 12-tone scales (default = Pythagorean)", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+          ImageSize -> Large], 
+         Button[
+         "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+             12}}, ImageSize -> Large], 
+         Button[
+         "1/4-comma meantone", {{$CellContext`x$$ = 
+             N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["play tones and compare scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+             
+             Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+              1.5}]]]], 
+         Button["play 5th", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+             
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+         Button["play scale", 
+          Map[EmitSound[
+            
+            Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+              E^((-1.5) $CellContext`t)) 
+             Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+           Append[
+            Sort[
+             N[
+              Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+               Log[2]]]], 
+            Log[2]]]]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+            Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t, 
+              0, 1.5}]]]], 
+         Button["play 5th & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+            Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`x$$) $CellContext`\[Omega]$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play tonic-5th & overtones", 
+        EmitSound[
+         With[{$CellContext`\[Omega]$ = 1644}, {
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t, 
+             0, 0.8}], 
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+            Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+              1/1.2) Sin[((
+                 2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) Sin[((
+                 3 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t], \
+{$CellContext`t, 0, 6}]}]], ImageSize -> Medium]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["controls", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`n$$], 12, "number of notes"}, 3, 50, 1}, {{
+       Hold[$CellContext`x$$], 1.5, "generating ratio"}, 1., 2.5, 0.0005}, {
+      Hold[
+       Style["Pythagorean Wolf Tone", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+        EmitSound[{
+          Play[
+           
+           Sin[(1644 
+             E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0, 
+            1}], 
+          Play[
+          Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+             1.2^2) Sin[((1644 3) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+           Sin[(1644 2) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+            Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+        ImageSize -> Large]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["choose exotic scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+         Button[
+         "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+             9}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "11-tone golden mean", {{$CellContext`x$$ = 
+             Exp[0.618213]; $CellContext`n$$ = 11}}], 
+         Button[
+         "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+             41}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+         Button["10 tone", {{$CellContext`x$$ = N[
+               Exp[0.485]]; $CellContext`n$$ = 10}}], 
+         Button["5 tone", {{$CellContext`x$$ = N[
+               Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    350., {173., 176.44}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`n$995724$$ = 
+    0, $CellContext`x$995725$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 12, $CellContext`x$$ = 1.5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$995724$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$995725$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`scale[
+       Log[$CellContext`x$$]/Log[2], $CellContext`n$$], "Specifications" :> {
+        Style["choose 12-tone scales (default = Pythagorean)", Bold], 
+        Delimiter, 
+        Row[{
+          Button[
+          "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+           ImageSize -> Large], 
+          Button[
+          "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+              12}}, ImageSize -> Large], 
+          Button[
+          "1/4-comma meantone", {{$CellContext`x$$ = 
+              N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}], 
+        Delimiter, 
+        Style["play tones and compare scales", Bold], Delimiter, 
+        Row[{
+          Button["play tonic", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+              
+              Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+               1.5}]]]], 
+          Button["play 5th", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+              
+              Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+          Button["play scale", 
+           Map[EmitSound[
+             
+             Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+               E^((-1.5) $CellContext`t)) 
+              Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+            Append[
+             Sort[
+              N[
+               Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+                Log[2]]]], 
+             Log[2]]]]}], 
+        Row[{
+          Button["play tonic & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+             Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+               Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+               Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t,
+                0, 1.5}]]]], 
+          Button["play 5th & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+                1/1.2) Sin[((
+                   2 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t] + (1/1.2^2) 
+               Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}], 
+        Button["play tonic-5th & overtones", 
+         EmitSound[
+          With[{$CellContext`\[Omega]$ = 1644}, {
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t,
+               0, 0.8}], 
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+             Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`\[Omega]$) $CellContext`x$$) \
+$CellContext`t], {$CellContext`t, 0, 6}]}]], ImageSize -> Medium], Delimiter, 
+        Style["controls", Bold], 
+        Delimiter, {{$CellContext`n$$, 12, "number of notes"}, 3, 50, 1, 
+         ImageSize -> Small, Appearance -> 
+         "Labeled"}, {{$CellContext`x$$, 1.5, "generating ratio"}, 1., 2.5, 
+         0.0005, ImageSize -> Small, Appearance -> "Labeled"}, Delimiter, 
+        Style["Pythagorean Wolf Tone", Bold], Delimiter, 
+        Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+         EmitSound[{
+           Play[
+            
+            Sin[(1644 
+              E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0,
+              1}], 
+           Play[
+           Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+              1.2^2) Sin[((1644 3) 
+                E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+            Sin[(1644 2) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+             Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+         ImageSize -> Large], Delimiter, 
+        Style["choose exotic scales", Bold], Delimiter, 
+        Row[{
+          Button[
+          "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+          Button[
+          "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+              9}}]}], 
+        Row[{
+          Button[
+          "11-tone golden mean", {{$CellContext`x$$ = 
+              Exp[0.618213]; $CellContext`n$$ = 11}}], 
+          Button[
+          "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+              41}}]}], 
+        Row[{
+          Button[
+          "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+          Button["10 tone", {{$CellContext`x$$ = N[
+                Exp[0.485]]; $CellContext`n$$ = 10}}], 
+          Button["5 tone", {{$CellContext`x$$ = N[
+                Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]}, 
+      "Options" :> {ControlPlacement -> {Left}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{606., {217.8544921875, 223.1455078125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`scale[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`numNotes, 
+          Blank[]]] := Graphics[{$CellContext`decor, 
+          Darker[Blue], 
+          Thickness[0.005], 
+          PointSize[0.025], 
+          Point[{0, 1}], 
+          If[$CellContext`numNotes == 12, {
+            Text[
+             Style["C", Black, Bold, 12], {0, 0.8}], 
+            Table[
+             Text[
+              Style[
+               Part[$CellContext`noteNames, $CellContext`k + 1], Black, Bold, 
+               12], 
+              $CellContext`rot[{
+               0, 0.8}, $CellContext`k, $CellContext`\[Theta]]], \
+{$CellContext`k, $CellContext`numNotes}]}, 
+           Text["", {0, 0}]], 
+          Line[
+           
+           NestList[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1]], 
+          Circle[
+           
+           Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1], 0.025], Dotted, 
+          Arrow[{
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes - 1], 
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes]}]}, 
+         ImageSize -> {350}], $CellContext`decor = {
+         RGBColor[1, 1/3, 1/3], 
+         Disk[{0, 0}, 1.02], 
+         RGBColor[0.928557, 0.986419, 0.705272], {
+          Opacity[0.8], 
+          Disk[{0, 0}, 1]}}, $CellContext`noteNames = {
+        "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "Eb", "Bb", "F", 
+         ""}, $CellContext`rot[
+         Pattern[$CellContext`pt, 
+          Blank[]], 
+         Pattern[$CellContext`interval, 
+          Blank[]], 
+         Optional[
+          Pattern[$CellContext`\[Theta], 
+           Blank[]], 1.7095112913514547`]] := Dot[
+         MatrixPower[
+          $CellContext`mat[(2 
+            Pi) $CellContext`\[Theta]], $CellContext`interval], \
+$CellContext`pt], $CellContext`mat[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := N[{{
+           Cos[$CellContext`\[Theta]], 
+           Sin[$CellContext`\[Theta]]}, {-Sin[$CellContext`\[Theta]], 
+           Cos[$CellContext`\[Theta]]}}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->137682662,ExpressionUUID->"4c080afe-506f-409d-9173-9d1b44f3f3ef"]
+}, {2}]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ManipulateCaptionSection",ExpressionUUID->"3946f769-7d5b-4f18-8f2d-8e8bef7c985d"],
+
+Cell[TextData[{
+ "The Pythagorean scale is generated from just two integers (2 and 3). \
+Multiplying the frequency of any tone by 2 produces the characteristic sound \
+of an octave, and multiplying by 3 then dividing by 2 produces the \
+characteristic sound of a \"fifth\" (the fifth tone in the diatonic scale: Do \
+Re Mi Fa Sol). All of the 12 tones of the Pythagorean scale are produced by \
+repeatedly multiplying by 3/2 until you reach a tone close to (but not the \
+same as) an octave of the original. Visualizing the resulting \"circle\" of \
+fifths in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " reveals the beautiful structure and mathematical nature of the Pythagorean \
+scale. You can also explore the structure and nature of other musical scales \
+invented and used by musicians, tuners, composers, and mathematicians \
+throughout musical history. "
+}], "ManipulateCaption",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417725682451629*^9, 3.417726082534875*^9}, {
+   3.4177261205353456`*^9, 3.417726298911487*^9}, {3.4177263438649*^9, 
+   3.417726422318527*^9}, {3.417726471037589*^9, 3.417727214761099*^9}, {
+   3.417795351765625*^9, 3.4177954636875*^9}, {3.41779549771875*^9, 
+   3.417795925609375*^9}, {3.417795970203125*^9, 3.417795996171875*^9}, {
+   3.41779604153125*^9, 3.41779609225*^9}, {3.417796124046875*^9, 
+   3.417796449734375*^9}, {3.417802448625*^9, 3.41780245375*^9}, {
+   3.4178071731561956`*^9, 3.4178071737343645`*^9}, {3.417820871578125*^9, 
+   3.41782090728125*^9}, {3.4180661628922625`*^9, 3.4180661846185894`*^9}, {
+   3.41865986941901*^9, 3.418659924403385*^9}},
+ CellID->99395553,ExpressionUUID->"f8375405-4197-4307-ba9a-0e60cc66ad23"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ThumbnailSection",ExpressionUUID->"85b6f64a-efc4-4602-b716-29a0d42f0d59"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 41, $CellContext`x$$ = 
+    1.4880000000000027`, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["choose 12-tone scales (default = Pythagorean)", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+          ImageSize -> Large], 
+         Button[
+         "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+             12}}, ImageSize -> Large], 
+         Button[
+         "1/4-comma meantone", {{$CellContext`x$$ = 
+             N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["play tones and compare scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+             
+             Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+              1.5}]]]], 
+         Button["play 5th", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+             
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+         Button["play scale", 
+          Map[EmitSound[
+            
+            Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+              E^((-1.5) $CellContext`t)) 
+             Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+           Append[
+            Sort[
+             N[
+              Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+               Log[2]]]], 
+            Log[2]]]]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+            Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t, 
+              0, 1.5}]]]], 
+         Button["play 5th & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+            Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`x$$) $CellContext`\[Omega]$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play tonic-5th & overtones", 
+        EmitSound[
+         With[{$CellContext`\[Omega]$ = 1644}, {
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t, 
+             0, 0.8}], 
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+            Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+              1/1.2) Sin[((
+                 2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) Sin[((
+                 3 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t], \
+{$CellContext`t, 0, 6}]}]], ImageSize -> Medium]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["controls", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`n$$], 41, "number of notes"}, 3, 50, 1}, {{
+       Hold[$CellContext`x$$], 1.4880000000000027`, "generating ratio"}, 1., 
+      2.5, 0.0005}, {
+      Hold[
+       Style["Pythagorean Wolf Tone", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+        EmitSound[{
+          Play[
+           
+           Sin[(1644 
+             E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0, 
+            1}], 
+          Play[
+          Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+             1.2^2) Sin[((1644 3) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+           Sin[(1644 2) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+            Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+        ImageSize -> Large]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["choose exotic scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+         Button[
+         "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+             9}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "11-tone golden mean", {{$CellContext`x$$ = 
+             Exp[0.618213]; $CellContext`n$$ = 11}}], 
+         Button[
+         "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+             41}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+         Button["10 tone", {{$CellContext`x$$ = N[
+               Exp[0.485]]; $CellContext`n$$ = 10}}], 
+         Button["5 tone", {{$CellContext`x$$ = N[
+               Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    350., {173., 176.44}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`n$995780$$ = 
+    0, $CellContext`x$995781$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 41, $CellContext`x$$ = 
+        1.4880000000000027`}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$995780$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$995781$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`scale[
+       Log[$CellContext`x$$]/Log[2], $CellContext`n$$], "Specifications" :> {
+        Style["choose 12-tone scales (default = Pythagorean)", Bold], 
+        Delimiter, 
+        Row[{
+          Button[
+          "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+           ImageSize -> Large], 
+          Button[
+          "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+              12}}, ImageSize -> Large], 
+          Button[
+          "1/4-comma meantone", {{$CellContext`x$$ = 
+              N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}], 
+        Delimiter, 
+        Style["play tones and compare scales", Bold], Delimiter, 
+        Row[{
+          Button["play tonic", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+              
+              Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+               1.5}]]]], 
+          Button["play 5th", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+              
+              Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+          Button["play scale", 
+           Map[EmitSound[
+             
+             Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+               E^((-1.5) $CellContext`t)) 
+              Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+            Append[
+             Sort[
+              N[
+               Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+                Log[2]]]], 
+             Log[2]]]]}], 
+        Row[{
+          Button["play tonic & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+             Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+               Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+               Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t,
+                0, 1.5}]]]], 
+          Button["play 5th & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+                1/1.2) Sin[((
+                   2 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t] + (1/1.2^2) 
+               Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}], 
+        Button["play tonic-5th & overtones", 
+         EmitSound[
+          With[{$CellContext`\[Omega]$ = 1644}, {
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t,
+               0, 0.8}], 
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+             Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`\[Omega]$) $CellContext`x$$) \
+$CellContext`t], {$CellContext`t, 0, 6}]}]], ImageSize -> Medium], Delimiter, 
+        Style["controls", Bold], 
+        Delimiter, {{$CellContext`n$$, 41, "number of notes"}, 3, 50, 1, 
+         ImageSize -> Small, Appearance -> 
+         "Labeled"}, {{$CellContext`x$$, 1.4880000000000027`, 
+          "generating ratio"}, 1., 2.5, 0.0005, ImageSize -> Small, 
+         Appearance -> "Labeled"}, Delimiter, 
+        Style["Pythagorean Wolf Tone", Bold], Delimiter, 
+        Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+         EmitSound[{
+           Play[
+            
+            Sin[(1644 
+              E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0,
+              1}], 
+           Play[
+           Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+              1.2^2) Sin[((1644 3) 
+                E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+            Sin[(1644 2) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+             Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+         ImageSize -> Large], Delimiter, 
+        Style["choose exotic scales", Bold], Delimiter, 
+        Row[{
+          Button[
+          "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+          Button[
+          "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+              9}}]}], 
+        Row[{
+          Button[
+          "11-tone golden mean", {{$CellContext`x$$ = 
+              Exp[0.618213]; $CellContext`n$$ = 11}}], 
+          Button[
+          "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+              41}}]}], 
+        Row[{
+          Button[
+          "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+          Button["10 tone", {{$CellContext`x$$ = N[
+                Exp[0.485]]; $CellContext`n$$ = 10}}], 
+          Button["5 tone", {{$CellContext`x$$ = N[
+                Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]}, 
+      "Options" :> {ControlPlacement -> {Left}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{606., {217.8544921875, 223.1455078125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`scale[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`numNotes, 
+          Blank[]]] := Graphics[{$CellContext`decor, 
+          Darker[Blue], 
+          Thickness[0.005], 
+          PointSize[0.025], 
+          Point[{0, 1}], 
+          If[$CellContext`numNotes == 12, {
+            Text[
+             Style["C", Black, Bold, 12], {0, 0.8}], 
+            Table[
+             Text[
+              Style[
+               Part[$CellContext`noteNames, $CellContext`k + 1], Black, Bold, 
+               12], 
+              $CellContext`rot[{
+               0, 0.8}, $CellContext`k, $CellContext`\[Theta]]], \
+{$CellContext`k, $CellContext`numNotes}]}, 
+           Text["", {0, 0}]], 
+          Line[
+           
+           NestList[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1]], 
+          Circle[
+           
+           Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1], 0.025], Dotted, 
+          Arrow[{
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes - 1], 
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes]}]}, 
+         ImageSize -> {350}], $CellContext`decor = {
+         RGBColor[1, 1/3, 1/3], 
+         Disk[{0, 0}, 1.02], 
+         RGBColor[0.928557, 0.986419, 0.705272], {
+          Opacity[0.8], 
+          Disk[{0, 0}, 1]}}, $CellContext`noteNames = {
+        "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "Eb", "Bb", "F", 
+         ""}, $CellContext`rot[
+         Pattern[$CellContext`pt, 
+          Blank[]], 
+         Pattern[$CellContext`interval, 
+          Blank[]], 
+         Optional[
+          Pattern[$CellContext`\[Theta], 
+           Blank[]], 1.7095112913514547`]] := Dot[
+         MatrixPower[
+          $CellContext`mat[(2 
+            Pi) $CellContext`\[Theta]], $CellContext`interval], \
+$CellContext`pt], $CellContext`mat[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := N[{{
+           Cos[$CellContext`\[Theta]], 
+           Sin[$CellContext`\[Theta]]}, {-Sin[$CellContext`\[Theta]], 
+           Cos[$CellContext`\[Theta]]}}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->8067237,ExpressionUUID->"16de7f06-85ea-4d02-8d8b-95bc7dd5a51d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SnapshotsSection",
+ CellID->162463891,ExpressionUUID->"6e754ce9-5947-4f96-bfb0-4b2b2ad5aa34"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 12, $CellContext`x$$ = 1.5, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["choose 12-tone scales (default = Pythagorean)", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+          ImageSize -> Large], 
+         Button[
+         "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+             12}}, ImageSize -> Large], 
+         Button[
+         "1/4-comma meantone", {{$CellContext`x$$ = 
+             N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["play tones and compare scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+             
+             Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+              1.5}]]]], 
+         Button["play 5th", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+             
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+         Button["play scale", 
+          Map[EmitSound[
+            
+            Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+              E^((-1.5) $CellContext`t)) 
+             Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+           Append[
+            Sort[
+             N[
+              Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+               Log[2]]]], 
+            Log[2]]]]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+            Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t, 
+              0, 1.5}]]]], 
+         Button["play 5th & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+            Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`x$$) $CellContext`\[Omega]$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play tonic-5th & overtones", 
+        EmitSound[
+         With[{$CellContext`\[Omega]$ = 1644}, {
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t, 
+             0, 0.8}], 
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+            Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+              1/1.2) Sin[((
+                 2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) Sin[((
+                 3 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t], \
+{$CellContext`t, 0, 6}]}]], ImageSize -> Medium]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["controls", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`n$$], 12, "number of notes"}, 3, 50, 1}, {{
+       Hold[$CellContext`x$$], 1.5, "generating ratio"}, 1., 2.5, 0.0005}, {
+      Hold[
+       Style["Pythagorean Wolf Tone", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+        EmitSound[{
+          Play[
+           
+           Sin[(1644 
+             E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0, 
+            1}], 
+          Play[
+          Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+             1.2^2) Sin[((1644 3) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+           Sin[(1644 2) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+            Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+        ImageSize -> Large]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["choose exotic scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+         Button[
+         "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+             9}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "11-tone golden mean", {{$CellContext`x$$ = 
+             Exp[0.618213]; $CellContext`n$$ = 11}}], 
+         Button[
+         "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+             41}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+         Button["10 tone", {{$CellContext`x$$ = N[
+               Exp[0.485]]; $CellContext`n$$ = 10}}], 
+         Button["5 tone", {{$CellContext`x$$ = N[
+               Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    350., {173., 176.44}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`n$995836$$ = 
+    0, $CellContext`x$995837$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 12, $CellContext`x$$ = 1.5}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$995836$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$995837$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`scale[
+       Log[$CellContext`x$$]/Log[2], $CellContext`n$$], "Specifications" :> {
+        Style["choose 12-tone scales (default = Pythagorean)", Bold], 
+        Delimiter, 
+        Row[{
+          Button[
+          "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+           ImageSize -> Large], 
+          Button[
+          "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+              12}}, ImageSize -> Large], 
+          Button[
+          "1/4-comma meantone", {{$CellContext`x$$ = 
+              N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}], 
+        Delimiter, 
+        Style["play tones and compare scales", Bold], Delimiter, 
+        Row[{
+          Button["play tonic", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+              
+              Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+               1.5}]]]], 
+          Button["play 5th", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+              
+              Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+          Button["play scale", 
+           Map[EmitSound[
+             
+             Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+               E^((-1.5) $CellContext`t)) 
+              Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+            Append[
+             Sort[
+              N[
+               Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+                Log[2]]]], 
+             Log[2]]]]}], 
+        Row[{
+          Button["play tonic & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+             Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+               Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+               Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t,
+                0, 1.5}]]]], 
+          Button["play 5th & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+                1/1.2) Sin[((
+                   2 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t] + (1/1.2^2) 
+               Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}], 
+        Button["play tonic-5th & overtones", 
+         EmitSound[
+          With[{$CellContext`\[Omega]$ = 1644}, {
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t,
+               0, 0.8}], 
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+             Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`\[Omega]$) $CellContext`x$$) \
+$CellContext`t], {$CellContext`t, 0, 6}]}]], ImageSize -> Medium], Delimiter, 
+        Style["controls", Bold], 
+        Delimiter, {{$CellContext`n$$, 12, "number of notes"}, 3, 50, 1, 
+         ImageSize -> Small, Appearance -> 
+         "Labeled"}, {{$CellContext`x$$, 1.5, "generating ratio"}, 1., 2.5, 
+         0.0005, ImageSize -> Small, Appearance -> "Labeled"}, Delimiter, 
+        Style["Pythagorean Wolf Tone", Bold], Delimiter, 
+        Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+         EmitSound[{
+           Play[
+            
+            Sin[(1644 
+              E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0,
+              1}], 
+           Play[
+           Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+              1.2^2) Sin[((1644 3) 
+                E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+            Sin[(1644 2) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+             Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+         ImageSize -> Large], Delimiter, 
+        Style["choose exotic scales", Bold], Delimiter, 
+        Row[{
+          Button[
+          "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+          Button[
+          "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+              9}}]}], 
+        Row[{
+          Button[
+          "11-tone golden mean", {{$CellContext`x$$ = 
+              Exp[0.618213]; $CellContext`n$$ = 11}}], 
+          Button[
+          "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+              41}}]}], 
+        Row[{
+          Button[
+          "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+          Button["10 tone", {{$CellContext`x$$ = N[
+                Exp[0.485]]; $CellContext`n$$ = 10}}], 
+          Button["5 tone", {{$CellContext`x$$ = N[
+                Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]}, 
+      "Options" :> {ControlPlacement -> {Left}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{606., {217.8544921875, 223.1455078125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`scale[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`numNotes, 
+          Blank[]]] := Graphics[{$CellContext`decor, 
+          Darker[Blue], 
+          Thickness[0.005], 
+          PointSize[0.025], 
+          Point[{0, 1}], 
+          If[$CellContext`numNotes == 12, {
+            Text[
+             Style["C", Black, Bold, 12], {0, 0.8}], 
+            Table[
+             Text[
+              Style[
+               Part[$CellContext`noteNames, $CellContext`k + 1], Black, Bold, 
+               12], 
+              $CellContext`rot[{
+               0, 0.8}, $CellContext`k, $CellContext`\[Theta]]], \
+{$CellContext`k, $CellContext`numNotes}]}, 
+           Text["", {0, 0}]], 
+          Line[
+           
+           NestList[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1]], 
+          Circle[
+           
+           Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1], 0.025], Dotted, 
+          Arrow[{
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes - 1], 
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes]}]}, 
+         ImageSize -> {350}], $CellContext`decor = {
+         RGBColor[1, 1/3, 1/3], 
+         Disk[{0, 0}, 1.02], 
+         RGBColor[0.928557, 0.986419, 0.705272], {
+          Opacity[0.8], 
+          Disk[{0, 0}, 1]}}, $CellContext`noteNames = {
+        "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "Eb", "Bb", "F", 
+         ""}, $CellContext`rot[
+         Pattern[$CellContext`pt, 
+          Blank[]], 
+         Pattern[$CellContext`interval, 
+          Blank[]], 
+         Optional[
+          Pattern[$CellContext`\[Theta], 
+           Blank[]], 1.7095112913514547`]] := Dot[
+         MatrixPower[
+          $CellContext`mat[(2 
+            Pi) $CellContext`\[Theta]], $CellContext`interval], \
+$CellContext`pt], $CellContext`mat[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := N[{{
+           Cos[$CellContext`\[Theta]], 
+           Sin[$CellContext`\[Theta]]}, {-Sin[$CellContext`\[Theta]], 
+           Cos[$CellContext`\[Theta]]}}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->173437983,ExpressionUUID->"47cdd8a2-b093-46f2-a9a2-0e8b85fe48e1"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 12, $CellContext`x$$ = 
+    1.498307076876682, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["choose 12-tone scales (default = Pythagorean)", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+          ImageSize -> Large], 
+         Button[
+         "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+             12}}, ImageSize -> Large], 
+         Button[
+         "1/4-comma meantone", {{$CellContext`x$$ = 
+             N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["play tones and compare scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+             
+             Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+              1.5}]]]], 
+         Button["play 5th", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+             
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+         Button["play scale", 
+          Map[EmitSound[
+            
+            Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+              E^((-1.5) $CellContext`t)) 
+             Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+           Append[
+            Sort[
+             N[
+              Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+               Log[2]]]], 
+            Log[2]]]]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+            Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t, 
+              0, 1.5}]]]], 
+         Button["play 5th & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+            Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`x$$) $CellContext`\[Omega]$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play tonic-5th & overtones", 
+        EmitSound[
+         With[{$CellContext`\[Omega]$ = 1644}, {
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t, 
+             0, 0.8}], 
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+            Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+              1/1.2) Sin[((
+                 2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) Sin[((
+                 3 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t], \
+{$CellContext`t, 0, 6}]}]], ImageSize -> Medium]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["controls", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`n$$], 12, "number of notes"}, 3, 50, 1}, {{
+       Hold[$CellContext`x$$], 1.498307076876682, "generating ratio"}, 1., 
+      2.5, 0.0005}, {
+      Hold[
+       Style["Pythagorean Wolf Tone", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+        EmitSound[{
+          Play[
+           
+           Sin[(1644 
+             E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0, 
+            1}], 
+          Play[
+          Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+             1.2^2) Sin[((1644 3) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+           Sin[(1644 2) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+            Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+        ImageSize -> Large]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["choose exotic scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+         Button[
+         "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+             9}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "11-tone golden mean", {{$CellContext`x$$ = 
+             Exp[0.618213]; $CellContext`n$$ = 11}}], 
+         Button[
+         "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+             41}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+         Button["10 tone", {{$CellContext`x$$ = N[
+               Exp[0.485]]; $CellContext`n$$ = 10}}], 
+         Button["5 tone", {{$CellContext`x$$ = N[
+               Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    350., {173., 176.44}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`n$995892$$ = 
+    0, $CellContext`x$995893$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 12, $CellContext`x$$ = 
+        1.498307076876682}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$995892$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$995893$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`scale[
+       Log[$CellContext`x$$]/Log[2], $CellContext`n$$], "Specifications" :> {
+        Style["choose 12-tone scales (default = Pythagorean)", Bold], 
+        Delimiter, 
+        Row[{
+          Button[
+          "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+           ImageSize -> Large], 
+          Button[
+          "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+              12}}, ImageSize -> Large], 
+          Button[
+          "1/4-comma meantone", {{$CellContext`x$$ = 
+              N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}], 
+        Delimiter, 
+        Style["play tones and compare scales", Bold], Delimiter, 
+        Row[{
+          Button["play tonic", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+              
+              Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+               1.5}]]]], 
+          Button["play 5th", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+              
+              Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+          Button["play scale", 
+           Map[EmitSound[
+             
+             Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+               E^((-1.5) $CellContext`t)) 
+              Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+            Append[
+             Sort[
+              N[
+               Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+                Log[2]]]], 
+             Log[2]]]]}], 
+        Row[{
+          Button["play tonic & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+             Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+               Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+               Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t,
+                0, 1.5}]]]], 
+          Button["play 5th & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+                1/1.2) Sin[((
+                   2 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t] + (1/1.2^2) 
+               Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}], 
+        Button["play tonic-5th & overtones", 
+         EmitSound[
+          With[{$CellContext`\[Omega]$ = 1644}, {
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t,
+               0, 0.8}], 
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+             Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`\[Omega]$) $CellContext`x$$) \
+$CellContext`t], {$CellContext`t, 0, 6}]}]], ImageSize -> Medium], Delimiter, 
+        Style["controls", Bold], 
+        Delimiter, {{$CellContext`n$$, 12, "number of notes"}, 3, 50, 1, 
+         ImageSize -> Small, Appearance -> 
+         "Labeled"}, {{$CellContext`x$$, 1.498307076876682, 
+          "generating ratio"}, 1., 2.5, 0.0005, ImageSize -> Small, 
+         Appearance -> "Labeled"}, Delimiter, 
+        Style["Pythagorean Wolf Tone", Bold], Delimiter, 
+        Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+         EmitSound[{
+           Play[
+            
+            Sin[(1644 
+              E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0,
+              1}], 
+           Play[
+           Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+              1.2^2) Sin[((1644 3) 
+                E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+            Sin[(1644 2) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+             Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+         ImageSize -> Large], Delimiter, 
+        Style["choose exotic scales", Bold], Delimiter, 
+        Row[{
+          Button[
+          "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+          Button[
+          "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+              9}}]}], 
+        Row[{
+          Button[
+          "11-tone golden mean", {{$CellContext`x$$ = 
+              Exp[0.618213]; $CellContext`n$$ = 11}}], 
+          Button[
+          "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+              41}}]}], 
+        Row[{
+          Button[
+          "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+          Button["10 tone", {{$CellContext`x$$ = N[
+                Exp[0.485]]; $CellContext`n$$ = 10}}], 
+          Button["5 tone", {{$CellContext`x$$ = N[
+                Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]}, 
+      "Options" :> {ControlPlacement -> {Left}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{606., {217.8544921875, 223.1455078125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`scale[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`numNotes, 
+          Blank[]]] := Graphics[{$CellContext`decor, 
+          Darker[Blue], 
+          Thickness[0.005], 
+          PointSize[0.025], 
+          Point[{0, 1}], 
+          If[$CellContext`numNotes == 12, {
+            Text[
+             Style["C", Black, Bold, 12], {0, 0.8}], 
+            Table[
+             Text[
+              Style[
+               Part[$CellContext`noteNames, $CellContext`k + 1], Black, Bold, 
+               12], 
+              $CellContext`rot[{
+               0, 0.8}, $CellContext`k, $CellContext`\[Theta]]], \
+{$CellContext`k, $CellContext`numNotes}]}, 
+           Text["", {0, 0}]], 
+          Line[
+           
+           NestList[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1]], 
+          Circle[
+           
+           Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1], 0.025], Dotted, 
+          Arrow[{
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes - 1], 
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes]}]}, 
+         ImageSize -> {350}], $CellContext`decor = {
+         RGBColor[1, 1/3, 1/3], 
+         Disk[{0, 0}, 1.02], 
+         RGBColor[0.928557, 0.986419, 0.705272], {
+          Opacity[0.8], 
+          Disk[{0, 0}, 1]}}, $CellContext`noteNames = {
+        "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "Eb", "Bb", "F", 
+         ""}, $CellContext`rot[
+         Pattern[$CellContext`pt, 
+          Blank[]], 
+         Pattern[$CellContext`interval, 
+          Blank[]], 
+         Optional[
+          Pattern[$CellContext`\[Theta], 
+           Blank[]], 1.7095112913514547`]] := Dot[
+         MatrixPower[
+          $CellContext`mat[(2 
+            Pi) $CellContext`\[Theta]], $CellContext`interval], \
+$CellContext`pt], $CellContext`mat[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := N[{{
+           Cos[$CellContext`\[Theta]], 
+           Sin[$CellContext`\[Theta]]}, {-Sin[$CellContext`\[Theta]], 
+           Cos[$CellContext`\[Theta]]}}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->369444031,ExpressionUUID->"3195ef7e-b2b9-41e4-97b9-446629edb444"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`n$$ = 12, $CellContext`x$$ = 
+    1.4953487812212205`, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["choose 12-tone scales (default = Pythagorean)", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+          ImageSize -> Large], 
+         Button[
+         "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+             12}}, ImageSize -> Large], 
+         Button[
+         "1/4-comma meantone", {{$CellContext`x$$ = 
+             N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["play tones and compare scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+             
+             Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+              1.5}]]]], 
+         Button["play 5th", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+             
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+         Button["play scale", 
+          Map[EmitSound[
+            
+            Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+              E^((-1.5) $CellContext`t)) 
+             Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+           Append[
+            Sort[
+             N[
+              Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+               Log[2]]]], 
+            Log[2]]]]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button["play tonic & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega] = 1644}, 
+            Play[
+            Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t, 
+              0, 1.5}]]]], 
+         Button["play 5th & overtones", 
+          EmitSound[
+           With[{$CellContext`\[Omega]$ = 1644}, 
+            Play[
+            Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`x$$) $CellContext`\[Omega]$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play tonic-5th & overtones", 
+        EmitSound[
+         With[{$CellContext`\[Omega]$ = 1644}, {
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t, 
+             0, 0.8}], 
+           Play[
+           Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+             Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+             Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+            Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+              1/1.2) Sin[((
+                 2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) Sin[((
+                 3 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t], \
+{$CellContext`t, 0, 6}]}]], ImageSize -> Medium]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["controls", Bold]], Manipulate`Dump`ThisIsNotAControl}, {{
+       Hold[$CellContext`n$$], 12, "number of notes"}, 3, 50, 1}, {{
+       Hold[$CellContext`x$$], 1.4953487812212205`, "generating ratio"}, 1., 
+      2.5, 0.0005}, {
+      Hold[
+       Style["Pythagorean Wolf Tone", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+        EmitSound[{
+          Play[
+           
+           Sin[(1644 
+             E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0, 
+            1}], 
+          Play[
+          Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+             1.2^2) Sin[((1644 3) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+           Sin[(1644 2) $CellContext`t] + (1/1.2) 
+            Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+            Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+        ImageSize -> Large]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Style["choose exotic scales", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+         Button[
+         "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+             9}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "11-tone golden mean", {{$CellContext`x$$ = 
+             Exp[0.618213]; $CellContext`n$$ = 11}}], 
+         Button[
+         "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+             41}}]}]], Manipulate`Dump`ThisIsNotAControl}, {
+      Hold[
+       Row[{
+         Button[
+         "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+         Button["10 tone", {{$CellContext`x$$ = N[
+               Exp[0.485]]; $CellContext`n$$ = 10}}], 
+         Button["5 tone", {{$CellContext`x$$ = N[
+               Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    350., {173., 176.44}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = False, $CellContext`n$995948$$ = 
+    0, $CellContext`x$995949$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`n$$ = 12, $CellContext`x$$ = 
+        1.4953487812212205`}, "ControllerVariables" :> {
+        Hold[$CellContext`n$$, $CellContext`n$995948$$, 0], 
+        Hold[$CellContext`x$$, $CellContext`x$995949$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> $CellContext`scale[
+       Log[$CellContext`x$$]/Log[2], $CellContext`n$$], "Specifications" :> {
+        Style["choose 12-tone scales (default = Pythagorean)", Bold], 
+        Delimiter, 
+        Row[{
+          Button[
+          "Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 12}}, 
+           ImageSize -> Large], 
+          Button[
+          "equal temp.", {{$CellContext`x$$ = N[2^(7/12)]; $CellContext`n$$ = 
+              12}}, ImageSize -> Large], 
+          Button[
+          "1/4-comma meantone", {{$CellContext`x$$ = 
+              N[5^(1/4)]; $CellContext`n$$ = 12}}, ImageSize -> Large]}], 
+        Delimiter, 
+        Style["play tones and compare scales", Bold], Delimiter, 
+        Row[{
+          Button["play tonic", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+              
+              Sin[$CellContext`\[Omega] $CellContext`t], {$CellContext`t, 0, 
+               1.5}]]]], 
+          Button["play 5th", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+              
+              Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t], \
+{$CellContext`t, 0, 1.5}]]]], 
+          Button["play scale", 
+           Map[EmitSound[
+             
+             Play[((Log[$CellContext`t + 0.001] - Log[0.001]) 
+               E^((-1.5) $CellContext`t)) 
+              Sin[(1644 E^#) $CellContext`t], {$CellContext`t, 0, 1}]]& , 
+            Append[
+             Sort[
+              N[
+               Mod[(Range[$CellContext`n$$] - 1) Log[$CellContext`x$$], 
+                Log[2]]]], 
+             Log[2]]]]}], 
+        Row[{
+          Button["play tonic & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega] = 1644}, 
+             Play[
+             Sin[$CellContext`\[Omega] $CellContext`t] + (1/1.2) 
+               Sin[(2 $CellContext`\[Omega]) $CellContext`t] + (1/1.2^2) 
+               Sin[(3 $CellContext`\[Omega]) $CellContext`t], {$CellContext`t,
+                0, 1.5}]]]], 
+          Button["play 5th & overtones", 
+           EmitSound[
+            With[{$CellContext`\[Omega]$ = 1644}, 
+             Play[
+             Sin[($CellContext`x$$ $CellContext`\[Omega]$) $CellContext`t] + (
+                1/1.2) Sin[((
+                   2 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t] + (1/1.2^2) 
+               Sin[((3 $CellContext`x$$) $CellContext`\[Omega]$) \
+$CellContext`t], {$CellContext`t, 0, 1.5}]]]]}], 
+        Button["play tonic-5th & overtones", 
+         EmitSound[
+          With[{$CellContext`\[Omega]$ = 1644}, {
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.2) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t], {$CellContext`t,
+               0, 0.8}], 
+            Play[
+            Sin[$CellContext`\[Omega]$ $CellContext`t] + (1/1.22) 
+              Sin[(2 $CellContext`\[Omega]$) $CellContext`t] + (1/1.2^2) 
+              Sin[(3 $CellContext`\[Omega]$) $CellContext`t] + 
+             Sin[($CellContext`\[Omega]$ $CellContext`x$$) $CellContext`t] + (
+               1/1.2) Sin[((
+                  2 $CellContext`\[Omega]$) $CellContext`x$$) $CellContext`t] + \
+(1/1.2^2) 
+              Sin[((3 $CellContext`\[Omega]$) $CellContext`x$$) \
+$CellContext`t], {$CellContext`t, 0, 6}]}]], ImageSize -> Medium], Delimiter, 
+        Style["controls", Bold], 
+        Delimiter, {{$CellContext`n$$, 12, "number of notes"}, 3, 50, 1, 
+         ImageSize -> Small, Appearance -> 
+         "Labeled"}, {{$CellContext`x$$, 1.4953487812212205`, 
+          "generating ratio"}, 1., 2.5, 0.0005, ImageSize -> Small, 
+         Appearance -> "Labeled"}, Delimiter, 
+        Style["Pythagorean Wolf Tone", Bold], Delimiter, 
+        Button["play Pythagorean F & C chord--\"wolf fifth\"", 
+         EmitSound[{
+           Play[
+            
+            Sin[(1644 
+              E^(11 Log[3/2] - 6 Log[2])) $CellContext`t], {$CellContext`t, 0,
+              1}], 
+           Play[
+           Sin[(1644 E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + (1/
+              1.2^2) Sin[((1644 3) 
+                E^(11 Log[3/2] - 6 Log[2])) $CellContext`t] + 
+            Sin[(1644 2) $CellContext`t] + (1/1.2) 
+             Sin[((1644 2) 2) $CellContext`t] + (1/1.2^2) 
+             Sin[((1644 3) 2) $CellContext`t], {$CellContext`t, 0, 3}]}], 
+         ImageSize -> Large], Delimiter, 
+        Style["choose exotic scales", Bold], Delimiter, 
+        Row[{
+          Button[
+          "7-tone Pythag.", {{$CellContext`x$$ = 3/2; $CellContext`n$$ = 7}}], 
+          Button[
+          "9 tone", {{$CellContext`x$$ = Exp[0.308]; $CellContext`n$$ = 
+              9}}]}], 
+        Row[{
+          Button[
+          "11-tone golden mean", {{$CellContext`x$$ = 
+              Exp[0.618213]; $CellContext`n$$ = 11}}], 
+          Button[
+          "41-tone Pythag.", {{$CellContext`x$$ = 1.5; $CellContext`n$$ = 
+              41}}]}], 
+        Row[{
+          Button[
+          "8 tone", {{$CellContext`x$$ = Exp[0.433]; $CellContext`n$$ = 8}}], 
+          Button["10 tone", {{$CellContext`x$$ = N[
+                Exp[0.485]]; $CellContext`n$$ = 10}}], 
+          Button["5 tone", {{$CellContext`x$$ = N[
+                Exp[2^Rational[1, 2] - 1]]; $CellContext`n$$ = 5}}]}]}, 
+      "Options" :> {ControlPlacement -> {Left}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{606., {217.8544921875, 223.1455078125}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>({$CellContext`scale[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]], 
+         Pattern[$CellContext`numNotes, 
+          Blank[]]] := Graphics[{$CellContext`decor, 
+          Darker[Blue], 
+          Thickness[0.005], 
+          PointSize[0.025], 
+          Point[{0, 1}], 
+          If[$CellContext`numNotes == 12, {
+            Text[
+             Style["C", Black, Bold, 12], {0, 0.8}], 
+            Table[
+             Text[
+              Style[
+               Part[$CellContext`noteNames, $CellContext`k + 1], Black, Bold, 
+               12], 
+              $CellContext`rot[{
+               0, 0.8}, $CellContext`k, $CellContext`\[Theta]]], \
+{$CellContext`k, $CellContext`numNotes}]}, 
+           Text["", {0, 0}]], 
+          Line[
+           
+           NestList[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1]], 
+          Circle[
+           
+           Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+            1}, $CellContext`numNotes - 1], 0.025], Dotted, 
+          Arrow[{
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes - 1], 
+            
+            Nest[$CellContext`rot[#, 1, $CellContext`\[Theta]]& , {0, 
+             1}, $CellContext`numNotes]}]}, 
+         ImageSize -> {350}], $CellContext`decor = {
+         RGBColor[1, 1/3, 1/3], 
+         Disk[{0, 0}, 1.02], 
+         RGBColor[0.928557, 0.986419, 0.705272], {
+          Opacity[0.8], 
+          Disk[{0, 0}, 1]}}, $CellContext`noteNames = {
+        "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "Eb", "Bb", "F", 
+         ""}, $CellContext`rot[
+         Pattern[$CellContext`pt, 
+          Blank[]], 
+         Pattern[$CellContext`interval, 
+          Blank[]], 
+         Optional[
+          Pattern[$CellContext`\[Theta], 
+           Blank[]], 1.7095112913514547`]] := Dot[
+         MatrixPower[
+          $CellContext`mat[(2 
+            Pi) $CellContext`\[Theta]], $CellContext`interval], \
+$CellContext`pt], $CellContext`mat[
+         Pattern[$CellContext`\[Theta], 
+          Blank[]]] := N[{{
+           Cos[$CellContext`\[Theta]], 
+           Sin[$CellContext`\[Theta]]}, {-Sin[$CellContext`\[Theta]], 
+           Cos[$CellContext`\[Theta]]}}]}; Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellID->317184820,ExpressionUUID->"84b5fce4-dc5e-48bc-a046-f79c5dd04056"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "DetailsSection",ExpressionUUID->"99001bb8-4bd1-4e26-aa15-3ccaaccffb11"],
+
+Cell[TextData[{
+ "A musical scale consists of several tones (usually 12) at well-defined \
+intervals between a tonic and the octave (twice the frequency of the tonic). \
+If all the tones are raised by one octave by multiplying their frequencies by \
+2, the new, higher tones have exactly the same musical and mathematical \
+relationships with one another as before. As a result, a circle is a good way \
+to visualize musical scales. If a dot at the top of the circle represents the \
+tonic, an octave upward is represented by a full trip around the circle (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"360", "\[Degree]"}], TraditionalForm]],ExpressionUUID->
+  "211f9eb0-493c-4857-9275-ef242130f2aa"],
+ ") clockwise. All of the tones in the scale are plotted at points around the \
+circumference, in the order of increasing pitch. The gradually increasing \
+musical intervals between each tone and the tonic correspond to the gradually \
+increasing distances along the circumference of the circle. The Pythagorean \
+generating ratio of 3/2 produces a many-pointed \"star\", with each point of \
+the star corresponding to a tone in the scale and each line between the \
+points corresponding to a musical \"step\" between two of the tones. The \
+small open circle at about five o'clock on the large circle represents the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["12", "th"], "ManipulateCaption"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"3c1eb2d5-9b18-4001-9bfa-3bdb9d995cd0"],
+ ", and final, tone in the scale. The dotted arrow represents the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["12", "th"], "ManipulateCaption"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"f0d5b187-4c54-48f8-9ea7-3f138b4e444c"],
+ " step upward, using the exact 3/2 ratio, and slightly \"missing\" the \
+starting tone. This illustrates visually the inevitable, enduring (and, to \
+some, disappointing) truth about the Pythagorean scale: it does not \"close\"."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4177274072779555`*^9, 3.4177278456870117`*^9}, {
+   3.4177278889997888`*^9, 3.4177282297207193`*^9}, {3.4177282642990656`*^9, 
+   3.417728354534018*^9}, {3.417728386252971*^9, 3.4177284125031395`*^9}, {
+   3.417728455456539*^9, 3.4177284575503025`*^9}, {3.4177284882223735`*^9, 
+   3.4177285322695303`*^9}, {3.417728565113491*^9, 3.4177285675666313`*^9}, {
+   3.4177286658797607`*^9, 3.417728684036127*^9}, {3.4177371281618485`*^9, 
+   3.4177371316774735`*^9}, {3.4177373467399735`*^9, 
+   3.4177386243337235`*^9}, {3.4177386548024735`*^9, 
+   3.4177388553493485`*^9}, {3.4177388933649735`*^9, 
+   3.4177391319899735`*^9}, {3.4177391787243485`*^9, 
+   3.4177396853024735`*^9}, {3.417796512578125*^9, 3.417796583*^9}, {
+   3.41779661390625*^9, 3.41779749478125*^9}, {3.417797565453125*^9, 
+   3.417797687375*^9}, {3.4177977366875*^9, 3.417797751796875*^9}, {
+   3.417797785703125*^9, 3.41779810321875*^9}, {3.4177981599375*^9, 
+   3.417798775890625*^9}, 3.41780263953125*^9, {3.4178064942915626`*^9, 
+   3.4178065263877773`*^9}, {3.417819930171875*^9, 3.417819951984375*^9}, {
+   3.417820973703125*^9, 3.417820980609375*^9}, {3.4179580892348013`*^9, 
+   3.4179580905004263`*^9}, {3.4179581301879263`*^9, 
+   3.4179582463285513`*^9}, {3.4179582780004263`*^9, 
+   3.4179584596566763`*^9}, {3.4179584936566763`*^9, 
+   3.4179587603598013`*^9}, {3.4179587904379263`*^9, 
+   3.4179589127660513`*^9}, {3.417995882734375*^9, 3.417995887859375*^9}, {
+   3.418066284445977*^9, 3.418066343064547*^9}, {3.4180668181695175`*^9, 
+   3.4180668322488775`*^9}, {3.41865994979401*^9, 3.418659951528385*^9}, {
+   3.4187519892942753`*^9, 3.418751998462192*^9}},
+ CellID->100872832,ExpressionUUID->"7e72105b-1a40-44b5-a0d8-45419d9b7bc7"],
+
+Cell[TextData[{
+ "This results from the mathematical fact that 3/2 and 2 are fundamentally \
+incompatible. These two ratios can be multiplied by themselves as many times \
+as you wish but can never be equal. In particular, multiplying 3/2 by itself \
+twelve times (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox[
+     RowBox[{"(", 
+      FractionBox["3", "2"], ")"}], "12"], "=", 
+    RowBox[{"129.7", "..."}]}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"7337feba-1e7c-4c2c-add9-f6c196c0d519"],
+ " ) produces almost (but not exactly) the same result as multiplying 2 by \
+itself seven times (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["2", "7"], "=", "128.0"}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"823e6261-9ccf-47b2-a9d7-44a5667e28cc"],
+ "). In fact, multiplying these two ratios by themselves will ",
+ StyleBox["never",
+  FontWeight->"Bold"],
+ " produce an exact equality, which guarantees that generating tones via a \
+\"circle of fifths\" will ",
+ StyleBox["always",
+  FontWeight->"Bold"],
+ " \"miss\" the octave of the starting point."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417798850875*^9, 3.417798898390625*^9}, {
+   3.4177989385625*^9, 3.41779925771875*^9}, {3.417799362109375*^9, 
+   3.417799362109375*^9}, {3.41780267325*^9, 3.41780272284375*^9}, {
+   3.417802759109375*^9, 3.417802767828125*^9}, 3.417807189454322*^9, {
+   3.4178076698627386`*^9, 3.4178076698627386`*^9}, {3.417821022421875*^9, 
+   3.4178211509375*^9}, {3.4180663626092653`*^9, 3.418066370106084*^9}, 
+   3.418066554939627*^9, {3.41866001070026*^9, 3.41866006620026*^9}, {
+   3.418660109372135*^9, 3.418660110059635*^9}},
+ CellID->578317580,ExpressionUUID->"1c150beb-d366-4f41-8d16-c55969c24ac3"],
+
+Cell["\<\
+Hint: If you hold down the Alt key (Windows) or Option key (Mac), the action \
+of the slider will be slowed down by a factor of 20 relative to the movements \
+of the mouse. For finer control press Windows Alt+Shift or Mac Option-Shift, \
+and for the finest possible control press Windows Alt+Shift+Ctrl or Mac \
+Option-Shift-Ctrl. Click the \"+\" just to the right of the sliders to reveal \
+additional buttons to control them. \
+\>", "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417807672581662*^9, 3.4178081211884966`*^9}, {
+   3.4179591637191763`*^9, 3.4179591658285513`*^9}, 3.4179592020316763`*^9, {
+   3.4179592570160513`*^9, 3.4179593438129263`*^9}, {3.4180664023533106`*^9, 
+   3.418066515148569*^9}, {3.418066571289341*^9, 3.418066571694577*^9}, {
+   3.418660149340885*^9, 3.41866016173151*^9}, {3.418660295809635*^9, 
+   3.41866036835651*^9}, {3.4187379460239277`*^9, 3.418737947929928*^9}},
+ CellID->407542597,ExpressionUUID->"49180777-7140-4d52-98f9-52dac9bd23e4"],
+
+Cell[TextData[{
+ "Snapshot 1: The 12-tone Pythagorean scale. All tones are separated by \
+intervals of perfect fifths with the higher frequency exactly 3/2 times the \
+lower frequency. The solid dot at the top represents the starting point (for \
+example, \"middle C\"); the first step is a rotation of about ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"210", "\[Degree]"}], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"5e427571-9d80-4264-8786-83ebdc54ff44"],
+ ", clockwise around the circle, producing a new tone (\"G\") at about seven \
+o'clock. The ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["2", "nd"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"1803da55-85be-4952-acb7-109699e8ac13"],
+ " step is another rotation clockwise of about ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    RowBox[{"210", "\[Degree]"}], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"419d36f2-657e-4497-aed1-d17ca9a3faa4"],
+ " to \"D\" at about two o'clock. Nine more steps (a total of 11) produce all \
+the other scale tones, up to the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["12", "th"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"7a404a96-3ab3-48a3-abae-056fce81e3d3"],
+ " (\"F\", the small circle at about five o'clock). The dotted arrow shows \
+that the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["12", "th"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"f0b4d32e-72eb-41c6-b726-205ddfa5accb"],
+ " step starting from the \"F\" goes beyond the starting tone (an octave of \
+the original \"C\"). The result is that the interval between F and C in this \
+scale is seriously out of tune. This was notorious among musicians and \
+composers; it was known as the \"wolf tone\", due to its resembling the sound \
+made by a howling wolf. Using the buttons, you can play the tonic and the \
+perfect \"fifth\" (individually and together), as well as the wolf tone. \
+Imagine how listeners in church would react to hearing the organist play a \
+wolf tone in the middle of a beautiful hymn! Can you hear the difference \
+between the sizes of the intervals when you play the scale? Compare the \
+sounds of the intervals with the sizes of each interval represented in the \
+Demonstration. The \"distance\" between neighboring points of the star should \
+correspond with the musical intervals you hear between the tones as the scale \
+is played."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, 3.41806383584375*^9, {3.418064897911543*^9, 
+   3.418064898724038*^9}, {3.4180667451754017`*^9, 3.418066796440742*^9}, {
+   3.4180669030574455`*^9, 3.4180669287297087`*^9}, {3.41866046476276*^9, 
+   3.418660563434635*^9}, {3.418660606184635*^9, 3.41866063001276*^9}, {
+   3.4187379638399277`*^9, 3.4187379784769278`*^9}},
+ CellID->48929320,ExpressionUUID->"ffa048d4-97db-4049-9018-f0648c81c861"],
+
+Cell[TextData[{
+ "Snapshot 2: The 12-tone equal temperament scale. This is the scale used in \
+almost all of today's Western music. Since about 1800, the generating ratio \
+has been adjusted (or \"tempered\") to a value just below 3/2 so that the \
+scale \"closes\". As shown by the dotted arrow, the final step upward from \
+the ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["12", "th"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"2001eb4b-0e23-41bb-9640-b02e88ac294b"],
+ " tone (\"F\") lands exactly on \"C\", the starting tone. There is now no \
+wolf tone. However, the ratios between the frequencies of all of the fifths \
+are now very slightly smaller than the perfect 3/2 ratio. This means that all \
+the intervals of the fifths are now very slightly out of tune. The buttons \
+allow you to play the tonic and the fifth along with their ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["1", "st"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"eaa1714b-64e3-481b-a51f-157e007ede96"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["2", "nd"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"2cf27dd9-8593-4167-a978-1d55bccdae4d"],
+ " \"overtones\". The overtones are additional sounds, almost always created \
+by any vibration, which give musical tones their characteristic \"quality\" \
+or \"timbre\". The overtones are usually softer than the original and have \
+frequencies of two, three, four, etc. times the frequency of the original \
+vibration. If you play the tonic and fifth chord with the overtones, you \
+should be able to hear the \"beats\" produced by the very slight difference \
+in frequency between the second overtone of the tonic (with three times its \
+frequency) and the first overtone of the fifth (with two times its \
+frequency). Does the star in the Demonstration show that the intervals \
+between the tones change in size or that they are all the same? Can you hear \
+any differences between the musical intervals when you play the scale? "
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4177274072779555`*^9, 3.4177278456870117`*^9}, {
+   3.4177278889997888`*^9, 3.4177282297207193`*^9}, {3.4177282642990656`*^9, 
+   3.417728354534018*^9}, {3.417728386252971*^9, 3.4177284125031395`*^9}, {
+   3.417728455456539*^9, 3.4177284575503025`*^9}, {3.4177284882223735`*^9, 
+   3.4177285322695303`*^9}, {3.417728565113491*^9, 3.4177285675666313`*^9}, {
+   3.4177286658797607`*^9, 3.417728684036127*^9}, {3.4177371281618485`*^9, 
+   3.4177371316774735`*^9}, {3.4177373467399735`*^9, 
+   3.4177386243337235`*^9}, {3.4177386548024735`*^9, 
+   3.4177388553493485`*^9}, {3.4177388933649735`*^9, 
+   3.4177391319899735`*^9}, {3.4177391787243485`*^9, 
+   3.4177396853024735`*^9}, {3.417796512578125*^9, 3.417796583*^9}, {
+   3.41779661390625*^9, 3.417797196234375*^9}, 3.417798799546875*^9, {
+   3.417799312484375*^9, 3.417799337125*^9}, {3.417802800546875*^9, 
+   3.41780317834375*^9}, {3.4178032159375*^9, 3.41780326321875*^9}, {
+   3.4178033474908257`*^9, 3.4178034282053137`*^9}, {3.4178035114201536`*^9, 
+   3.417803584164769*^9}, {3.417803947372152*^9, 3.41780478858811*^9}, {
+   3.4178070464433393`*^9, 3.4178070544752064`*^9}, {3.417809758649186*^9, 
+   3.4178097837440605`*^9}, {3.41782017146875*^9, 3.41782040975*^9}, {
+   3.41782143434375*^9, 3.417821523171875*^9}, {3.417951366435196*^9, 
+   3.4179514945750003`*^9}, {3.417951533059129*^9, 3.4179516666207743`*^9}, {
+   3.4179596859223013`*^9, 3.4179597066566763`*^9}, {3.4179959211875*^9, 
+   3.41799592309375*^9}, {3.41799596109375*^9, 3.417996095453125*^9}, {
+   3.417996142546875*^9, 3.417996263640625*^9}, {3.418064889708471*^9, 
+   3.418064892067831*^9}, 3.418066555905959*^9, {3.4180669811379476`*^9, 
+   3.4180670656044416`*^9}, 3.418150363964304*^9, {3.41866065038776*^9, 
+   3.418660739090885*^9}, {3.418737998800928*^9, 3.418738013366928*^9}, {
+   3.4187497249418626`*^9, 3.4187497283111997`*^9}},
+ CellID->80832694,ExpressionUUID->"aff4fd58-672a-4948-8b5c-4f05edd85c07"],
+
+Cell[TextData[{
+ "Snapshot 3: The quarter-comma meantone temperament scale. This scale was \
+developed in the Renaissance, starting in about 1500, partly to minimize the \
+wolf tone. But the real impetus was to fix another problem in the Pythagorean \
+scale\[LongDash]the fact that most of the thirds were at a ratio of two very \
+large integers: ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"81", "/", "64"}], " ", "=", " ", 
+    RowBox[{"1.265", "\[Ellipsis]"}]}], TraditionalForm]], "InlineMath",
+  ExpressionUUID->"32bf32d9-34fb-47e8-8abd-3d637a85fa1e"],
+ ". The interval of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"5", "/", "4"}], " ", "=", " ", "1.25"}], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"dd20aa76-996d-4bab-a94a-66a2a8947cbd"],
+ " is much more musically consonant because of the smaller integers (5 and \
+4), so at about that time musicians and composers began insisting on using \
+this interval for the thirds instead of the Pythagorean 81/64. In the \
+quarter-comma meantone temperament scale, the generating ratio was reduced \
+from the Pythagorean 3/2 just enough to have the thirds at a ratio of 5/4. \
+You can explore the characteristics of this scale using the buttons of the \
+Demonstration. Compare the generating ratios for the Pythagorean, the equal \
+temperament, and the quarter-comma meantone scales. Do you expect the fifth \
+interval in this scale to be \"flat\" (too narrow) or \"sharp\" (too wide)? \
+Do you expect the fifth to be better in tune or further out of tune than in \
+equal temperament? The Pythagorean scale, using a ratio of 3/2, \
+\"overshoots\" the octave of the starting note. The equal temperament scale \
+adjusts the ratio so as to hit the starting note exactly, neither \
+\"overshooting\" nor \"undershooting\". Does the quarter-comma meantone scale \
+\"overshoot\" or \"undershoot\" the starting tone? You can use the \
+Demonstration to predict how the \"beats\" in the tonic-fifth chord of the \
+quarter-comma meantone scale compare with those of the other scales. And you \
+can test your prediction using your ears and this Demonstration!"
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4177274072779555`*^9, 3.4177278456870117`*^9}, {
+   3.4177278889997888`*^9, 3.4177282297207193`*^9}, {3.4177282642990656`*^9, 
+   3.417728354534018*^9}, {3.417728386252971*^9, 3.4177284125031395`*^9}, {
+   3.417728455456539*^9, 3.4177284575503025`*^9}, {3.4177284882223735`*^9, 
+   3.4177285322695303`*^9}, {3.417728565113491*^9, 3.4177285675666313`*^9}, {
+   3.4177286658797607`*^9, 3.417728684036127*^9}, {3.4177371281618485`*^9, 
+   3.4177371316774735`*^9}, {3.4177373467399735`*^9, 
+   3.4177386243337235`*^9}, {3.4177386548024735`*^9, 
+   3.4177388553493485`*^9}, {3.4177388933649735`*^9, 
+   3.4177391319899735`*^9}, {3.4177391787243485`*^9, 
+   3.4177396853024735`*^9}, {3.417796512578125*^9, 3.417796583*^9}, {
+   3.41779661390625*^9, 3.417797196234375*^9}, 3.417798799546875*^9, {
+   3.417799312484375*^9, 3.417799337125*^9}, {3.417802800546875*^9, 
+   3.41780317834375*^9}, {3.4178032159375*^9, 3.41780326321875*^9}, {
+   3.4178033474908257`*^9, 3.4178034282053137`*^9}, {3.4178035114201536`*^9, 
+   3.4178035906656847`*^9}, {3.4178047927292123`*^9, 
+   3.4178051308775377`*^9}, {3.41780518863419*^9, 3.4178058795161066`*^9}, {
+   3.4178070783051615`*^9, 3.417807139231715*^9}, {3.4178076219065447`*^9, 
+   3.4178076480800943`*^9}, {3.417809199794448*^9, 3.4178093140346713`*^9}, {
+   3.417809356177454*^9, 3.41780936742803*^9}, {3.417809402570454*^9, 
+   3.4178094081019874`*^9}, {3.4178094544636846`*^9, 
+   3.4178097301479096`*^9}, {3.41781842865625*^9, 3.41781842865625*^9}, {
+   3.4178204241875*^9, 3.417820504828125*^9}, {3.417820536171875*^9, 
+   3.417820543546875*^9}, {3.417821633140625*^9, 3.417821658375*^9}, {
+   3.4179579686410513`*^9, 3.4179580346566763`*^9}, {3.4179597484848013`*^9, 
+   3.4179598450629263`*^9}, 3.4179598857348013`*^9, {3.4180648938334446`*^9, 
+   3.418064894739689*^9}, 3.4180665566229153`*^9, {3.418067093125642*^9, 
+   3.4180670952015266`*^9}, {3.4180671278652596`*^9, 
+   3.4180671372067413`*^9}, {3.418067167542967*^9, 3.418067192563669*^9}, {
+   3.41866075241901*^9, 3.41866094701276*^9}, {3.418738037787928*^9, 
+   3.418738060311928*^9}},
+ CellID->9279921,ExpressionUUID->"f50bf3e6-8204-4704-beee-98850e66d158"],
+
+Cell[TextData[{
+ "For additional information see ",
+ StyleBox["Introductory Physics: A Model Approach",
+  FontSlant->"Italic"],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   StyleBox[
+    SuperscriptBox["2", "nd"], "DetailNotes"], TraditionalForm]], 
+  "InlineMath",ExpressionUUID->"8f64f57e-fdf6-4a82-80c7-1107fe85c8ef"],
+ " edition, by Robert Karplus, 2003."
+}], "DetailNotes",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4177274072779555`*^9, 3.4177278456870117`*^9}, {
+   3.4177278889997888`*^9, 3.4177282297207193`*^9}, {3.4177282642990656`*^9, 
+   3.417728354534018*^9}, {3.417728386252971*^9, 3.4177284125031395`*^9}, {
+   3.417728455456539*^9, 3.4177284575503025`*^9}, {3.4177284882223735`*^9, 
+   3.4177285322695303`*^9}, {3.417728565113491*^9, 3.4177285675666313`*^9}, {
+   3.4177286658797607`*^9, 3.417728684036127*^9}, {3.4177371281618485`*^9, 
+   3.4177371316774735`*^9}, {3.4177373467399735`*^9, 
+   3.4177386243337235`*^9}, {3.4177386548024735`*^9, 
+   3.4177388553493485`*^9}, {3.4177388933649735`*^9, 
+   3.4177391319899735`*^9}, {3.4177391787243485`*^9, 
+   3.4177396853024735`*^9}, {3.417796512578125*^9, 3.417796583*^9}, {
+   3.41779661390625*^9, 3.417797196234375*^9}, 3.417798799546875*^9, {
+   3.417799312484375*^9, 3.417799337125*^9}, {3.417802800546875*^9, 
+   3.41780317834375*^9}, {3.4178032159375*^9, 3.41780326321875*^9}, {
+   3.4178033474908257`*^9, 3.4178034282053137`*^9}, {3.4178035114201536`*^9, 
+   3.4178035906656847`*^9}, {3.4178047927292123`*^9, 
+   3.4178051308775377`*^9}, {3.41780518863419*^9, 3.4178058795161066`*^9}, {
+   3.4178070783051615`*^9, 3.417807139231715*^9}, {3.4178076219065447`*^9, 
+   3.4178076480800943`*^9}, {3.417809199794448*^9, 3.4178093140346713`*^9}, {
+   3.417809356177454*^9, 3.41780936742803*^9}, {3.417809402570454*^9, 
+   3.4178094081019874`*^9}, {3.4178094544636846`*^9, 
+   3.4178097301479096`*^9}, {3.41781842865625*^9, 3.417818621671875*^9}, {
+   3.4178189175*^9, 3.417819202125*^9}, {3.417819830234375*^9, 
+   3.41781985946875*^9}, {3.417820556609375*^9, 3.417820669671875*^9}, {
+   3.417996326609375*^9, 3.417996342609375*^9}, {3.418063898484375*^9, 
+   3.41806390278125*^9}, {3.41806393290625*^9, 3.4180639828125*^9}, {
+   3.41866098723151*^9, 3.418661010559635*^9}, {3.418738071440928*^9, 
+   3.418738071518928*^9}, 3.5766040004254284`*^9},
+ CellID->251882925,ExpressionUUID->"2f47f1eb-8828-4ea2-bbf6-8ba5684a96c8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "ControlSuggestionsSection",ExpressionUUID->"6defa05f-86d3-4dae-bb94-d52bf78e9349"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[
+   " Resize Images",ExpressionUUID->"34b85e4b-2dee-4dc1-a5e7-61c617a0b9c8"]}],
+  "\"Click inside an image to reveal its orange resize frame.\\nDrag any of \
+the orange resize handles to resize the image.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.4180649861453533`*^9},
+ FontFamily->"Verdana",
+ CellTags->
+  "ResizeImages",ExpressionUUID->"5ef24283-c77e-4678-ac9c-aff85993d3c2"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Rotate and Zoom in 3D",ExpressionUUID->
+    "d90abb1a-0118-43a0-9b28-48b91c12e4a0"]}],
+  RowBox[{
+   "\"Drag a 3D graphic to rotate it. Starting the drag near the center \
+tumbles\\nthe graphic; starting near a corner turns it parallel to the plane \
+of the screen.\\nHold down \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" (or \"", 
+    FrameBox[
+    "Cmd", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" on Mac) and drag up and down to zoom.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->
+  "RotateAndZoomIn3D",ExpressionUUID->"5949c98e-bb5f-42f4-b497-427feebd5177"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Drag Locators",ExpressionUUID->"22f444b6-67de-413f-bda7-67f2674b87ba"]}],
+  RowBox[{"\"Drag any locator (\"", 
+    GraphicsBox[
+     LocatorBox[
+      Scaled[{0.5, 0.5}]], ImageSize -> 20], 
+    "\", etc.) to move it around.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818169890625*^9, 3.417818173671875*^9}},
+ FontFamily->"Verdana",
+ CellTags->
+  "DragLocators",ExpressionUUID->"e1825067-b4d5-4cf3-8cee-36eb447a3ce4"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Create and Delete Locators",ExpressionUUID->
+    "7c6fafe8-b162-4584-911e-df9194a4c00e"]}],
+  RowBox[{"\"Insert a new locator in the graphic by holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key\\nand clicking where you want it to be. Delete a locator by \
+clicking it\\nwhile holding down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" key.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->
+  "CreateAndDeleteLocators",ExpressionUUID->"20bde7aa-8a51-43d3-ab87-\
+104cacc9708d"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[True], Cell[
+   " Slider Zoom",ExpressionUUID->"bfdf4aa0-3fc6-4b48-9c08-585237bbec60"]}],
+  RowBox[{"\"Hold down the \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], 
+    "\" key while moving a slider to make fine adjustments in the slider \
+value.\\nHold \"", 
+    FrameBox[
+    "Ctrl", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" and/or \"", 
+    FrameBox[
+    "Shift", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" at the same time as \"", 
+    FrameBox[
+    "Alt", Background -> GrayLevel[0.9], FrameMargins -> 2, FrameStyle -> 
+     GrayLevel[0.9]], "\" to make ever finer adjustments.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.4178182080625*^9},
+ FontFamily->"Verdana",
+ CellTags->
+  "SliderZoom",ExpressionUUID->"0db1453d-be42-40fe-90a0-a6e149cd850e"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Gamepad Controls",ExpressionUUID->
+    "5ca249d7-8740-42ed-b3cd-34f2cc0566e4"]}],
+  "\"Control this Demonstration with a gamepad or other\\nhuman interface \
+device connected to your computer.\"",
+  TooltipDelay->0.35]], "ControlSuggestions",
+ CellChangeTimes->{3.35696210375764*^9, 3.3895522232313623`*^9},
+ FontFamily->"Verdana",
+ CellTags->
+  "GamepadControls",ExpressionUUID->"aa4ebe79-1667-4708-ab77-10d75559869f"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Automatic Animation",ExpressionUUID->
+    "f2f2f211-39a1-4e99-be2a-013994210762"]}],
+  RowBox[{"\"Animate a slider in this Demonstration by clicking the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJzzTSzJSM1NLMlMTlRwL0osyMhMLlZwyy8CCjEzMjAwcIKwAgOI/R/IhBKc\n\
+/4EAyGAG0f+nTZsGwgysIJIRKsWKLAXGIHFmEpUgLADxWUAkI24jZs+eTaEt\n\
+IG+wQKRmzJgBlYf5lhEA30OqWA=="], "Graphics", ImageSize -> {9, 9}, ImageMargins -> 
+      0], BoxBaselineShift -> 0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"button\\nnext to the slider, and then clicking the play button that \
+appears.\\nAnimate all controls by selecting \"", 
+    StyleBox["Autorun", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->
+  "AutomaticAnimation",ExpressionUUID->"6c8e53db-9b72-40ca-8e89-5d8565cdc641"],
+
+Cell[BoxData[
+ TooltipBox[
+  RowBox[{
+   CheckboxBox[False], Cell[
+   " Bookmark Animation",ExpressionUUID->
+    "bb0609f6-9662-4cd4-bd27-78e40365bf87"]}],
+  RowBox[{
+   "\"See a prepared animation of this Demonstration by selecting\\n\"", 
+    StyleBox["Animate Bookmarks", FontWeight -> "Bold"], "\" from the\"", 
+    AdjustmentBox[
+     Cell[
+      GraphicsData[
+      "CompressedBitmap", 
+       "eJyNULENwyAQfEySIlMwTVJlCGRFsosokeNtqBmDBagoaZjAI1C8/8GUUUC6\n\
+57h7cQ8PvU7Pl17nUav7oj/TPH7V7b2QJAUAXBkKmCPRowxICy64bRvGGNF7\n\
+X8CctGoDSN4xhIDGGDhzFXwUh3/ClBKrDQPmnGXtI6u0OOd+tZBVUqy1xSaH\n\
+UqiK6pPe4XdEdAz6563tx/gejuORGMxJaz8mdpJn7hc="], "Graphics", 
+      ImageSize -> {10, 10}, ImageMargins -> 0], BoxBaselineShift -> 
+     0.1839080459770115, 
+     BoxMargins -> {{0., 0.}, {-0.1839080459770115, 0.1839080459770115}}], 
+    "\"menu.\""}],
+  TooltipDelay->0.35]], "ControlSuggestions",
+ FontFamily->"Verdana",
+ CellTags->
+  "BookmarkAnimation",ExpressionUUID->"f5bad0da-9fd0-4292-8640-bb3222502485"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "SearchTermsSection",ExpressionUUID->"95516580-d2fe-49fa-9e33-11847edfe733"],
+
+Cell["music", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.41781823215625*^9, 3.417818241265625*^9}},
+ CellID->121001942,ExpressionUUID->"0d4107f2-8a4d-451c-86bc-d5a4c9a0a8b3"],
+
+Cell["musical scale", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818241640625*^9, 3.41781824540625*^9}},
+ CellID->78136440,ExpressionUUID->"6dfe048e-43f8-4a8f-86d0-02618ed5f6ea"],
+
+Cell["Pythagorean scale", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4178182458125*^9, 3.417818250375*^9}},
+ CellID->379491133,ExpressionUUID->"e8a6243f-e308-4b5b-a92f-97dab323cfeb"],
+
+Cell["mathematics of music", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.41781825909375*^9, 3.417818264359375*^9}},
+ CellID->334987169,ExpressionUUID->"533a199b-54b7-413d-81d0-07a6447b5491"],
+
+Cell["musical interval", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818267671875*^9, 3.417818270390625*^9}},
+ CellID->88006425,ExpressionUUID->"43334b16-d96c-46f0-ab90-80b4aa828a5e"],
+
+Cell["equal temperament", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4178182768125*^9, 3.417818279734375*^9}},
+ CellID->359909928,ExpressionUUID->"9435bbee-139f-4cc1-99db-7d4c70e74641"],
+
+Cell["meantone temperament", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4178182801875*^9, 3.417818285875*^9}},
+ CellID->36265614,ExpressionUUID->"a665f4c1-6df2-4ac6-87e2-9d72b221ffaf"],
+
+Cell["quarter-comma meantone", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818286234375*^9, 3.417818293546875*^9}},
+ CellID->28601058,ExpressionUUID->"6a991def-dd9f-49a0-b155-1cfc8cf6e26c"],
+
+Cell["musical octave", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818321265625*^9, 3.41781832559375*^9}},
+ CellID->548404426,ExpressionUUID->"1fd69e16-4954-46f7-bc65-936b93c62cc6"],
+
+Cell["musical fifth", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818317640625*^9, 3.41781833934375*^9}},
+ CellID->574340419,ExpressionUUID->"0de2b11d-33a5-47c8-b21c-fda8319b9e98"],
+
+Cell["wolf tone", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.41781836059375*^9, 3.417818363046875*^9}, {
+   3.4179599066254263`*^9, 3.4179599066254263`*^9}},
+ CellID->780411966,ExpressionUUID->"420b3538-4017-4560-88f2-f8c2dcbe0cc9"],
+
+Cell["physics", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4179599075629263`*^9, 3.4179599089848013`*^9}},
+ CellID->245165411,ExpressionUUID->"ff15b78c-09ac-4180-9d53-408ac70cb8ed"],
+
+Cell["physics and music", "SearchTerms",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.4179599095316763`*^9, 3.4179599170316763`*^9}},
+ CellID->125049931,ExpressionUUID->"bec142a9-4cee-4fbb-ac80-a14447fe6573"],
+
+Cell["", "SearchTerms",
+ CellID->590177261,ExpressionUUID->"b50e2d0d-d7ae-46f9-aff5-8e04d1bb9ab9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "RelatedLinksSection",ExpressionUUID->"24a1a94a-6b73-4d42-8b6d-b427849dc715"],
+
+Cell[TextData[ButtonBox["Gammes pythagoriciennes (French)",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["http://demonstrations.wolfram.com/GammesPythagoriciennesFrench/"], 
+   None}]], "RelatedLinks",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.418052615535672*^9, 3.4180526357747746`*^9}, 
+   3.4180527176925664`*^9, {3.418064914786435*^9, 3.4180649549111786`*^9}},
+ CellID->289434063,ExpressionUUID->"4eb48d25-6cd6-40c7-8a5a-15eb6228264d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "AuthorSection",ExpressionUUID->"70dbae90-7333-4216-82be-c41579141ee8"],
+
+Cell[TextData[{
+ "Contributed by: ",
+ ButtonBox["Emmanuel Amiot",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Emmanuel+Amiot"]\
+, None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Emmanuel+Amiot"],
+ " and ",
+ ButtonBox["Fernand Brunschwig",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["http://demonstrations.wolfram.com/author.html?author=Fernand+\
+Brunschwig"], None},
+  ButtonNote->
+   "http://demonstrations.wolfram.com/author.html?author=Fernand+Brunschwig"]
+}], "Author",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.417818391546875*^9, 3.417818400984375*^9}, {
+   3.41782068934375*^9, 3.41782070578125*^9}, {3.417821696359375*^9, 
+   3.41782170565625*^9}, {3.41799529575*^9, 3.417995310796875*^9}, 
+   3.4180373851032515`*^9},
+ CellID->509441125,ExpressionUUID->"bc136ee0-b5eb-4d79-8a1e-645ab198ce7a"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{841.1999999999999, 574.8},
+WindowMargins->{{114.6, Automatic}, {Automatic, 0}},
+PrintingCopies->1,
+PrintingPageRange->{Automatic, Automatic},
+FrontEndVersion->"13.2 for Microsoft Windows (64-bit) (November 18, 2022)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Demonstration.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"ff76e246-dd00-4adb-8d9f-a898a0631085"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "AutomaticAnimation"->{
+  Cell[132238, 3044, 1534, 34, 25, "ControlSuggestions",ExpressionUUID->"6c8e53db-9b72-40ca-8e89-5d8565cdc641",
+   CellTags->"AutomaticAnimation"]},
+ "BookmarkAnimation"->{
+  Cell[133775, 3080, 1004, 24, 25, "ControlSuggestions",ExpressionUUID->"f5bad0da-9fd0-4292-8640-bb3222502485",
+   CellTags->"BookmarkAnimation"]},
+ "CreateAndDeleteLocators"->{
+  Cell[129956, 2983, 761, 19, 25, "ControlSuggestions",ExpressionUUID->"20bde7aa-8a51-43d3-ab87-104cacc9708d",
+   CellTags->"CreateAndDeleteLocators"]},
+ "DragLocators"->{
+  Cell[129406, 2966, 547, 15, 25, "ControlSuggestions",ExpressionUUID->"e1825067-b4d5-4cf3-8cee-36eb447a3ce4",
+   CellTags->"DragLocators"]},
+ "GamepadControls"->{
+  Cell[131744, 3030, 491, 12, 25, "ControlSuggestions",ExpressionUUID->"aa4ebe79-1667-4708-ab77-10d75559869f",
+   CellTags->"GamepadControls"]},
+ "ResizeImages"->{
+  Cell[128107, 2932, 493, 11, 25, "ControlSuggestions",ExpressionUUID->"5ef24283-c77e-4678-ac9c-aff85993d3c2",
+   CellTags->"ResizeImages"]},
+ "RotateAndZoomIn3D"->{
+  Cell[128603, 2945, 800, 19, 25, "ControlSuggestions",ExpressionUUID->"5949c98e-bb5f-42f4-b497-427feebd5177",
+   CellTags->"RotateAndZoomIn3D"]},
+ "SliderZoom"->{
+  Cell[130720, 3004, 1021, 24, 25, "ControlSuggestions",ExpressionUUID->"0db1453d-be42-40fe-90a0-a6e149cd850e",
+   CellTags->"SliderZoom"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"AutomaticAnimation", 139851, 3241},
+ {"BookmarkAnimation", 140024, 3244},
+ {"CreateAndDeleteLocators", 140202, 3247},
+ {"DragLocators", 140374, 3250},
+ {"GamepadControls", 140538, 3253},
+ {"ResizeImages", 140702, 3256},
+ {"RotateAndZoomIn3D", 140868, 3259},
+ {"SliderZoom", 141032, 3262}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 310, 6, 108, "DemoTitle",ExpressionUUID->"773a0bb6-336b-4d18-a4fc-0e95f6fef1fb"],
+Cell[CellGroupData[{
+Cell[902, 32, 88, 0, 293, "InitializationSection",ExpressionUUID->"6cbec315-9c24-41b2-9aaf-62105a34f340"],
+Cell[993, 34, 7142, 177, 308, "Input",ExpressionUUID->"d9bdba21-797d-4494-8e8d-feeaf292c656",
+ CellID->287080246]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[8172, 216, 84, 0, 204, "ManipulateSection",ExpressionUUID->"91cd593b-4135-413c-8af5-e273f9c361f0"],
+Cell[CellGroupData[{
+Cell[8281, 220, 21504, 511, 1155, "Input",ExpressionUUID->"a8b4f9b8-2fd4-4050-97db-034919e96a11"],
+Cell[29788, 733, 15080, 353, 453, "Output",ExpressionUUID->"4c080afe-506f-409d-9173-9d1b44f3f3ef",
+ CellID->137682662]
+}, {2}]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[44914, 1092, 91, 0, 180, "ManipulateCaptionSection",ExpressionUUID->"3946f769-7d5b-4f18-8f2d-8e8bef7c985d"],
+Cell[45008, 1094, 1686, 27, 119, "ManipulateCaption",ExpressionUUID->"f8375405-4197-4307-ba9a-0e60cc66ad23",
+ CellID->99395553]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[46731, 1126, 83, 0, 179, "ThumbnailSection",ExpressionUUID->"85b6f64a-efc4-4602-b716-29a0d42f0d59"],
+Cell[46817, 1128, 15162, 355, 453, "Output",ExpressionUUID->"16de7f06-85ea-4d02-8d8b-95bc7dd5a51d",
+ CellID->8067237]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[62016, 1488, 103, 1, 149, "SnapshotsSection",ExpressionUUID->"6e754ce9-5947-4f96-bfb0-4b2b2ad5aa34",
+ CellID->162463891],
+Cell[62122, 1491, 15080, 353, 453, "Output",ExpressionUUID->"47cdd8a2-b093-46f2-a9a2-0e8b85fe48e1",
+ CellID->173437983],
+Cell[77205, 1846, 15156, 355, 453, "Output",ExpressionUUID->"3195ef7e-b2b9-41e4-97b9-446629edb444",
+ CellID->369444031],
+Cell[92364, 2203, 15164, 355, 453, "Output",ExpressionUUID->"84b5fce4-dc5e-48bc-a046-f79c5dd04056",
+ CellID->317184820]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[107565, 2563, 81, 0, 358, "DetailsSection",ExpressionUUID->"99001bb8-4bd1-4e26-aa15-3ccaaccffb11"],
+Cell[107649, 2565, 3768, 61, 200, "DetailNotes",ExpressionUUID->"7e72105b-1a40-44b5-a0d8-45419d9b7bc7",
+ CellID->100872832],
+Cell[111420, 2628, 1757, 38, 94, "DetailNotes",ExpressionUUID->"1c150beb-d366-4f41-8d16-c55969c24ac3",
+ CellID->578317580],
+Cell[113180, 2668, 1002, 15, 71, "DetailNotes",ExpressionUUID->"49180777-7140-4d52-98f9-52dac9bd23e4",
+ CellID->407542597],
+Cell[114185, 2685, 2953, 57, 217, "DetailNotes",ExpressionUUID->"ffa048d4-97db-4049-9018-f0648c81c861",
+ CellID->48929320],
+Cell[117141, 2744, 4093, 67, 217, "DetailNotes",ExpressionUUID->"aff4fd58-672a-4948-8b5c-4f05edd85c07",
+ CellID->80832694],
+Cell[121237, 2813, 4352, 69, 231, "DetailNotes",ExpressionUUID->"f50bf3e6-8204-4704-beee-98850e66d158",
+ CellID->9279921],
+Cell[125592, 2884, 2383, 41, 24, "DetailNotes",ExpressionUUID->"2f47f1eb-8828-4ea2-bbf6-8ba5684a96c8",
+ CellID->251882925]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[128012, 2930, 92, 0, 131, "ControlSuggestionsSection",ExpressionUUID->"6defa05f-86d3-4dae-bb94-d52bf78e9349"],
+Cell[128107, 2932, 493, 11, 25, "ControlSuggestions",ExpressionUUID->"5ef24283-c77e-4678-ac9c-aff85993d3c2",
+ CellTags->"ResizeImages"],
+Cell[128603, 2945, 800, 19, 25, "ControlSuggestions",ExpressionUUID->"5949c98e-bb5f-42f4-b497-427feebd5177",
+ CellTags->"RotateAndZoomIn3D"],
+Cell[129406, 2966, 547, 15, 25, "ControlSuggestions",ExpressionUUID->"e1825067-b4d5-4cf3-8cee-36eb447a3ce4",
+ CellTags->"DragLocators"],
+Cell[129956, 2983, 761, 19, 25, "ControlSuggestions",ExpressionUUID->"20bde7aa-8a51-43d3-ab87-104cacc9708d",
+ CellTags->"CreateAndDeleteLocators"],
+Cell[130720, 3004, 1021, 24, 25, "ControlSuggestions",ExpressionUUID->"0db1453d-be42-40fe-90a0-a6e149cd850e",
+ CellTags->"SliderZoom"],
+Cell[131744, 3030, 491, 12, 25, "ControlSuggestions",ExpressionUUID->"aa4ebe79-1667-4708-ab77-10d75559869f",
+ CellTags->"GamepadControls"],
+Cell[132238, 3044, 1534, 34, 25, "ControlSuggestions",ExpressionUUID->"6c8e53db-9b72-40ca-8e89-5d8565cdc641",
+ CellTags->"AutomaticAnimation"],
+Cell[133775, 3080, 1004, 24, 25, "ControlSuggestions",ExpressionUUID->"f5bad0da-9fd0-4292-8640-bb3222502485",
+ CellTags->"BookmarkAnimation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[134816, 3109, 85, 0, 164, "SearchTermsSection",ExpressionUUID->"95516580-d2fe-49fa-9e33-11847edfe733"],
+Cell[134904, 3111, 192, 3, 22, "SearchTerms",ExpressionUUID->"0d4107f2-8a4d-451c-86bc-d5a4c9a0a8b3",
+ CellID->121001942],
+Cell[135099, 3116, 199, 3, 22, "SearchTerms",ExpressionUUID->"6dfe048e-43f8-4a8f-86d0-02618ed5f6ea",
+ CellID->78136440],
+Cell[135301, 3121, 200, 3, 22, "SearchTerms",ExpressionUUID->"e8a6243f-e308-4b5b-a92f-97dab323cfeb",
+ CellID->379491133],
+Cell[135504, 3126, 207, 3, 22, "SearchTerms",ExpressionUUID->"533a199b-54b7-413d-81d0-07a6447b5491",
+ CellID->334987169],
+Cell[135714, 3131, 203, 3, 22, "SearchTerms",ExpressionUUID->"43334b16-d96c-46f0-ab90-80b4aa828a5e",
+ CellID->88006425],
+Cell[135920, 3136, 203, 3, 22, "SearchTerms",ExpressionUUID->"9435bbee-139f-4cc1-99db-7d4c70e74641",
+ CellID->359909928],
+Cell[136126, 3141, 202, 3, 22, "SearchTerms",ExpressionUUID->"a665f4c1-6df2-4ac6-87e2-9d72b221ffaf",
+ CellID->36265614],
+Cell[136331, 3146, 209, 3, 22, "SearchTerms",ExpressionUUID->"6a991def-dd9f-49a0-b155-1cfc8cf6e26c",
+ CellID->28601058],
+Cell[136543, 3151, 201, 3, 22, "SearchTerms",ExpressionUUID->"1fd69e16-4954-46f7-bc65-936b93c62cc6",
+ CellID->548404426],
+Cell[136747, 3156, 200, 3, 22, "SearchTerms",ExpressionUUID->"0de2b11d-33a5-47c8-b21c-fda8319b9e98",
+ CellID->574340419],
+Cell[136950, 3161, 250, 4, 22, "SearchTerms",ExpressionUUID->"420b3538-4017-4560-88f2-f8c2dcbe0cc9",
+ CellID->780411966],
+Cell[137203, 3167, 199, 3, 22, "SearchTerms",ExpressionUUID->"ff15b78c-09ac-4180-9d53-408ac70cb8ed",
+ CellID->245165411],
+Cell[137405, 3172, 209, 3, 22, "SearchTerms",ExpressionUUID->"bec142a9-4cee-4fbb-ac80-a14447fe6573",
+ CellID->125049931],
+Cell[137617, 3177, 98, 1, 22, "SearchTerms",ExpressionUUID->"b50e2d0d-d7ae-46f9-aff5-8e04d1bb9ab9",
+ CellID->590177261]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[137752, 3183, 86, 0, 141, "RelatedLinksSection",ExpressionUUID->"24a1a94a-6b73-4d42-8b6d-b427849dc715"],
+Cell[137841, 3185, 446, 8, 22, "RelatedLinks",ExpressionUUID->"4eb48d25-6cd6-40c7-8a5a-15eb6228264d",
+ CellID->289434063]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[138324, 3198, 80, 0, 136, "AuthorSection",ExpressionUUID->"70dbae90-7333-4216-82be-c41579141ee8"],
+Cell[138407, 3200, 903, 23, 22, "Author",ExpressionUUID->"bc136ee0-b5eb-4d79-8a1e-645ab198ce7a",
+ CellID->509441125]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
