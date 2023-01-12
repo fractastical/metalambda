@@ -47,3 +47,8 @@ Create framework for inputing 'mixing' of sound output
 experiments with tempo (metronome) and harmonics
 New interesting references, including Euler's work on the same
 -https://en.wikipedia.org/wiki/Tonnetz
+-http://eulerarchive.maa.org/backup/E033.html
+
+1.12
+
+Lots of last minute small detail changes and content writings
