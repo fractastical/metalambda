@@ -52,3 +52,11 @@ New interesting references, including Euler's work on the same
 1.12
 
 Lots of last minute small detail changes and content writings
+
+1.13
+
+Final presentation for winter shool end
+
+1.15 
+
+Meeting #2 with local DJ to discuss sound mixing and output
