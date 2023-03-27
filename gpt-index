@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Tiling</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .tile {
+            box-sizing: border-box;
+            border: 2px solid #333;
+            padding: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const fibonacci = (n) => n <= 1 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+        
+        const createTile = (size, content) => {
+            const tile = document.createElement("div");
+            tile.className = "tile";
+            tile.style.width = `${size * 10}vmin`;
+            tile.style.height = `${size * 10}vmin`;
+            tile.textContent = content;
+            return tile;
+        };
+        
+        const addTiles = (n) => {
+            for (let i = 1; i <= n; i++) {
+                const size = fibonacci(i);
+                const content = `Fibonacci Tile ${i}: ${size}`;
+                document.body.appendChild(createTile(size, content));
+            }
+        };
+        
+        addTiles(7); // Adjust the number to change the number of tiles
+    </script>
+</body>
+</html>
