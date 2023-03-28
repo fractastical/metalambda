@@ -1,6 +1,20 @@
 TODOs
 
-TODO:
+Metacube TODO:
+
+import metacube html
+Test json load in subcube
+Test generating new json in new format
+allow people to modify contents of cube
+Get steam login working
+create some music toggling feature that affects the geometries
+brainstorm new game types or puzzles that could exist in cube 
+look at opensea formats and how to export to opensea
+
+
+
+
+OLD TODO:
 
 Debug (adding the argumnet to the Eval function did not work and the inner lambda is now broken )
 
