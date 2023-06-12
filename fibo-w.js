@@ -64,14 +64,15 @@ if(time == 1 && otexts[i])
 else if(texts[i])
    _.fillText(subtexts[i], 15, -offset);
 
-if(imgs[i])
-{
-   const img = new Image();
-   img.onload = () => {
-     _.drawImage(img, 0, 0);
-   };
-   img.src = imgs[i];
-}
+//TODO: doesn't tile properly
+// if(imgs[i])
+// {
+//    const img = new Image();
+//    img.onload = () => {
+//      _.drawImage(img, 0, 0);
+//    };
+//    img.src = imgs[i];
+// }
 
 
 _.restore();
