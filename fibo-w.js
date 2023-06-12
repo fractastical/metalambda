@@ -2,12 +2,17 @@
 //
 var texts = ["","","","","","","i","i am","i breathe", "i am joel", "i learned my own name", "I wrote a book about aliens", "I learned to code in QBasic", "I built worlds", "I wrote poems" ]
 var subtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
-var otexts = ["","","","","","","i","i was","breathed", "i am still joel", "i learned my own name", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
-var osubtexts = ["","","","","","","","","a lot", "dietz", "", "and cryptoeconomics", "called metalambda", "and games", "and built a metamonastary" ]
+var subsubtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
+
+var otexts = ["","","","","","","i","i was","breathed", "i am joel", "i studied my biocomputer", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
+var osubtexts = ["","","","","","","","","a lot", "sven dietz", "and groked time", "and cryptoeconomics", "called metalambda", "and world making games", "and built a metamonastary" ]
+var osubsubtexts = ["","","","","","","","","", "", "", "and superintelligence", "and integrated ai", "and games within those games", "and chains of beads" ]
+
 var imgs = ["","","","","","","","","i breathe", "", "img/jd/joel-kozmos.jpeg", "", "", "", "" ]
 
 
 // var time=0;
+//var i = false;
 
 const fcanvas = document.getElementById('layer1')
 
@@ -57,12 +62,23 @@ for (let i = 0; i < 15; i++) {
 // context.textAlign = "center";
 var offset = texts[i].length * 5;
 var ooffset = otexts[i].length * 5;
+var oooffset = osubtexts[i].length * 6;
+
   // if(otexts[i])
   //     _.fillText(subtexts[i], 15, -offset);
 if(time == 1 && otexts[i])
       _.fillText(osubtexts[i], 15, -ooffset);
 else if(texts[i])
    _.fillText(subtexts[i], 15, -offset);
+
+
+ _.rotate(Math.PI/2);
+
+ console.log(size);
+if(i && osubsubtexts[i])
+  _.fillText(osubsubtexts[i], (-180 + size / 22), -oooffset);
+
+//_.fillText(osubsubtexts[i], -180, -150);
 
 //TODO: doesn't tile properly
 // if(imgs[i])

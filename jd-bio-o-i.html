@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+
+
+    <!-- Babylon.js -->
+
+<style>
+    html, body {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* #renderCanvas {
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+    }
+ */
+    .header {
+      padding: 20px;
+      height: 140px;
+      text-align: center;
+      background: #1abc9c;
+      color: white;
+      font-size: 30px;
+    }
+
+
+#inputs {
+  width: 400px;
+  height: 800px;
+  border-radius: 3px;
+  top: 0%;
+  position: fixed;
+  box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px -2px rgba(#000, .2);
+}
+
+ #controlpanel {
+    position:absolute;
+    left: 233px;
+    top: 428px;
+    width: 229px;
+    height:113px;
+    color: white;
+    font: 0.6rem Inconsolata, monospace;
+    background-color: black;
+
+ }
+ #buttons {
+    position:absolute;
+    left: 233px;
+    top: 548px;
+    width: 229px;
+    height:30px;
+
+ }
+
+
+  .profile {
+    right: 30px;
+    position: fixed;
+
+  }
+
+  .right {
+    left: 480px;
+    top: 250px;
+    position: fixed;
+
+  }
+
+  .leftbottom {
+    left: 5px;
+    bottom: 5px;
+    width: 444px;
+    position: fixed;
+
+  }
+  .rightbottom {
+    right: 0;
+    bottom: 0;
+    position: fixed;
+
+  }
+
+
+
+  .topright {
+    top: 5px;
+    right: 5px;
+    width: 444px;
+    position: fixed;
+
+  }
+
+
+
+</style>
+</head>
+
+    <title>MetaLambda</title>
+  </head>
+  <body>
+
+
+
+<div id="inputs">
+<div style="width:210px;padding-top:10px;padding-left:10px">
+
+</div>
+
+  </div>
+
+</div>
+
+ <!-- <div class="topright">
+  Joel Dietz <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a href="http://www.cryptoapollo.io" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q" target="_blank">Ted Talk</a> |
+  <a href="http://metametaverse.io" target="_blank">MMV</a><BR/>
+  <BR/>
+</div> -->
+
+<div class="right">
+
+
+ <BR/>
+</div>
+
+
+ </div>
+
+  <div class="profile">
+
+
+    </div>
+
+
+
+    <div style="position: relative;">
+    <!--  <canvas id="layer2" width="140" height="140"
+       style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
+       <canvas id="layer1" width="100%" height="100%"
+         style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+
+      <!--- <canvas id="layer2" width="229" height="229"
+        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
+
+       <canvas id="layer3" width="60" height="60"
+         style="position: absolute; left: 433px; top: 198px;"></canvas>-->
+
+    </div>
+
+
+
+</div>
+    <script> var time=1;</script>
+     <script src="./fibo-w.js"></script>
+     <script src="./jscolor.js"></script>
+
+  </body>
+</html>
