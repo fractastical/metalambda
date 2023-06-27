@@ -1,458 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metacube</title>
-    <style>
-        body { margin: 0; }
-        canvas { display: block; }
-        .login-section {
-              position: fixed;
-              top: 0;
-              left: 0;
-              right: 0;
-              height: 50px;
-              background-color: #333;
-              display: flex;
-              align-items: center;
-              justify-content: flex-end;
-              padding-right: 20px;
-            }
-
-            button {
-              background-color: #171a21;
-              color: white;
-              border: none;
-              border-radius: 4px;
-              padding: 10px 20px;
-              font-size: 16px;
-              cursor: pointer;
-            }
-
-            button:hover {
-              background-color: #1d1f27;
-        }
-
-    </style>
-<script src="https://cdn.jsdelivr.net/npm/three@0.110.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.30/Tone.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.min.js"></script>
-<!-- DUD from GPT-4 <script src="https://steamcommunity.com/public/javascript/webui/webui.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
 
 
-</head>
-<body>
+    <!-- Babylon.js -->
 
-
-    <script>
-
-        const scene = new THREE.Scene();
-
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-        const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-        const cubeSize = 10;
-        const cubeDistance = 60;
-
-        const textureLoader = new THREE.TextureLoader();
-        // const imageTexture = textureLoader.load('img/jd.jpeg');
-
-        const imageTexture = textureLoader.load('https://i.seadn.io/gae/9PTBw2m23Lrcol5YURG7iIIgKgYTPUO77FekvX1JyMIEzBK5mayjLWH00WFPHOP0OqJF7f3Xr9E2kxuXIiHJXViw7qHB6_mqBZYnx5c?auto=format&w=2048');
-
-
-        function createSphere(x, y, z, radius, color) {
-            const geometry = new THREE.SphereGeometry(radius, 32, 32);
-            const material = new THREE.MeshBasicMaterial({ color: color });
-            const sphere = new THREE.Mesh(geometry, material);
-            sphere.position.set(x, y, z);
-            scene.add(sphere);
-            return sphere;
-        }
-
-        function createCubeWithSphere(x, y, z, opacity, geometryType, modelUrl) {
-
-                if (modelUrl) {
-                        loadModel(modelUrl, smallCube);
-                }
-
-            // const geometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-            // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, transparent: true, opacity: opacity });
-            // const cube = new THREE.Mesh(geometry, material);
-            const edgesGeometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize));
-            const lineMaterial = new THREE.LineBasicMaterial({ color: 0x00ff00, transparent: true, opacity: opacity });
-            const cube = new THREE.LineSegments(edgesGeometry, lineMaterial);
-
-
-            const smallEdgesGeometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(.2, .2, .2));
-
-            const smallCube = new THREE.LineSegments(smallEdgesGeometry, lineMaterial);
-
-            smallCube.position.set(x+3, y+3, z+3);
-            scene.add(smallCube);
-
-
-            const imageDisplay = createImageDisplay(imageTexture);
-
-            // Position the image display inside the cube
-            imageDisplay.position.set(x+9, y+9, z+9);
-            imageDisplay.rotation.y = Math.PI / 4;
-
-            // Add the image display to the cube
-            cube.add(imageDisplay);
-
-
-            cube.position.set(x, y, z);
-            scene.add(cube);
-
-
-
-            // Store a random    for each cube
-            cube.userData.frequency = 440 * Math.pow(2, (Math.floor(Math.random() * 12) - 9) / 12);
-
-            const uniqueObject = createUniqueObject(x, y, z, geometryType);
-
-                // Create an invisible mesh for click detection
-            const invisibleMeshGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-            const invisibleMeshMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
-            const invisibleMesh = new THREE.Mesh(invisibleMeshGeometry, invisibleMeshMaterial);
-            invisibleMesh.position.set(x, y, z);
-            scene.add(invisibleMesh);
-
-            invisibleMesh.userData.parentCube = cube;
-
-            return { cube, uniqueObject, invisibleMesh, smallCube };
-        }
-
-
-function createUniqueObject(x, y, z, type) {
-    let geometry;
-
-    // Calculate the distance between the geometry and the center of the grid
-    const center = new THREE.Vector3(0, 0, 0);
-    const currentPosition = new THREE.Vector3(x, y, z);
-    const distanceToCenter = currentPosition.distanceTo(center);
-
-    // Calculate the maximum possible distance
-    const gridSize = 9;
-    const cubeDistance = cubeSize + 60;
-    const maxDistance = Math.sqrt(Math.pow((gridSize * cubeDistance) / 2, 2) * 3);
-
-    // Generate a shade of purple based on the distance to the center
-    const lightness = Math.floor((distanceToCenter / maxDistance) * 110);
-    const purpleColor = new THREE.Color(`hsl(270, 100%, ${lightness}%)`);
-
-    const material = new THREE.MeshBasicMaterial({ color: purpleColor });
-
-    switch (type) {
-        case 'sphere':
-            geometry = new THREE.SphereGeometry(cubeSize / 2, 32, 32);
-            break;
-        case 'torus':
-            geometry = new THREE.TorusGeometry(cubeSize / 4, cubeSize / 8, 16, 100);
-            break;
-        case 'tetrahedron':
-            geometry = new THREE.TetrahedronGeometry(cubeSize / 2);
-            break;
-        case 'cone':
-            geometry = new THREE.ConeGeometry(cubeSize / 2, cubeSize, 32);
-            break;
-        case 'cylinder':
-            geometry = new THREE.CylinderGeometry(cubeSize / 2, cubeSize / 2, cubeSize, 32);
-            break;
-        case 'icosahedron':
-            geometry = new THREE.IcosahedronGeometry(cubeSize / 2);
-            break;
-        case 'octahedron':
-            geometry = new THREE.OctahedronGeometry(cubeSize / 2);
-            break;
-        case 'torusKnot':
-            geometry = new THREE.TorusKnotGeometry(cubeSize / 4, cubeSize / 8, 100, 16);
-            break;
-        case 'dodecahedron':
-            geometry = new THREE.DodecahedronGeometry(cubeSize / 2);
-            break;
+<style>
+    html, body {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
 
-    const object = new THREE.Mesh(geometry, material);
-    object.scale.set(.5, .5, .5);
-
-    object.position.set(x, y, z);
-    scene.add(object);
-    return object;
-}
-
-
-const cubeObjects = [];
-
-
-function loadModel(url, parentObject) {
-    const loader = new THREE.GLTFLoader();
-
-    loader.load(url, (gltf) => {
-        const model = gltf.scene;
-        model.scale.set(0.01, 0.01, 0.01); // Scale down the model
-        model.position.set(0, 0, 0); // Center the model inside the cube
-        parentObject.add(model);
-    });
-}
-
-
-function createGridOfCubes() {
-    const geometryTypes = [
-        'icosahedron',
-        'dodecahedron ',
-        'octahedron',
-        'tetrahedron',
-        'torus',
-        'cone',
-        'torusKnot',
-        'sphere',
-        'sphere'
-
-
-    ];
-
-    const gridSize = 9;
-    const cubeDistance = cubeSize + 60;
-
-    for (let x = 0; x < gridSize; x++) {
-        for (let y = 0; y < gridSize; y++) {
-            for (let z = 0; z < gridSize; z++) {
-                const xPos = x * cubeDistance - (gridSize * cubeDistance) / 2 + cubeSize / 2;
-                const yPos = y * cubeDistance - (gridSize * cubeDistance) / 2 + cubeSize / 2;
-                const zPos = z * cubeDistance - (gridSize * cubeDistance) / 2 + cubeSize / 2;
-
-                // Use the geometry type from the geometryTypes array corresponding to the z index
-                const geometryType = geometryTypes[z];
-
-                createCubeWithSphere(xPos, yPos, zPos, 0.5, geometryType);
-            }
-        }
+    /* #renderCanvas {
+        width: 100%;
+        height: 100%;
+        touch-action: none;
     }
-}
-
-
-        function createGridOfCubesWithSpheres(size) {
-            const grid = [];
-            const offset = Math.floor(size / 2) * cubeDistance;
-            for (let x = -offset; x <= offset; x += cubeDistance) {
-                for (let y = -offset; y <= offset; y += cubeDistance) {
-                    for (let z = -offset; z <= offset; z += cubeDistance) {
-                        const opacity = (x === 0 && y === 0 && z === 0) ? 0.5 : 1;
-                        const cubeWithSphere = createCubeWithSphere(x, y, z, opacity);
-                        grid.push(cubeWithSphere);
-                    }
-                }
-            }
-            return grid;
-        }
-
-        const gridOfCubesWithSpheres = createGridOfCubes(9);
-
-        camera.position.z = 300;
-
-        const raycaster = new THREE.Raycaster();
-        const mouse = new THREE.Vector2();
-        let clickedObject = null;
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            gridOfCubesWithSpheres.forEach(obj => {
-                obj.cube.rotation.x += 0.01;
-                obj.cube.rotation.y += 0.01;
-            });
-
-            renderer.render(scene, camera);
-        }
-
-async function onDocumentMouseDown(event) {
-    event.preventDefault();
-    const mouse = new THREE.Vector2();
-    const raycaster = new THREE.Raycaster();
-
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    raycaster.setFromCamera(mouse, camera);
-
-    const intersects = raycaster.intersectObjects(scene.children, true);
-
-    if (intersects.length > 0) {
-        clickedObject = intersects[0].object;
-
-        if (clickedObject.geometry.type === "BoxGeometry") {
-            const parentCube = clickedObject.userData.parentCube;
-            const targetPosition = parentCube.position.clone().add(new THREE.Vector3(0, 0, cubeSize * 2.5));
-
-            // Animate camera position using Tween.js with a slower zoom (3 seconds)
-            const tween = new TWEEN.Tween(camera.position)
-                .to(targetPosition, 3000)
-                .easing(TWEEN.Easing.Quadratic.InOut)
-                .onUpdate(() => {
-                    controls.update();
-                })
-                .start();
-
-            controls.target.copy(parentCube.position);
-
-            // Play sound with the frequency stored in the clicked cube
-            const synth = new Tone.Synth().toDestination();
-            await Tone.start();
-            synth.triggerAttackRelease(parentCube.userData.frequency, "8n");
-        }
+ */
+    .header {
+      padding: 20px;
+      height: 140px;
+      text-align: center;
+      background: #1abc9c;
+      color: white;
+      font-size: 30px;
     }
+
+
+#inputs {
+  width: 400px;
+  height: 800px;
+  border-radius: 3px;
+  top: 0%;
+  position: fixed;
+  box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px -2px rgba(#000, .2);
 }
 
-        let edgeFadeDirection = 1;
-        let edgeOpacity = 0;
+ #controlpanel {
+    position:absolute;
+    left: 333px;
+    top: 428px;
+    width: 229px;
+    height:113px;
+    color: white;
+    font: 0.6rem Inconsolata, monospace;
+    background-color: black;
+
+ }
+
+ #citations {
+    position:absolute;
+    left: 433px;
+    top: 228px;
+    width: 229px;
+    height:113px;
+    color: white;
+    font: 0.6rem Inconsolata, monospace;
+    background-color: black;
+
+ }
+
+ #buttons {
+    position:absolute;
+    left: 233px;
+    top: 548px;
+    width: 229px;
+    height:30px;
+
+ }
 
 
-        function animate() {
-                requestAnimationFrame(animate);
+  .profile {
+    right: 30px;
+    position: fixed;
 
-                // Fade the edges in and out
-                // edgeOpacity += edgeFadeDirection * 0.01;
-                // if (edgeOpacity >= 1) {
-                //     edgeFadeDirection = -1;
-                // } else if (edgeOpacity <= 0) {
-                //     edgeFadeDirection = 1;
-                // }
-
-            scene.traverse(child => {
-                if (child.isMesh && child.material instanceof THREE.LineBasicMaterial) {
-                    child.material.opacity = edgeOpacity;
-                    child.material.transparent = true;
-                    child.material.needsUpdate = true;
-                } else if (child.isMesh) {
-                    child.rotation.x += 0.002;
-                    child.rotation.y += 0.002;
-                }
-            });
-
-            TWEEN.update();
-
-            renderer.render(scene, camera);
-            controls.update();
-
-        }
-
-
-const pointLight = new THREE.PointLight(0xffffff, 0.5);
-pointLight.position.set(0, 0, 100);
-scene.add(pointLight);
-
-        animate();
-        window.addEventListener('mousedown', onDocumentMouseDown, false);
-
-<!-- JSONparser section --> 
-
-// Sample JSON from Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e
-// URL https://jmkre9md1i.execute-api.eu-central-1.amazonaws.com/stage/land/Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e/assets
-
-var jsonString='{"message":"Success","data":{"items":[{"verticesCount":1949,"rotation":"P=0.000000 Y=90.000000 R=-0.000000","objectId":"SM_Eris_01","_id":"Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e","SK":"L-Asset-1a86ac5d-b6d6-4b21-a1c5-06fee764d868-896ac586-85f0-44f4-82b8-5d969ef810fe","thumbnail":{"url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/3041b2cf-9fe3-4df6-8474-8493ea7711cc/SM_Eris_01.jpg","id":"File-3041b2cf-9fe3-4df6-8474-8493ea7711cc"},"description":"","url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/1a86ac5d-b6d6-4b21-a1c5-06fee764d868/SM_Eris_01.glb","position":"X=155339.335 Y=-253611.600 Z=107672.749","scale":"X=100.000 Y=100.000 Z=100.000","title":"SM_Eris_01.glb"},{"verticesCount":1949,"rotation":"P=0.000000 Y=90.000000 R=-0.000000","objectId":"SM_Sun_01","_id":"Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e","SK":"L-Asset-2c30b72d-f741-4cda-83fa-9d29a2fc69be-063d65ae-1a24-4366-91a5-6b37347f5e0a","thumbnail":{"url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/2d53de48-a259-479e-b2c6-a12f2f102862/SM_Sun_01.jpg","id":"File-2d53de48-a259-479e-b2c6-a12f2f102862"},"description":"","url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/2c30b72d-f741-4cda-83fa-9d29a2fc69be/SM_Sun_01.glb","position":"X=215512.640 Y=-202823.598 Z=156554.052","scale":"X=100.000 Y=100.000 Z=100.000","title":"SM_Sun_01.glb"},{"verticesCount":1949,"rotation":"P=0.000000 Y=90.000000 R=-0.000000","objectId":"SM_Moon_01","_id":"Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e","SK":"L-Asset-333c34d5-eb27-4175-be8f-cae87aa0d855-4fda87fd-d256-49b0-9f73-044c4ce38103","thumbnail":{"url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/ccc78f73-3235-40dc-85c1-1aba2dbf8b57/SM_Moon_01.jpg","id":"File-ccc78f73-3235-40dc-85c1-1aba2dbf8b57"},"description":"","url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/333c34d5-eb27-4175-be8f-cae87aa0d855/SM_Moon_01.glb","position":"X=136794.360 Y=-253178.753 Z=128042.662","scale":"X=100.000 Y=100.000 Z=100.000","title":"SM_Moon_01.glb"},{"verticesCount":0,"rotation":"P=0.000000 Y=180.000000 R=0.000000","_id":"Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e","SK":"L-Asset-8c9e0cda-03eb-43c0-85d3-2d10fd88a36d-85522845-c0ac-499d-978c-10b97ae92de8","description":"","url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/8c9e0cda-03eb-43c0-85d3-2d10fd88a36d/VR_blob3g.fbx","position":"X=7949.289 Y=-173781.646 Z=-422593.657","scale":"X=0.000 Y=0.000 Z=0.000","title":"VR_blob3g.fbx"},{"verticesCount":11859,"rotation":"P=0.000000 Y=90.000000 R=-0.000000","objectId":"Snow","_id":"Land-22521d7e-e5e8-4f90-86a2-a772a42f4e0e","SK":"L-Asset-b739c4eb-2f74-442e-93cd-e295e66fbc7a-717a9f44-8726-4884-92eb-1bfd156907c7","thumbnail":{"url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/fce0662c-7c5e-4f71-a863-3450f32dd773/Snow.jpg","id":"File-fce0662c-7c5e-4f71-a863-3450f32dd773"},"description":"","url":"https://metameta-assets-stage.s3.eu-central-1.amazonaws.com/b739c4eb-2f74-442e-93cd-e295e66fbc7a/Snow.glb","position":"X=0.000 Y=0.000 Z=-16940.967","scale":"X=100.000 Y=100.000 Z=100.000","title":"Snow.glb"}]}}';
-
-function JSONparser(jsonString)  {
-        // Parse the JSON data
-        const jsonData = JSON.parse(jsonString);
-
-        // Choose an item from the "items" array in the JSON data
-        const item = jsonData.data.items[0]; // Select the first item in the array
-
-        // Extract the model URL, position, and scale from the item
-        const modelUrl = item.url;
-
-        // Parse the position string and extract the X, Y, and Z values
-        const positionMatch = item.position.match(/X=(-?\d+(\.\d+)?) Y=(-?\d+(\.\d+)?) Z=(-?\d+(\.\d+)?)/);
-        const posX = parseFloat(positionMatch[1]);
-        const posY = parseFloat(positionMatch[3]);
-        const posZ = parseFloat(positionMatch[5]);
-
-        // Parse the scale string and extract the X, Y, and Z values
-        const scaleMatch = item.scale.match(/X=(-?\d+(\.\d+)?) Y=(-?\d+(\.\d+)?) Z=(-?\d+(\.\d+)?)/);
-        const scaleX = parseFloat(scaleMatch[1]);
-        const scaleY = parseFloat(scaleMatch[3]);
-        const scaleZ = parseFloat(scaleMatch[5]);
-
-        // Replace these variables with the actual values you want to use
-        const targetOpacity = 0.5;
-        const targetGeometryType = 'BoxGeometry';
-
-
-
-    // Call the createCubeWithSphere function with the model URL as an argument
-    const cube = createCubeWithSphere(scene, targetX, targetY, targetZ, targetOpacity, targetGeometryType, modelUrl);
-
-}
-
-
-<!-- steam section --> 
-<!--  Does not work out of box from GPT-4 seems to require a generic openID oauth libary --> 
-
-// Replace 'YOUR_API_KEY' with your actual Steam Web API key
-const API_KEY = '633FAC6F87C73A7A24676D7C4D4D6AC0';
-
-// Initiate Steam login and handle the response
-function steamLogin() {
-  var login = new SteamLogin();
-  login.openidPopup('https://steamcommunity.com/openid/', 'https://yourwebsite.com/auth', handleLoginResponse);
-}
-
-// Handle the login response
-function handleLoginResponse(response) {
-  if (response && response.oauth_token) {
-    // The user has successfully logged in
-    // You can now use the Steam Web API to access the user's information
-    const oauthToken = response.oauth_token;
-    getUserInfo(oauthToken);
-  } else {
-    // The user has canceled the login process
   }
-}
 
-// Retrieve the user's information from the Steam Web API
-function getUserInfo(oauthToken) {
-  const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=${API_KEY}&format=json&access_token=${oauthToken}`;
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      // Parse the response to get the user's information
-      const userInfo = data.response.players[0];
-      console.log(userInfo);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
+  .leftbottom {
+    left: 5px;
+    bottom: 5px;
+    width: 444px;
+    position: fixed;
 
+  }
+  .rightbottom {
+    right: 0;
+    bottom: 0;
+    position: fixed;
 
-<!-- image manipulation libaray  --> 
+  }
 
+  .topright {
+    top: 5px;
+    right: 5px;
+    width: 444px;
+    position: fixed;
 
-
-
-function createImageDisplay(imageTexture) {
-  const geometry = new THREE.PlaneGeometry(1, 1);
-  const material = new THREE.MeshBasicMaterial({ map: imageTexture, transparent: true });
-  const imageDisplay = new THREE.Mesh(geometry, material);
-  
-  return imageDisplay;
-}
+  }
 
 
 
-    </script>
+</style>
+</head>
 
-<div class="login-section">
-  <img  onclick="steamLogin()" src="img/steam-login.png"/>
+    <title>MetaLambda</title>
+  </head>
+  <body>
+
+
+
+<div id="inputs">
+<div style="width:200px;padding-top:10px;padding-left:10px">
+
+
+<!--This is i.<BR/>-->
+MetaLambdas are cross platform functions which accompany computational lifeforms such as anticipated by Von Neumann in his Universal Constructor Theory. They have been used to build the <a href="https://www.youtube.com/watch?app=desktop&v=HhNnnKV-h_Q&fbclid=IwAR20OtCuqU3gFSSTdfjo5WKgCCUVq20yLFg0XrhPHq96RPWE3wBeItyz0V0" target="_blank">Game of MetaLife</a> in collaboration with <a href="https://en.wikipedia.org/wiki/Nomic" target="_blank">Peter Suber</a> the inventor of Nomic. In short, the Game of MetaLife is a multidimensional version of Conway's Game of Life in which each ceullar automaton may have embedded lambda calculus which controls its movements and genetic propogation strategy.
+
+Within the <a href="metametaverse.io" target="_blank">Metametaverse</a> this is used to populate metaverses.<BR/> Additionally we are using this to test the <a href="https://people.idsia.ch/~juergen/digitalphysics.html#:~:text=Zuse%20was%20the%20first%20to,of%20Digital%20Physics%20in%201967" target="_blank"> Zuse Hypothesis</a> and working with the Wolfram Institute on <a target="_blank" href="https://writings.stephenwolfram.com/2021/11/the-concept-of-the-ruliad/">ruliad research</a>.
 </div>
 
-</body>
+  </div>
+
+</div>
+<!--TODO: figure out why the fibspiral is not making links clickable-->
+
+ <div class="leftbottom">
+  Joel Dietz bio <a href="jd-bio.html">0</a>..<a href="jd-bio-o.html">1</a> | <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a href="http://www.cryptoapollo.io" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q" target="_blank">Ted Talk</a> |
+  <a href="http://metametaverse.io" target="_blank">DAO</a> | <a href="jd.html">recs</a>
+
+  <BR/>
+
+ <!-- <label for="mode">Lambda:</label>
+
+ <select name="mode" id="mode" onchange="initiateZuseMode()">
+   <option value="ca">P</option>
+   <option value="metaverseb">Fib Spiral</option>
+ </select> -->
+
+ <!--<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>-->
+</div>
+<!--  <div class="rightbottom">
+ </div>-->
+
+  <div class="profile">
+
+
+    </div>
+
+
+
+    <div style="position: relative;">
+    <!--  <canvas id="layer2" width="140" height="140"
+       style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
+       <canvas id="layer1" width="100%" height="100%"
+         style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+
+      <!--- <canvas id="layer2" width="229" height="229"
+        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
+
+       <canvas id="layer3" width="60" height="60"
+         style="position: absolute; left: 433px; top: 198px;"></canvas>-->
+
+    </div>
+    <div id="controlpanel">
+
+
+    <div id="stats" style="padding:5px">
+
+          >>&nbsp; (create
+                    (world (1.34.45</BR>
+          >>&nbsp; (insert
+                              (planet (5.10.45</BR>
+
+          >>&nbsp; (run
+                          (lifesim (algo1, 100 ws </BR>
+
+    </div>
+    </div>
+    <div id="buttons">
+  <a href="metalife.html">Game of MetaLife 0.33</a> | <a href="http://github.com/fractastical/metajargon" target="_blank">Metajargon</a>
+  
+  <!--<a href="metalife2d.html">Game of MetaLife 0.34</a>-->
+
+</div>
+<div id="citations">
+    TedX, <a href="https://www.ted.com/talks/joel_dietz_building_a_game_in_web3?language=en">Game of MetaLife</a> 
+    Philosophy Portal, "On the origins of logic," June, 2023
+
+</div>
+     <script src="./fibo.js"></script>
+    <script src="./jscolor.js"></script>
+    <!-- <script src="./metalambda.js"></script> -->
+
+  </body>
 </html>
