@@ -5,8 +5,9 @@ var subtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "an
 var subsubtexts = ["","","","","","","","","a lot", "dietz", "", "and dragons", "and Pascal and Java", "and designed games", "and prayed" ]
 
 var otexts = ["","","","","","","i","i was","breathed", "i am joel", "i studied my biocomputer", "I wrote a book about holonics", "I invented my own progamming language", "I built a platform for creating words", "I turned my poems into song" ]
-var osubtexts = ["","","","","","","","","a lot", "sven dietz", "and groked time", "and cryptoeconomics", "called metalambda", "and world making games", "and built a metamonastary" ]
-var osubsubtexts = ["","","","","","","","","", "", "", "and superintelligence", "and integrated ai", "and games within those games", "and chains of beads" ]
+var osubtexts = ["","","","","","","","","a lot", "anselm dietz", "and groked time", "and cryptoeconomics", "  called metalambda", "and world making games", " and built a metamonastary" ]
+var osubsubtexts = ["","","","","","","","","", "", "", "       and superintelligence", "and integrated ai", "and games within those games", "and chains of beads" ]
+var osubsubsubtexts = ["","","","","","","","","", "", "", "...", "and music", "and released on steam", "and tarot" ]
 
 var imgs = ["","","","","","","","","i breathe", "", "img/jd/joel-kozmos.jpeg", "", "", "", "" ]
 
@@ -77,6 +78,11 @@ else if(texts[i])
  console.log(size);
 if(i && osubsubtexts[i])
   _.fillText(osubsubtexts[i], (-180 + size / 22), -oooffset);
+
+_.rotate(Math.PI/2);
+
+// if(i && osububsubtexts[i])
+//   _.fillText(osububsubtexts[i], (-180 + size / 22), -oooffset);
 
 //_.fillText(osubsubtexts[i], -180, -150);
 
