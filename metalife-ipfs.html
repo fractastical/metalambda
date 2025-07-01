@@ -26,6 +26,7 @@
 <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
 
 <script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/seedrandom@3.0.5/seedrandom.min.js"></script>
 
 
 <style>
@@ -139,6 +140,15 @@ box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px 
     <title>MetaLambda</title>
   </head>
   <body>
+
+<!-- IPFS Snapshot Panel -->
+<div id="snapPanel" style="position:fixed;right:8px;top:8px;background:#fff;padding:8px;border:1px solid #999;font-size:12px;z-index:9999">
+  Seed <input id="seed" size="18" />
+  <button onclick="applySeed()">Apply</button><br>
+  <button onclick="snapshotState()">Snapshot → IPFS</button><br>
+  CID <input id="cid" size="48" readonly><br>
+  <button onclick="loadSnapshot()">Load CID</button>
+</div>
 
   <div id="inputs">
 
@@ -875,5 +885,64 @@ All of the code in the right panel can be changed for more specialised effects.
 
 
     </script>
-  </body>
+  <script type="module">
+import { create as ipfsCreate } from 'https://unpkg.com/ipfs-http-client/dist/index.min.js';
+
+let ipfs;
+let currentSeed = '0';
+const ipfsNode = 'https://ipfs.infura.io:5001';
+
+function applySeed(seed = document.getElementById('seed')?.value || Date.now().toString()) {
+  currentSeed = seed.toString();
+  Math.seedrandom(currentSeed, { global: true });
+  const seedInput = document.getElementById('seed');
+  if (seedInput) seedInput.value = currentSeed;
+  console.log('[MetaLife] seed set', currentSeed);
+  if (window.reInitialize) window.reInitialize();
+}
+
+(async () => {
+  ipfs = ipfsCreate({ url: `${ipfsNode}/api/v0` });
+  console.log('[MetaLife] IPFS client ready');
+})();
+
+function grabWorldState() {
+  const state = {
+    seed: currentSeed,
+    step: window.numberofComputationalStepsCompleted || 0,
+    caList: (window.allActiveCAs || []).map(ca => ({ ...ca }))
+  };
+  const ordered = {};
+  Object.keys(state).sort().forEach(k => { ordered[k] = state[k]; });
+  return JSON.stringify(ordered);
+}
+
+async function snapshotState() {
+  if (!ipfs) { alert('IPFS not ready'); return; }
+  const { cid } = await ipfs.add(grabWorldState());
+  const cidInput = document.getElementById('cid');
+  if (cidInput) cidInput.value = cid.toString();
+  console.log('[MetaLife] snapshot stored', cid.toString());
+}
+
+async function loadSnapshot() {
+  const cidInput = document.getElementById('cid');
+  if (!cidInput || !cidInput.value) return;
+  const cidStr = cidInput.value.trim();
+  let dataStr = '';
+  for await (const chunk of ipfs.cat(cidStr)) {
+    dataStr += new TextDecoder().decode(chunk);
+  }
+  const state = JSON.parse(dataStr);
+  applySeed(state.seed);
+  window.numberofComputationalStepsCompleted = state.step || 0;
+  window.allActiveCAs = state.caList || [];
+  if (window.reInitialize) window.reInitialize();
+  console.log('[MetaLife] snapshot loaded', cidStr);
+}
+
+// default seed
+applySeed();
+</script>
+</body>
 </html>
