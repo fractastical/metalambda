@@ -173,7 +173,6 @@
         <button onclick="applySeed()">Apply</button>
         <button onclick="connectWallet()">Wallet Seed</button><br>
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
-        <button onclick="connectFVM()">Connect Hyperspace</button><br>
         CID <input id="cid" size="48"><br>
         <button onclick="loadSnapshot()">Load CID</button>
 
@@ -359,25 +358,25 @@
                             snapshots: [],      // Array of snapshot metadata
                             lastUpdate: 0       // Timestamp of last update
                         };
-                        
+
                         // Save the registry to IPFS
                         async function saveSnapshotRegistry() {
                             if (!ipfs) { log('IPFS not ready for registry save'); return; }
-                            
+
                             try {
                                 // Update timestamp
                                 snapshotRegistry.lastUpdate = Date.now();
-                                
+
                                 // Save to IPFS
                                 const { cid } = await ipfs.add(JSON.stringify(snapshotRegistry));
                                 const cidStr = cid.toString();
-                                
+
                                 // Update registry with its own CID
                                 snapshotRegistry.registryCID = cidStr;
-                                
+
                                 // Store in localStorage for persistence
                                 localStorage.setItem('metaLifeRegistryCID', cidStr);
-                                
+
                                 log(`Registry updated with ${snapshotRegistry.snapshots.length} snapshots, CID: ${cidStr}`);
                                 return cidStr;
                             } catch (err) {
@@ -385,57 +384,57 @@
                                 return null;
                             }
                         }
-                        
+
                         // Update the UI with the snapshot list
                         function updateSnapshotListUI() {
                             const snapshotList = document.getElementById('snapshotList');
                             if (!snapshotList) return;
-                            
+
                             // Clear existing list
                             snapshotList.innerHTML = '';
-                            
+
                             // Add each snapshot to the list
                             snapshotRegistry.snapshots.forEach((snapshot, index) => {
                                 const item = document.createElement('div');
                                 item.className = 'snapshot-item';
                                 item.innerHTML = `
-                                    <span class="snapshot-name">${snapshot.name || `Snapshot ${index+1}`}</span>
+                                    <span class="snapshot-name">${snapshot.name || `Snapshot ${index + 1}`}</span>
                                     <span class="snapshot-date">${new Date(snapshot.timestamp).toLocaleString()}</span>
                                     <button onclick="loadSnapshotById('${snapshot.cid}')">Load</button>
                                 `;
                                 snapshotList.appendChild(item);
                             });
                         }
-                        
+
                         // Load a snapshot by its ID from the registry
                         async function loadSnapshotById(cid) {
                             document.getElementById('cid').value = cid;
                             await loadSnapshot();
                         }
-                        
+
                         // Load the registry from IPFS
                         async function loadSnapshotRegistry() {
                             if (!ipfs) { log('IPFS not ready for registry load'); return; }
-                            
+
                             // Check if we have a registry CID in localStorage
                             const registryCID = localStorage.getItem('metaLifeRegistryCID');
                             if (!registryCID) {
                                 log('No registry found, creating new one');
                                 return;
                             }
-                            
+
                             try {
                                 log('Loading snapshot registry:', registryCID);
                                 let dataStr = '';
                                 for await (const chunk of ipfs.cat(registryCID)) {
                                     dataStr += new TextDecoder().decode(chunk);
                                 }
-                                
+
                                 const registry = JSON.parse(dataStr);
                                 snapshotRegistry = registry;
                                 snapshotRegistry.registryCID = registryCID;
                                 log(`Registry loaded with ${registry.snapshots.length} snapshots`);
-                                
+
                                 // Update the UI with snapshot list if needed
                                 updateSnapshotListUI();
                             } catch (err) {
@@ -443,7 +442,7 @@
                                 log('Failed to load registry, starting fresh');
                             }
                         }
-                        
+
                         // Initialize the app with registry loading
                         (function initializeApp() {
                             // Wait for IPFS to be ready
@@ -455,13 +454,13 @@
                                     setTimeout(checkIpfs, 1000); // Check again in 1 second
                                 }
                             };
-                            
+
                             // Start checking for IPFS after page load
                             window.addEventListener('load', () => {
                                 setTimeout(checkIpfs, 2000); // Give IPFS time to initialize
                             });
                         })();
-                        
+
                         // Helper function to log messages
                         function log(message, ...args) {
                             const stats = document.getElementById('stats');
@@ -1516,11 +1515,35 @@
                                     dataStr += new TextDecoder().decode(chunk);
                                 }
                                 const state = JSON.parse(dataStr);
+                                
+                                // Clear existing scene
+                                if (window.scene) {
+                                    // Remove all meshes
+                                    const meshes = [...window.scene.meshes];
+                                    for (const mesh of meshes) {
+                                        if (mesh.name !== 'ground' && mesh.name !== 'camera') {
+                                            mesh.dispose();
+                                        }
+                                    }
+                                }
+                                
+                                // Reset state
+                                window.allActiveCAs = [];
+                                
+                                // Apply new state
                                 applySeed(state.seed);
                                 window.numberofComputationalStepsCompleted = state.step || 0;
-                                window.allActiveCAs = state.caList || [];
+                                
+                                // Deserialize CA objects
+                                if (Array.isArray(state.caList)) {
+                                    log(`Loading ${state.caList.length} life forms...`);
+                                    window.allActiveCAs = state.caList.map(deserializeCA);
+                                }
+                                
+                                // Reinitialize scene
                                 if (window.reInitialize) window.reInitialize();
-                                log('Snapshot loaded');
+                                
+                                log('Snapshot loaded successfully');
                             } catch (err) {
                                 console.error('[MetaLife] Load failed:', err);
                                 alert('Load failed – check console.');
@@ -1531,16 +1554,16 @@
                             if (!ipfs) { alert('IPFS not ready'); return; }
                             try {
                                 log('Uploading snapshot...');
-                                
+
                                 // Create the snapshot using the grabWorldState function
                                 const worldState = grabWorldState();
                                 const { cid } = await ipfs.add(worldState);
                                 const cidStr = cid.toString();
                                 document.getElementById('cid').value = cidStr;
-                                
+
                                 // Add to registry
                                 const snapshotName = prompt('Give this snapshot a name:', `Snapshot ${snapshotRegistry.snapshots.length + 1}`);
-                                
+
                                 // Add metadata to registry
                                 snapshotRegistry.snapshots.push({
                                     cid: cidStr,
@@ -1548,13 +1571,13 @@
                                     timestamp: Date.now(),
                                     lifeFormCount: (window.allActiveCAs || []).length
                                 });
-                                
+
                                 // Save updated registry
                                 await saveSnapshotRegistry();
-                                
+
                                 // Update UI
                                 updateSnapshotListUI();
-                                
+
                                 log('Snapshot stored:', cidStr);
                             } catch (err) {
                                 console.error('[MetaLife] Snapshot failed:', err);
@@ -1562,68 +1585,132 @@
                             }
                         }
 
+                        // Function to deserialize a CA from JSON to a live object
+                        function deserializeCA(data) {
+                            if (!data) return null;
+                            
+                            // Create a new CA object
+                            const ca = {
+                                position: new BABYLON.Vector3(data.x || 0, data.y || 0, data.z || 0),
+                                energy: data.energy || 100,
+                                seed: data.seed,
+                                color: data.color || '#ffffff',
+                                xFreq: data.xFreq || 10,
+                                yFreq: data.yFreq || 10,
+                                zFreq: data.zFreq || 10,
+                                splitFreq: data.splitFreq || 10,
+                                mutation: data.mutation || 10,
+                                ruleMask: data.ruleMask || 0,
+                                liveVoxels: new Set(data.voxels || []),
+                                // Restore directional properties
+                                direction: data.direction ? new BABYLON.Vector3(
+                                    data.direction.x || 0,
+                                    data.direction.y || 0,
+                                    data.direction.z || 0
+                                ).normalize() : null,
+                                curveFactor: data.curveFactor || 0.2,
+                                curveAxis: data.curveAxis ? new BABYLON.Vector3(
+                                    data.curveAxis.x || 0,
+                                    data.curveAxis.y || 0,
+                                    data.curveAxis.z || 0
+                                ).normalize() : null
+                            };
+                            
+                            // Initialize direction and curve axis if not present
+                            if (!ca.direction) {
+                                ca.direction = new BABYLON.Vector3(
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1
+                                ).normalize();
+                            }
+                            
+                            if (!ca.curveAxis) {
+                                const perpVec = new BABYLON.Vector3(
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1
+                                ).normalize();
+                                ca.curveAxis = BABYLON.Vector3.Cross(ca.direction, perpVec).normalize();
+                            }
+                            
+                            // Create mesh for visualization
+                            if (window.scene) {
+                                ca.mesh = BABYLON.MeshBuilder.CreateBox('ca_' + Math.floor(Math.random() * 1e9), {
+                                    size: 1
+                                }, window.scene);
+                                ca.mesh.position = ca.position.clone();
+                                ca.mesh.material = new BABYLON.StandardMaterial('mat_' + ca.mesh.name, window.scene);
+                                ca.mesh.material.diffuseColor = BABYLON.Color3.FromHexString(ca.color);
+                                ca.mesh.material.alpha = 0.8;
+                                ca.mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+                            }
+                            
+                            return ca;
+                        }
+                        
                         // Initialize IPFS and registry when the page loads
-                        window.addEventListener('load', function() {
+                        window.addEventListener('load', function () {
                             // Check for IPFS periodically
-                            const checkIpfs = setInterval(function() {
+                            const checkIpfs = setInterval(function () {
                                 if (window.ipfs) {
                                     clearInterval(checkIpfs);
                                     log('IPFS ready, loading snapshot registry...');
-                                    loadSnapshotRegistry();
+                                    setTimeout(() => loadSnapshotRegistry(), 1000); // Add a delay to ensure IPFS is fully ready
                                 }
                             }, 1000);
                         });
-                        
+
                         // Initialize seed
                         applySeed();
                     </script>
                     <!-- ==== FVM Render-Reward integration ===================================== -->
                     <script>
-                            const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
-                            const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
-                            const tokenAbi = [
-                                "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
-                            ];
+                        const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
+                        const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
+                        const tokenAbi = [
+                            "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
+                        ];
 
-                            const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
-                            let fvmSigner = null;
-                            let tokenRead = null;
-                            let tokenWrite = null;
+                        const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
+                        let fvmSigner = null;
+                        let tokenRead = null;
+                        let tokenWrite = null;
 
-                            async function connectFVM() {
-                                if (!window.ethereum) { alert('Wallet not found'); return; }
-                                await window.ethereum.request({
-                                    method: 'wallet_addEthereumChain',
-                                    params: [{
-                                        chainId: '0xC45',
-                                        chainName: 'Filecoin Hyperspace',
-                                        nativeCurrency: { name: 'tFIL', symbol: 'tFIL', decimals: 18 },
-                                        rpcUrls: [FVM_RPC],
-                                        blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
-                                    }]
-                                });
-                                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                                fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
-                                tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
-                                tokenWrite = tokenRead.connect(fvmSigner);
-                                console.log('[FVM] Connected', await fvmSigner.getAddress());
-                            }
+                        async function connectFVM() {
+                            if (!window.ethereum) { alert('Wallet not found'); return; }
+                            await window.ethereum.request({
+                                method: 'wallet_addEthereumChain',
+                                params: [{
+                                    chainId: '0xC45',
+                                    chainName: 'Filecoin Hyperspace',
+                                    nativeCurrency: { name: 'tFIL', symbol: 'tFIL', decimals: 18 },
+                                    rpcUrls: [FVM_RPC],
+                                    blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
+                                }]
+                            });
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+                            tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
+                            tokenWrite = tokenRead.connect(fvmSigner);
+                            console.log('[FVM] Connected', await fvmSigner.getAddress());
+                        }
 
-                            async function signProof(manifestBytes, steps, stateHash) {
-                                if (!fvmSigner) throw new Error('connectFVM first');
-                                const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes', 'uint256', 'bytes32'], [manifestBytes, steps, stateHash]));
-                                return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
-                            }
+                        async function signProof(manifestBytes, steps, stateHash) {
+                            if (!fvmSigner) throw new Error('connectFVM first');
+                            const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes', 'uint256', 'bytes32'], [manifestBytes, steps, stateHash]));
+                            return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
+                        }
 
-                            async function mintReward(manifestBytes, steps, stateHash, ownerSig) {
-                                if (!tokenWrite) throw new Error('connectFVM first');
-                                const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
-                                await tx.wait();
-                                alert('Reward minted on FVM');
-                            }
-                            window.connectFVM = connectFVM;
-                            window.signProof = signProof;
-                            window.mintReward = mintReward;
+                        async function mintReward(manifestBytes, steps, stateHash, ownerSig) {
+                            if (!tokenWrite) throw new Error('connectFVM first');
+                            const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
+                            await tx.wait();
+                            alert('Reward minted on FVM');
+                        }
+                        window.connectFVM = connectFVM;
+                        window.signProof = signProof;
+                        window.mintReward = mintReward;
                     </script>
                     <!-- ====================================================================== -->
                     </script>
