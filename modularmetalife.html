@@ -185,12 +185,17 @@
         <button onclick="loadSnapshot()">Load CID</button>
 
         <h3 style="cursor: pointer; user-select: none;" onclick="toggleSnapshotRegistry()">
-            <span id="registryToggle">▼</span> Snapshot Registry
+            <span id="registryToggle">▼</span> Snapshot Registry (Collection of All Snapshots)
         </h3>
-        <div style="margin-bottom: 5px;">
-            <input id="registryCidInput" placeholder="Registry CID" size="40" style="font-size: 10px;">
-            <button onclick="loadRegistryFromCid()" style="font-size: 10px;">Load Registry</button>
+        <div style="margin-bottom: 5px; font-size: 11px; color: #666;">
+            The registry is a collection of all your saved snapshots. Each time you save a new snapshot, it's added to this registry.
         </div>
+        <div style="margin-bottom: 5px;">
+            <input id="registryCidInput" placeholder="Registry CID" size="30" style="font-size: 10px;">
+            <button onclick="loadRegistryFromCid()" style="font-size: 10px;">Load Registry</button>
+            <button onclick="showRegistryContents()" style="font-size: 10px;">Show Contents</button>
+        </div>
+        <div id="registryStatus" style="font-size: 10px; color: #666; margin-bottom: 5px;"></div>
         <div id="snapshotList"
             style="max-height: 200px; overflow-y: auto; margin-top: 10px; border: 1px solid #444; padding: 5px;">
             <!-- Snapshots will be listed here -->
@@ -374,6 +379,10 @@
                             snapshots: [],      // Array of snapshot metadata
                             lastUpdate: 0       // Timestamp of last update
                         };
+                        
+                        // Default registry CID - this is your master registry that contains all snapshots
+                        // Update this value with your latest registry CID when you have a good collection of snapshots
+                        const DEFAULT_REGISTRY_CID = 'QmaYN8fBuCzgBhuWHKi2wWa6ajFgWyPXpWiDaUcns5B24y';
 
                         // Save the registry to IPFS
                         async function saveSnapshotRegistry() {
@@ -392,12 +401,43 @@
 
                                 // Store in localStorage for persistence
                                 localStorage.setItem('metaLifeRegistryCID', cidStr);
+                                
+                                // Update the registry status display
+                                updateRegistryStatus();
 
-                                log(`Registry updated with ${snapshotRegistry.snapshots.length} snapshots, CID: ${cidStr}`);
+                                log(`Registry updated: now contains ${snapshotRegistry.snapshots.length} snapshots total`);  
+                                log(`Registry CID (save this to reload later): ${cidStr}`);
                                 return cidStr;
                             } catch (err) {
                                 console.error('[MetaLife] Registry save failed:', err);
                                 return null;
+                            }
+                        }
+                        
+                        // Update the registry status display
+                        function updateRegistryStatus() {
+                            const statusEl = document.getElementById('registryStatus');
+                            if (!statusEl) return;
+                            
+                            const cid = snapshotRegistry.registryCID || localStorage.getItem('metaLifeRegistryCID');
+                            if (cid) {
+                                statusEl.innerHTML = `Current Registry: <span style="font-family:monospace;">${cid}</span> <button onclick="copyRegistryCID()" style="font-size:9px;padding:0 3px;">Copy</button>`;
+                                
+                                // Also update the input field for convenience
+                                const cidInput = document.getElementById('registryCidInput');
+                                if (cidInput) cidInput.value = cid;
+                            } else {
+                                statusEl.innerHTML = 'No registry loaded';
+                            }
+                        }
+                        
+                        // Copy registry CID to clipboard
+                        function copyRegistryCID() {
+                            const cid = snapshotRegistry.registryCID || localStorage.getItem('metaLifeRegistryCID');
+                            if (cid) {
+                                navigator.clipboard.writeText(cid).then(() => {
+                                    log('Registry CID copied to clipboard');
+                                });
                             }
                         }
 
@@ -470,14 +510,23 @@
                                 console.log(`localStorage[${key}] = ${localStorage.getItem(key)}`);
                             }
 
-                            // Check if we have a registry CID in localStorage
-                            const registryCID = localStorage.getItem('metaLifeRegistryCID');
-                            log('Registry CID from localStorage: ' + (registryCID || 'not found'));
+                            // Check if we have a registry CID in localStorage or use default
+                            let registryCID = localStorage.getItem('metaLifeRegistryCID');
                             
-                            if (!registryCID) {
+                            // If no registry in localStorage, use the default
+                            if (!registryCID && DEFAULT_REGISTRY_CID) {
+                                registryCID = DEFAULT_REGISTRY_CID;
+                                log('Using default registry CID: ' + registryCID);
+                                localStorage.setItem('metaLifeRegistryCID', registryCID);
+                            } else if (!registryCID) {
                                 log('No registry found, creating new one');
                                 return;
                             }
+                            
+                            log('Registry CID to load: ' + registryCID);
+                            
+                            // Update the registry status display
+                            updateRegistryStatus();
 
                             try {
                                 log('Loading snapshot registry from IPFS:', registryCID);
@@ -573,6 +622,23 @@
                             
                             // Load the registry
                             await loadSnapshotRegistry();
+                        }
+                        
+                        // Function to display registry contents in console
+                        function showRegistryContents() {
+                            console.log('Current Registry Contents:', JSON.stringify(snapshotRegistry, null, 2));
+                            log(`Registry has ${snapshotRegistry.snapshots?.length || 0} snapshots`);
+                            
+                            if (snapshotRegistry.snapshots && snapshotRegistry.snapshots.length > 0) {
+                                snapshotRegistry.snapshots.forEach((snapshot, i) => {
+                                    log(`Snapshot ${i+1}: ${snapshot.name || 'Unnamed'} - CID: ${snapshot.cid}`);
+                                });
+                            } else {
+                                log('No snapshots in registry');
+                            }
+                            
+                            // Force update the UI
+                            updateSnapshotListUI();
                         }
                         
                         // Function to toggle the entire IPFS Snapshot Panel
@@ -1671,37 +1737,42 @@
                         }
 
                         async function snapshotState() {
-                            if (!ipfs) { alert('IPFS not ready'); return; }
-                            try {
-                                log('Uploading snapshot...');
+                            if (!ipfs) { log('IPFS not ready for snapshot'); return; }
 
-                                // Create the snapshot using the grabWorldState function
-                                const worldState = grabWorldState();
-                                const { cid } = await ipfs.add(worldState);
+                            try {
+                                // Get current state
+                                const state = grabWorldState();
+                                const stateStr = JSON.stringify(state);
+
+                                // Save to IPFS
+                                const { cid } = await ipfs.add(stateStr);
                                 const cidStr = cid.toString();
-                                document.getElementById('cid').value = cidStr;
+
+                                // Create snapshot entry
+                                const snapshotName = document.getElementById('snapshotName').value || `Snapshot ${Date.now()}`;
+                                const snapshot = {
+                                    cid: cidStr,
+                                    name: snapshotName,
+                                    timestamp: Date.now(),
+                                    description: `MetaLife state snapshot: ${cellularAutomata.length} life forms`
+                                };
 
                                 // Add to registry
-                                const snapshotName = prompt('Give this snapshot a name:', `Snapshot ${snapshotRegistry.snapshots.length + 1}`);
+                                if (!snapshotRegistry.snapshots) snapshotRegistry.snapshots = [];
+                                snapshotRegistry.snapshots.push(snapshot);
 
-                                // Add metadata to registry
-                                snapshotRegistry.snapshots.push({
-                                    cid: cidStr,
-                                    name: snapshotName || `Snapshot ${snapshotRegistry.snapshots.length + 1}`,
-                                    timestamp: Date.now(),
-                                    lifeFormCount: (window.allActiveCAs || []).length
-                                });
-
-                                // Save updated registry
+                                // Save registry
                                 await saveSnapshotRegistry();
-
-                                // Update UI
+                                
+                                // Update the UI
                                 updateSnapshotListUI();
 
-                                log('Snapshot stored:', cidStr);
+                                log(`Snapshot saved: ${snapshotName} (CID: ${cidStr})`);
+                                log(`Registry now has ${snapshotRegistry.snapshots.length} snapshots`);
+                                return cidStr;
                             } catch (err) {
                                 console.error('[MetaLife] Snapshot failed:', err);
-                                alert('Snapshot failed – check console.');
+                                return null;
                             }
                         }
 
@@ -1771,12 +1842,20 @@
                         
                         // Initialize IPFS and registry when the page loads
                         window.addEventListener('load', function () {
+                            // Display registry status immediately if available
+                            updateRegistryStatus();
+                            
                             // Check for IPFS periodically
                             const checkIpfs = setInterval(function () {
                                 if (window.ipfs) {
                                     clearInterval(checkIpfs);
                                     log('IPFS ready, loading snapshot registry...');
-                                    setTimeout(() => loadSnapshotRegistry(), 1000); // Add a delay to ensure IPFS is fully ready
+                                    setTimeout(() => {
+                                        loadSnapshotRegistry();
+                                        // Force update UI after loading
+                                        updateRegistryStatus();
+                                        showRegistryContents();
+                                    }, 1000); // Add a delay to ensure IPFS is fully ready
                                 }
                             }, 1000);
                         });
