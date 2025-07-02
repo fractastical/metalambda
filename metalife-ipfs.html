@@ -348,10 +348,17 @@
                         }
 
                         var canvas = document.getElementById("layer2");
-                        var startRenderLoop = function (engine, canvas) {
+                        let frameCount=0;
+var startRenderLoop = function (engine, canvas) {
                             engine.runRenderLoop(function () {
                                 if (sceneToRender && sceneToRender.activeCamera) {
-                                    sceneToRender.render();
+                                    // evolve voxel automata every 3 frames
+            if(frameCount++ % 3===0 && window.allActiveCAs){
+                for(const ca of window.allActiveCAs){
+                    if(ca.liveVoxels) stepVoxels(ca);
+                }
+            }
+            sceneToRender.render();
                                 }
                             });
                         }
@@ -1152,8 +1159,36 @@ ipfs = window.IpfsHttpClient.create({
         child.material.emissiveColor = newCol;
         child.color = newCol.toHexString();
     }catch(e){}
-    allActiveCAs.push(child);
+    child.ruleMask = parent.ruleMask ^ (1<<Math.floor(Math.random()*32));
+child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
+allActiveCAs.push(child);
     return child;
+}
+
+function encodeCoord(x,y,z){return `${x},${y},${z}`;}
+function decodeCoord(s){const [x,y,z]=s.split(',').map(Number);return {x,y,z};}
+
+function stepVoxels(ca){
+    const live=ca.liveVoxels;
+    const counts=new Map();
+    live.forEach(key=>{
+        const {x,y,z}=decodeCoord(key);
+        for(let dx=-1;dx<=1;dx++)
+          for(let dy=-1;dy<=1;dy++)
+            for(let dz=-1;dz<=1;dz++){
+              if(dx||dy||dz){
+                const k=encodeCoord(x+dx,y+dy,z+dz);
+                counts.set(k,(counts.get(k)||0)+1);
+              }
+            }
+    });
+    const next=new Set();
+    counts.forEach((n,k)=>{
+        const alive=live.has(k);
+        const maskPart = alive ? (ca.ruleMask>>>16) : ca.ruleMask;
+        if(((maskPart>>n)&1)===1) next.add(k);
+    });
+    ca.liveVoxels=next;
 }
 
 function serializeCA(ca){
@@ -1169,7 +1204,9 @@ function serializeCA(ca){
         yFreq: ca.yFreq,
         zFreq: ca.zFreq,
         splitFreq: ca.splitFreq,
-        mutation: ca.mutation
+        mutation: ca.mutation,
+        ruleMask: ca.ruleMask||0,
+        voxels: Array.from(ca.liveVoxels||[])
     };
 }
 
