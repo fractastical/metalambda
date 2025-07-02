@@ -1116,16 +1116,16 @@
                         (async () => {
                             try {
                                 try {
-                                const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
-                                const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
-                                ipfs = window.IpfsHttpClient.create({
-                                    host: 'ipfs.infura.io',
-                                    port: 5001,
-                                    protocol: 'https',
-                                    headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
-                                });
-                                await ipfs.id();
-                                log('IPFS client ready');
+                                    const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
+                                    const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
+                                    ipfs = window.IpfsHttpClient.create({
+                                        host: 'ipfs.infura.io',
+                                        port: 5001,
+                                        protocol: 'https',
+                                        headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
+                                    });
+                                    await ipfs.id();
+                                    log('IPFS client ready');
                                     const w3 = new Web3Storage({ token: W3_TOKEN });
                                     // wrap minimal ipfs-like interface
                                     ipfs = {
@@ -1142,197 +1142,197 @@
                                                 yield value;
                                             }
                                         }
-                                                                } catch(err){
-                                console.error('Failed to init Infura IPFS', err);
-                            }
-                            } catch (err) {
-                                console.error('[MetaLife] Failed to init IPFS:', err);
-                            }
-                        })();
-
-                        function mutate(parent, mutRate = parent.mutation || 10) {
-                            if (!parent || !parent.clone) return null;
-                            const child = parent.clone("ca_" + Math.floor(Math.random() * 1e9));
-                            // jitter position
-                            child.position = parent.position.add(new BABYLON.Vector3(
-                                (Math.random() - 0.5) * 4,
-                                (Math.random() - 0.5) * 4,
-                                (Math.random() - 0.5) * 4));
-                            // mutate numeric genes
-                            const jitter = (v) => Math.max(1, v + (Math.random() * 2 - 1) * mutRate);
-                            child.xFreq = jitter(parent.xFreq || 10);
-                            child.yFreq = jitter(parent.yFreq || 10);
-                            child.zFreq = jitter(parent.zFreq || 10);
-                            child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq || 10)));
-                            child.mutation = parent.mutation; // keep same rate for now
-                            child.energy = (parent.energy || 10) / 2;
-                            parent.energy = child.energy; // share energy
-                            // mutate color slightly
-                            try {
-                                const col = BABYLON.Color3.FromHexString(parent.color || "#ffffff");
-                                const h = (col.r + col.g + col.b) / 3;
-                                const newCol = new BABYLON.Color3(
-                                    Math.min(1, Math.abs(col.r + (Math.random() - 0.5) * 0.2)),
-                                    Math.min(1, Math.abs(col.g + (Math.random() - 0.5) * 0.2)),
-                                    Math.min(1, Math.abs(col.b + (Math.random() - 0.5) * 0.2)));
-                                child.material = parent.material.clone("mat_" + Date.now());
-                                child.material.emissiveColor = newCol;
-                                child.color = newCol.toHexString();
-                            } catch (e) { }
-                            child.ruleMask = parent.ruleMask ^ (1 << Math.floor(Math.random() * 32));
-                            child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
-                            allActiveCAs.push(child);
-                            return child;
-                        }
-
-                        function encodeCoord(x, y, z) { return `${x},${y},${z}`; }
-                        function decodeCoord(s) { const [x, y, z] = s.split(',').map(Number); return { x, y, z }; }
-
-                        function stepVoxels(ca) {
-                            const live = ca.liveVoxels;
-                            const counts = new Map();
-                            live.forEach(key => {
-                                const { x, y, z } = decodeCoord(key);
-                                for (let dx = -1; dx <= 1; dx++)
-                                    for (let dy = -1; dy <= 1; dy++)
-                                        for (let dz = -1; dz <= 1; dz++) {
-                                            if (dx || dy || dz) {
-                                                const k = encodeCoord(x + dx, y + dy, z + dz);
-                                                counts.set(k, (counts.get(k) || 0) + 1);
-                                            }
-                                        }
-                            });
-                            const next = new Set();
-                            counts.forEach((n, k) => {
-                                const alive = live.has(k);
-                                const maskPart = alive ? (ca.ruleMask >>> 16) : ca.ruleMask;
-                                if (((maskPart >> n) & 1) === 1) next.add(k);
-                            });
-                            ca.liveVoxels = next;
-                        }
-
-                        function serializeCA(ca) {
-                            if (!ca) return {};
-                            return {
-                                x: ca.position?.x || 0,
-                                y: ca.position?.y || 0,
-                                z: ca.position?.z || 0,
-                                energy: ca.energy,
-                                seed: ca.seed,
-                                color: ca.color,
-                                xFreq: ca.xFreq,
-                                yFreq: ca.yFreq,
-                                zFreq: ca.zFreq,
-                                splitFreq: ca.splitFreq,
-                                mutation: ca.mutation,
-                                ruleMask: ca.ruleMask || 0,
-                                voxels: Array.from(ca.liveVoxels || [])
-                            };
-                        }
-
-                        function grabWorldState() {
-                            try {
-                                const state = {
-                                    seed: currentSeed,
-                                    step: window.numberofComputationalStepsCompleted || 0,
-                                    caList: (window.allActiveCAs || []).map(ca => serializeCA(ca))
-                                };
-                                const ordered = {};
-                                Object.keys(state).sort().forEach(k => { ordered[k] = state[k]; });
-                                return JSON.stringify(ordered);
-                            } catch (err) {
-                                console.error('[MetaLife] Failed to grab state:', err);
-                                return '{}';
-                            }
-                        }
-
-                        async function snapshotState() {
-                            if (!ipfs) { alert('IPFS not ready'); return; }
-                            try {
-                                log('Uploading snapshot...');
-                                const { cid } = await ipfs.add(grabWorldState());
-                                document.getElementById('cid').value = cid.toString();
-                                log('Snapshot stored:', cid.toString());
-                            } catch (err) {
-                                console.error('[MetaLife] Snapshot failed:', err);
-                                alert('Snapshot failed – check console.');
-                            }
-                        }
-
-                        async function loadSnapshot() {
-                            const cidInput = document.getElementById('cid');
-                            if (!cidInput || !cidInput.value) return;
-                            const cidStr = cidInput.value.trim();
-                            if (!ipfs) { alert('IPFS not ready'); return; }
-                            try {
-                                log('Fetching snapshot', cidStr);
-                                let dataStr = '';
-                                for await (const chunk of ipfs.cat(cidStr)) {
-                                    dataStr += new TextDecoder().decode(chunk);
+                                    } catch (err) {
+                                        console.error('Failed to init Infura IPFS', err);
+                                    }
+                                } catch (err) {
+                                    console.error('[MetaLife] Failed to init IPFS:', err);
                                 }
-                                const state = JSON.parse(dataStr);
-                                applySeed(state.seed);
-                                window.numberofComputationalStepsCompleted = state.step || 0;
-                                window.allActiveCAs = state.caList || [];
-                                if (window.reInitialize) window.reInitialize();
-                                log('Snapshot loaded');
-                            } catch (err) {
-                                console.error('[MetaLife] Load failed:', err);
-                                alert('Load failed – check console.');
+                            }) ();
+
+                            function mutate(parent, mutRate = parent.mutation || 10) {
+                                if (!parent || !parent.clone) return null;
+                                const child = parent.clone("ca_" + Math.floor(Math.random() * 1e9));
+                                // jitter position
+                                child.position = parent.position.add(new BABYLON.Vector3(
+                                    (Math.random() - 0.5) * 4,
+                                    (Math.random() - 0.5) * 4,
+                                    (Math.random() - 0.5) * 4));
+                                // mutate numeric genes
+                                const jitter = (v) => Math.max(1, v + (Math.random() * 2 - 1) * mutRate);
+                                child.xFreq = jitter(parent.xFreq || 10);
+                                child.yFreq = jitter(parent.yFreq || 10);
+                                child.zFreq = jitter(parent.zFreq || 10);
+                                child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq || 10)));
+                                child.mutation = parent.mutation; // keep same rate for now
+                                child.energy = (parent.energy || 10) / 2;
+                                parent.energy = child.energy; // share energy
+                                // mutate color slightly
+                                try {
+                                    const col = BABYLON.Color3.FromHexString(parent.color || "#ffffff");
+                                    const h = (col.r + col.g + col.b) / 3;
+                                    const newCol = new BABYLON.Color3(
+                                        Math.min(1, Math.abs(col.r + (Math.random() - 0.5) * 0.2)),
+                                        Math.min(1, Math.abs(col.g + (Math.random() - 0.5) * 0.2)),
+                                        Math.min(1, Math.abs(col.b + (Math.random() - 0.5) * 0.2)));
+                                    child.material = parent.material.clone("mat_" + Date.now());
+                                    child.material.emissiveColor = newCol;
+                                    child.color = newCol.toHexString();
+                                } catch (e) { }
+                                child.ruleMask = parent.ruleMask ^ (1 << Math.floor(Math.random() * 32));
+                                child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
+                                allActiveCAs.push(child);
+                                return child;
                             }
-                        }
 
-                        applySeed();
-</script>
-<!-- ==== FVM Render-Reward integration ===================================== -->
-<script>
-const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
-const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
-const tokenAbi = [
-    "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
-];
+                            function encodeCoord(x, y, z) { return `${x},${y},${z}`; }
+                            function decodeCoord(s) { const [x, y, z] = s.split(',').map(Number); return { x, y, z }; }
 
-const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
-let fvmSigner = null;
-let tokenRead = null;
-let tokenWrite = null;
+                            function stepVoxels(ca) {
+                                const live = ca.liveVoxels;
+                                const counts = new Map();
+                                live.forEach(key => {
+                                    const { x, y, z } = decodeCoord(key);
+                                    for (let dx = -1; dx <= 1; dx++)
+                                        for (let dy = -1; dy <= 1; dy++)
+                                            for (let dz = -1; dz <= 1; dz++) {
+                                                if (dx || dy || dz) {
+                                                    const k = encodeCoord(x + dx, y + dy, z + dz);
+                                                    counts.set(k, (counts.get(k) || 0) + 1);
+                                                }
+                                            }
+                                });
+                                const next = new Set();
+                                counts.forEach((n, k) => {
+                                    const alive = live.has(k);
+                                    const maskPart = alive ? (ca.ruleMask >>> 16) : ca.ruleMask;
+                                    if (((maskPart >> n) & 1) === 1) next.add(k);
+                                });
+                                ca.liveVoxels = next;
+                            }
 
-async function connectFVM(){
-    if(!window.ethereum){ alert('Wallet not found'); return; }
-    await window.ethereum.request({
-        method: 'wallet_addEthereumChain',
-        params: [{
-            chainId: '0xC45',
-            chainName: 'Filecoin Hyperspace',
-            nativeCurrency: { name:'tFIL', symbol:'tFIL', decimals:18 },
-            rpcUrls: [FVM_RPC],
-            blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
-        }]
-    });
-    await window.ethereum.request({ method:'eth_requestAccounts' });
-    fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
-    tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
-    tokenWrite = tokenRead.connect(fvmSigner);
-    console.log('[FVM] Connected', await fvmSigner.getAddress());
-}
+                            function serializeCA(ca) {
+                                if (!ca) return {};
+                                return {
+                                    x: ca.position?.x || 0,
+                                    y: ca.position?.y || 0,
+                                    z: ca.position?.z || 0,
+                                    energy: ca.energy,
+                                    seed: ca.seed,
+                                    color: ca.color,
+                                    xFreq: ca.xFreq,
+                                    yFreq: ca.yFreq,
+                                    zFreq: ca.zFreq,
+                                    splitFreq: ca.splitFreq,
+                                    mutation: ca.mutation,
+                                    ruleMask: ca.ruleMask || 0,
+                                    voxels: Array.from(ca.liveVoxels || [])
+                                };
+                            }
 
-async function signProof(manifestBytes, steps, stateHash){
-    if(!fvmSigner) throw new Error('connectFVM first');
-    const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes','uint256','bytes32'],[manifestBytes, steps, stateHash]));
-    return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
-}
+                            function grabWorldState() {
+                                try {
+                                    const state = {
+                                        seed: currentSeed,
+                                        step: window.numberofComputationalStepsCompleted || 0,
+                                        caList: (window.allActiveCAs || []).map(ca => serializeCA(ca))
+                                    };
+                                    const ordered = {};
+                                    Object.keys(state).sort().forEach(k => { ordered[k] = state[k]; });
+                                    return JSON.stringify(ordered);
+                                } catch (err) {
+                                    console.error('[MetaLife] Failed to grab state:', err);
+                                    return '{}';
+                                }
+                            }
 
-async function mintReward(manifestBytes, steps, stateHash, ownerSig){
-    if(!tokenWrite) throw new Error('connectFVM first');
-    const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
-    await tx.wait();
-    alert('Reward minted on FVM');
-}
-window.connectFVM = connectFVM;
-window.signProof = signProof;
-window.mintReward = mintReward;
-</script>
-<!-- ====================================================================== -->
+                            async function snapshotState() {
+                                if (!ipfs) { alert('IPFS not ready'); return; }
+                                try {
+                                    log('Uploading snapshot...');
+                                    const { cid } = await ipfs.add(grabWorldState());
+                                    document.getElementById('cid').value = cid.toString();
+                                    log('Snapshot stored:', cid.toString());
+                                } catch (err) {
+                                    console.error('[MetaLife] Snapshot failed:', err);
+                                    alert('Snapshot failed – check console.');
+                                }
+                            }
+
+                            async function loadSnapshot() {
+                                const cidInput = document.getElementById('cid');
+                                if (!cidInput || !cidInput.value) return;
+                                const cidStr = cidInput.value.trim();
+                                if (!ipfs) { alert('IPFS not ready'); return; }
+                                try {
+                                    log('Fetching snapshot', cidStr);
+                                    let dataStr = '';
+                                    for await (const chunk of ipfs.cat(cidStr)) {
+                                        dataStr += new TextDecoder().decode(chunk);
+                                    }
+                                    const state = JSON.parse(dataStr);
+                                    applySeed(state.seed);
+                                    window.numberofComputationalStepsCompleted = state.step || 0;
+                                    window.allActiveCAs = state.caList || [];
+                                    if (window.reInitialize) window.reInitialize();
+                                    log('Snapshot loaded');
+                                } catch (err) {
+                                    console.error('[MetaLife] Load failed:', err);
+                                    alert('Load failed – check console.');
+                                }
+                            }
+
+                            applySeed();
+                    </script>
+                    <!-- ==== FVM Render-Reward integration ===================================== -->
+                    <script>
+                            const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
+                            const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
+                            const tokenAbi = [
+                                "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
+                            ];
+
+                            const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
+                            let fvmSigner = null;
+                            let tokenRead = null;
+                            let tokenWrite = null;
+
+                            async function connectFVM() {
+                                if (!window.ethereum) { alert('Wallet not found'); return; }
+                                await window.ethereum.request({
+                                    method: 'wallet_addEthereumChain',
+                                    params: [{
+                                        chainId: '0xC45',
+                                        chainName: 'Filecoin Hyperspace',
+                                        nativeCurrency: { name: 'tFIL', symbol: 'tFIL', decimals: 18 },
+                                        rpcUrls: [FVM_RPC],
+                                        blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
+                                    }]
+                                });
+                                await window.ethereum.request({ method: 'eth_requestAccounts' });
+                                fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+                                tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
+                                tokenWrite = tokenRead.connect(fvmSigner);
+                                console.log('[FVM] Connected', await fvmSigner.getAddress());
+                            }
+
+                            async function signProof(manifestBytes, steps, stateHash) {
+                                if (!fvmSigner) throw new Error('connectFVM first');
+                                const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes', 'uint256', 'bytes32'], [manifestBytes, steps, stateHash]));
+                                return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
+                            }
+
+                            async function mintReward(manifestBytes, steps, stateHash, ownerSig) {
+                                if (!tokenWrite) throw new Error('connectFVM first');
+                                const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
+                                await tx.wait();
+                                alert('Reward minted on FVM');
+                            }
+                            window.connectFVM = connectFVM;
+                            window.signProof = signProof;
+                            window.mintReward = mintReward;
+                    </script>
+                    <!-- ====================================================================== -->
                     </script>
 </body>
 
