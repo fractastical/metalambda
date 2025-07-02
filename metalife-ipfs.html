@@ -149,13 +149,16 @@
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
         CID <input id="cid" size="48" readonly><br>
         <button onclick="loadSnapshot()">Load CID</button>
-<button onclick="showBlockNumber()">Block #</button>
+<button onclick="showBlockNumber()">Block #</button>  Age: <span id="ageDisplay">–</span>
         <hr style="margin:4px 0">
         Duel Seeds A <input id="seedA" size="8"> B <input id="seedB" size="8"><br>
         Steps <input id="duelSteps" size="5" value="1000"><br>
         <button onclick="publishDuel()">Duel → IPFS</button><br>
         Manifest CID <input id="manifestCid" size="46"><br>
-        <button onclick="verifyDuel()">Verify CID</button>
+        <button onclick="verifyDuel()">Verify CID</button><br>
+        Index CID <input id="indexCid" size="46"><br>
+        <button onclick="refreshDuelList()">Refresh List</button><br>
+        <select id="duelList" size="4" style="width:98%" onchange="manifestCid.value=this.value"></select>
     </div>
 
     <div id="inputs">
@@ -933,12 +936,30 @@
                         let ipfs;
 const INFURA_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
 const ethProvider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);
+let genesisTimeMs = Date.now(); // overwritten after block fetch
                         let currentSeed = '0';
                         const ipfsNode = 'https://ipfs.infura.io:5001';
 
                         function log(...args) { console.log('[MetaLife]', ...args); }
 
-                        // ---- Ethereum helper ----
+                        // ---- Genesis / Age ----
+(async function initGenesis(){
+    try{
+        const blk = await ethProvider.getBlock('latest');
+        genesisTimeMs = blk.timestamp*1000;
+    }catch(e){ console.warn('Failed to fetch block timestamp, using now'); }
+})();
+setInterval(()=>{
+    const delta = Date.now()-genesisTimeMs;
+    const s = Math.floor(delta/1000);
+    const h = Math.floor(s/3600);
+    const m = Math.floor((s%3600)/60);
+    const sec = s%60;
+    const el=document.getElementById('ageDisplay');
+    if(el) el.textContent=`${h}h ${m}m ${sec}s`;
+},1000);
+
+// ---- Ethereum helper ----
 async function showBlockNumber(){
     try{
         const bn = await ethProvider.getBlockNumber();
@@ -1018,9 +1039,44 @@ async function showBlockNumber(){
                             const { cid: manifestCID } = await ipfs.add(manifest);
                             document.getElementById('manifestCid').value = manifestCID.toString();
                             alert('Manifest stored: ' + manifestCID);
+    // ---- update duel index ----
+    const indexInput = document.getElementById('indexCid');
+    if(indexInput && indexInput.value){
+        try{
+            let list=[];
+            let txt='';
+            for await(const c of ipfs.cat(indexInput.value.trim())) txt += new TextDecoder().decode(c);
+            list = JSON.parse(txt);
+            if(!Array.isArray(list)) list=[];
+        }catch(e){ list=[]; }
+        list.push(manifestCID.toString());
+        const { cid:newIndexCid } = await ipfs.add(JSON.stringify(list));
+        indexInput.value = newIndexCid.toString();
+        log('Index updated', newIndexCid.toString());
+    }
                         }
 
-                        async function verifyDuel() {
+                        async function refreshDuelList(){
+    const indexCid = document.getElementById('indexCid').value.trim();
+    if(!indexCid){ alert('Set Index CID first'); return; }
+    let txt='';
+    try{
+        for await(const c of ipfs.cat(indexCid)) txt += new TextDecoder().decode(c);
+        const list = JSON.parse(txt);
+        const sel = document.getElementById('duelList');
+        sel.innerHTML='';
+        list.forEach(cid=>{
+            const opt=document.createElement('option');
+            opt.value=cid; opt.textContent=cid.slice(0,10)+'…'+cid.slice(-4);
+            sel.appendChild(opt);
+        });
+    }catch(e){
+        console.error('Failed to load index',e);
+        alert('Failed to load index');
+    }
+}
+
+async function verifyDuel() {
                             if (!ipfs) { alert('IPFS not ready'); return; }
                             const cid = document.getElementById('manifestCid').value.trim();
                             if (!cid) { alert('No manifest CID'); return; }
