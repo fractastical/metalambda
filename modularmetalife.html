@@ -944,8 +944,9 @@
                     <script>
                         let ipfs;
                         const ethProvider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth');
-                        const PINATA_API_KEY = 'a8faa7a8feb27346a3bd';
-                        const PINATA_SECRET = '5280376f26a6f169ac6c713d209ee3e848d96b9a82d16cefc1a74d4037112e78';
+                        const PINATA_API_KEY = '93f5cca309fe273fcb8b';
+                        const PINATA_SECRET = '2d5bc4f4437bdb6bad92f7d0e79e0512e15fcc09fd4e435979a33b85dc02c859';
+                        const PINATA_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI5ZGRlOWFlNS0wYjIxLTQ0MGUtYWMzZC05NDllMTUxM2UwNjUiLCJlbWFpbCI6ImpkaWV0ekBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiOTNmNWNjYTMwOWZlMjczZmNiOGIiLCJzY29wZWRLZXlTZWNyZXQiOiIyZDViYzRmNDQzN2JkYjZiYWQ5MmY3ZDBlNzllMDUxMmUxNWZjYzA5ZmQ0ZTQzNTk3OWEzM2I4NWRjMDJjODU5IiwiZXhwIjoxNzgyOTgzNjAwfQ.F70pd6jxBmYhslA2N8YH8TV32uz43jRJyykNrI53Vrw';
                         const PINATA_GATEWAY = 'https://gateway.pinata.cloud/ipfs/';
                         let genesisTimeMs = Date.now(); // overwritten after block fetch
                         let currentSeed = '0';
@@ -1114,32 +1115,39 @@
                             if (window.reInitialize) window.reInitialize();
                         }
 
+                        // Initialize IPFS client with Pinata
                         (async () => {
                             try {
-                                try {
-                                    ipfs = {
-                                        add: async (dataStr) => {
-                                            const res = await fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', {
-                                                method: 'POST',
-                                                headers: {
-                                                    'Content-Type': 'application/json',
-                                                    'pinata_api_key': PINATA_API_KEY,
-                                                    'pinata_secret_api_key': PINATA_SECRET
-                                                },
-                                                body: JSON.stringify({ pinataContent: JSON.parse(dataStr) })
-                                            });
-                                            if (!res.ok) throw new Error(await res.text());
-                                            const { IpfsHash } = await res.json();
-                                            return { cid: { toString: () => IpfsHash } };
-                                        },
-                                        cat: async function* (cid) {
-                                            const r = await fetch(PINATA_GATEWAY + cid);
-                                            const reader = r.body.getReader();
-                                            while (true) {
-                                                const { done, value } = await reader.read();
-                                                if (done) break;
-                                                yield value;
-                            }) ();
+                                // Create wrapper for Pinata API
+                                ipfs = {
+                                    add: async (dataStr) => {
+                                        const res = await fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Authorization': `Bearer ${PINATA_JWT}`
+                                            },
+                                            body: JSON.stringify({ pinataContent: JSON.parse(dataStr) })
+                                        });
+                                        if (!res.ok) throw new Error(await res.text());
+                                        const { IpfsHash } = await res.json();
+                                        return { cid: { toString: () => IpfsHash } };
+                                    },
+                                    cat: async function* (cid) {
+                                        const r = await fetch(PINATA_GATEWAY + cid);
+                                        const reader = r.body.getReader();
+                                        while (true) {
+                                            const { done, value } = await reader.read();
+                                            if (done) break;
+                                            yield value;
+                                        }
+                                    }
+                                };
+                                log('Pinata client ready');
+                            } catch (err) {
+                                console.error('[MetaLife] Failed to init Pinata IPFS:', err);
+                            }
+                        })();
 
                             function mutate(parent, mutRate = parent.mutation || 10) {
                                 if (!parent || !parent.clone) return null;
