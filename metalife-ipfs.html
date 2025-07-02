@@ -149,7 +149,7 @@
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
         CID <input id="cid" size="48" readonly><br>
         <button onclick="loadSnapshot()">Load CID</button>
-<button onclick="showBlockNumber()">Block #</button>  Age: <span id="ageDisplay">–</span>
+        <button onclick="showBlockNumber()">Block #</button> Age: <span id="ageDisplay">–</span>
         <hr style="margin:4px 0">
         Duel Seeds A <input id="seedA" size="8"> B <input id="seedB" size="8"><br>
         Steps <input id="duelSteps" size="5" value="1000"><br>
@@ -163,7 +163,7 @@
 
     <div id="inputs">
 
-        <h2>Game of MetaLife 0.41</h2>
+        <h2>Game of MetaLife 0.44</h2>
 
         Address:<BR />
         <input id="address" type="text" size="45" onChange="reInitialize()"></input><BR />
@@ -348,17 +348,17 @@
                         }
 
                         var canvas = document.getElementById("layer2");
-                        let frameCount=0;
-var startRenderLoop = function (engine, canvas) {
+                        let frameCount = 0;
+                        var startRenderLoop = function (engine, canvas) {
                             engine.runRenderLoop(function () {
                                 if (sceneToRender && sceneToRender.activeCamera) {
                                     // evolve voxel automata every 3 frames
-            if(frameCount++ % 3===0 && window.allActiveCAs){
-                for(const ca of window.allActiveCAs){
-                    if(ca.liveVoxels) stepVoxels(ca);
-                }
-            }
-            sceneToRender.render();
+                                    if (frameCount++ % 3 === 0 && window.allActiveCAs) {
+                                        for (const ca of window.allActiveCAs) {
+                                            if (ca.liveVoxels) stepVoxels(ca);
+                                        }
+                                    }
+                                    sceneToRender.render();
                                 }
                             });
                         }
@@ -402,7 +402,7 @@ var startRenderLoop = function (engine, canvas) {
 
                             // This creates a basic Babylon Scene object (non-mesh)
                             var scene = new BABYLON.Scene(engine);
-const startingSize = 120;
+                            const startingSize = 120;
                             scene.clearColor = BABYLON.Color3.Black();
 
                             // ---- Decorative Spiral Curve Path ----
@@ -942,43 +942,43 @@ const startingSize = 120;
                     </script>
                     <script>
                         let ipfs;
-const INFURA_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
-const ethProvider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);
-let genesisTimeMs = Date.now(); // overwritten after block fetch
+                        const INFURA_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
+                        const ethProvider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);
+                        let genesisTimeMs = Date.now(); // overwritten after block fetch
                         let currentSeed = '0';
                         const ipfsNode = 'https://ipfs.infura.io:5001';
 
                         function log(...args) { console.log('[MetaLife]', ...args); }
 
                         // ---- Genesis / Age ----
-(async function initGenesis(){
-    try{
-        const blk = await ethProvider.getBlock('latest');
-        genesisTimeMs = blk.timestamp*1000;
-    }catch(e){ console.warn('Failed to fetch block timestamp, using now'); }
-})();
-setInterval(()=>{
-    const delta = Date.now()-genesisTimeMs;
-    const s = Math.floor(delta/1000);
-    const h = Math.floor(s/3600);
-    const m = Math.floor((s%3600)/60);
-    const sec = s%60;
-    const el=document.getElementById('ageDisplay');
-    if(el) el.textContent=`${h}h ${m}m ${sec}s`;
-},1000);
+                        (async function initGenesis() {
+                            try {
+                                const blk = await ethProvider.getBlock('latest');
+                                genesisTimeMs = blk.timestamp * 1000;
+                            } catch (e) { console.warn('Failed to fetch block timestamp, using now'); }
+                        })();
+                        setInterval(() => {
+                            const delta = Date.now() - genesisTimeMs;
+                            const s = Math.floor(delta / 1000);
+                            const h = Math.floor(s / 3600);
+                            const m = Math.floor((s % 3600) / 60);
+                            const sec = s % 60;
+                            const el = document.getElementById('ageDisplay');
+                            if (el) el.textContent = `${h}h ${m}m ${sec}s`;
+                        }, 1000);
 
-// ---- Ethereum helper ----
-async function showBlockNumber(){
-    try{
-        const bn = await ethProvider.getBlockNumber();
-        alert('Current main-net block: '+bn);
-    }catch(e){
-        console.error('[MetaLife] Block fetch failed',e);
-        alert('Failed to fetch block number');
-    }
-}
+                        // ---- Ethereum helper ----
+                        async function showBlockNumber() {
+                            try {
+                                const bn = await ethProvider.getBlockNumber();
+                                alert('Current main-net block: ' + bn);
+                            } catch (e) {
+                                console.error('[MetaLife] Block fetch failed', e);
+                                alert('Failed to fetch block number');
+                            }
+                        }
 
-// ---- Web3 wallet integration ----
+                        // ---- Web3 wallet integration ----
                         async function connectWallet(autoRequest = false) {
                             if (!window.ethereum) {
                                 if (!autoRequest) alert('No crypto wallet detected');
@@ -1047,44 +1047,44 @@ async function showBlockNumber(){
                             const { cid: manifestCID } = await ipfs.add(manifest);
                             document.getElementById('manifestCid').value = manifestCID.toString();
                             alert('Manifest stored: ' + manifestCID);
-    // ---- update duel index ----
-    const indexInput = document.getElementById('indexCid');
-    if(indexInput && indexInput.value){
-        try{
-            let list=[];
-            let txt='';
-            for await(const c of ipfs.cat(indexInput.value.trim())) txt += new TextDecoder().decode(c);
-            list = JSON.parse(txt);
-            if(!Array.isArray(list)) list=[];
-        }catch(e){ list=[]; }
-        list.push(manifestCID.toString());
-        const { cid:newIndexCid } = await ipfs.add(JSON.stringify(list));
-        indexInput.value = newIndexCid.toString();
-        log('Index updated', newIndexCid.toString());
-    }
+                            // ---- update duel index ----
+                            const indexInput = document.getElementById('indexCid');
+                            if (indexInput && indexInput.value) {
+                                try {
+                                    let list = [];
+                                    let txt = '';
+                                    for await (const c of ipfs.cat(indexInput.value.trim())) txt += new TextDecoder().decode(c);
+                                    list = JSON.parse(txt);
+                                    if (!Array.isArray(list)) list = [];
+                                } catch (e) { list = []; }
+                                list.push(manifestCID.toString());
+                                const { cid: newIndexCid } = await ipfs.add(JSON.stringify(list));
+                                indexInput.value = newIndexCid.toString();
+                                log('Index updated', newIndexCid.toString());
+                            }
                         }
 
-                        async function refreshDuelList(){
-    const indexCid = document.getElementById('indexCid').value.trim();
-    if(!indexCid){ alert('Set Index CID first'); return; }
-    let txt='';
-    try{
-        for await(const c of ipfs.cat(indexCid)) txt += new TextDecoder().decode(c);
-        const list = JSON.parse(txt);
-        const sel = document.getElementById('duelList');
-        sel.innerHTML='';
-        list.forEach(cid=>{
-            const opt=document.createElement('option');
-            opt.value=cid; opt.textContent=cid.slice(0,10)+'…'+cid.slice(-4);
-            sel.appendChild(opt);
-        });
-    }catch(e){
-        console.error('Failed to load index',e);
-        alert('Failed to load index');
-    }
-}
+                        async function refreshDuelList() {
+                            const indexCid = document.getElementById('indexCid').value.trim();
+                            if (!indexCid) { alert('Set Index CID first'); return; }
+                            let txt = '';
+                            try {
+                                for await (const c of ipfs.cat(indexCid)) txt += new TextDecoder().decode(c);
+                                const list = JSON.parse(txt);
+                                const sel = document.getElementById('duelList');
+                                sel.innerHTML = '';
+                                list.forEach(cid => {
+                                    const opt = document.createElement('option');
+                                    opt.value = cid; opt.textContent = cid.slice(0, 10) + '…' + cid.slice(-4);
+                                    sel.appendChild(opt);
+                                });
+                            } catch (e) {
+                                console.error('Failed to load index', e);
+                                alert('Failed to load index');
+                            }
+                        }
 
-async function verifyDuel() {
+                        async function verifyDuel() {
                             if (!ipfs) { alert('IPFS not ready'); return; }
                             const cid = document.getElementById('manifestCid').value.trim();
                             if (!cid) { alert('No manifest CID'); return; }
@@ -1115,14 +1115,14 @@ async function verifyDuel() {
                         (async () => {
                             try {
                                 const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
-const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
-const auth = `${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`;
-ipfs = window.IpfsHttpClient.create({
-    host: 'ipfs.infura.io',
-    port: 5001,
-    protocol: 'https',
-    headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
-});
+                                const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
+                                const auth = `${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`;
+                                ipfs = window.IpfsHttpClient.create({
+                                    host: 'ipfs.infura.io',
+                                    port: 5001,
+                                    protocol: 'https',
+                                    headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
+                                });
                                 await ipfs.id(); // simple call to ensure connectivity
                                 log('IPFS client ready');
                             } catch (err) {
@@ -1130,87 +1130,87 @@ ipfs = window.IpfsHttpClient.create({
                             }
                         })();
 
-                        function mutate(parent, mutRate = parent.mutation || 10){
-    if(!parent || !parent.clone) return null;
-    const child = parent.clone("ca_"+Math.floor(Math.random()*1e9));
-    // jitter position
-    child.position = parent.position.add(new BABYLON.Vector3(
-        (Math.random()-0.5)*4,
-        (Math.random()-0.5)*4,
-        (Math.random()-0.5)*4));
-    // mutate numeric genes
-    const jitter=(v)=> Math.max(1, v + (Math.random()*2-1)*mutRate);
-    child.xFreq = jitter(parent.xFreq||10);
-    child.yFreq = jitter(parent.yFreq||10);
-    child.zFreq = jitter(parent.zFreq||10);
-    child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq||10)));
-    child.mutation = parent.mutation; // keep same rate for now
-    child.energy = (parent.energy||10)/2;
-    parent.energy = child.energy; // share energy
-    // mutate color slightly
-    try{
-        const col = BABYLON.Color3.FromHexString(parent.color||"#ffffff");
-        const h = (col.r+col.g+col.b)/3;
-        const newCol = new BABYLON.Color3(
-            Math.min(1, Math.abs(col.r + (Math.random()-0.5)*0.2)),
-            Math.min(1, Math.abs(col.g + (Math.random()-0.5)*0.2)),
-            Math.min(1, Math.abs(col.b + (Math.random()-0.5)*0.2)));
-        child.material = parent.material.clone("mat_"+Date.now());
-        child.material.emissiveColor = newCol;
-        child.color = newCol.toHexString();
-    }catch(e){}
-    child.ruleMask = parent.ruleMask ^ (1<<Math.floor(Math.random()*32));
-child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
-allActiveCAs.push(child);
-    return child;
-}
+                        function mutate(parent, mutRate = parent.mutation || 10) {
+                            if (!parent || !parent.clone) return null;
+                            const child = parent.clone("ca_" + Math.floor(Math.random() * 1e9));
+                            // jitter position
+                            child.position = parent.position.add(new BABYLON.Vector3(
+                                (Math.random() - 0.5) * 4,
+                                (Math.random() - 0.5) * 4,
+                                (Math.random() - 0.5) * 4));
+                            // mutate numeric genes
+                            const jitter = (v) => Math.max(1, v + (Math.random() * 2 - 1) * mutRate);
+                            child.xFreq = jitter(parent.xFreq || 10);
+                            child.yFreq = jitter(parent.yFreq || 10);
+                            child.zFreq = jitter(parent.zFreq || 10);
+                            child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq || 10)));
+                            child.mutation = parent.mutation; // keep same rate for now
+                            child.energy = (parent.energy || 10) / 2;
+                            parent.energy = child.energy; // share energy
+                            // mutate color slightly
+                            try {
+                                const col = BABYLON.Color3.FromHexString(parent.color || "#ffffff");
+                                const h = (col.r + col.g + col.b) / 3;
+                                const newCol = new BABYLON.Color3(
+                                    Math.min(1, Math.abs(col.r + (Math.random() - 0.5) * 0.2)),
+                                    Math.min(1, Math.abs(col.g + (Math.random() - 0.5) * 0.2)),
+                                    Math.min(1, Math.abs(col.b + (Math.random() - 0.5) * 0.2)));
+                                child.material = parent.material.clone("mat_" + Date.now());
+                                child.material.emissiveColor = newCol;
+                                child.color = newCol.toHexString();
+                            } catch (e) { }
+                            child.ruleMask = parent.ruleMask ^ (1 << Math.floor(Math.random() * 32));
+                            child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
+                            allActiveCAs.push(child);
+                            return child;
+                        }
 
-function encodeCoord(x,y,z){return `${x},${y},${z}`;}
-function decodeCoord(s){const [x,y,z]=s.split(',').map(Number);return {x,y,z};}
+                        function encodeCoord(x, y, z) { return `${x},${y},${z}`; }
+                        function decodeCoord(s) { const [x, y, z] = s.split(',').map(Number); return { x, y, z }; }
 
-function stepVoxels(ca){
-    const live=ca.liveVoxels;
-    const counts=new Map();
-    live.forEach(key=>{
-        const {x,y,z}=decodeCoord(key);
-        for(let dx=-1;dx<=1;dx++)
-          for(let dy=-1;dy<=1;dy++)
-            for(let dz=-1;dz<=1;dz++){
-              if(dx||dy||dz){
-                const k=encodeCoord(x+dx,y+dy,z+dz);
-                counts.set(k,(counts.get(k)||0)+1);
-              }
-            }
-    });
-    const next=new Set();
-    counts.forEach((n,k)=>{
-        const alive=live.has(k);
-        const maskPart = alive ? (ca.ruleMask>>>16) : ca.ruleMask;
-        if(((maskPart>>n)&1)===1) next.add(k);
-    });
-    ca.liveVoxels=next;
-}
+                        function stepVoxels(ca) {
+                            const live = ca.liveVoxels;
+                            const counts = new Map();
+                            live.forEach(key => {
+                                const { x, y, z } = decodeCoord(key);
+                                for (let dx = -1; dx <= 1; dx++)
+                                    for (let dy = -1; dy <= 1; dy++)
+                                        for (let dz = -1; dz <= 1; dz++) {
+                                            if (dx || dy || dz) {
+                                                const k = encodeCoord(x + dx, y + dy, z + dz);
+                                                counts.set(k, (counts.get(k) || 0) + 1);
+                                            }
+                                        }
+                            });
+                            const next = new Set();
+                            counts.forEach((n, k) => {
+                                const alive = live.has(k);
+                                const maskPart = alive ? (ca.ruleMask >>> 16) : ca.ruleMask;
+                                if (((maskPart >> n) & 1) === 1) next.add(k);
+                            });
+                            ca.liveVoxels = next;
+                        }
 
-function serializeCA(ca){
-    if(!ca) return {};
-    return {
-        x: ca.position?.x || 0,
-        y: ca.position?.y || 0,
-        z: ca.position?.z || 0,
-        energy: ca.energy,
-        seed: ca.seed,
-        color: ca.color,
-        xFreq: ca.xFreq,
-        yFreq: ca.yFreq,
-        zFreq: ca.zFreq,
-        splitFreq: ca.splitFreq,
-        mutation: ca.mutation,
-        ruleMask: ca.ruleMask||0,
-        voxels: Array.from(ca.liveVoxels||[])
-    };
-}
+                        function serializeCA(ca) {
+                            if (!ca) return {};
+                            return {
+                                x: ca.position?.x || 0,
+                                y: ca.position?.y || 0,
+                                z: ca.position?.z || 0,
+                                energy: ca.energy,
+                                seed: ca.seed,
+                                color: ca.color,
+                                xFreq: ca.xFreq,
+                                yFreq: ca.yFreq,
+                                zFreq: ca.zFreq,
+                                splitFreq: ca.splitFreq,
+                                mutation: ca.mutation,
+                                ruleMask: ca.ruleMask || 0,
+                                voxels: Array.from(ca.liveVoxels || [])
+                            };
+                        }
 
-function grabWorldState() {
+                        function grabWorldState() {
                             try {
                                 const state = {
                                     seed: currentSeed,
