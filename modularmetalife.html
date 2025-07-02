@@ -943,11 +943,12 @@
                     </script>
                     <script>
                         let ipfs;
-                        const INFURA_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
-                        const ethProvider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);
+                        const ethProvider = new ethers.providers.JsonRpcProvider('https://rpc.ankr.com/eth');
+                        const PINATA_API_KEY = 'a8faa7a8feb27346a3bd';
+                        const PINATA_SECRET = '5280376f26a6f169ac6c713d209ee3e848d96b9a82d16cefc1a74d4037112e78';
+                        const PINATA_GATEWAY = 'https://gateway.pinata.cloud/ipfs/';
                         let genesisTimeMs = Date.now(); // overwritten after block fetch
                         let currentSeed = '0';
-                        const ipfsNode = 'https://ipfs.infura.io:5001'
 
                         function log(...args) { console.log('[MetaLife]', ...args); }
 
@@ -1116,38 +1117,28 @@
                         (async () => {
                             try {
                                 try {
-                                    const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
-                                    const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
-                                    ipfs = window.IpfsHttpClient.create({
-                                        host: 'ipfs.infura.io',
-                                        port: 5001,
-                                        protocol: 'https',
-                                        headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
-                                    });
-                                    await ipfs.id();
-                                    log('IPFS client ready');
-                                    const w3 = new Web3Storage({ token: W3_TOKEN });
-                                    // wrap minimal ipfs-like interface
                                     ipfs = {
                                         add: async (dataStr) => {
-                                            const cid = await w3.put([new File([dataStr], 'data.json')]);
-                                            return { cid: { toString: () => cid } };
+                                            const res = await fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'pinata_api_key': PINATA_API_KEY,
+                                                    'pinata_secret_api_key': PINATA_SECRET
+                                                },
+                                                body: JSON.stringify({ pinataContent: JSON.parse(dataStr) })
+                                            });
+                                            if (!res.ok) throw new Error(await res.text());
+                                            const { IpfsHash } = await res.json();
+                                            return { cid: { toString: () => IpfsHash } };
                                         },
                                         cat: async function* (cid) {
-                                            const res = await fetch(IPFS_GATEWAY + cid);
-                                            const reader = res.body.getReader();
+                                            const r = await fetch(PINATA_GATEWAY + cid);
+                                            const reader = r.body.getReader();
                                             while (true) {
                                                 const { done, value } = await reader.read();
                                                 if (done) break;
                                                 yield value;
-                                            }
-                                        }
-                                    } catch (err) {
-                                        console.error('Failed to init Infura IPFS', err);
-                                    }
-                                } catch (err) {
-                                    console.error('[MetaLife] Failed to init IPFS:', err);
-                                }
                             }) ();
 
                             function mutate(parent, mutRate = parent.mutation || 10) {
