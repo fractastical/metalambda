@@ -395,6 +395,7 @@
 
                             // This creates a basic Babylon Scene object (non-mesh)
                             var scene = new BABYLON.Scene(engine);
+const startingSize = 120;
                             scene.clearColor = BABYLON.Color3.Black();
 
                             // ---- Decorative Spiral Curve Path ----
@@ -1110,7 +1111,10 @@ async function verifyDuel() {
 const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
 const auth = `${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`;
 ipfs = window.IpfsHttpClient.create({
-    url: `https://${auth}@ipfs.infura.io:5001/api/v0`,
+    host: 'ipfs.infura.io',
+    port: 5001,
+    protocol: 'https',
+    headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
 });
                                 await ipfs.id(); // simple call to ensure connectivity
                                 log('IPFS client ready');
