@@ -180,6 +180,7 @@
         Seed <input id="seed" size="18" />
         <button onclick="applySeed()">Apply</button>
         <button onclick="connectWallet()">Wallet Seed</button><br>
+        <input id="snapshotName" placeholder="Snapshot Name" size="20" style="margin-right: 5px;">
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
         CID <input id="cid" size="48"><br>
         <button onclick="loadSnapshot()">Load CID</button>
@@ -1749,12 +1750,13 @@
                                 const cidStr = cid.toString();
 
                                 // Create snapshot entry
-                                const snapshotName = document.getElementById('snapshotName').value || `Snapshot ${Date.now()}`;
+                                const snapshotNameEl = document.getElementById('snapshotName');
+                                const snapshotName = snapshotNameEl ? snapshotNameEl.value : `Snapshot ${Date.now()}`;
                                 const snapshot = {
                                     cid: cidStr,
                                     name: snapshotName,
                                     timestamp: Date.now(),
-                                    description: `MetaLife state snapshot: ${cellularAutomata.length} life forms`
+                                    description: `MetaLife state snapshot: ${window.allActiveCAs ? window.allActiveCAs.length : 0} life forms`
                                 };
 
                                 // Add to registry
