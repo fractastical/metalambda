@@ -947,7 +947,7 @@
                         const ethProvider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);
                         let genesisTimeMs = Date.now(); // overwritten after block fetch
                         let currentSeed = '0';
-                        const ipfsNode = 'https://ipfs.infura.io:5001';
+                        const ipfsNode = 'https://ipfs.infura.io:5001'
 
                         function log(...args) { console.log('[MetaLife]', ...args); }
 
@@ -1115,17 +1115,36 @@
 
                         (async () => {
                             try {
+                                try {
                                 const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
                                 const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
-                                const auth = `${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`;
                                 ipfs = window.IpfsHttpClient.create({
                                     host: 'ipfs.infura.io',
                                     port: 5001,
                                     protocol: 'https',
                                     headers: { Authorization: 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`) }
                                 });
-                                await ipfs.id(); // simple call to ensure connectivity
+                                await ipfs.id();
                                 log('IPFS client ready');
+                                    const w3 = new Web3Storage({ token: W3_TOKEN });
+                                    // wrap minimal ipfs-like interface
+                                    ipfs = {
+                                        add: async (dataStr) => {
+                                            const cid = await w3.put([new File([dataStr], 'data.json')]);
+                                            return { cid: { toString: () => cid } };
+                                        },
+                                        cat: async function* (cid) {
+                                            const res = await fetch(IPFS_GATEWAY + cid);
+                                            const reader = res.body.getReader();
+                                            while (true) {
+                                                const { done, value } = await reader.read();
+                                                if (done) break;
+                                                yield value;
+                                            }
+                                        }
+                                                                } catch(err){
+                                console.error('Failed to init Infura IPFS', err);
+                            }
                             } catch (err) {
                                 console.error('[MetaLife] Failed to init IPFS:', err);
                             }
