@@ -1,30 +1,77 @@
-# MetaLambda: Elegant Lambda Calculus Representation
+# MetaLife: Decentralized Artificial Life with IPFS Integration
 
-[MetaLambda](https://metalambda.org/modularmetalife.html) is a decentralized, self-reproducing computational framework inspired by lambda calculus, artificial life, and graph rewriting. Below, we reduce its essence to a minimal, elegant open-bracketed lambda calculus term.
+[MetaLife](https://metalambda.org/modularmetalife.html) is a decentralized, self-reproducing computational framework inspired by lambda calculus, artificial life, and graph rewriting. The project combines 3D visualization, evolutionary algorithms, and decentralized storage to create a unique digital ecosystem.
 
-## Core Concepts
-- **Decentralized Computation**: Distributed nodes evolve via local graph rewrites.
-- **Self-Reproduction**: Nodes replicate, mimicking artificial life.
-- **Graph Rewriting**: Transformations are applied as function compositions.
+## Core Features
 
-## Lambda Calculus Representation
-We model MetaLambda as a single lambda term that captures a self-reproducing, rewriting system:
+### Artificial Life Simulation
+- **Self-Reproducing Organisms**: Digital life forms that can replicate, mutate, and evolve
+- **Directional Growth**: Life forms grow with genetic curving properties that determine their shape and direction
+- **Mutation System**: Organisms can mutate their properties, creating diverse evolutionary paths
+- **Energy System**: Life forms share energy during reproduction, creating natural selection pressures
 
-(λs.((λx.(x (x x))) (λr.(r (s s)))))
+### 3D Visualization
+- **Babylon.js Integration**: Real-time 3D rendering of the artificial life ecosystem
+- **Voxel-Based Representation**: Life forms are visualized as voxel structures in 3D space
+- **Interactive Camera**: Users can navigate the 3D space to observe life forms from different angles
+- **Simulation Controls**: Step controls (100 steps, 1000 steps) to advance the simulation
 
+### Protocol Labs Technology Integration
 
-### Breakdown
-- `λs`: Represents the system state.
-- `(λx.(x (x x)))`: A self-reproducing node that generates copies.
-- `(λr.(r (s s)))`: Applies rewriting rules to the system, enabling local transformations.
-- The term recursively applies itself, modeling a decentralized, evolving graph.
+#### IPFS (InterPlanetary File System)
+- **Snapshot System**: Save the entire state of your simulation to IPFS with a single click
+- **Decentralized Storage**: All snapshots are stored on IPFS, making them accessible from anywhere
+- **Snapshot Registry**: A collection of all saved snapshots, also stored on IPFS
+- **CID-Based Retrieval**: Load any snapshot using its Content Identifier (CID)
 
-This concise form uses open brackets `(` for elegance and encapsulates MetaLambda’s decentralized, alife-inspired computation.
+#### Filecoin Virtual Machine (FVM)
+- **Smart Contract Integration**: Experimental support for FVM contracts
+- **Wallet Connection**: Connect Ethereum wallets for seed generation and FVM interaction
 
-For more details, visit [MetaLambda](https://metalambda.org/modularmetalife.html).
+### User Interface
+- **Minimizable Panels**: Collapsible UI sections for better space management
+- **Snapshot Management**: Name, save, and load snapshots from the registry
+- **Simulation Controls**: Control the evolution speed with step buttons
+- **Seed System**: Use custom seeds or wallet-based seeds to initialize simulations
 
+## How It Works
 
-Lambda injection into various rendering engines for the purpose of creating MetaLife (https://youtu.be/HhNnnKV-h_Q). Deployed at http://metalambda.org
+### Snapshot System
+1. **Creating Snapshots**: Click "Snapshot → IPFS" to save the current state
+2. **Registry Management**: All snapshots are added to a registry, which is also stored on IPFS
+3. **Loading Snapshots**: Click on any snapshot in the registry to restore that exact state
+4. **Registry Persistence**: The registry CID is saved in localStorage and can be manually copied
 
+### Life Form Evolution
+1. **Initialization**: Life forms are created from seeds
+2. **Mutation**: During reproduction, genetic properties are slightly modified
+3. **Directional Growth**: Each life form has direction vectors and curve properties
+4. **Interaction**: Life forms can interact with each other in the 3D space
 
-see also this log: https://github.com/fractastical/metametaverse/blob/main/log.md
+## Getting Started
+
+1. Visit [MetaLife](https://metalambda.org/modularmetalife.html)
+2. Enter a seed value or connect your wallet for a seed
+3. Click "Apply" to initialize the simulation
+4. Use the step buttons to advance the simulation
+5. Save snapshots to IPFS when you find interesting states
+6. Explore the registry to view and load past snapshots
+
+## Technical Implementation
+
+MetaLife is built using:
+- **Babylon.js**: For 3D rendering and physics
+- **IPFS HTTP Client**: For decentralized storage
+- **Ethereum Integration**: For wallet connection and seed generation
+- **Custom Cellular Automata**: For life form behavior and evolution
+
+## Future Directions
+
+- Enhanced FVM integration for on-chain evolution
+- Multi-user shared environments
+- More complex genetic algorithms
+- Improved UI and visualization options
+
+For more details, visit [MetaLambda](https://metalambda.org/modularmetalife.html) or watch our [demo video](https://youtu.be/HhNnnKV-h_Q).
+
+See also this development log: https://github.com/fractastical/metametaverse/blob/main/log.md
