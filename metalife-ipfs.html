@@ -1123,7 +1123,40 @@ ipfs = window.IpfsHttpClient.create({
                             }
                         })();
 
-                        function serializeCA(ca){
+                        function mutate(parent, mutRate = parent.mutation || 10){
+    if(!parent || !parent.clone) return null;
+    const child = parent.clone("ca_"+Math.floor(Math.random()*1e9));
+    // jitter position
+    child.position = parent.position.add(new BABYLON.Vector3(
+        (Math.random()-0.5)*4,
+        (Math.random()-0.5)*4,
+        (Math.random()-0.5)*4));
+    // mutate numeric genes
+    const jitter=(v)=> Math.max(1, v + (Math.random()*2-1)*mutRate);
+    child.xFreq = jitter(parent.xFreq||10);
+    child.yFreq = jitter(parent.yFreq||10);
+    child.zFreq = jitter(parent.zFreq||10);
+    child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq||10)));
+    child.mutation = parent.mutation; // keep same rate for now
+    child.energy = (parent.energy||10)/2;
+    parent.energy = child.energy; // share energy
+    // mutate color slightly
+    try{
+        const col = BABYLON.Color3.FromHexString(parent.color||"#ffffff");
+        const h = (col.r+col.g+col.b)/3;
+        const newCol = new BABYLON.Color3(
+            Math.min(1, Math.abs(col.r + (Math.random()-0.5)*0.2)),
+            Math.min(1, Math.abs(col.g + (Math.random()-0.5)*0.2)),
+            Math.min(1, Math.abs(col.b + (Math.random()-0.5)*0.2)));
+        child.material = parent.material.clone("mat_"+Date.now());
+        child.material.emissiveColor = newCol;
+        child.color = newCol.toHexString();
+    }catch(e){}
+    allActiveCAs.push(child);
+    return child;
+}
+
+function serializeCA(ca){
     if(!ca) return {};
     return {
         x: ca.position?.x || 0,
