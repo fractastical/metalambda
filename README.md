@@ -83,3 +83,54 @@ The project demonstrates how decentralized storage can preserve complex computat
 Deployed at: http://metalambda.org
 
 Development log: https://github.com/fractastical/metametaverse/blob/main/log.md
+
+## Future Genetic Evolution Model
+
+The next generation of MetaLambda will implement a genetic breeding system where organisms can share and combine their computational DNA:
+
+1. **Breeding Mechanism**:
+   - When two organisms collide with sufficient energy, they may produce offspring
+   - The offspring inherits a combination of both parents' lambda expressions
+   - Code crossover occurs at randomly selected points in the parent lambda terms
+
+2. **Genetic Code Sharing**:
+   - Each organism carries a lambda expression representing its behavior
+   - During reproduction, sections of code are exchanged between parents
+   - Expression fragments are spliced together using lambda calculus composition rules
+   - Binding variables are properly renamed to maintain semantic integrity
+
+   ```
+   # Lambda calculus representation of genetic code sharing
+   
+   # Parent organisms with their lambda expressions
+   Parent1 = (λx.λy.(x (y x)))
+   Parent2 = (λa.λb.(b (a b)))
+   
+   # Genetic crossover at selected points
+   # Taking the head of Parent1 and tail of Parent2
+   Offspring1 = (λx.λb.(b (x b)))
+   
+   # Taking the head of Parent2 and tail of Parent1
+   Offspring2 = (λa.λy.(y (a y)))
+   
+   # Mutation operation (random term substitution)
+   Mutated = (λx.λy.(y (x y))) → (λx.λy.(y (x (x y))))
+   ```
+
+3. **Fitness and Selection**:
+   - Organisms with more successful traits (energy acquisition, longevity) have higher chances of reproduction
+   - Environmental pressures can be introduced to guide evolution
+   - Emergent behaviors can be selected for through multi-generational evolution
+   
+   ```
+   # Lambda calculus representation of fitness evaluation
+   
+   # Environment interaction function
+   Environment = (λorg.λres.(org res))
+   
+   # Organism evaluation in environment returns fitness score
+   Fitness = (Environment Organism Resources)
+   
+   # Selection probability proportional to fitness
+   SelectionProbability = (λorg.λpop.(Fitness org) / Σ(Fitness pop))
+   ```
