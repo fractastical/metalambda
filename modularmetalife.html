@@ -167,8 +167,16 @@
 <body>
 
     <!-- IPFS Snapshot Panel -->
-    <div id="snapPanel"
-        style="position:fixed;right:8px;top:8px;background:#fff;padding:8px;border:1px solid #999;font-size:12px;z-index:9999">
+    <div id="snapPanelMinimized" style="position:fixed;right:8px;top:8px;background:#fff;padding:8px;border:1px solid #999;font-size:12px;z-index:9999;display:none;cursor:pointer;" onclick="toggleSnapPanel()">
+        <strong>IPFS Snapshot Panel ►</strong>
+    </div>
+    
+    <div id="snapPanel" style="position:fixed;right:8px;top:8px;background:#fff;padding:8px;border:1px solid #999;font-size:12px;z-index:9999">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <strong>IPFS Snapshot Panel</strong>
+            <span style="cursor:pointer;font-weight:bold;" onclick="toggleSnapPanel()">▼</span>
+        </div>
+        
         Seed <input id="seed" size="18" />
         <button onclick="applySeed()">Apply</button>
         <button onclick="connectWallet()">Wallet Seed</button><br>
@@ -176,7 +184,13 @@
         CID <input id="cid" size="48"><br>
         <button onclick="loadSnapshot()">Load CID</button>
 
-        <h3>Snapshot Registry</h3>
+        <h3 style="cursor: pointer; user-select: none;" onclick="toggleSnapshotRegistry()">
+            <span id="registryToggle">▼</span> Snapshot Registry
+        </h3>
+        <div style="margin-bottom: 5px;">
+            <input id="registryCidInput" placeholder="Registry CID" size="40" style="font-size: 10px;">
+            <button onclick="loadRegistryFromCid()" style="font-size: 10px;">Load Registry</button>
+        </div>
         <div id="snapshotList"
             style="max-height: 200px; overflow-y: auto; margin-top: 10px; border: 1px solid #444; padding: 5px;">
             <!-- Snapshots will be listed here -->
@@ -390,19 +404,43 @@
                         // Update the UI with the snapshot list
                         function updateSnapshotListUI() {
                             const snapshotList = document.getElementById('snapshotList');
-                            if (!snapshotList) return;
+                            if (!snapshotList) {
+                                console.error('Snapshot list element not found');
+                                return;
+                            }
 
                             // Clear existing list
                             snapshotList.innerHTML = '';
-
+                            
+                            // Check if we have snapshots
+                            if (!snapshotRegistry || !snapshotRegistry.snapshots || !snapshotRegistry.snapshots.length) {
+                                snapshotList.innerHTML = '<div style="padding:5px;color:#666;">No snapshots found</div>';
+                                return;
+                            }
+                            
+                            log(`Updating UI with ${snapshotRegistry.snapshots.length} snapshots`);
+                            
                             // Add each snapshot to the list
                             snapshotRegistry.snapshots.forEach((snapshot, index) => {
+                                if (!snapshot || !snapshot.cid) return; // Skip invalid entries
+                                
                                 const item = document.createElement('div');
-                                item.className = 'snapshot-item';
+                                item.style.margin = '5px 0';
+                                item.style.padding = '5px';
+                                item.style.borderBottom = '1px solid #ddd';
+                                item.style.display = 'flex';
+                                item.style.justifyContent = 'space-between';
+                                item.style.alignItems = 'center';
+                                
+                                const date = snapshot.timestamp ? new Date(snapshot.timestamp).toLocaleString() : 'Unknown date';
+                                
                                 item.innerHTML = `
-                                    <span class="snapshot-name">${snapshot.name || `Snapshot ${index + 1}`}</span>
-                                    <span class="snapshot-date">${new Date(snapshot.timestamp).toLocaleString()}</span>
-                                    <button onclick="loadSnapshotById('${snapshot.cid}')">Load</button>
+                                    <div>
+                                        <div style="font-weight:bold;">${snapshot.name || `Snapshot ${index + 1}`}</div>
+                                        <div style="font-size:10px;color:#666;">${date}</div>
+                                        <div style="font-size:10px;color:#999;">${snapshot.cid.substring(0, 16)}...</div>
+                                    </div>
+                                    <button onclick="loadSnapshotById('${snapshot.cid}')" style="padding:3px 8px;cursor:pointer;">Load</button>
                                 `;
                                 snapshotList.appendChild(item);
                             });
@@ -416,29 +454,58 @@
 
                         // Load the registry from IPFS
                         async function loadSnapshotRegistry() {
-                            if (!ipfs) { log('IPFS not ready for registry load'); return; }
+                            if (!window.ipfs) { 
+                                log('IPFS not ready for registry load, will retry'); 
+                                setTimeout(() => loadSnapshotRegistry(), 2000);
+                                return; 
+                            }
+                            
+                            // Store reference to IPFS client
+                            ipfs = window.ipfs;
+                            
+                            // Debug all localStorage items
+                            log('Checking localStorage for registry CID...');
+                            for (let i = 0; i < localStorage.length; i++) {
+                                const key = localStorage.key(i);
+                                console.log(`localStorage[${key}] = ${localStorage.getItem(key)}`);
+                            }
 
                             // Check if we have a registry CID in localStorage
                             const registryCID = localStorage.getItem('metaLifeRegistryCID');
+                            log('Registry CID from localStorage: ' + (registryCID || 'not found'));
+                            
                             if (!registryCID) {
                                 log('No registry found, creating new one');
                                 return;
                             }
 
                             try {
-                                log('Loading snapshot registry:', registryCID);
+                                log('Loading snapshot registry from IPFS:', registryCID);
                                 let dataStr = '';
                                 for await (const chunk of ipfs.cat(registryCID)) {
                                     dataStr += new TextDecoder().decode(chunk);
                                 }
+                                
+                                if (!dataStr) {
+                                    log('Empty registry data received');
+                                    return;
+                                }
 
                                 const registry = JSON.parse(dataStr);
+                                if (!registry || !registry.snapshots || !Array.isArray(registry.snapshots)) {
+                                    log('Invalid registry format');
+                                    return;
+                                }
+                                
                                 snapshotRegistry = registry;
                                 snapshotRegistry.registryCID = registryCID;
                                 log(`Registry loaded with ${registry.snapshots.length} snapshots`);
 
-                                // Update the UI with snapshot list if needed
+                                // Update the UI with snapshot list
                                 updateSnapshotListUI();
+                                
+                                // Log the snapshots for debugging
+                                console.log('Loaded snapshots:', snapshotRegistry.snapshots);
                             } catch (err) {
                                 console.error('[MetaLife] Registry load failed:', err);
                                 log('Failed to load registry, starting fresh');
@@ -472,6 +539,56 @@
                                 stats.scrollTop = stats.scrollHeight;
                             }
                             console.log('[MetaLife]', message, ...args);
+                        }
+                        
+                        // Function to toggle the visibility of the snapshot registry
+                        function toggleSnapshotRegistry() {
+                            const snapshotList = document.getElementById('snapshotList');
+                            const toggleIcon = document.getElementById('registryToggle');
+                            
+                            if (snapshotList.style.display === 'none') {
+                                // Expand
+                                snapshotList.style.display = 'block';
+                                toggleIcon.innerHTML = '▼';
+                            } else {
+                                // Collapse
+                                snapshotList.style.display = 'none';
+                                toggleIcon.innerHTML = '►';
+                            }
+                        }
+                        
+                        // Function to manually load a registry from a CID
+                        async function loadRegistryFromCid() {
+                            const cidInput = document.getElementById('registryCidInput');
+                            if (!cidInput || !cidInput.value) {
+                                alert('Please enter a registry CID');
+                                return;
+                            }
+                            
+                            const cid = cidInput.value.trim();
+                            log('Manually loading registry from CID: ' + cid);
+                            
+                            // Save to localStorage
+                            localStorage.setItem('metaLifeRegistryCID', cid);
+                            
+                            // Load the registry
+                            await loadSnapshotRegistry();
+                        }
+                        
+                        // Function to toggle the entire IPFS Snapshot Panel
+                        function toggleSnapPanel() {
+                            const panel = document.getElementById('snapPanel');
+                            const minimized = document.getElementById('snapPanelMinimized');
+                            
+                            if (panel.style.display === 'none') {
+                                // Expand
+                                panel.style.display = 'block';
+                                minimized.style.display = 'none';
+                            } else {
+                                // Collapse
+                                panel.style.display = 'none';
+                                minimized.style.display = 'block';
+                            }
                         }
 
                         function startSimulation(steps = 1000) {
