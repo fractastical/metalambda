@@ -406,28 +406,7 @@
                             const startingSize = 120;
                             scene.clearColor = BABYLON.Color3.Black();
 
-                            // ---- Decorative Spiral Curve Path ----
-                            (function addCurvePath() {
-                                const points = [];
-                                const turns = 3;
-                                const radius = startingSize * 0.4;
-                                const height = startingSize * 0.8;
-                                const steps = 240;
-                                for (let i = 0; i <= steps; i++) {
-                                    const t = i / steps * Math.PI * 2 * turns;
-                                    points.push(new BABYLON.Vector3(
-                                        radius * Math.cos(t),
-                                        (i / steps - 0.5) * height,
-                                        radius * Math.sin(t)
-                                    ));
-                                }
-                                const tube = BABYLON.MeshBuilder.CreateTube("curvePath", { path: points, radius: 0.3, updatable: false }, scene);
-                                const mat = new BABYLON.StandardMaterial("curveMat", scene);
-                                mat.emissiveColor = new BABYLON.Color3(0, 0.7, 1);
-                                mat.alpha = 0.6;
-                                tube.material = mat;
-                                tube.isPickable = false;
-                            })();
+                            // No decorative spiral - removed
 
                             /* window.cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
                                 size: 1
@@ -1152,13 +1131,61 @@
                             function mutate(parent, mutRate = parent.mutation || 10) {
                                 if (!parent || !parent.clone) return null;
                                 const child = parent.clone("ca_" + Math.floor(Math.random() * 1e9));
-                                // jitter position
-                                child.position = parent.position.add(new BABYLON.Vector3(
-                                    (Math.random() - 0.5) * 4,
-                                    (Math.random() - 0.5) * 4,
-                                    (Math.random() - 0.5) * 4));
-                                // mutate numeric genes
+                                
+                                // Initialize or inherit direction vector
+                                if (!parent.direction) {
+                                    parent.direction = new BABYLON.Vector3(
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1
+                                    ).normalize();
+                                }
+                                
+                                // Curve parameters - new genetic properties
+                                if (!parent.curveFactor) parent.curveFactor = 0.2 + Math.random() * 0.6; // How much it curves
+                                if (!parent.curveAxis) {
+                                    // Random perpendicular axis to curve around
+                                    const perpVec = new BABYLON.Vector3(
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1
+                                    ).normalize();
+                                    parent.curveAxis = BABYLON.Vector3.Cross(parent.direction, perpVec).normalize();
+                                }
+                                
+                                // Inherit and mutate direction
+                                child.direction = parent.direction.clone();
+                                // Apply gentle curve to direction
+                                const rotationQuat = BABYLON.Quaternion.RotationAxis(
+                                    parent.curveAxis, 
+                                    parent.curveFactor * 0.1 * Math.PI
+                                );
+                                child.direction = child.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3());
+                                
+                                // Add small random jitter to direction
+                                const jitterVec = new BABYLON.Vector3(
+                                    (Math.random() * 2 - 1) * 0.2,
+                                    (Math.random() * 2 - 1) * 0.2,
+                                    (Math.random() * 2 - 1) * 0.2
+                                );
+                                child.direction.addInPlace(jitterVec).normalize();
+                                
+                                // Position child along the curved direction
+                                child.position = parent.position.add(child.direction.scale(3 + Math.random() * 2));
+                                
+                                // Mutate curve properties
                                 const jitter = (v) => Math.max(1, v + (Math.random() * 2 - 1) * mutRate);
+                                child.curveFactor = Math.max(0.05, Math.min(0.9, parent.curveFactor + (Math.random() * 0.4 - 0.2)));
+                                
+                                // Slightly rotate curve axis
+                                const axisRotation = BABYLON.Quaternion.RotationAxis(
+                                    child.direction,
+                                    (Math.random() * 0.4 - 0.2) * Math.PI
+                                );
+                                child.curveAxis = parent.curveAxis.clone();
+                                child.curveAxis = child.curveAxis.rotateByQuaternionToRef(axisRotation, new BABYLON.Vector3()).normalize();
+                                
+                                // Original gene mutations
                                 child.xFreq = jitter(parent.xFreq || 10);
                                 child.yFreq = jitter(parent.yFreq || 10);
                                 child.zFreq = jitter(parent.zFreq || 10);
@@ -1190,23 +1217,98 @@
                             function stepVoxels(ca) {
                                 const live = ca.liveVoxels;
                                 const counts = new Map();
+                                
+                                // Initialize direction if not present
+                                if (!ca.direction) {
+                                    ca.direction = new BABYLON.Vector3(
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1
+                                    ).normalize();
+                                    ca.curveFactor = 0.2 + Math.random() * 0.6;
+                                    
+                                    // Create perpendicular axis for curving
+                                    const perpVec = new BABYLON.Vector3(
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1,
+                                        Math.random() * 2 - 1
+                                    ).normalize();
+                                    ca.curveAxis = BABYLON.Vector3.Cross(ca.direction, perpVec).normalize();
+                                }
+                                
+                                // Slightly evolve direction over time for continuous curving
+                                const rotationQuat = BABYLON.Quaternion.RotationAxis(
+                                    ca.curveAxis, 
+                                    ca.curveFactor * 0.02 * Math.PI
+                                );
+                                ca.direction = ca.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3()).normalize();
+                                
+                                // Count neighbors with directional bias
                                 live.forEach(key => {
                                     const { x, y, z } = decodeCoord(key);
+                                    
+                                    // Calculate center of mass for this CA
+                                    if (!ca.centerOfMass) {
+                                        ca.centerOfMass = { x: 0, y: 0, z: 0, count: 0 };
+                                        live.forEach(voxKey => {
+                                            const pos = decodeCoord(voxKey);
+                                            ca.centerOfMass.x += pos.x;
+                                            ca.centerOfMass.y += pos.y;
+                                            ca.centerOfMass.z += pos.z;
+                                            ca.centerOfMass.count++;
+                                        });
+                                        if (ca.centerOfMass.count > 0) {
+                                            ca.centerOfMass.x /= ca.centerOfMass.count;
+                                            ca.centerOfMass.y /= ca.centerOfMass.count;
+                                            ca.centerOfMass.z /= ca.centerOfMass.count;
+                                        }
+                                    }
+                                    
                                     for (let dx = -1; dx <= 1; dx++)
                                         for (let dy = -1; dy <= 1; dy++)
                                             for (let dz = -1; dz <= 1; dz++) {
                                                 if (dx || dy || dz) {
-                                                    const k = encodeCoord(x + dx, y + dy, z + dz);
-                                                    counts.set(k, (counts.get(k) || 0) + 1);
+                                                    const nx = x + dx;
+                                                    const ny = y + dy;
+                                                    const nz = z + dz;
+                                                    const k = encodeCoord(nx, ny, nz);
+                                                    
+                                                    // Calculate directional bias
+                                                    let weight = 1.0;
+                                                    
+                                                    // Vector from center of mass to this neighbor
+                                                    const growthVec = new BABYLON.Vector3(
+                                                        nx - ca.centerOfMass.x,
+                                                        ny - ca.centerOfMass.y,
+                                                        nz - ca.centerOfMass.z
+                                                    ).normalize();
+                                                    
+                                                    // Favor growth in the direction of the curve
+                                                    const alignment = BABYLON.Vector3.Dot(growthVec, ca.direction);
+                                                    
+                                                    // Boost weight for cells growing in the preferred direction
+                                                    if (alignment > 0) {
+                                                        weight = 1.0 + alignment * 0.5;
+                                                    }
+                                                    
+                                                    counts.set(k, (counts.get(k) || 0) + weight);
                                                 }
                                             }
                                 });
+                                
                                 const next = new Set();
                                 counts.forEach((n, k) => {
                                     const alive = live.has(k);
                                     const maskPart = alive ? (ca.ruleMask >>> 16) : ca.ruleMask;
-                                    if (((maskPart >> n) & 1) === 1) next.add(k);
+                                    
+                                    // Round to nearest integer for rule application
+                                    const nInt = Math.round(n);
+                                    
+                                    if (((maskPart >> nInt) & 1) === 1) next.add(k);
                                 });
+                                
+                                // Reset center of mass for next step
+                                ca.centerOfMass = null;
                                 ca.liveVoxels = next;
                             }
 
