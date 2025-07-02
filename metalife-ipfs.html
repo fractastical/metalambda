@@ -388,6 +388,29 @@ an up the ogher
                             var scene = new BABYLON.Scene(engine);
                             scene.clearColor = BABYLON.Color3.Black();
 
+        // ---- Decorative Spiral Curve Path ----
+        (function addCurvePath() {
+            const points = [];
+            const turns = 3;
+            const radius = startingSize * 0.4;
+            const height = startingSize * 0.8;
+            const steps = 240;
+            for (let i = 0; i <= steps; i++) {
+                const t = i / steps * Math.PI * 2 * turns;
+                points.push(new BABYLON.Vector3(
+                    radius * Math.cos(t),
+                    (i / steps - 0.5) * height,
+                    radius * Math.sin(t)
+                ));
+            }
+            const tube = BABYLON.MeshBuilder.CreateTube("curvePath", { path: points, radius: 0.3, updatable: false }, scene);
+            const mat = new BABYLON.StandardMaterial("curveMat", scene);
+            mat.emissiveColor = new BABYLON.Color3(0, 0.7, 1);
+            mat.alpha = 0.6;
+            tube.material = mat;
+            tube.isPickable = false;
+        })();
+
                             /* window.cubePattern = BABYLON.MeshBuilder.CreateBox("box", {
                                 size: 1
                             }, scene);
@@ -804,11 +827,42 @@ an up the ogher
                             }, 50000);
 
 
-                            scene.beforeRender = () => {
+                            const INTERACTION_DIST = 4; // units
+
+        scene.beforeRender = () => {
 
                                 metaEnergyCount++;
                                 if (numberofComputationalStepsCompleted > 0 && numberofComputationalStepsCompleted <= MAXSTEPS)
                                     runOneStep();
+
+            // --- Lifeform interactions ---
+            if (window.allActiveCAs && allActiveCAs.length > 1) {
+                for (let i = 0; i < allActiveCAs.length; i++) {
+                    for (let j = i + 1; j < allActiveCAs.length; j++) {
+                        const a = allActiveCAs[i];
+                        const b = allActiveCAs[j];
+                        if (!a || !b) continue;
+                        const dist = BABYLON.Vector3.Distance(a.position, b.position);
+                        if (dist < INTERACTION_DIST) {
+                            // blend colors
+                            const colA = a.material.emissiveColor;
+                            const colB = b.material.emissiveColor;
+                            const blended = new BABYLON.Color3(
+                                (colA.r + colB.r) / 2,
+                                (colA.g + colB.g) / 2,
+                                (colA.b + colB.b) / 2
+                            );
+                            a.material.emissiveColor = blended;
+                            b.material.emissiveColor = blended;
+
+                            // slight push apart to avoid overlap
+                            const dir = a.position.subtract(b.position).normalize().scale(0.1);
+                            a.position.addInPlace(dir);
+                            b.position.addInPlace(dir.scale(-1));
+                        }
+                    }
+                }
+            }
 
                             };
 
