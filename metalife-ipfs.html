@@ -1052,10 +1052,9 @@ async function showBlockNumber(){
                             try {
                                 const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
 const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
-const authHeader = 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`);
+const auth = `${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`;
 ipfs = window.IpfsHttpClient.create({
-    url: `${ipfsNode}/api/v0`,
-    headers: { Authorization: authHeader }
+    url: `https://${auth}@ipfs.infura.io:5001/api/v0`,
 });
                                 await ipfs.id(); // simple call to ensure connectivity
                                 log('IPFS client ready');
@@ -1064,12 +1063,29 @@ ipfs = window.IpfsHttpClient.create({
                             }
                         })();
 
-                        function grabWorldState() {
+                        function serializeCA(ca){
+    if(!ca) return {};
+    return {
+        x: ca.position?.x || 0,
+        y: ca.position?.y || 0,
+        z: ca.position?.z || 0,
+        energy: ca.energy,
+        seed: ca.seed,
+        color: ca.color,
+        xFreq: ca.xFreq,
+        yFreq: ca.yFreq,
+        zFreq: ca.zFreq,
+        splitFreq: ca.splitFreq,
+        mutation: ca.mutation
+    };
+}
+
+function grabWorldState() {
                             try {
                                 const state = {
                                     seed: currentSeed,
                                     step: window.numberofComputationalStepsCompleted || 0,
-                                    caList: (window.allActiveCAs || []).map(ca => ({ ...ca }))
+                                    caList: (window.allActiveCAs || []).map(ca => serializeCA(ca))
                                 };
                                 const ordered = {};
                                 Object.keys(state).sort().forEach(k => { ordered[k] = state[k]; });
