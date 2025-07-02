@@ -353,6 +353,125 @@
                     <script src="./metalambda.js"></script>
 
                     <script>
+                        // Global registry of all snapshots
+                        let snapshotRegistry = {
+                            registryCID: null,  // CID of the registry itself
+                            snapshots: [],      // Array of snapshot metadata
+                            lastUpdate: 0       // Timestamp of last update
+                        };
+                        
+                        // Save the registry to IPFS
+                        async function saveSnapshotRegistry() {
+                            if (!ipfs) { log('IPFS not ready for registry save'); return; }
+                            
+                            try {
+                                // Update timestamp
+                                snapshotRegistry.lastUpdate = Date.now();
+                                
+                                // Save to IPFS
+                                const { cid } = await ipfs.add(JSON.stringify(snapshotRegistry));
+                                const cidStr = cid.toString();
+                                
+                                // Update registry with its own CID
+                                snapshotRegistry.registryCID = cidStr;
+                                
+                                // Store in localStorage for persistence
+                                localStorage.setItem('metaLifeRegistryCID', cidStr);
+                                
+                                log(`Registry updated with ${snapshotRegistry.snapshots.length} snapshots, CID: ${cidStr}`);
+                                return cidStr;
+                            } catch (err) {
+                                console.error('[MetaLife] Registry save failed:', err);
+                                return null;
+                            }
+                        }
+                        
+                        // Update the UI with the snapshot list
+                        function updateSnapshotListUI() {
+                            const snapshotList = document.getElementById('snapshotList');
+                            if (!snapshotList) return;
+                            
+                            // Clear existing list
+                            snapshotList.innerHTML = '';
+                            
+                            // Add each snapshot to the list
+                            snapshotRegistry.snapshots.forEach((snapshot, index) => {
+                                const item = document.createElement('div');
+                                item.className = 'snapshot-item';
+                                item.innerHTML = `
+                                    <span class="snapshot-name">${snapshot.name || `Snapshot ${index+1}`}</span>
+                                    <span class="snapshot-date">${new Date(snapshot.timestamp).toLocaleString()}</span>
+                                    <button onclick="loadSnapshotById('${snapshot.cid}')">Load</button>
+                                `;
+                                snapshotList.appendChild(item);
+                            });
+                        }
+                        
+                        // Load a snapshot by its ID from the registry
+                        async function loadSnapshotById(cid) {
+                            document.getElementById('cid').value = cid;
+                            await loadSnapshot();
+                        }
+                        
+                        // Load the registry from IPFS
+                        async function loadSnapshotRegistry() {
+                            if (!ipfs) { log('IPFS not ready for registry load'); return; }
+                            
+                            // Check if we have a registry CID in localStorage
+                            const registryCID = localStorage.getItem('metaLifeRegistryCID');
+                            if (!registryCID) {
+                                log('No registry found, creating new one');
+                                return;
+                            }
+                            
+                            try {
+                                log('Loading snapshot registry:', registryCID);
+                                let dataStr = '';
+                                for await (const chunk of ipfs.cat(registryCID)) {
+                                    dataStr += new TextDecoder().decode(chunk);
+                                }
+                                
+                                const registry = JSON.parse(dataStr);
+                                snapshotRegistry = registry;
+                                snapshotRegistry.registryCID = registryCID;
+                                log(`Registry loaded with ${registry.snapshots.length} snapshots`);
+                                
+                                // Update the UI with snapshot list if needed
+                                updateSnapshotListUI();
+                            } catch (err) {
+                                console.error('[MetaLife] Registry load failed:', err);
+                                log('Failed to load registry, starting fresh');
+                            }
+                        }
+                        
+                        // Initialize the app with registry loading
+                        (function initializeApp() {
+                            // Wait for IPFS to be ready
+                            const checkIpfs = () => {
+                                if (window.ipfs) {
+                                    log('IPFS ready, loading snapshot registry...');
+                                    loadSnapshotRegistry();
+                                } else {
+                                    setTimeout(checkIpfs, 1000); // Check again in 1 second
+                                }
+                            };
+                            
+                            // Start checking for IPFS after page load
+                            window.addEventListener('load', () => {
+                                setTimeout(checkIpfs, 2000); // Give IPFS time to initialize
+                            });
+                        })();
+                        
+                        // Helper function to log messages
+                        function log(message, ...args) {
+                            const stats = document.getElementById('stats');
+                            if (stats) {
+                                const timestamp = new Date().toLocaleTimeString();
+                                stats.innerHTML += `<br/>${timestamp} ${message} ${args.join(' ')}`;
+                                stats.scrollTop = stats.scrollHeight;
+                            }
+                            console.log('[MetaLife]', message, ...args);
+                        }
 
                         function startSimulation() {
 
@@ -1353,7 +1472,19 @@
                                 splitFreq: ca.splitFreq,
                                 mutation: ca.mutation,
                                 ruleMask: ca.ruleMask || 0,
-                                voxels: Array.from(ca.liveVoxels || [])
+                                voxels: Array.from(ca.liveVoxels || []),
+                                // New directional properties
+                                direction: ca.direction ? {
+                                    x: ca.direction.x,
+                                    y: ca.direction.y,
+                                    z: ca.direction.z
+                                } : null,
+                                curveFactor: ca.curveFactor || 0.2,
+                                curveAxis: ca.curveAxis ? {
+                                    x: ca.curveAxis.x,
+                                    y: ca.curveAxis.y,
+                                    z: ca.curveAxis.z
+                                } : null
                             };
                         }
 
@@ -1371,168 +1502,77 @@
                                 console.error('[MetaLife] Failed to grab state:', err);
                                 return '{}';
                             }
-                            // Global registry of all snapshots
-                            let snapshotRegistry = {
-                                registryCID: null,  // CID of the registry itself
-                                snapshots: [],      // Array of snapshot metadata
-                                lastUpdate: 0       // Timestamp of last update
-                            };
+                        }
 
-                            // Load the registry from IPFS
-                            async function loadSnapshotRegistry() {
-                                if (!ipfs) { log('IPFS not ready for registry load'); return; }
-
-                                // Check if we have a registry CID in localStorage
-                                const registryCID = localStorage.getItem('metaLifeRegistryCID');
-                                if (!registryCID) {
-                                    log('No registry found, creating new one');
-                                    return;
+                        async function loadSnapshot() {
+                            const cidInput = document.getElementById('cid');
+                            if (!cidInput || !cidInput.value) return;
+                            const cidStr = cidInput.value.trim();
+                            if (!ipfs) { alert('IPFS not ready'); return; }
+                            try {
+                                log('Fetching snapshot', cidStr);
+                                let dataStr = '';
+                                for await (const chunk of ipfs.cat(cidStr)) {
+                                    dataStr += new TextDecoder().decode(chunk);
                                 }
-
-                                try {
-                                    log('Loading snapshot registry:', registryCID);
-                                    let dataStr = '';
-                                    for await (const chunk of ipfs.cat(registryCID)) {
-                                        dataStr += new TextDecoder().decode(chunk);
-                                    }
-
-                                    const registry = JSON.parse(dataStr);
-                                    snapshotRegistry = registry;
-                                    snapshotRegistry.registryCID = registryCID;
-                                    log(`Registry loaded with ${registry.snapshots.length} snapshots`);
-
-                                    // Update the UI with snapshot list if needed
-                                    updateSnapshotListUI();
-                                } catch (err) {
-                                    console.error('[MetaLife] Registry load failed:', err);
-                                    log('Failed to load registry, starting fresh');
-                                }
+                                const state = JSON.parse(dataStr);
+                                applySeed(state.seed);
+                                window.numberofComputationalStepsCompleted = state.step || 0;
+                                window.allActiveCAs = state.caList || [];
+                                if (window.reInitialize) window.reInitialize();
+                                log('Snapshot loaded');
+                            } catch (err) {
+                                console.error('[MetaLife] Load failed:', err);
+                                alert('Load failed – check console.');
                             }
+                        }
 
-                            // Save the registry to IPFS
-                            async function saveSnapshotRegistry() {
-                                if (!ipfs) { log('IPFS not ready for registry save'); return; }
-
-                                try {
-                                    // Update timestamp
-                                    snapshotRegistry.lastUpdate = Date.now();
-
-                                    // Save to IPFS
-                                    const { cid } = await ipfs.add(JSON.stringify(snapshotRegistry));
-                                    const cidStr = cid.toString();
-
-                                    // Update registry with its own CID
-                                    snapshotRegistry.registryCID = cidStr;
-
-                                    // Store in localStorage for persistence
-                                    localStorage.setItem('metaLifeRegistryCID', cidStr);
-
-                                    log(`Registry updated with ${snapshotRegistry.snapshots.length} snapshots, CID: ${cidStr}`);
-                                    return cidStr;
-                                } catch (err) {
-                                    console.error('[MetaLife] Registry save failed:', err);
-                                    return null;
-                                }
-                            }
-
-                            // Update the UI with the snapshot list
-                            function updateSnapshotListUI() {
-                                const snapshotList = document.getElementById('snapshotList');
-                                if (!snapshotList) return;
-
-                                // Clear existing list
-                                snapshotList.innerHTML = '';
-
-                                // Add each snapshot to the list
-                                snapshotRegistry.snapshots.forEach((snapshot, index) => {
-                                    const item = document.createElement('div');
-                                    item.className = 'snapshot-item';
-                                    item.innerHTML = `
-                                        <span class="snapshot-name">${snapshot.name || `Snapshot ${index + 1}`}</span>
-                                        <span class="snapshot-date">${new Date(snapshot.timestamp).toLocaleString()}</span>
-                                        <button onclick="loadSnapshotById('${snapshot.cid}')">Load</button>
-                                    `;
-                                    snapshotList.appendChild(item);
+                        async function snapshotState() {
+                            if (!ipfs) { alert('IPFS not ready'); return; }
+                            try {
+                                log('Uploading snapshot...');
+                                
+                                // Create the snapshot using the grabWorldState function
+                                const worldState = grabWorldState();
+                                const { cid } = await ipfs.add(worldState);
+                                const cidStr = cid.toString();
+                                document.getElementById('cid').value = cidStr;
+                                
+                                // Add to registry
+                                const snapshotName = prompt('Give this snapshot a name:', `Snapshot ${snapshotRegistry.snapshots.length + 1}`);
+                                
+                                // Add metadata to registry
+                                snapshotRegistry.snapshots.push({
+                                    cid: cidStr,
+                                    name: snapshotName || `Snapshot ${snapshotRegistry.snapshots.length + 1}`,
+                                    timestamp: Date.now(),
+                                    lifeFormCount: (window.allActiveCAs || []).length
                                 });
+                                
+                                // Save updated registry
+                                await saveSnapshotRegistry();
+                                
+                                // Update UI
+                                updateSnapshotListUI();
+                                
+                                log('Snapshot stored:', cidStr);
+                            } catch (err) {
+                                console.error('[MetaLife] Snapshot failed:', err);
+                                alert('Snapshot failed – check console.');
                             }
+                        }
 
-                            // Load a snapshot by its ID from the registry
-                            async function loadSnapshotById(cid) {
-                                document.getElementById('cid').value = cid;
-                                await loadSnapshot();
-                            }
-
-                            // Take snapshot and add to registry
-                            async function snapshotState() {
-                                if (!ipfs) { alert('IPFS not ready'); return; }
-                                try {
-                                    log('Uploading snapshot...');
-
-                                    // Create the snapshot
-                                    const { cid } = await ipfs.add(grabWorldState());
-                                    const cidStr = cid.toString();
-                                    document.getElementById('cid').value = cidStr;
-
-                                    // Add to registry
-                                    const snapshotName = prompt('Give this snapshot a name:', `Snapshot ${snapshotRegistry.snapshots.length + 1}`);
-
-                                    snapshotRegistry.snapshots.push({
-                                        cid: cidStr,
-                                        name: snapshotName || `Snapshot ${snapshotRegistry.snapshots.length + 1}`,
-                                        timestamp: Date.now(),
-                                        lifeFormCount: (window.allActiveCAs || []).length
-                                    });
-
-                                    // Save updated registry
-                                    await saveSnapshotRegistry();
-
-                                    // Update UI
-                                    updateSnapshotListUI();
-
-                                    log('Snapshot stored:', cidStr);
-                                } catch (err) {
-                                    console.error('[MetaLife] Snapshot failed:', err);
-                                    alert('Snapshot failed – check console.');
-                                }
-                            }
-
-                            async function loadSnapshot() {
-                                const cidInput = document.getElementById('cid');
-                                if (!cidInput || !cidInput.value) return;
-                                const cidStr = cidInput.value.trim();
-                                if (!ipfs) { alert('IPFS not ready'); return; }
-                                try {
-                                    log('Fetching snapshot', cidStr);
-                                    let dataStr = '';
-                                    for await (const chunk of ipfs.cat(cidStr)) {
-                                        dataStr += new TextDecoder().decode(chunk);
-                                    }
-                                    const state = JSON.parse(dataStr);
-                                    applySeed(state.seed);
-                                    window.numberofComputationalStepsCompleted = state.step || 0;
-                                    window.allActiveCAs = state.caList || [];
-                                    if (window.reInitialize) window.reInitialize();
-                                    log('Snapshot loaded');
-                                } catch (err) {
-                                    console.error('[MetaLife] Load failed:', err);
-                                    alert('Load failed – check console.');
-                                }
-                            }
+                        // This is a placeholder to avoid duplicate function definition
+                        // The real loadSnapshotRegistry function is defined in the global scope
 
                             // Initialize the app with registry loading
                             (async function initializeApp() {
                                 // Wait for IPFS to be ready
-                                const checkIpfs = () => {
-                                    if (ipfs) {
-                                        log('IPFS ready, loading snapshot registry...');
-                                        loadSnapshotRegistry();
-                                    } else {
-                                        setTimeout(checkIpfs, 1000); // Check again in 1 second
-                                    }
-                                };
-
-                                // Start checking for IPFS
-                                checkIpfs();
+                                while (!ipfs) {
+                                    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+                                }
+                                log('IPFS ready, loading snapshot registry...');
+                                loadSnapshotRegistry();
                             })();
 
                             applySeed();
