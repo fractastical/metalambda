@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="theme-color" content="#000000" />
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />
 
 
-    <!-- Babylon.js -->
+  <!-- Babylon.js -->
 
-<style>
-    html, body {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
+  <style>
+    html,
+    body {
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     /* #renderCanvas {
@@ -27,11 +26,11 @@
     }
  */
     #gameCanvas {
-                position: absolute;
-                top: 287px;
-                left: 410px;
+      position: absolute;
+      top: 287px;
+      left: 410px;
 
-              }
+    }
 
     .header {
       padding: 20px;
@@ -43,226 +42,238 @@
     }
 
 
-#inputs {
-  width: 400px;
-  height: 800px;
-  border-radius: 3px;
-  top: 0%;
-  position: fixed;
-  box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px -2px rgba(#000, .2);
-}
+    #inputs {
+      width: 400px;
+      height: 800px;
+      border-radius: 3px;
+      top: 0%;
+      position: fixed;
+      box-shadow: 0 2px 2px 0 rgba(#000, .14), 0 1px 5px 0 rgba(#000, .12), 0 3px 1px -2px rgba(#000, .2);
+    }
 
- #controlpanel {
-    position:absolute;
-    left: 233px;
-    top: 428px;
-    width: 229px;
-    height:113px;
-    color: white;
-    font: 0.6rem Inconsolata, monospace;
-    background-color: black;
+    #controlpanel {
+      position: absolute;
+      left: 233px;
+      top: 428px;
+      width: 229px;
+      height: 113px;
+      color: white;
+      font: 0.6rem Inconsolata, monospace;
+      background-color: black;
 
- }
+    }
 
- #citations {
-    position:absolute;
-    left: 470px;
-    top: 228px;
-    width: 229px;
-    height:113px;
-    color: blue;
-    font: 0.6rem Inconsolata, monospace;
-    background-color: white;
+    #citations {
+      position: absolute;
+      left: 470px;
+      top: 228px;
+      width: 229px;
+      height: 113px;
+      color: blue;
+      font: 0.6rem Inconsolata, monospace;
+      background-color: white;
 
- }
-
-
-  #hypergraphmusic {
-    position:absolute;
-    left: 376px;
-    top: 307px;
-    width: 32px;
-    height:32px;
-    color: blue;
-    font: 0.6rem Inconsolata, monospace;
-    background-color: white;
-
- }
-
-  #sbr {
-    position:absolute;
-    left: 377px;
-    top: 198px;
-    width: 85px;
-    height:85px;
-    color: blue;
-    font: 0.6rem Inconsolata, monospace;
-    background-color: white;
-
- }
-
-  #tagcloud {
-    position:absolute;
-    left: 232px;
-    top: 197px;
-    width: 142px;
-    height:142px;
-    color: blue;
-    font: 0.6rem Inconsolata, monospace;
-    background-color: white;
-
- }
-
- #buttons {
-    position:absolute;
-    left: 233px;
-    top: 548px;
-    width: 229px;
-    height:30px;
-
- }
+    }
 
 
-  .profile {
-    right: 30px;
-    position: fixed;
+    #hypergraphmusic {
+      position: absolute;
+      left: 376px;
+      top: 307px;
+      width: 32px;
+      height: 32px;
+      color: blue;
+      font: 0.6rem Inconsolata, monospace;
+      background-color: white;
 
-  }
+    }
 
-  .leftbottom {
-    left: 5px;
-    bottom: 5px;
-    width: 444px;
-    position: fixed;
+    #sbr {
+      position: absolute;
+      left: 377px;
+      top: 198px;
+      width: 85px;
+      height: 85px;
+      color: blue;
+      font: 0.6rem Inconsolata, monospace;
+      background-color: white;
 
-  }
-  .rightbottom {
-    right: 0;
-    bottom: 0;
-    position: fixed;
+    }
 
-  }
+    #tagcloud {
+      position: absolute;
+      left: 232px;
+      top: 197px;
+      width: 142px;
+      height: 142px;
+      color: blue;
+      font: 0.6rem Inconsolata, monospace;
+      background-color: white;
 
-  .topright {
-    top: 5px;
-    right: 5px;
-    width: 444px;
-    position: fixed;
+    }
 
-  }
+    #buttons {
+      position: absolute;
+      left: 233px;
+      top: 548px;
+      width: 229px;
+      height: 30px;
+
+    }
 
 
+    .profile {
+      right: 30px;
+      position: fixed;
 
-</style>
+    }
+
+    .leftbottom {
+      left: 5px;
+      bottom: 5px;
+      width: 444px;
+      position: fixed;
+
+    }
+
+    .rightbottom {
+      right: 0;
+      bottom: 0;
+      position: fixed;
+
+    }
+
+    .topright {
+      top: 5px;
+      right: 5px;
+      width: 444px;
+      position: fixed;
+
+    }
+  </style>
 </head>
 
-    <title>MetaLambda - Game of MetaLife v0.44</title>
-  </head>
-  <body>
+<title>MetaLambda - Game of MetaLife v0.44</title>
+</head>
+
+<body>
 
 
 
-<div id="inputs">
-<div style="width:200px;padding-top:10px;padding-left:10px">
+  <div id="inputs">
+    <div style="width:200px;padding-top:10px;padding-left:10px">
 
-<div style="background-color: #1abc9c; padding: 15px; margin-bottom: 20px; border-radius: 5px; text-align: center;">
+      <!-- <div style="background-color: #1abc9c; padding: 15px; margin-bottom: 20px; border-radius: 5px; text-align: center;">
   <h2 style="margin: 0; color: white;">MetaLife v0.44</h2>
   <a href="modularmetalife.html" style="display: inline-block; margin-top: 10px; padding: 8px 15px; background-color: white; color: #1abc9c; text-decoration: none; font-weight: bold; border-radius: 4px;">Launch Modular MetaLife</a>
-</div>
+</div> -->
 
-MetaLambdas are cross platform functions which accompany computational lifeforms such as anticipated by Von Neumann in his Universal Constructor Theory. They have been used to build the <a href="https://www.youtube.com/watch?app=desktop&v=HhNnnKV-h_Q&fbclid=IwAR20OtCuqU3gFSSTdfjo5WKgCCUVq20yLFg0XrhPHq96RPWE3wBeItyz0V0" target="_blank">Game of MetaLife</a> in collaboration with <a href="https://en.wikipedia.org/wiki/Nomic" target="_blank">Peter Suber</a> the inventor of Nomic. In short, the Game of MetaLife is a multidimensional version of Conway's Game of Life in which each ceullar automaton may have embedded lambda calculus which controls its movements and genetic propogation strategy.
+      MetaLambdas are cross platform functions which accompany computational lifeforms such as anticipated by Von
+      Neumann in his Universal Constructor Theory. They have been used to build the <a
+        href="https://www.youtube.com/watch?app=desktop&v=HhNnnKV-h_Q&fbclid=IwAR20OtCuqU3gFSSTdfjo5WKgCCUVq20yLFg0XrhPHq96RPWE3wBeItyz0V0"
+        target="_blank">Game of MetaLife</a> in collaboration with <a href="https://en.wikipedia.org/wiki/Nomic"
+        target="_blank">Peter Suber</a> the inventor of Nomic. In short, the Game of MetaLife is a multidimensional
+      version of Conway's Game of Life in which each ceullar automaton may have embedded lambda calculus which controls
+      its movements and genetic propogation strategy.
 
-Within the <a href="multiversal.me" target="_blank">Multiversal Mainframe</a> this is used to populate metaverses.<BR/> Additionally we are using this to test the <a href="https://people.idsia.ch/~juergen/digitalphysics.html#:~:text=Zuse%20was%20the%20first%20to,of%20Digital%20Physics%20in%201967" target="_blank"> Zuse Hypothesis</a> and working with the Wolfram Institute on <a target="_blank" href="https://writings.stephenwolfram.com/2021/11/the-concept-of-the-ruliad/">ruliad research</a>.
-</div>
+      Within the <a href="multiversal.me" target="_blank">Multiversal Mainframe</a> this is used to populate
+      metaverses.<BR /> Additionally we are using this to test the <a
+        href="https://people.idsia.ch/~juergen/digitalphysics.html#:~:text=Zuse%20was%20the%20first%20to,of%20Digital%20Physics%20in%201967"
+        target="_blank"> Zuse Hypothesis</a> and working with the Wolfram Institute on <a target="_blank"
+        href="https://writings.stephenwolfram.com/2021/11/the-concept-of-the-ruliad/">ruliad research</a>.
+    </div>
 
   </div>
 
-</div>
-<!--TODO: figure out why the fibspiral is not making links clickable-->
+  </div>
+  <!--TODO: figure out why the fibspiral is not making links clickable-->
 
- <div class="leftbottom">
-  Joel Dietz bio <a href="archive/jd-bio.html">0</a>..<a href="archive/jd-bio-o.html">1</a> | <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a href="http://www.cryptoapollo.io" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q" target="_blank">Ted Talk</a> |
-  <a href="http://multiversal.me" target="_blank">engine</a> 
-  <!-- | <a href="archive/jd.html">recs</a> -->
+  <div class="leftbottom">
+    Joel Dietz bio <a href="archive/jd-bio.html">0</a>..<a href="archive/jd-bio-o.html">1</a> | <a
+      href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a href="http://www.cryptoapollo.io"
+      target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q" target="_blank">Ted Talk</a> |
+    <a href="http://multiversal.me" target="_blank">engine</a>
+    <!-- | <a href="archive/jd.html">recs</a> -->
 
-  <BR/>
+    <BR />
 
- <!-- <label for="mode">Lambda:</label>
+    <!-- <label for="mode">Lambda:</label>
 
  <select name="mode" id="mode" onchange="initiateZuseMode()">
    <option value="ca">P</option>
    <option value="metaverseb">Fib Spiral</option>
  </select> -->
 
- <!--<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>-->
-</div>
-<!--  <div class="rightbottom">
+    <!--<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>-->
+  </div>
+  <!--  <div class="rightbottom">
  </div>-->
 
   <div class="profile">
 
 
-    </div>
+  </div>
 
 
 
-    <div style="position: relative;">
+  <div style="position: relative;">
 
     <!--  <canvas id="layer2" width="140" height="140"
        style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>-->
-       <canvas id="layer1" width="100%" height="100%"
-         style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+    <canvas id="layer1" width="100%" height="100%" style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
 
-      <!--- <canvas id="layer2" width="229" height="229"
+    <!--- <canvas id="layer2" width="229" height="229"
         style="position: absolute; left: 233px; top: 198px; z-index: 1;"></canvas>
 
        <canvas id="layer3" width="60" height="60"
          style="position: absolute; left: 433px; top: 198px;"></canvas>-->
 
-    </div>
-    <div id="controlpanel">
+  </div>
+  <div id="controlpanel">
 
 
     <div id="stats" style="padding:5px">
 
-          >>&nbsp; (create
-                    (world (1.34.45</BR>
-          >>&nbsp; (insert
-                              (planet (5.10.45</BR>
+      >>&nbsp; (create
+      (world (1.34.45</BR>
+      >>&nbsp; (insert
+      (planet (5.10.45</BR>
 
-          >>&nbsp; (run
-                          (lifesim (algo1, 100 ws </BR>
+      >>&nbsp; (run
+      (lifesim (algo1, 100 ws </BR>
 
     </div>
-    </div>
-    <div id="buttons">
-  <a href="modularmetalife.html"><strong>Game of MetaLife 0.44</strong></a> | 
-  <a href="archive/metalife.html">MetaLife 0.33</a>
-   <!-- | <a href="http://github.com/fractastical/metajargon" target="_blank">Metajargon</a> -->
+  </div>
+  <div id="buttons">
+    <a href="modularmetalife.html"><strong>Game of MetaLife 0.44</strong></a> |
+    <!-- <a href="archive/metalife.html">MetaLife 0.33</a> -->
+    <!-- | <a href="http://github.com/fractastical/metajargon" target="_blank">Metajargon</a> -->
     <!--<a href="archive/metalife2d.html">Game of MetaLife 0.34</a>-->
-</div>
-<div id="citations">
-    TedX, Game of MetaLife, 2022<BR/><BR/>
-    Philosophy Portal, "On the origins of logic,"  2023<BR/><BR/>
-    Wolfram Research, Musical Composition with Multiway Turing Machines, 2022<BR/><BR/>
-    MIT Law Review, Hard Problems in Computational Law (pending) <BR/><BR/>
-    Philosophy Portal, Nietzsche's seven platonisms, 2022<BR/><BR/>
-    "Mars Settlement Master Plan", 2023<BR/><BR/>
-    Dubai Engineering Forum, "A comparison of smart contract languages," 2021<BR/><BR/>
-    "The Philosopher Game: an AI game for evaluating counterfactual universes", 2023<BR/><BR/>
-    "Artificial Superintelligence", 2023<BR/><BR/>
-    Space Battle Royale, 2023 <BR/><BR/>
-    From Cryptoanarchy to Cyberutopias (pending, expected 2024) <BR/>
-</div>
-<a href="https://store.steampowered.com/app/2366400/Space_Battle_Royale/" target="_blank"><img id="sbr" src="img/SBR.gif"  /></a> 
-<a target="_blank"><img id="hypergraphmusic" src="img/hypergraph_music.gif"  /></a> 
-<img id="tagcloud" src="img/tag-cloud.png"  />
+  </div>
+  <div id="citations">
+    TedX, Game of MetaLife, 2022<BR /><BR />
+    Philosophy Portal, "On the origins of logic," 2023<BR /><BR />
+    Wolfram Research, Musical Composition with Multiway Turing Machines, 2022<BR /><BR />
+    MIT Law Review, Hard Problems in Computational Law (pending) <BR /><BR />
+    Philosophy Portal, Nietzsche's seven platonisms, 2022<BR /><BR />
+    "Mars Settlement Master Plan", 2023<BR /><BR />
+    Dubai Engineering Forum, "A comparison of smart contract languages," 2021<BR /><BR />
+    "The Philosopher Game: an AI game for evaluating counterfactual universes", 2023<BR /><BR />
+    "Artificial Superintelligence", 2023<BR /><BR />
+    Space Battle Royale, 2023 <BR /><BR />
+    From Cryptoanarchy to Cyberutopias (pending, expected 2024) <BR />
+  </div>
+  <a href="https://store.steampowered.com/app/2366400/Space_Battle_Royale/" target="_blank"><img id="sbr"
+      src="img/SBR.gif" /></a>
+  <a target="_blank"><img id="hypergraphmusic" src="img/hypergraph_music.gif" /></a>
+  <img id="tagcloud" src="img/tag-cloud.png" />
 
-     <script src="./fibo.js"></script>
-    <script src="./jscolor.js"></script>
-    <!-- <script src="./metalambda.js"></script> -->
-    <canvas id="gameCanvas" width="50" height="50"></canvas>
-    <script src="./js/gameoflife.js"></script>
+  <script src="./fibo.js"></script>
+  <script src="./jscolor.js"></script>
+  <!-- <script src="./metalambda.js"></script> -->
+  <canvas id="gameCanvas" width="50" height="50"></canvas>
+  <script src="./js/gameoflife.js"></script>
 
-  </body>
+</body>
+
 </html>
