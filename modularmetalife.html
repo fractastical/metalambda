@@ -251,9 +251,8 @@
  </div>-->
     <div class="leftbottom">
         Joel Dietz <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a
-            href="http://www.cryptoapollo.io" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q"
+            href="http://www.fractastical.replit.app" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q"
             target="_blank">Ted Talk</a> |
-        <a href="http://metametaverse.io" target="_blank">MMV</a><BR />
         <a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a><BR />
 
         <label for="mode">Mode:</label>
@@ -1128,310 +1127,420 @@
                             }
                         })();
 
-                            function mutate(parent, mutRate = parent.mutation || 10) {
-                                if (!parent || !parent.clone) return null;
-                                const child = parent.clone("ca_" + Math.floor(Math.random() * 1e9));
-                                
-                                // Initialize or inherit direction vector
-                                if (!parent.direction) {
-                                    parent.direction = new BABYLON.Vector3(
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1
-                                    ).normalize();
-                                }
-                                
-                                // Curve parameters - new genetic properties
-                                if (!parent.curveFactor) parent.curveFactor = 0.2 + Math.random() * 0.6; // How much it curves
-                                if (!parent.curveAxis) {
-                                    // Random perpendicular axis to curve around
-                                    const perpVec = new BABYLON.Vector3(
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1
-                                    ).normalize();
-                                    parent.curveAxis = BABYLON.Vector3.Cross(parent.direction, perpVec).normalize();
-                                }
-                                
-                                // Inherit and mutate direction
-                                child.direction = parent.direction.clone();
-                                // Apply gentle curve to direction
-                                const rotationQuat = BABYLON.Quaternion.RotationAxis(
-                                    parent.curveAxis, 
-                                    parent.curveFactor * 0.1 * Math.PI
-                                );
-                                child.direction = child.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3());
-                                
-                                // Add small random jitter to direction
-                                const jitterVec = new BABYLON.Vector3(
-                                    (Math.random() * 2 - 1) * 0.2,
-                                    (Math.random() * 2 - 1) * 0.2,
-                                    (Math.random() * 2 - 1) * 0.2
-                                );
-                                child.direction.addInPlace(jitterVec).normalize();
-                                
-                                // Position child along the curved direction
-                                child.position = parent.position.add(child.direction.scale(3 + Math.random() * 2));
-                                
-                                // Mutate curve properties
-                                const jitter = (v) => Math.max(1, v + (Math.random() * 2 - 1) * mutRate);
-                                child.curveFactor = Math.max(0.05, Math.min(0.9, parent.curveFactor + (Math.random() * 0.4 - 0.2)));
-                                
-                                // Slightly rotate curve axis
-                                const axisRotation = BABYLON.Quaternion.RotationAxis(
-                                    child.direction,
-                                    (Math.random() * 0.4 - 0.2) * Math.PI
-                                );
-                                child.curveAxis = parent.curveAxis.clone();
-                                child.curveAxis = child.curveAxis.rotateByQuaternionToRef(axisRotation, new BABYLON.Vector3()).normalize();
-                                
-                                // Original gene mutations
-                                child.xFreq = jitter(parent.xFreq || 10);
-                                child.yFreq = jitter(parent.yFreq || 10);
-                                child.zFreq = jitter(parent.zFreq || 10);
-                                child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq || 10)));
-                                child.mutation = parent.mutation; // keep same rate for now
-                                child.energy = (parent.energy || 10) / 2;
-                                parent.energy = child.energy; // share energy
-                                // mutate color slightly
-                                try {
-                                    const col = BABYLON.Color3.FromHexString(parent.color || "#ffffff");
-                                    const h = (col.r + col.g + col.b) / 3;
-                                    const newCol = new BABYLON.Color3(
-                                        Math.min(1, Math.abs(col.r + (Math.random() - 0.5) * 0.2)),
-                                        Math.min(1, Math.abs(col.g + (Math.random() - 0.5) * 0.2)),
-                                        Math.min(1, Math.abs(col.b + (Math.random() - 0.5) * 0.2)));
-                                    child.material = parent.material.clone("mat_" + Date.now());
-                                    child.material.emissiveColor = newCol;
-                                    child.color = newCol.toHexString();
-                                } catch (e) { }
-                                child.ruleMask = parent.ruleMask ^ (1 << Math.floor(Math.random() * 32));
-                                child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
-                                allActiveCAs.push(child);
-                                return child;
+                        function mutate(parent, mutRate = parent.mutation || 10) {
+                            if (!parent || !parent.clone) return null;
+                            const child = parent.clone("ca_" + Math.floor(Math.random() * 1e9));
+
+                            // Initialize or inherit direction vector
+                            if (!parent.direction) {
+                                parent.direction = new BABYLON.Vector3(
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1
+                                ).normalize();
                             }
 
-                            function encodeCoord(x, y, z) { return `${x},${y},${z}`; }
-                            function decodeCoord(s) { const [x, y, z] = s.split(',').map(Number); return { x, y, z }; }
+                            // Curve parameters - new genetic properties
+                            if (!parent.curveFactor) parent.curveFactor = 0.2 + Math.random() * 0.6; // How much it curves
+                            if (!parent.curveAxis) {
+                                // Random perpendicular axis to curve around
+                                const perpVec = new BABYLON.Vector3(
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1
+                                ).normalize();
+                                parent.curveAxis = BABYLON.Vector3.Cross(parent.direction, perpVec).normalize();
+                            }
 
-                            function stepVoxels(ca) {
-                                const live = ca.liveVoxels;
-                                const counts = new Map();
+                            // Inherit and mutate direction
+                            child.direction = parent.direction.clone();
+                            // Apply gentle curve to direction
+                            const rotationQuat = BABYLON.Quaternion.RotationAxis(
+                                parent.curveAxis,
+                                parent.curveFactor * 0.1 * Math.PI
+                            );
+                            child.direction = child.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3());
+
+                            // Add small random jitter to direction
+                            const jitterVec = new BABYLON.Vector3(
+                                (Math.random() * 2 - 1) * 0.2,
+                                (Math.random() * 2 - 1) * 0.2,
+                                (Math.random() * 2 - 1) * 0.2
+                            );
+                            child.direction.addInPlace(jitterVec).normalize();
+
+                            // Position child along the curved direction
+                            child.position = parent.position.add(child.direction.scale(3 + Math.random() * 2));
+
+                            // Mutate curve properties
+                            const jitter = (v) => Math.max(1, v + (Math.random() * 2 - 1) * mutRate);
+                            child.curveFactor = Math.max(0.05, Math.min(0.9, parent.curveFactor + (Math.random() * 0.4 - 0.2)));
+
+                            // Slightly rotate curve axis
+                            const axisRotation = BABYLON.Quaternion.RotationAxis(
+                                child.direction,
+                                (Math.random() * 0.4 - 0.2) * Math.PI
+                            );
+                            child.curveAxis = parent.curveAxis.clone();
+                            child.curveAxis = child.curveAxis.rotateByQuaternionToRef(axisRotation, new BABYLON.Vector3()).normalize();
+
+                            // Original gene mutations
+                            child.xFreq = jitter(parent.xFreq || 10);
+                            child.yFreq = jitter(parent.yFreq || 10);
+                            child.zFreq = jitter(parent.zFreq || 10);
+                            child.splitFreq = Math.max(5, Math.round(jitter(parent.splitFreq || 10)));
+                            child.mutation = parent.mutation; // keep same rate for now
+                            child.energy = (parent.energy || 10) / 2;
+                            parent.energy = child.energy; // share energy
+                            // mutate color slightly
+                            try {
+                                const col = BABYLON.Color3.FromHexString(parent.color || "#ffffff");
+                                const h = (col.r + col.g + col.b) / 3;
+                                const newCol = new BABYLON.Color3(
+                                    Math.min(1, Math.abs(col.r + (Math.random() - 0.5) * 0.2)),
+                                    Math.min(1, Math.abs(col.g + (Math.random() - 0.5) * 0.2)),
+                                    Math.min(1, Math.abs(col.b + (Math.random() - 0.5) * 0.2)));
+                                child.material = parent.material.clone("mat_" + Date.now());
+                                child.material.emissiveColor = newCol;
+                                child.color = newCol.toHexString();
+                            } catch (e) { }
+                            child.ruleMask = parent.ruleMask ^ (1 << Math.floor(Math.random() * 32));
+                            child.liveVoxels = new Set(parent.liveVoxels); // shallow copy
+                            allActiveCAs.push(child);
+                            return child;
+                        }
+
+                        function encodeCoord(x, y, z) { return `${x},${y},${z}`; }
+                        function decodeCoord(s) { const [x, y, z] = s.split(',').map(Number); return { x, y, z }; }
+
+                        function stepVoxels(ca) {
+                            const live = ca.liveVoxels;
+                            const counts = new Map();
+
+                            // Initialize direction if not present
+                            if (!ca.direction) {
+                                ca.direction = new BABYLON.Vector3(
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1
+                                ).normalize();
+                                ca.curveFactor = 0.2 + Math.random() * 0.6;
+
+                                // Create perpendicular axis for curving
+                                const perpVec = new BABYLON.Vector3(
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1,
+                                    Math.random() * 2 - 1
+                                ).normalize();
+                                ca.curveAxis = BABYLON.Vector3.Cross(ca.direction, perpVec).normalize();
+                            }
+
+                            // Slightly evolve direction over time for continuous curving
+                            const rotationQuat = BABYLON.Quaternion.RotationAxis(
+                                ca.curveAxis,
+                                ca.curveFactor * 0.02 * Math.PI
+                            );
+                            ca.direction = ca.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3()).normalize();
+
+                            // Count neighbors with directional bias
+                            live.forEach(key => {
+                                const { x, y, z } = decodeCoord(key);
+
+                                // Calculate center of mass for this CA
+                                if (!ca.centerOfMass) {
+                                    ca.centerOfMass = { x: 0, y: 0, z: 0, count: 0 };
+                                    live.forEach(voxKey => {
+                                        const pos = decodeCoord(voxKey);
+                                        ca.centerOfMass.x += pos.x;
+                                        ca.centerOfMass.y += pos.y;
+                                        ca.centerOfMass.z += pos.z;
+                                        ca.centerOfMass.count++;
+                                    });
+                                    if (ca.centerOfMass.count > 0) {
+                                        ca.centerOfMass.x /= ca.centerOfMass.count;
+                                        ca.centerOfMass.y /= ca.centerOfMass.count;
+                                        ca.centerOfMass.z /= ca.centerOfMass.count;
+                                    }
+                                }
+
+                                for (let dx = -1; dx <= 1; dx++)
+                                    for (let dy = -1; dy <= 1; dy++)
+                                        for (let dz = -1; dz <= 1; dz++) {
+                                            if (dx || dy || dz) {
+                                                const nx = x + dx;
+                                                const ny = y + dy;
+                                                const nz = z + dz;
+                                                const k = encodeCoord(nx, ny, nz);
+
+                                                // Calculate directional bias
+                                                let weight = 1.0;
+
+                                                // Vector from center of mass to this neighbor
+                                                const growthVec = new BABYLON.Vector3(
+                                                    nx - ca.centerOfMass.x,
+                                                    ny - ca.centerOfMass.y,
+                                                    nz - ca.centerOfMass.z
+                                                ).normalize();
+
+                                                // Favor growth in the direction of the curve
+                                                const alignment = BABYLON.Vector3.Dot(growthVec, ca.direction);
+
+                                                // Boost weight for cells growing in the preferred direction
+                                                if (alignment > 0) {
+                                                    weight = 1.0 + alignment * 0.5;
+                                                }
+
+                                                counts.set(k, (counts.get(k) || 0) + weight);
+                                            }
+                                        }
+                            });
+
+                            const next = new Set();
+                            counts.forEach((n, k) => {
+                                const alive = live.has(k);
+                                const maskPart = alive ? (ca.ruleMask >>> 16) : ca.ruleMask;
+
+                                // Round to nearest integer for rule application
+                                const nInt = Math.round(n);
+
+                                if (((maskPart >> nInt) & 1) === 1) next.add(k);
+                            });
+
+                            // Reset center of mass for next step
+                            ca.centerOfMass = null;
+                            ca.liveVoxels = next;
+                        }
+
+                        function serializeCA(ca) {
+                            if (!ca) return {};
+                            return {
+                                x: ca.position?.x || 0,
+                                y: ca.position?.y || 0,
+                                z: ca.position?.z || 0,
+                                energy: ca.energy,
+                                seed: ca.seed,
+                                color: ca.color,
+                                xFreq: ca.xFreq,
+                                yFreq: ca.yFreq,
+                                zFreq: ca.zFreq,
+                                splitFreq: ca.splitFreq,
+                                mutation: ca.mutation,
+                                ruleMask: ca.ruleMask || 0,
+                                voxels: Array.from(ca.liveVoxels || [])
+                            };
+                        }
+
+                        function grabWorldState() {
+                            try {
+                                const state = {
+                                    seed: currentSeed,
+                                    step: window.numberofComputationalStepsCompleted || 0,
+                                    caList: (window.allActiveCAs || []).map(ca => serializeCA(ca))
+                                };
+                                const ordered = {};
+                                Object.keys(state).sort().forEach(k => { ordered[k] = state[k]; });
+                                return JSON.stringify(ordered);
+                            } catch (err) {
+                                console.error('[MetaLife] Failed to grab state:', err);
+                                return '{}';
+                            }
+                            // Global registry of all snapshots
+                            let snapshotRegistry = {
+                                registryCID: null,  // CID of the registry itself
+                                snapshots: [],      // Array of snapshot metadata
+                                lastUpdate: 0       // Timestamp of last update
+                            };
+                            
+                            // Load the registry from IPFS
+                            async function loadSnapshotRegistry() {
+                                if (!ipfs) { log('IPFS not ready for registry load'); return; }
                                 
-                                // Initialize direction if not present
-                                if (!ca.direction) {
-                                    ca.direction = new BABYLON.Vector3(
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1
-                                    ).normalize();
-                                    ca.curveFactor = 0.2 + Math.random() * 0.6;
-                                    
-                                    // Create perpendicular axis for curving
-                                    const perpVec = new BABYLON.Vector3(
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1,
-                                        Math.random() * 2 - 1
-                                    ).normalize();
-                                    ca.curveAxis = BABYLON.Vector3.Cross(ca.direction, perpVec).normalize();
+                                // Check if we have a registry CID in localStorage
+                                const registryCID = localStorage.getItem('metaLifeRegistryCID');
+                                if (!registryCID) {
+                                    log('No registry found, creating new one');
+                                    return;
                                 }
                                 
-                                // Slightly evolve direction over time for continuous curving
-                                const rotationQuat = BABYLON.Quaternion.RotationAxis(
-                                    ca.curveAxis, 
-                                    ca.curveFactor * 0.02 * Math.PI
-                                );
-                                ca.direction = ca.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3()).normalize();
-                                
-                                // Count neighbors with directional bias
-                                live.forEach(key => {
-                                    const { x, y, z } = decodeCoord(key);
-                                    
-                                    // Calculate center of mass for this CA
-                                    if (!ca.centerOfMass) {
-                                        ca.centerOfMass = { x: 0, y: 0, z: 0, count: 0 };
-                                        live.forEach(voxKey => {
-                                            const pos = decodeCoord(voxKey);
-                                            ca.centerOfMass.x += pos.x;
-                                            ca.centerOfMass.y += pos.y;
-                                            ca.centerOfMass.z += pos.z;
-                                            ca.centerOfMass.count++;
-                                        });
-                                        if (ca.centerOfMass.count > 0) {
-                                            ca.centerOfMass.x /= ca.centerOfMass.count;
-                                            ca.centerOfMass.y /= ca.centerOfMass.count;
-                                            ca.centerOfMass.z /= ca.centerOfMass.count;
-                                        }
+                                try {
+                                    log('Loading snapshot registry:', registryCID);
+                                    let dataStr = '';
+                                    for await (const chunk of ipfs.cat(registryCID)) {
+                                        dataStr += new TextDecoder().decode(chunk);
                                     }
                                     
-                                    for (let dx = -1; dx <= 1; dx++)
-                                        for (let dy = -1; dy <= 1; dy++)
-                                            for (let dz = -1; dz <= 1; dz++) {
-                                                if (dx || dy || dz) {
-                                                    const nx = x + dx;
-                                                    const ny = y + dy;
-                                                    const nz = z + dz;
-                                                    const k = encodeCoord(nx, ny, nz);
-                                                    
-                                                    // Calculate directional bias
-                                                    let weight = 1.0;
-                                                    
-                                                    // Vector from center of mass to this neighbor
-                                                    const growthVec = new BABYLON.Vector3(
-                                                        nx - ca.centerOfMass.x,
-                                                        ny - ca.centerOfMass.y,
-                                                        nz - ca.centerOfMass.z
-                                                    ).normalize();
-                                                    
-                                                    // Favor growth in the direction of the curve
-                                                    const alignment = BABYLON.Vector3.Dot(growthVec, ca.direction);
-                                                    
-                                                    // Boost weight for cells growing in the preferred direction
-                                                    if (alignment > 0) {
-                                                        weight = 1.0 + alignment * 0.5;
-                                                    }
-                                                    
-                                                    counts.set(k, (counts.get(k) || 0) + weight);
-                                                }
-                                            }
-                                });
-                                
-                                const next = new Set();
-                                counts.forEach((n, k) => {
-                                    const alive = live.has(k);
-                                    const maskPart = alive ? (ca.ruleMask >>> 16) : ca.ruleMask;
+                                    const registry = JSON.parse(dataStr);
+                                    snapshotRegistry = registry;
+                                    snapshotRegistry.registryCID = registryCID;
+                                    log(`Registry loaded with ${registry.snapshots.length} snapshots`);
                                     
-                                    // Round to nearest integer for rule application
-                                    const nInt = Math.round(n);
-                                    
-                                    if (((maskPart >> nInt) & 1) === 1) next.add(k);
-                                });
-                                
-                                // Reset center of mass for next step
-                                ca.centerOfMass = null;
-                                ca.liveVoxels = next;
-                            }
-
-                            function serializeCA(ca) {
-                                if (!ca) return {};
-                                return {
-                                    x: ca.position?.x || 0,
-                                    y: ca.position?.y || 0,
-                                    z: ca.position?.z || 0,
-                                    energy: ca.energy,
-                                    seed: ca.seed,
-                                    color: ca.color,
-                                    xFreq: ca.xFreq,
-                                    yFreq: ca.yFreq,
-                                    zFreq: ca.zFreq,
-                                    splitFreq: ca.splitFreq,
-                                    mutation: ca.mutation,
-                                    ruleMask: ca.ruleMask || 0,
-                                    voxels: Array.from(ca.liveVoxels || [])
-                                };
-                            }
-
-                            function grabWorldState() {
-                                try {
-                                    const state = {
-                                        seed: currentSeed,
-                                        step: window.numberofComputationalStepsCompleted || 0,
-                                        caList: (window.allActiveCAs || []).map(ca => serializeCA(ca))
-                                    };
-                                    const ordered = {};
-                                    Object.keys(state).sort().forEach(k => { ordered[k] = state[k]; });
-                                    return JSON.stringify(ordered);
+                                    // Update the UI with snapshot list if needed
+                                    updateSnapshotListUI();
                                 } catch (err) {
-                                    console.error('[MetaLife] Failed to grab state:', err);
-                                    return '{}';
+                                    console.error('[MetaLife] Registry load failed:', err);
+                                    log('Failed to load registry, starting fresh');
                                 }
                             }
-
+                            
+                            // Save the registry to IPFS
+                            async function saveSnapshotRegistry() {
+                                if (!ipfs) { log('IPFS not ready for registry save'); return; }
+                                
+                                try {
+                                    // Update timestamp
+                                    snapshotRegistry.lastUpdate = Date.now();
+                                    
+                                    // Save to IPFS
+                                    const { cid } = await ipfs.add(JSON.stringify(snapshotRegistry));
+                                    const cidStr = cid.toString();
+                                    
+                                    // Update registry with its own CID
+                                    snapshotRegistry.registryCID = cidStr;
+                                    
+                                    // Store in localStorage for persistence
+                                    localStorage.setItem('metaLifeRegistryCID', cidStr);
+                                    
+                                    log(`Registry updated with ${snapshotRegistry.snapshots.length} snapshots, CID: ${cidStr}`);
+                                    return cidStr;
+                                } catch (err) {
+                                    console.error('[MetaLife] Registry save failed:', err);
+                                    return null;
+                                }
+                            }
+                            
+                            // Update the UI with the snapshot list
+                            function updateSnapshotListUI() {
+                                const snapshotList = document.getElementById('snapshotList');
+                                if (!snapshotList) return;
+                                
+                                // Clear existing list
+                                snapshotList.innerHTML = '';
+                                
+                                // Add each snapshot to the list
+                                snapshotRegistry.snapshots.forEach((snapshot, index) => {
+                                    const item = document.createElement('div');
+                                    item.className = 'snapshot-item';
+                                    item.innerHTML = `
+                                        <span class="snapshot-name">${snapshot.name || `Snapshot ${index+1}`}</span>
+                                        <span class="snapshot-date">${new Date(snapshot.timestamp).toLocaleString()}</span>
+                                        <button onclick="loadSnapshotById('${snapshot.cid}')">Load</button>
+                                    `;
+                                    snapshotList.appendChild(item);
+                                });
+                            }
+                            
+                            // Load a snapshot by its ID from the registry
+                            async function loadSnapshotById(cid) {
+                                document.getElementById('cid').value = cid;
+                                await loadSnapshot();
+                            }
+                            
+                            // Take snapshot and add to registry
                             async function snapshotState() {
                                 if (!ipfs) { alert('IPFS not ready'); return; }
                                 try {
                                     log('Uploading snapshot...');
+                                    
+                                    // Create the snapshot
                                     const { cid } = await ipfs.add(grabWorldState());
-                                    document.getElementById('cid').value = cid.toString();
-                                    log('Snapshot stored:', cid.toString());
+                                    const cidStr = cid.toString();
+                                    document.getElementById('cid').value = cidStr;
+                                    
+                                    // Add to registry
+                                    const snapshotName = prompt('Give this snapshot a name:', `Snapshot ${snapshotRegistry.snapshots.length + 1}`);
+                                    
+                                    snapshotRegistry.snapshots.push({
+                                        cid: cidStr,
+                                        name: snapshotName || `Snapshot ${snapshotRegistry.snapshots.length + 1}`,
+                                        timestamp: Date.now(),
+                                        lifeFormCount: (window.allActiveCAs || []).length
+                                    });
+                                    
+                                    // Save updated registry
+                                    await saveSnapshotRegistry();
+                                    
+                                    // Update UI
+                                    updateSnapshotListUI();
+                                    
+                                    log('Snapshot stored:', cidStr);
                                 } catch (err) {
                                     console.error('[MetaLife] Snapshot failed:', err);
                                     alert('Snapshot failed – check console.');
                                 }
                             }
 
-                            async function loadSnapshot() {
-                                const cidInput = document.getElementById('cid');
-                                if (!cidInput || !cidInput.value) return;
-                                const cidStr = cidInput.value.trim();
-                                if (!ipfs) { alert('IPFS not ready'); return; }
-                                try {
-                                    log('Fetching snapshot', cidStr);
-                                    let dataStr = '';
-                                    for await (const chunk of ipfs.cat(cidStr)) {
-                                        dataStr += new TextDecoder().decode(chunk);
-                                    }
-                                    const state = JSON.parse(dataStr);
-                                    applySeed(state.seed);
-                                    window.numberofComputationalStepsCompleted = state.step || 0;
-                                    window.allActiveCAs = state.caList || [];
-                                    if (window.reInitialize) window.reInitialize();
-                                    log('Snapshot loaded');
-                                } catch (err) {
-                                    console.error('[MetaLife] Load failed:', err);
-                                    alert('Load failed – check console.');
+                        async function loadSnapshot() {
+                            const cidInput = document.getElementById('cid');
+                            if (!cidInput || !cidInput.value) return;
+                            const cidStr = cidInput.value.trim();
+                            if (!ipfs) { alert('IPFS not ready'); return; }
+                            try {
+                                log('Fetching snapshot', cidStr);
+                                let dataStr = '';
+                                for await (const chunk of ipfs.cat(cidStr)) {
+                                    dataStr += new TextDecoder().decode(chunk);
                                 }
+                                const state = JSON.parse(dataStr);
+                                applySeed(state.seed);
+                                window.numberofComputationalStepsCompleted = state.step || 0;
+                                window.allActiveCAs = state.caList || [];
+                                if (window.reInitialize) window.reInitialize();
+                                log('Snapshot loaded');
+                            } catch (err) {
+                                console.error('[MetaLife] Load failed:', err);
+                                alert('Load failed – check console.');
                             }
+                        }
 
-                            applySeed();
+                        applySeed();
                     </script>
                     <!-- ==== FVM Render-Reward integration ===================================== -->
                     <script>
-                            const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
-                            const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
-                            const tokenAbi = [
-                                "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
-                            ];
+                        const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
+                        const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
+                        const tokenAbi = [
+                            "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
+                        ];
 
-                            const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
-                            let fvmSigner = null;
-                            let tokenRead = null;
-                            let tokenWrite = null;
+                        const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
+                        let fvmSigner = null;
+                        let tokenRead = null;
+                        let tokenWrite = null;
 
-                            async function connectFVM() {
-                                if (!window.ethereum) { alert('Wallet not found'); return; }
-                                await window.ethereum.request({
-                                    method: 'wallet_addEthereumChain',
-                                    params: [{
-                                        chainId: '0xC45',
-                                        chainName: 'Filecoin Hyperspace',
-                                        nativeCurrency: { name: 'tFIL', symbol: 'tFIL', decimals: 18 },
-                                        rpcUrls: [FVM_RPC],
-                                        blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
-                                    }]
-                                });
-                                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                                fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
-                                tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
-                                tokenWrite = tokenRead.connect(fvmSigner);
-                                console.log('[FVM] Connected', await fvmSigner.getAddress());
-                            }
+                        async function connectFVM() {
+                            if (!window.ethereum) { alert('Wallet not found'); return; }
+                            await window.ethereum.request({
+                                method: 'wallet_addEthereumChain',
+                                params: [{
+                                    chainId: '0xC45',
+                                    chainName: 'Filecoin Hyperspace',
+                                    nativeCurrency: { name: 'tFIL', symbol: 'tFIL', decimals: 18 },
+                                    rpcUrls: [FVM_RPC],
+                                    blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
+                                }]
+                            });
+                            await window.ethereum.request({ method: 'eth_requestAccounts' });
+                            fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+                            tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
+                            tokenWrite = tokenRead.connect(fvmSigner);
+                            console.log('[FVM] Connected', await fvmSigner.getAddress());
+                        }
 
-                            async function signProof(manifestBytes, steps, stateHash) {
-                                if (!fvmSigner) throw new Error('connectFVM first');
-                                const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes', 'uint256', 'bytes32'], [manifestBytes, steps, stateHash]));
-                                return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
-                            }
+                        async function signProof(manifestBytes, steps, stateHash) {
+                            if (!fvmSigner) throw new Error('connectFVM first');
+                            const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes', 'uint256', 'bytes32'], [manifestBytes, steps, stateHash]));
+                            return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
+                        }
 
-                            async function mintReward(manifestBytes, steps, stateHash, ownerSig) {
-                                if (!tokenWrite) throw new Error('connectFVM first');
-                                const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
-                                await tx.wait();
-                                alert('Reward minted on FVM');
-                            }
-                            window.connectFVM = connectFVM;
-                            window.signProof = signProof;
-                            window.mintReward = mintReward;
+                        async function mintReward(manifestBytes, steps, stateHash, ownerSig) {
+                            if (!tokenWrite) throw new Error('connectFVM first');
+                            const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
+                            await tx.wait();
+                            alert('Reward minted on FVM');
+                        }
+                        window.connectFVM = connectFVM;
+                        window.signProof = signProof;
+                        window.mintReward = mintReward;
                     </script>
                     <!-- ====================================================================== -->
                     </script>
