@@ -1,6 +1,6 @@
-# MetaLife: Decentralized Artificial Life with IPFS Integration
+# MetaLife: Decentralized Modular Artificial Life
 
-**[Watch the Demo Video](https://youtu.be/HhNnnKV-h_Q)**
+**[Watch the Demo Video](https://youtu.be/oMEHwwOj0_w)**
 
 [MetaLife](https://metalambda.org/modularmetalife.html) is a decentralized artificial life simulation that combines lambda calculus principles with IPFS storage. Users can create, evolve, and observe 3D life forms with genetic properties, save simulation states to IPFS, and reload them via a registry system.
 
