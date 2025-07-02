@@ -1562,20 +1562,20 @@
                             }
                         }
 
-                        // This is a placeholder to avoid duplicate function definition
-                        // The real loadSnapshotRegistry function is defined in the global scope
-
-                            // Initialize the app with registry loading
-                            (async function initializeApp() {
-                                // Wait for IPFS to be ready
-                                while (!ipfs) {
-                                    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+                        // Initialize IPFS and registry when the page loads
+                        window.addEventListener('load', function() {
+                            // Check for IPFS periodically
+                            const checkIpfs = setInterval(function() {
+                                if (window.ipfs) {
+                                    clearInterval(checkIpfs);
+                                    log('IPFS ready, loading snapshot registry...');
+                                    loadSnapshotRegistry();
                                 }
-                                log('IPFS ready, loading snapshot registry...');
-                                loadSnapshotRegistry();
-                            })();
-
-                            applySeed();
+                            }, 1000);
+                        });
+                        
+                        // Initialize seed
+                        applySeed();
                     </script>
                     <!-- ==== FVM Render-Reward integration ===================================== -->
                     <script>
