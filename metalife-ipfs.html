@@ -150,6 +150,12 @@ an up the ogher
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
         CID <input id="cid" size="48" readonly><br>
         <button onclick="loadSnapshot()">Load CID</button>
+<hr style="margin:4px 0">
+Duel Seeds A <input id="seedA" size="8"> B <input id="seedB" size="8"><br>
+Steps <input id="duelSteps" size="5" value="1000"><br>
+<button onclick="publishDuel()">Duel → IPFS</button><br>
+Manifest CID <input id="manifestCid" size="46"><br>
+<button onclick="verifyDuel()">Verify CID</button>
     </div>
 
     <div id="inputs">
@@ -960,6 +966,59 @@ async function connectWallet(autoRequest = false) {
         console.error('[MetaLife] Wallet connect failed', err);
         if (!autoRequest) alert('Wallet connect failed – check console.');
     }
+}
+
+// ---------------- Verifiable Duel -----------------
+function spawnCAFromSeed(seed){
+    applySeed(seed);
+    if(typeof buyCA==='function'){
+        const before = allActiveCAs.length;
+        buyCA();
+        return allActiveCAs[before];
+    }
+    return null;
+}
+
+async function runDuelLocal(seedA, seedB, steps){
+    if(window.reInitialize) window.reInitialize();
+    allActiveCAs.length = 0; // clear existing
+    numberofComputationalStepsCompleted = 0;
+    MAXSTEPS = steps;
+    spawnCAFromSeed(seedA);
+    spawnCAFromSeed(seedB);
+    for(let i=0;i<steps;i++){
+        if(typeof runOneStep==='function') runOneStep();
+    }
+    return grabWorldState();
+}
+
+async function publishDuel(){
+    if(!ipfs){alert('IPFS not ready'); return;}
+    const seedA = document.getElementById('seedA').value || 'A'+Date.now();
+    const seedB = document.getElementById('seedB').value || 'B'+Date.now();
+    const steps = parseInt(document.getElementById('duelSteps').value)||1000;
+    log('Running duel', seedA, seedB, steps);
+    const state = await runDuelLocal(seedA, seedB, steps);
+    const { cid: stateCID } = await ipfs.add(state);
+    const stateHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(state));
+    const manifest = JSON.stringify({version:'MetaLife-0.33', steps, seedA, seedB, stateCID: stateCID.toString(), stateHash});
+    const { cid: manifestCID } = await ipfs.add(manifest);
+    document.getElementById('manifestCid').value = manifestCID.toString();
+    alert('Manifest stored: '+manifestCID);
+}
+
+async function verifyDuel(){
+    if(!ipfs){alert('IPFS not ready'); return;}
+    const cid = document.getElementById('manifestCid').value.trim();
+    if(!cid){alert('No manifest CID'); return;}
+    log('Verifying manifest', cid);
+    let data='';
+    for await(const chunk of ipfs.cat(cid)){ data += new TextDecoder().decode(chunk); }
+    const manifest = JSON.parse(data);
+    const state = await runDuelLocal(manifest.seedA, manifest.seedB, manifest.steps);
+    const localHash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(state));
+    if(localHash===manifest.stateHash){ alert('Verification success!'); }
+    else { alert('Verification FAILED!'); console.error('expected', manifest.stateHash, 'got', localHash); }
 }
 
 // silent attempt on load
