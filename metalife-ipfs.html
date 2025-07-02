@@ -147,6 +147,7 @@
         <button onclick="applySeed()">Apply</button>
         <button onclick="connectWallet()">Wallet Seed</button><br>
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
+        <button onclick="connectFVM()">Connect Hyperspace</button><br>
         CID <input id="cid" size="48" readonly><br>
         <button onclick="loadSnapshot()">Load CID</button>
         <button onclick="showBlockNumber()">Block #</button> Age: <span id="ageDisplay">–</span>
@@ -1263,6 +1264,56 @@
                         }
 
                         applySeed();
+</script>
+<!-- ==== FVM Render-Reward integration ===================================== -->
+<script>
+const TOKEN_ADDR = "0xYourDeployedAddress"; // TODO: replace after deployment
+const FVM_RPC = "https://wallaby.node.glif.io/rpc/v1";
+const tokenAbi = [
+    "function mintWithProof(address to, bytes manifestCID, uint256 steps, bytes32 stateHash, bytes ownerSig)"
+];
+
+const providerFVM = new ethers.providers.JsonRpcProvider(FVM_RPC);
+let fvmSigner = null;
+let tokenRead = null;
+let tokenWrite = null;
+
+async function connectFVM(){
+    if(!window.ethereum){ alert('Wallet not found'); return; }
+    await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+            chainId: '0xC45',
+            chainName: 'Filecoin Hyperspace',
+            nativeCurrency: { name:'tFIL', symbol:'tFIL', decimals:18 },
+            rpcUrls: [FVM_RPC],
+            blockExplorerUrls: ['https://hyperspace.filfox.info/en/']
+        }]
+    });
+    await window.ethereum.request({ method:'eth_requestAccounts' });
+    fvmSigner = new ethers.providers.Web3Provider(window.ethereum).getSigner();
+    tokenRead = new ethers.Contract(TOKEN_ADDR, tokenAbi, providerFVM);
+    tokenWrite = tokenRead.connect(fvmSigner);
+    console.log('[FVM] Connected', await fvmSigner.getAddress());
+}
+
+async function signProof(manifestBytes, steps, stateHash){
+    if(!fvmSigner) throw new Error('connectFVM first');
+    const msgHash = ethers.utils.keccak256(ethers.utils.defaultAbiCoder.encode(['bytes','uint256','bytes32'],[manifestBytes, steps, stateHash]));
+    return await fvmSigner.signMessage(ethers.utils.arrayify(msgHash));
+}
+
+async function mintReward(manifestBytes, steps, stateHash, ownerSig){
+    if(!tokenWrite) throw new Error('connectFVM first');
+    const tx = await tokenWrite.mintWithProof(await fvmSigner.getAddress(), manifestBytes, steps, stateHash, ownerSig);
+    await tx.wait();
+    alert('Reward minted on FVM');
+}
+window.connectFVM = connectFVM;
+window.signProof = signProof;
+window.mintReward = mintReward;
+</script>
+<!-- ====================================================================== -->
                     </script>
 </body>
 
