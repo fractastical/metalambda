@@ -39,6 +39,32 @@
             padding: 0;
         }
 
+        /* Snapshot registry styling */
+        #snapshotList {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 4px;
+        }
+
+        .snapshot-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 4px;
+        }
+
+        .snapshot-name {
+            font-weight: bold;
+            color: #adf;
+        }
+
+        .snapshot-date {
+            font-size: 0.8em;
+            color: #999;
+            margin: 0 10px;
+        }
+
         /* #renderCanvas {
         width: 100%;
         height: 100%;
@@ -260,20 +286,14 @@
         Joel Dietz <a href="https://connection.mit.edu/joel-dietz" target="_blank">MIT</a> | <a
             href="http://www.fractastical.replit.app" target="_blank">ART</a> | <a href="https://youtu.be/HhNnnKV-h_Q"
             target="_blank">Ted Talk</a> |
-        <a href="https://joel-dietz.gitbook.io/metalife/" target="_blank"> Documentation @ Gitbook</a><BR />
+        <a href="https://joel-dietz.gitbook.io/metalife/" target="_blank">Gitbook</a><BR />
 
-        <label for="mode">Mode:</label>
-
-        <select name="mode" id="mode" onchange="initiateZuseMode()">
-            <option value="ca">Cellular Automata</option>
-            <option value="metaverseb">Procedural Metaverse Generator</option>
-        </select>
         <!-- <label for="mode">Lambda:</label>
 
  <select name="mode" id="mode" onchange="initiateZuseMode()">
    <option value="ca">P</option>
-   /* <option value="metaverseb">Fib Spiral</option> */
- </select> -->
+   <option value="metaverseb">Fib Spiral</option>
+ </select> 
 
         <!--<input id="test" type="button" value="run 1000 steps" onclick="runMetaStep(1000);"></input>-->
     </div>
@@ -325,7 +345,7 @@
                         <input type="button" onclick="metaLifeExport()" value="Export" />
                         <a href="" id="lambdadownload" download="mlambda.txt">Download Code</a>
                         <!--<input type="button" onclick="reset()" value="Restart" />-->
-                        <input type="button" onclick="loadFibLambda()" value="Fib Spiral" />
+                        <!-- <input type="button" onclick="loadFibLambda()" value="Fib Spiral" /> -->
 
                     </div>
                     <!-- <script src="./index.js"></script> -->
