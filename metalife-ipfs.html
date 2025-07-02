@@ -149,6 +149,7 @@
         <button onclick="snapshotState()">Snapshot → IPFS</button><br>
         CID <input id="cid" size="48" readonly><br>
         <button onclick="loadSnapshot()">Load CID</button>
+<button onclick="showBlockNumber()">Block #</button>
         <hr style="margin:4px 0">
         Duel Seeds A <input id="seedA" size="8"> B <input id="seedB" size="8"><br>
         Steps <input id="duelSteps" size="5" value="1000"><br>
@@ -930,12 +931,25 @@
                     </script>
                     <script>
                         let ipfs;
+const INFURA_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
+const ethProvider = new ethers.providers.JsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`);
                         let currentSeed = '0';
                         const ipfsNode = 'https://ipfs.infura.io:5001';
 
                         function log(...args) { console.log('[MetaLife]', ...args); }
 
-                        // ---- Web3 wallet integration ----
+                        // ---- Ethereum helper ----
+async function showBlockNumber(){
+    try{
+        const bn = await ethProvider.getBlockNumber();
+        alert('Current main-net block: '+bn);
+    }catch(e){
+        console.error('[MetaLife] Block fetch failed',e);
+        alert('Failed to fetch block number');
+    }
+}
+
+// ---- Web3 wallet integration ----
                         async function connectWallet(autoRequest = false) {
                             if (!window.ethereum) {
                                 if (!autoRequest) alert('No crypto wallet detected');
@@ -1036,7 +1050,13 @@
 
                         (async () => {
                             try {
-                                ipfs = window.IpfsHttpClient.create({ url: `${ipfsNode}/api/v0` });
+                                const INFURA_IPFS_PROJECT_ID = 'b82b522bcb3f44b4a7eae25eb065b63a';
+const INFURA_IPFS_PROJECT_SECRET = 'NC7pt/a0f45U1AI/cadr9OGLLe3W+o0G46X8+XEcBpPWo/7jP2NP5g';
+const authHeader = 'Basic ' + btoa(`${INFURA_IPFS_PROJECT_ID}:${INFURA_IPFS_PROJECT_SECRET}`);
+ipfs = window.IpfsHttpClient.create({
+    url: `${ipfsNode}/api/v0`,
+    headers: { Authorization: authHeader }
+});
                                 await ipfs.id(); // simple call to ensure connectivity
                                 log('IPFS client ready');
                             } catch (err) {
