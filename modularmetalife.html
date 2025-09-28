@@ -846,17 +846,10 @@
                         var startRenderLoop = function (engine, canvas) {
                             engine.runRenderLoop(function () {
                                 if (sceneToRender && sceneToRender.activeCamera) {
-                                    // evolve voxel automata every 3 frames
-                                    if (frameCount++ % 3 === 0 && window.allActiveCAs) {
-                                        for (const ca of window.allActiveCAs) {
-                                            if (ca.liveVoxels) stepVoxels(ca);
-                                        }
-                                    }
                                     sceneToRender.render();
                                 }
                             });
                         }
-
                         var engine = null;
                         var scene = null;
                         var playingField = null;
