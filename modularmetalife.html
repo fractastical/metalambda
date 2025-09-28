@@ -153,11 +153,11 @@
         }
 
         .codeflask {
-            width: 400px height: 83% border-radius: 3px
+            width: 400px;
+            height: 83%;
+            border-radius: 3px;
         }
 
-        &::before,
-        .codeflask__lines background: #FFF .codeflask__textarea
     </style>
 </head>
 
@@ -369,11 +369,171 @@
                         <!-- <input type="button" onclick="loadFibLambda()" value="Fib Spiral" --> -->
 
                     </div>
+                    <!-- 3D Life Controls Panel -->
+                    <div id="life3dControls" style="position:absolute; left:233px; top:588px; width:229px; padding:6px; background:#111; color:#ddd; font: 0.6rem Inconsolata, monospace; border:1px solid #333;">
+                        <div style="margin-bottom:6px; font-weight:bold; color:#adf;">3D Life Rules</div>
+                        <label style="display:block; margin-bottom:4px;">
+                            <input type="checkbox" id="pure3dToggle" onchange="togglePure3D(this.checked)" /> Pure 3D (isotropic)
+                        </label>
+                        <label style="display:block; margin:4px 0;">Preset:
+                            <select id="rulePreset" onchange="applyRulePreset(this.value)" style="width:100%;">
+                                <option value="">Select preset</option>
+                                <option value="B5/S4">B5/S4 (26-neighborhood)</option>
+                                <option value="B6/S567">B6/S5,6,7</option>
+                            </select>
+                        </label>
+                        <div style="margin:4px 0;">
+                            <div style="margin-bottom:2px;">Custom Birth (comma sep):</div>
+                            <input id="birthInput" placeholder="e.g. 5" style="width:100%;" />
+                        </div>
+                        <div style="margin:4px 0;">
+                            <div style="margin-bottom:2px;">Custom Survival (comma sep):</div>
+                            <input id="surviveInput" placeholder="e.g. 4" style="width:100%;" />
+                        </div>
+                        <div style="display:flex; gap:6px; margin-top:6px;">
+                            <button onclick="applyCustomRule()" style="flex:1;">Apply Rule</button>
+                            <button onclick="seedVoxelsAll()" style="flex:1;">Seed Voxels</button>
+                        </div>
+                        <div style="display:flex; gap:6px; margin-top:6px;">
+                            <button onclick="clearVoxelsAll()" style="flex:1;">Clear Voxels</button>
+                        </div>
+                    </div>
                     <!-- <script src="./index.js"></script> -->
                     <script src="./jscolor.js"></script>
                     <script src="./metalambda.js"></script>
 
                     <script>
+                        // ============== 3D Life UI and Rule Utilities =====================
+                        window.PURE_3D_LIFE = false; // isotropic when true
+
+                        function makeRuleMask(birthSet, surviveSet) {
+                            // lower 16 bits = birth, upper 16 bits = survival
+                            // allow up to 31 to accommodate 26-neighborhood counts
+                            let birth = 0, survive = 0;
+                            for (const n of birthSet) if (n >= 0 && n < 32) birth |= (1 << n);
+                            for (const n of surviveSet) if (n >= 0 && n < 32) survive |= (1 << n);
+                            return (survive << 16) | birth;
+                        }
+
+                        function parseCounts(str) {
+                            if (!str) return new Set();
+                            return new Set(str.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n)));
+                        }
+
+                        function togglePure3D(checked) {
+                            window.PURE_3D_LIFE = !!checked;
+                            log('Pure 3D Life:', window.PURE_3D_LIFE);
+                        }
+
+                        function applyRulePreset(name) {
+                            if (!name) { log('Preset not selected; skipping rule apply'); return; }
+                            let birth = new Set();
+                            let survive = new Set();
+                            if (name === 'B5/S4') { birth = new Set([5]); survive = new Set([4]); }
+                            else if (name === 'B6/S567') { birth = new Set([6]); survive = new Set([5,6,7]); }
+                            const mask = makeRuleMask(birth, survive);
+                            if (!mask) { log('Preset produced empty mask; skipping'); return; }
+                            applyRuleMaskAll(mask);
+                            // Populate custom fields
+                            document.getElementById('birthInput').value = Array.from(birth).join(',');
+                            document.getElementById('surviveInput').value = Array.from(survive).join(',');
+                        }
+
+                        function applyCustomRule() {
+                            const b = parseCounts(document.getElementById('birthInput').value);
+                            const s = parseCounts(document.getElementById('surviveInput').value);
+                            if ((b.size === 0) && (s.size === 0)) { log('Custom rule empty; skipping'); return; }
+                            const mask = makeRuleMask(b, s);
+                            if (!mask) { log('Custom rule compiled to empty mask; skipping'); return; }
+                            applyRuleMaskAll(mask);
+                        }
+
+                        function applyRuleMaskAll(mask) {
+                            if (!window.allActiveCAs) return;
+                            for (const ca of window.allActiveCAs) {
+                                ca.ruleMask = mask;
+                            }
+                            log('Applied rule mask to all CAs:', mask);
+                        }
+
+                        function seedVoxelsAll() {
+                            if (!window.allActiveCAs) return;
+                            for (const ca of window.allActiveCAs) {
+                                ensureVoxelSeed(ca);
+                                renderVoxelsNaive(ca);
+                            }
+                            log('Seeded voxels for all CAs');
+                        }
+
+                        function clearVoxelsAll() {
+                            if (!window.allActiveCAs) return;
+                            for (const ca of window.allActiveCAs) {
+                                ca.liveVoxels = new Set();
+                                renderVoxelsNaive(ca);
+                            }
+                            log('Cleared voxels for all CAs');
+                        }
+
+                        function ensureVoxelSeed(ca) {
+                            if (!ca.liveVoxels || ca.liveVoxels.size === 0) {
+                                ca.liveVoxels = new Set();
+                                const cx = Math.round(ca.position?.x ?? 50);
+                                const cy = Math.round(ca.position?.y ?? 50);
+                                const cz = Math.round(ca.position?.z ?? 50);
+                                const pts = [
+                                    [0,0,0],[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]
+                                ];
+                                for (const [dx,dy,dz] of pts) {
+                                    ca.liveVoxels.add(`${cx+dx},${cy+dy},${cz+dz}`);
+                                }
+                            }
+                            if (!ca.ruleMask || ca.ruleMask === 0) {
+                                // more persistent default: B6/S567
+                                ca.ruleMask = makeRuleMask(new Set([6]), new Set([5,6,7]));
+                            }
+                        }
+
+                        // Wrap reInitialize to auto-apply defaults and seed voxels
+                        (function wrapReinit() {
+                            const orig = window.reInitialize;
+                            window.reInitialize = function() {
+                                if (typeof orig === 'function') orig();
+                                if (window.allActiveCAs) {
+                                    for (const ca of window.allActiveCAs) { ensureVoxelSeed(ca); renderVoxelsNaive(ca); }
+                                }
+                            };
+                        })();
+
+                        // Naive voxel renderer: create/destroy small boxes for each live voxel (cap to avoid overload)
+                        function renderVoxelsNaive(ca) {
+                            if (!window.scene || !ca) return;
+                            // Create a container for voxel meshes per CA
+                            if (!ca.voxelContainer || ca.voxelContainer._isDisposed) {
+                                ca.voxelContainer = new BABYLON.TransformNode('voxCont_' + Math.floor(Math.random()*1e9), window.scene);
+                            }
+                            // Dispose previous children
+                            if (ca._voxelMeshes && ca._voxelMeshes.length) {
+                                for (const m of ca._voxelMeshes) { if (!m.isDisposed()) m.dispose(); }
+                            }
+                            ca._voxelMeshes = [];
+                            const live = ca.liveVoxels || new Set();
+                            const MAX_VOX = 1500; // safety cap
+                            let count = 0;
+                            const color = (()=>{try{return BABYLON.Color3.FromHexString(ca.color||'#ffffff');}catch{return new BABYLON.Color3(1,1,1);} })();
+                            for (const key of live) {
+                                if (count++ >= MAX_VOX) break;
+                                const {x,y,z} = decodeCoord(key);
+                                const box = BABYLON.MeshBuilder.CreateBox('v', { size: 0.9 }, window.scene);
+                                box.position = new BABYLON.Vector3(x, y, z);
+                                box.parent = ca.voxelContainer;
+                                const mat = new BABYLON.StandardMaterial('vm_'+Math.random(), window.scene);
+                                mat.diffuseColor = color;
+                                mat.emissiveColor = color;
+                                box.material = mat;
+                                ca._voxelMeshes.push(box);
+                            }
+                        }
+
                         // Global registry of all snapshots
                         let snapshotRegistry = {
                             registryCID: null,  // CID of the registry itself
@@ -681,6 +841,8 @@
 
                         var canvas = document.getElementById("layer2");
                         let frameCount = 0;
+                        // Ensure stepVoxels exists globally before the render loop references it
+                        window.stepVoxels = window.stepVoxels || function(ca) { /* stub until real impl is parsed */ };
                         var startRenderLoop = function (engine, canvas) {
                             engine.runRenderLoop(function () {
                                 if (sceneToRender && sceneToRender.activeCamera) {
@@ -1574,7 +1736,7 @@
                             );
                             ca.direction = ca.direction.rotateByQuaternionToRef(rotationQuat, new BABYLON.Vector3()).normalize();
 
-                            // Count neighbors with directional bias
+                            // Count neighbors with optional directional bias
                             live.forEach(key => {
                                 const { x, y, z } = decodeCoord(key);
 
@@ -1641,7 +1803,11 @@
                             // Reset center of mass for next step
                             ca.centerOfMass = null;
                             ca.liveVoxels = next;
+                            // Update visible voxels
+                            if (typeof renderVoxelsNaive === 'function') renderVoxelsNaive(ca);
                         }
+                        // Expose globally to be safe across script boundaries
+                        window.stepVoxels = stepVoxels;
 
                         function serializeCA(ca) {
                             if (!ca) return {};
@@ -1838,6 +2004,9 @@
                                 ca.mesh.material.alpha = 0.8;
                                 ca.mesh.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
                             }
+                            // Ensure voxels are visible for loaded CAs
+                            if (typeof ensureVoxelSeed === 'function') ensureVoxelSeed(ca);
+                            if (typeof renderVoxelsNaive === 'function') renderVoxelsNaive(ca);
                             
                             return ca;
                         }
