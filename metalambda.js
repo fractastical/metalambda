@@ -592,25 +592,28 @@ function runOneStep() {
 
 
         var lastCA = currentValue;
-        currentValue = metaLambda(lastCA);
-        currentValue.energy = lastCA.energy - 1;
-        if (currentValue.energy < 2)
+        var result = metaLambda(lastCA);
+
+        // Decrement energy on the CA itself
+        lastCA.energy = (lastCA.energy || 0) - 1;
+        if (lastCA.energy < 2)
             arr.splice(index, 1);
 
-        if (currentValue.position.x > startingSizeX)
-            currentValue.position.x = 0;
-        if (currentValue.position.y > startingSizeY)
-            currentValue.position.y = 0;
-        if (currentValue.position.z > startingSizeZ)
-            currentValue.position.z = 0;
-        if (currentValue.position.x < 0)
-            currentValue.position.x = startingSizeX;
-        if (currentValue.position.y < 0)
-            currentValue.position.y = startingSizeY;
-        if (currentValue.position.z < 0)
-            currentValue.position.z = startingSizeZ;
+        // Use the CA's position as authoritative for bounds wrapping
+        if (lastCA.position.x > startingSizeX)
+            lastCA.position.x = 0;
+        if (lastCA.position.y > startingSizeY)
+            lastCA.position.y = 0;
+        if (lastCA.position.z > startingSizeZ)
+            lastCA.position.z = 0;
+        if (lastCA.position.x < 0)
+            lastCA.position.x = startingSizeX;
+        if (lastCA.position.y < 0)
+            lastCA.position.y = startingSizeY;
+        if (lastCA.position.z < 0)
+            lastCA.position.z = startingSizeZ;
 
-        var caindex = currentValue.position.x + currentValue.position.y + currentValue.position.z;
+        var caindex = lastCA.position.x + lastCA.position.y + lastCA.position.z;
 
         if (sortedCubeList[caindex]) {
             // console.log("cube at same index ");
@@ -625,7 +628,16 @@ function runOneStep() {
 
         }
 
-        arr[index] = currentValue;
+        // Advance voxel CA one step (if present) under explicit stepping only
+        try {
+            const target = (lastCA && lastCA.liveVoxels instanceof Set) ? lastCA : currentValue;
+            if (typeof window.stepVoxels === 'function' && target && target.liveVoxels instanceof Set) {
+                window.stepVoxels(target);
+            }
+        } catch (e) { /* ignore voxel step errors to not break main loop */ }
+
+        // Keep the CA in the active list. Trails (if any) are spawned but not tracked as CAs
+        arr[index] = lastCA;
 
 
     })
