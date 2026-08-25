@@ -503,7 +503,7 @@ var incrementColor = function(color, step) {
 
 
 
-// var function_descriptions= ["Forwards", "Chaotic Forwards", "Exochaotic Forwards", "Exochaotic Devient", "Chaotic deviant"]
+// var function_descriptions= ["Forwards", "Chaotic Forwards", "Exochaotic Forwards", "Exochaotic Deviant", "Chaotic deviant"]
 // var lambdas = [forwards, chaoticforwards, exochaoticforwards, exochaoticdeviant, chaoticdeviant];
 var lambdasExecutionCount = [0, 0, 0, 0, 0];
 var lambdasExecutionTime = [0, 0, 0, 0, 0];

@@ -6,12 +6,12 @@ Write up project plan
 
 1.5
 
-Setup Mathematica
+Set up Mathematica
 - issues with download link
 - issues with copy pasting examples
-Import hangpan files
-- was easy to do in web but frightfully difficult in desktop
-Split hangpan files
+Import handpan files
+- was easy to do on the web but frightfully difficult on the desktop
+Split handpan files
 Build first multiway graph in Mathematica
 Write project pseudocode
 Review other "slow light" projects including source code (i.e. MIT gamehub)
@@ -26,21 +26,21 @@ Other MMV work
 1.7
 
 Got access to student portal
-review articles and implementations of minkowski spacetime
+review articles and implementations of Minkowski spacetime
 current TODOs   
-    - merge hangpan files with music parser
+    - merge handpan files with music parser
     - increase complexity of multiway graph
-    - figure out way to import musical signatures of greater complexity
+    - figure out a way to import musical signatures of greater complexity
 
 
 1.8
 
 Meeting with James/Nik
 Trim handpan sound files
-Merge turing machine outputs
-Change pitch of turning machines
-Test output of different turing machine rules for aescetic qualities
-Create framework for inputing 'mixing' of sound output
+Merge Turing machine outputs
+Change pitch of Turing machines
+Test output of different Turing machine rules for aesthetic qualities
+Create framework for inputting 'mixing' of sound output
 
 1.9
 
@@ -51,11 +51,11 @@ New interesting references, including Euler's work on the same
 
 1.12
 
-Lots of last minute small detail changes and content writings
+Lots of last-minute small detail changes and content writing
 
 1.13
 
-Final presentation for winter shool end
+Final presentation for end of winter school
 
 1.15 
 

@@ -9,9 +9,9 @@ BoxData[RowBox[{"\n",RowBox[{RowBox[{"/*"," ","pseudocode"}]," ","\n","\n",RowBo
 {"match"," ","'"}],"commonly"," ","played"," ",RowBox[{"sequences","'"}]," ",RowBox[
 {"or"," ","'"}],"sequences"," ","perceived"," ","as"," ",RowBox[{"beautiful","'"}]," ",RowBox[
 {"(",RowBox[{RowBox[{RowBox[{"c",".","f","."," ","Wolfram"}]," ","games"," ","article"}],","," ",RowBox[
-{"sequences"," ","could"," ","mirrors"," ","this"}],","," ",RowBox[{"winning"," ","conditoins"," ","could"," ",RowBox[
+{"sequences"," ","could"," ","mirrors"," ","this"}],","," ",RowBox[{"winning"," ","conditions"," ","could"," ",RowBox[
 {"be"," ","'"}],"perceived"," ","as"," ",RowBox[{"beautiful","'"}]}]}]," ",")"}]}],"\n",RowBox[
-{"convert"," ","to"," ","rulial"," ","space"}],"\n",RowBox[{"allow"," ","for"," ","variablity"," ","in"," ","wave"," ","form"," ",RowBox[
+{"convert"," ","to"," ","rulial"," ","space"}],"\n",RowBox[{"allow"," ","for"," ","variability"," ","in"," ","wave"," ","form"," ",RowBox[
 {"(",RowBox[{RowBox[{"i",".","e","."," ","translator"}]," ","from"," ","sound"," ","to"," ","waveform"}],")"}]}]," ","\n","\n",RowBox[
 {"*",RowBox[{"/","\n","\n","\n","\n","\n",RowBox[{"MWTMEvolveList","[",RowBox[{RowBox[
 {"{",RowBox[{RowBox[{RowBox[{"{",RowBox[{"1",","," ","1"}],"}"}]," ","\[Rule]"," ",RowBox[

@@ -16,7 +16,7 @@ look at opensea formats and how to export to opensea
 
 OLD TODO:
 
-Debug (adding the argumnet to the Eval function did not work and the inner lambda is now broken )
+Debug (adding the argument to the Eval function did not work and the inner lambda is now broken )
 
 Implement 2d mode
 
@@ -41,7 +41,7 @@ Mess with other fibonacci code
 
 	- insert divs
 
-	- caputure array data
+	- capture array data
 
 Merge Meshes https://doc.babylonjs.com/divingDeeper/mesh/mergeMeshes
 
@@ -71,7 +71,7 @@ Add 3d version
 
 Add game of metalife 2d
 
-Deploy to metalamba.org
+Deploy to metalambda.org
 
 allow you to save lambda / export ?
 

@@ -1,13 +1,13 @@
-#Multiway Music
+# Multiway Music
 
 Produced for Wolfram Winter School '23
 
 
 todo 
-- write psuedocode
-- import music samples into mathematica
+- write pseudocode
+- import music samples into Mathematica
 - spatialize audio
-- create light/sound wave mutablity and variablity
+- create light/sound wave mutability and variability
 
 
 completed 
@@ -15,5 +15,5 @@ completed
 - initial project write up
 - 
 - review of multiway gaming
-- review of multiway turing machines
+- review of multiway Turing machines
 - code samples
